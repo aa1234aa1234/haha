@@ -2,7 +2,7 @@
 
 Scene::Scene(int& w, int& h) {
 	sceneBuffer.init(w, h);
-	sceneShader = new Shader("shader/vertexshader.glsl", "shader/fragmentshader.glsl");
+	sceneShader = new Shader("resources/shader/vertexshader.glsl", "resources/shader/fragmentshader.glsl");
 	//planeShader = new Shader("shader/planevertex.glsl", "shader/planefrag.glsl");
 }
 

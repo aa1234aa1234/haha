@@ -139,9 +139,9 @@ int main(void)
 
     stbi_set_flip_vertically_on_load(true);
     scene = new Scene(windowwidth, windowheight);
-    screenShader = new Shader("shader/screenvertex.glsl", "shader/screenfrag.glsl");
+    screenShader = new Shader("resources/shader/screenvertex.glsl", "resources/shader/screenfrag.glsl");
     context = new UIContext();
-    textHandler = new TextHandler(windowwidth, windowheight, "font/font (32px).png");
+    textHandler = new TextHandler(windowwidth, windowheight, "resources/font/font (32px).png");
     //eventHandler = new EventHandler();
     init();
     //glfwSetWindowMonitor(window, glfwGetPrimaryMonitor(), 0, 0, 1920, 1080, 0);
@@ -216,13 +216,13 @@ int main(void)
 
     ModelImporter* importer = new ModelImporter();
 
-    Shader* objectshader = new Shader("shader/vertex.glsl", "shader/frag.glsl");
+    Shader* objectshader = new Shader("resources/shader/vertex.glsl", "resources/shader/frag.glsl");
 
 
 
 
     /* Loop until the user closes the window */
-    Object obj = Object(importer->loadModel("test/cube-tex.obj")), obj2 = Object(importer->loadModel("models/spider.obj"));
+    Object obj = Object(importer->loadModel("resources/test/cube-tex.obj")), obj2 = Object(importer->loadModel("resources/models/spider.obj"));
     obj2.getModel().scale = glm::vec3(0.01f, 0.01f, 0.01f);
     scene->addObject(obj);
     scene->addObject(obj2);

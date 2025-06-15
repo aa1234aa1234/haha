@@ -3,7 +3,7 @@
 
 
 UIContext::UIContext() {
-	shader = new Shader("shader/vertex2.glsl", "shader/frag2.glsl");
+	shader = new Shader("resources/shader/vertex2.glsl", "resources/shader/frag2.glsl");
 	//overlayElement = new LayoutOverlay(width,height);
 	float ndc[] = { 
 		1.0, 1.0 ,

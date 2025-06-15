@@ -26,7 +26,7 @@ class TextHandler {
 public:
 	TextHandler(int w, int h, const char* filepath) : width(std::move(w)), height(std::move(h)) {
 		textBuffer = new FrameBuffer();
-        shader = new Shader("shader/vertex3.glsl", "shader/frag3.glsl");
+        shader = new Shader("resources/shader/vertex3.glsl", "resources/shader/frag3.glsl");
 		textBuffer->init(width, height);
 		ImportAtlas(filepath);
         shader->use();

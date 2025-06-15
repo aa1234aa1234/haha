@@ -42,9 +42,11 @@ public:
 		std::vector<Mesh*> meshes;
 		std::unordered_map<std::string, Material> mats;
 		std::string str = std::string(filepath);
-		std::strtok((char*)str.c_str(), "/");
-
-		const char* directory = str.c_str();
+		std::string str1;
+		str1 += std::strtok((char*)str.c_str(), "/");
+		str1 += "/";
+		str1 += std::strtok(NULL, "/");
+		const char* directory = str1.c_str();
 		std::string currentMesh;
 		int linecnt = 0;
 		while (std::getline(stream, line)) {
