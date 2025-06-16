@@ -5,11 +5,15 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 #include "Window.h"
+#include "Application.h"
 
 class Engine {
+
+
     static int screenWidth, screenHeight;
     static bool isRunning, editorMode;
-
+    Window window;
+    Application* app=nullptr;
 
 public:
     Engine();
@@ -20,7 +24,10 @@ public:
     static int getScreenHeight() { return screenHeight; }
     bool running() { return isRunning; }
     static void setMode(const bool& mode) { editorMode = mode; }
+    static void setRunning(const bool& running) { isRunning = running; }
 
+    void run();
+    void render(float deltatime);
 };
 
 #endif //ENGINE_H

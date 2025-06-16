@@ -7,14 +7,15 @@
 #include "Camera.h"
 #include "Scene.h"
 #include "UIComponent.h"
-#include "UIContext.h"
-#include "SceneView.h"
+#include "editor/UIContext.h"
+#include "editor/SceneView.h"
 #include "TextHandler.h"
-#include "TabView.h"
+#include "editor/TabView.h"
 #include "EventHandler.h"
 #include <thread>
 #include <chrono>
 #include <Windows.h>
+#include "Window.h"
 #include "Panel.h"
 
 //using namespace std;
@@ -214,6 +215,7 @@ int main(void)
         });
     glfwSwapInterval(0);
 
+
     ModelImporter* importer = new ModelImporter();
 
     Shader* objectshader = new Shader("resources/shader/vertex.glsl", "resources/shader/frag.glsl");
@@ -240,6 +242,7 @@ int main(void)
     int x = 0, y = 0;
     GLsync previousFrameSync = nullptr;
     int fps = textHandler->addText(10, 10, "");
+
     while (!glfwWindowShouldClose(window))
     {
         float currentFrame = glfwGetTime();

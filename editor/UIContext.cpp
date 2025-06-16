@@ -51,6 +51,12 @@ UIContext::UIContext() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+void UIContext::init(int width, int height)
+{
+	setSize(width,height);
+
+}
+
 void UIContext::add(UIComponent* component) {
 	component->getUIElements(dataBuffer, instanceData);
 

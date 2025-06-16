@@ -1,8 +1,8 @@
 #pragma once
-#include "header.h"
+#include "../header.h"
 #include "UIComponent.h"
 #include "TabView.h"
-#include "TextHandler.h"
+#include "../TextHandler.h"
 
 extern TextHandler* textHandler;
 

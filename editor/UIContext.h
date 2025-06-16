@@ -1,10 +1,10 @@
 #pragma once
-#include "header.h"
+#include "../header.h"
 #include "UIComponent.h"
 #include <map>
-#include "EventHandler.h"
-#include "Adapter.h"
-#include "FrameBuffer.h"
+#include "../EventHandler.h"
+#include "../Adapter.h"
+#include "../FrameBuffer.h"
 #define MAX_COMPONENTS 10000
 
 
@@ -180,6 +180,7 @@ public:
 		}
 		instanceData.clear();
 	}
+	void init(int width, int height);
 	void add(UIComponent* component);
 	void setup();
 	void setSize(int& width, int& height);

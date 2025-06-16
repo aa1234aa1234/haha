@@ -4,9 +4,11 @@
 
 #include "Window.h"
 
+#include "Engine.h"
+
 Window::Window() {}
 
-Window::Window(int& width, int& height, std::string title) {
+Window::Window(const int& width, const int& height, std::string title) {
     init(width, height, title);
 }
 
@@ -21,8 +23,12 @@ void Window::swapBuffers() {
     glFinish();
 }
 
-void Window::init(int& width, int& height, std::string title)
+int Window::getWidth() const { return screen_width; }
+int Window::getHeight() const { return screen_height; }
+
+void Window::init(const int& width, const int& height, std::string title)
 {
+    screen_width = width; screen_height = height;
     if (!glfwInit())
         return;
 

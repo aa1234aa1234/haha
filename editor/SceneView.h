@@ -1,7 +1,7 @@
 #pragma once
-#include "header.h"
+#include "../header.h"
 #include "UIComponent.h"
-#include "Scene.h"
+#include "../Scene.h"
 
 class SceneView : public UIComponent {
 

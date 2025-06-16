@@ -9,13 +9,16 @@
 
 class Window {
     GLFWwindow* window;
+    int screen_width, screen_height;
 public:
     Window();
-    Window(int& width, int& height, std::string title);
+    Window(const int& width, const int& height, std::string title);
     ~Window();
 
     void swapBuffers();
-    void init(int& width, int& height, std::string title);
+    void init(const int& width, const int& height, std::string title);
+    int getWidth() const;
+    int getHeight() const;
 };
 
 

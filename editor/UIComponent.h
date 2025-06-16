@@ -1,6 +1,6 @@
 #pragma once
-#include "header.h"
-#include "Shader.h"
+#include "../header.h"
+#include "../Shader.h"
 #include <queue>
 
 //extern UIContext* context;
