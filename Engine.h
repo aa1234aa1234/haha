@@ -9,7 +9,7 @@
 class Engine {
     static int screenWidth, screenHeight;
     static bool isRunning, editorMode;
-    Window& window;
+
 
 public:
     Engine();
@@ -20,6 +20,7 @@ public:
     static int getScreenHeight() { return screenHeight; }
     bool running() { return isRunning; }
     static void setMode(const bool& mode) { editorMode = mode; }
+
 };
 
 #endif //ENGINE_H

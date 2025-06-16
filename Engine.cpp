@@ -13,3 +13,8 @@ Engine::Engine(int& width, int& height) {
     screenHeight = height;
 
 }
+
+Engine::~Engine()
+{
+
+}

@@ -7,6 +7,22 @@
 Window::Window() {}
 
 Window::Window(int& width, int& height, std::string title) {
+    init(width, height, title);
+}
+
+Window::~Window() {
+    if (window != nullptr) {
+        glfwTerminate();
+    }
+}
+
+void Window::swapBuffers() {
+    glfwSwapBuffers(window);
+    glFinish();
+}
+
+void Window::init(int& width, int& height, std::string title)
+{
     if (!glfwInit())
         return;
 
@@ -22,15 +38,4 @@ Window::Window(int& width, int& height, std::string title) {
     glfwMakeContextCurrent(window);
     gladLoadGL(glfwGetProcAddress);
     glViewport(0, 0, width, height);
-}
-
-Window::~Window() {
-    if (window != nullptr) {
-        glfwTerminate();
-    }
-}
-
-void Window::swapBuffers() {
-    glfwSwapBuffers(window);
-    glFinish();
 }

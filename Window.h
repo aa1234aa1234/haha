@@ -15,6 +15,7 @@ public:
     ~Window();
 
     void swapBuffers();
+    void init(int& width, int& height, std::string title);
 };
 
 
