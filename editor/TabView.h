@@ -1,7 +1,6 @@
 #pragma once
 #include "../header.h"
 #include "UIComponent.h"
-#include "Tab.h"
 
 class TabView : public UIComponent {
 	int TAB_NUM = 2;
@@ -33,4 +32,6 @@ public:
 	void resize(glm::vec2 size);
 	//Tab* getTab(int idx) { return dynamic_cast<Tab*>(childComponents[idx]); }
 	UIComponent* getTab(int idx) { return childComponents[idx]; }
+	template<class T>
+	void setViewComponent(T* component);
 };

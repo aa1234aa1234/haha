@@ -17,6 +17,8 @@ Engine::Engine(int& width, int& height) : window() {
 Engine::~Engine()
 {
     delete app;
+    delete uiLayer, delete editorLayer;
+    delete sceneBuffer;
 }
 
 void Engine::run()

@@ -2,12 +2,15 @@
 #include "../header.h"
 #include "UIComponent.h"
 #include "../Scene.h"
+#include <map>
 
 class SceneView : public UIComponent {
 
 	
 
 	std::vector<Scene*> scenes;
+	std::vector<unsigned int> sceneTextures;
+	std::map<std::string, unsigned int> textures;
 	std::vector<UIElements> sceneviewtabs;
 	int selectedscene = 0;
 public:
@@ -27,12 +30,19 @@ public:
 		scenes.emplace_back(scene);
 	}
 
+	void addSceneTexture(const std::string& scenename, const unsigned int& texture)
+	{
+		sceneTextures.emplace_back(texture);
+		textures[scenename] = texture;
+	}
+
 	unsigned int getSceneTexture() {
-		return scenes[selectedscene]->getSceneTexture();
+		return sceneTextures.size() ? sceneTextures[selectedscene] : scenes[selectedscene]->getSceneTexture();
 	}
 
 	void renderScene() {
-		scenes[selectedscene]->renderScene();
+		//scenes[selectedscene]->renderScene();
+		glBindTexture(GL_TEXTURE_2D, getSceneTexture());
 	}
 
 	virtual void genVertices() override {

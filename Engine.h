@@ -6,6 +6,9 @@
 #define ENGINE_H
 #include "Window.h"
 #include "Application.h"
+#include "UILayer.h"
+#include "EditorLayer.h"
+#include "FrameBuffer.h"
 
 class Engine {
 
@@ -14,6 +17,9 @@ class Engine {
     static bool isRunning, editorMode;
     Window window;
     Application* app=nullptr;
+    UILayer* uiLayer=nullptr;
+    EditorLayer* editorLayer=nullptr;
+    FrameBuffer* sceneBuffer=nullptr;
 
 public:
     Engine();
@@ -25,6 +31,7 @@ public:
     bool running() { return isRunning; }
     static void setMode(const bool& mode) { editorMode = mode; }
     static void setRunning(const bool& running) { isRunning = running; }
+    FrameBuffer* getSceneBuffer() { return sceneBuffer; }
 
     void run();
     void render(float deltatime);

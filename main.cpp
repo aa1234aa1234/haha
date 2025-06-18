@@ -17,6 +17,8 @@
 #include <Windows.h>
 #include "Window.h"
 #include "Panel.h"
+#include "Tab.h"
+
 
 //using namespace std;
 

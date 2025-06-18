@@ -1,6 +1,7 @@
 #include "TabView.h"
 #include "Panel.h"
 #include "SceneView.h"
+#include "Tab.h"
 
 void TabView::init() {
 	isDraggable = true;
@@ -53,4 +54,13 @@ int TabView::onDoubleClick(glm::vec2 pos) {
 	
 	resize(glm::vec2(1700, 900));
 	return childComponents[childComponents.size() - 1]->getComponentId();
+}
+
+template <class T>
+void TabView::setViewComponent(T* component)
+{
+	for (int i = 0; i<TAB_NUM; i++)
+	{
+		dynamic_cast<Tab*>(childComponents[i])->setViewComponent(component);
+	}
 }
