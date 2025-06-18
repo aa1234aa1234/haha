@@ -3,6 +3,7 @@
 //
 
 #include "EditorLayer.h"
+#include "TabView.h"
 
 #include "Engine.h"
 
@@ -25,7 +26,7 @@ void EditorLayer::init()
     sceneView = new SceneView();
     sceneView->addSceneTexture("Scene", engine->getSceneBuffer()->getFrameTexture());
     sceneView->addSceneTexture("Game", engine->getSceneBuffer()->getFrameTexture());
-    //tabView->setViewComponent<SceneView>(sceneView);
+    tabView->setPanelViewComponent(sceneView);
 
     context->add(tabView);
     context->add(sceneView);
@@ -33,6 +34,8 @@ void EditorLayer::init()
 
 void EditorLayer::render()
 {
+    glDisable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     context->DrawComponents();
 }
 

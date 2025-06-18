@@ -5,11 +5,11 @@
 
 #ifndef EDITORLAYER_H
 #define EDITORLAYER_H
-#include "TabView.h"
 #include "UIContext.h"
 #include "SceneView.h"
 
 class Engine;
+class TabView;
 
 class EditorLayer {
     Engine* engine = nullptr;

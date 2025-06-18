@@ -56,8 +56,7 @@ int TabView::onDoubleClick(glm::vec2 pos) {
 	return childComponents[childComponents.size() - 1]->getComponentId();
 }
 
-template <class T>
-void TabView::setViewComponent(T* component)
+void TabView::setPanelViewComponent(UIComponent* component)
 {
 	for (int i = 0; i<TAB_NUM; i++)
 	{

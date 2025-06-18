@@ -2,6 +2,8 @@
 #include "../header.h"
 #include "UIComponent.h"
 
+class Tab;
+
 class TabView : public UIComponent {
 	int TAB_NUM = 2;
 	int TAB_WIDTH = 100, TAB_HEIGHT = 25;
@@ -32,6 +34,5 @@ public:
 	void resize(glm::vec2 size);
 	//Tab* getTab(int idx) { return dynamic_cast<Tab*>(childComponents[idx]); }
 	UIComponent* getTab(int idx) { return childComponents[idx]; }
-	template<class T>
-	void setViewComponent(T* component);
+	void setPanelViewComponent(UIComponent* component);
 };

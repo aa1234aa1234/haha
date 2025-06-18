@@ -31,15 +31,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99576e3b-1963-4698-a770-9dc9c3dfbcb7" name="Changes" comment="06-16">
+    <list default="true" id="99576e3b-1963-4698-a770-9dc9c3dfbcb7" name="Changes" comment="06-18">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/SceneView.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/SceneView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/TabView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/TabView.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/TabView.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/TabView.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +162,7 @@
       <updated>1750063420427</updated>
       <workItem from="1750063422886" duration="68000" />
       <workItem from="1750063514785" duration="7356000" />
-      <workItem from="1750233238953" duration="7285000" />
+      <workItem from="1750233238953" duration="9302000" />
     </task>
     <task id="LOCAL-00001" summary="aaa">
       <option name="closed" value="true" />
@@ -198,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750071083518</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="06-18">
+      <option name="closed" value="true" />
+      <created>1750241791114</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1750241791114</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +218,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aaa" />
     <MESSAGE value="06-16" />
-    <option name="LAST_COMMIT_MESSAGE" value="06-16" />
+    <MESSAGE value="06-18" />
+    <option name="LAST_COMMIT_MESSAGE" value="06-18" />
   </component>
 </project>
