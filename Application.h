@@ -15,6 +15,7 @@ public:
 
     void run();
     void render();
+    void handleInput();
 };
 
 

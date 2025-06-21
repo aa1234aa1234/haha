@@ -26,10 +26,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="06-21">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Application.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/NodeComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SceneNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SceneNode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SceneNode.h" beforeDir="false" afterPath="$PROJECT_DIR$/SceneNode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transform.h" beforeDir="false" afterPath="$PROJECT_DIR$/Transform.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +81,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -117,8 +125,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1750484000883</updated>
-      <workItem from="1750484003181" duration="4079000" />
+      <workItem from="1750484003181" duration="11418000" />
     </task>
+    <task id="LOCAL-00001" summary="06-21">
+      <option name="closed" value="true" />
+      <created>1750489872379</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750489872379</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,5 +145,19 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="06-21" />
+    <option name="LAST_COMMIT_MESSAGE" value="06-21" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/SceneNode.cpp</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

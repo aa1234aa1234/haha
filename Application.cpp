@@ -4,6 +4,8 @@
 
 #include "Application.h"
 
+#include "Input.h"
+
 
 Application::Application()
 {
@@ -11,6 +13,11 @@ Application::Application()
 }
 
 Application::~Application()
+{
+
+}
+
+void Application::handleInput()
 {
 
 }

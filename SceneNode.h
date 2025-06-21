@@ -6,7 +6,6 @@
 #define SCENENODE_H
 #include <string>
 #include <vector>
-#include "Camera.h"
 #include "NodeComponent.h"
 #include "Shader.h"
 #include "Transform.h"
@@ -14,7 +13,13 @@
 using NodeID = uint64_t;
 
 
+class Camera;
+class Shader;
+class Transform;
+class NodeComponent;
+
 class SceneNode {
+
     NodeID id=-1;
     SceneNode* parent;
     std::string name;
@@ -36,9 +41,10 @@ protected:
         components.clear();
     }
 public:
-    SceneNode() : id(generateId()), parent(nullptr) {}
-    SceneNode(const std::string& name) : name(name), parent(nullptr) {}
-    virtual ~SceneNode() {}
+    SceneNode();
+    SceneNode(const std::string& name, const glm::vec3& translation, const glm::vec3& rotation, const glm::vec3& scale);
+    SceneNode(const std::string& name);
+    virtual ~SceneNode();
 
     static NodeID generateId()
     {
@@ -58,8 +64,8 @@ public:
 
     NodeID getID() const { return id; }
     void setParent(SceneNode* node) { parent = node; }
-    void addSceneNode(SceneNode* node) {}
-    void removeSceneNode(SceneNode* node) {}
+    void addSceneNode(SceneNode* node);
+    void removeSceneNode(SceneNode* node);
     void setName(const std::string& name) { this->name = name; }
     void render(Shader* shader, Camera* camera);
     void addComponent(NodeComponent* component);

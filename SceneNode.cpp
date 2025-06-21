@@ -6,11 +6,13 @@
 
 #include <algorithm>
 
-SceneNode::SceneNode() {}
+SceneNode::SceneNode() : id(generateId()), parent(nullptr) {}
+
+SceneNode::SceneNode(const std::string& name, const glm::vec3& translation, const glm::vec3& rotation, const glm::vec3& scale) : id(generateId()), parent(nullptr), transform(translation,rotation,scale) {}
 
 SceneNode::SceneNode(const std::string& name) {}
 
-SceneNode::~SceneNOde()
+SceneNode::~SceneNode()
 {
     destroy();
 }

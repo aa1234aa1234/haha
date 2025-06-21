@@ -39,4 +39,10 @@ void EditorLayer::render()
     context->DrawComponents();
 }
 
+void EditorLayer::update()
+{
+
+}
+
+
 

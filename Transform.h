@@ -12,9 +12,9 @@ class Transform
     glm::vec3 rotation;
     glm::vec3 scale;
 public:
-    Transform();
+    Transform() {}
     Transform(const glm::vec3& translation, const glm::vec3& rotation, const glm::vec3& scale) : translation(translation), rotation(rotation), scale(scale) {};
-    ~Transform();
+    ~Transform() {}
     void setTranslation(const glm::vec3& translation) { this->translation = translation; }
     void setRotation(const glm::vec3& rotation) { this->rotation = rotation; }
     void setScale(const glm::vec3& scale) { this->scale = scale; }

@@ -4,8 +4,9 @@
 
 #ifndef NODECOMPONENT_H
 #define NODECOMPONENT_H
-#include "SceneNode.h"
 
+class Shader;
+class Camera;
 class SceneNode;
 
 class NodeComponent {
