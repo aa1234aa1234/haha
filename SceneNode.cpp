@@ -1,0 +1,54 @@
+//
+// Created by sw_303 on 2025-06-21.
+//
+
+#include "SceneNode.h"
+
+#include <algorithm>
+
+SceneNode::SceneNode() {}
+
+SceneNode::SceneNode(const std::string& name) {}
+
+SceneNode::~SceneNOde()
+{
+    destroy();
+}
+
+void SceneNode::addSceneNode(SceneNode* node)
+{
+    children.reserve(children.size() + 1);
+    children.emplace_back(node);
+    node->setParent(this);
+}
+
+void SceneNode::removeSceneNode(SceneNode* node)
+{
+    children.erase(std::find(children.begin(), children.end(), node));
+    delete node;
+}
+
+void SceneNode::addComponent(NodeComponent* component)
+{
+    components.reserve(components.size() + 1);
+    components.emplace_back(component);
+    component->setParent(this);
+}
+
+void SceneNode::removeComponent(NodeComponent* component)
+{
+    components.erase(std::find(components.begin(), components.end(), component));
+    delete component;
+}
+
+
+void SceneNode::render(Shader* shader, Camera* camera)
+{
+    for (auto& p : children)
+    {
+        for (auto& k : p->getComponents())
+        {
+            k->render(shader,camera);
+        }
+    }
+}
