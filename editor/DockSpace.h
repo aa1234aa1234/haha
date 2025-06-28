@@ -60,11 +60,31 @@ class DockSpace {
         glm::vec2 pos;
         glm::vec4 color;
     };
+
+	enum Layout
+	{
+		NONE,
+		HORIZONTAL,
+		VERTICAL,
+		LEFT,
+		RIGHT
+	};
+
+	struct DockNode
+	{
+		Layout layout;
+		float splitratio;
+		DockNode* left,
+		DockNode* right;
+		std::vector<UIComponent*> docked_components;
+		glm::vec2 pos,size;
+	};
+
 public:
 	Shader* shader;
 	FrameBuffer* frameBuffer;
 	std::vector<OverlayElement> buffer;
-	std::vector<UIComponent*> uiComponents;
+	DockNode rootNode;
 	int buffersize = 0;
 
 	DockSpace(const int& width, const int& height);
@@ -100,6 +120,7 @@ public:
 
 	void end();
 	void render();
+	void update();
 };
 
 

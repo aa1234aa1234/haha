@@ -55,3 +55,8 @@ void DockSpace::render()
     glBindVertexArray(0);
 }
 
+void DockSpace::update()
+{
+
+}
+

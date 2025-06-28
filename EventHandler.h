@@ -28,8 +28,8 @@ public:
 	}
 	~Event() {}
 
-	virtual std::string& getId() override { return eventId; }
-	virtual std::type_index getType() override {
+	std::string& getId() override { return eventId; }
+	std::type_index getType() override {
 		return typeid(Event<Args...>);
 	}
 	void callEvent(Args... args) {

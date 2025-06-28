@@ -8,7 +8,7 @@
 #include "SceneNode.h"
 
 class Application {
-    SceneNode* root;
+    SceneNode root;
 public:
     Application();
     ~Application();

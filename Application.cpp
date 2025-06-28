@@ -23,10 +23,10 @@ void Application::handleInput()
     {
     case Input::MOUSE_DOWN:
     case Input::MOUSE_UP:
-        root->handleInput(Input::getInstance()->getMousePos());
+        root.handleInput(Input::getInstance()->getMousePos());
         break;
     case Input::KEY_DOWN:
-        root->handleInput(Input::getInstance()->getKeyDown());
+        root.handleInput(Input::getInstance()->getKeyDown());
         break;
     }
 }
