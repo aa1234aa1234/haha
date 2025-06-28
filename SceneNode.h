@@ -70,6 +70,16 @@ public:
     void render(Shader* shader, Camera* camera);
     void addComponent(NodeComponent* component);
     void removeComponent(NodeComponent* component);
+
+    template<class T>
+    void handleInput(T input)
+    {
+        for (auto& p : children)
+        {
+            p->handleInput(input);
+        }
+    }
+
     std::vector<NodeComponent*>& getComponents() { return components; }
     Transform& getTransform() { return this->transform; }
 };

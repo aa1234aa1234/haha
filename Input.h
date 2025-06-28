@@ -10,6 +10,14 @@
 
 
 class Input {
+
+
+
+    static Input* instance;
+    glm::vec2 mousepos;
+    glm::vec2 mousedelta;
+    std::vector<char> keydown;
+public:
     enum EventType
     {
         MOUSE_DOWN,
@@ -18,12 +26,6 @@ class Input {
         MOUSE_DRAG,
         KEY_DOWN,
     } eventType;
-
-    static Input* instance;
-    glm::vec2 mousepos;
-    glm::vec2 mousedelta;
-    std::vector<char> keydown;
-public:
     Input();
     ~Input();
 
@@ -40,21 +42,7 @@ public:
     void setMouseDelta(const float& x, const float& y);
     void setKeyDown(const char& key);
     bool isKeyDown(const char& key);
-    template<class T>
-    T getInputResponse()
-    {
-        switch (eventType)
-        {
-        case MOUSE_UP:
-        case MOUSE_DOWN:
-            return getMousePos();
-        case MOUSE_DRAG:
-            return getMouseDelta();
-        case KEY_DOWN:
-            return getKeyDown();
-        }
-        return nullptr;
-    }
+    EventType getEventType() { return eventType; }
 };
 
 

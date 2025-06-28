@@ -7,6 +7,7 @@
 #include "FrameBuffer.h"
 #include "header.h"
 #include "Shader.h"
+#include "UIComponent.h"
 
 
 class FrameBuffer;
@@ -63,6 +64,7 @@ public:
 	Shader* shader;
 	FrameBuffer* frameBuffer;
 	std::vector<OverlayElement> buffer;
+	std::vector<UIComponent*> uiComponents;
 	int buffersize = 0;
 
 	DockSpace(const int& width, const int& height);
