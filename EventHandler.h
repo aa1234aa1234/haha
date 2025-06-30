@@ -4,17 +4,24 @@
 #include <typeindex>
 #include <queue>
 #include <map>
+#include <any>
 
 template<typename ...Args>
 class Event;
 
 class IEvent {
 public:
-	virtual std::string& getId() = 0;
+	virtual const std::string& getId() = 0;
 	virtual std::type_index getType() = 0;
+	virtual ~IEvent() = default;
 	template<typename ...Args>
 	Event<Args...>* get() {
 		return dynamic_cast<Event<Args...>*>(this);
+	}
+	template<class T>
+	T getAs()
+	{
+		return static_cast<T>(this);
 	}
 };
 
@@ -28,7 +35,7 @@ public:
 	}
 	~Event() {}
 
-	std::string& getId() override { return eventId; }
+	const std::string& getId() override { return eventId; }
 	std::type_index getType() override {
 		return typeid(Event<Args...>);
 	}

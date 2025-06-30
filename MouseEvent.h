@@ -8,20 +8,32 @@
 #include <glm/glm.hpp>
 
 class MouseEvent : public IEvent {
+    std::string id = "MouseEvent";
+    glm::vec2 mousePos, mouseOffset;
+public:
     enum MouseEventType
     {
         MOUSEDOWN,
         MOUSEUP,
         MOUSEMOVE
-    };
-    glm::vec2 mousePos, mouseOffset;
-public:
-    MouseEvent();
-    ~MouseEvent();
-    std::type_info getType() override
+    } eventType;
+
+    MouseEvent() {}
+    MouseEvent(glm::vec2 mousePos, glm::vec2 mouseOffset, MouseEventType eventType) : mousePos(mousePos), mouseOffset(mouseOffset), eventType(eventType) {}
+    ~MouseEvent() {}
+    const std::string& getId() override
     {
-        return typeid(MouseEventType);
+        return id;
     }
+
+    std::type_index getType() override
+    {
+        return typeid(MouseEvent);
+    }
+
+    glm::vec2 getMousePos() { return mousePos; }
+    glm::vec2 getMouseOffset() { return mouseOffset; }
+    MouseEventType getEventType() { return eventType; }
 };
 
 

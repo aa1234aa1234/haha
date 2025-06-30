@@ -74,8 +74,7 @@ class DockSpace {
 	{
 		Layout layout;
 		float splitratio;
-		DockNode* left,
-		DockNode* right;
+		DockNode *left,*right;
 		std::vector<UIComponent*> docked_components;
 		glm::vec2 pos,size;
 	};

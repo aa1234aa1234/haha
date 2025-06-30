@@ -10,20 +10,22 @@
 #include "EditorLayer.h"
 #include "FrameBuffer.h"
 
+class UILayer;
+
 class Engine {
 
 
     static int screenWidth, screenHeight;
     static bool isRunning, editorMode;
     Window window;
-    Application* app=nullptr;
+    Application* application=nullptr;
     UILayer* uiLayer=nullptr;
     EditorLayer* editorLayer=nullptr;
     FrameBuffer* sceneBuffer=nullptr;
 
 public:
     Engine();
-    Engine(int& width, int& height);
+    Engine(Application* app, int& width, int& height, const std::string& title);
     ~Engine();
 
     static int getScreenWidth() { return screenWidth; }
@@ -35,6 +37,7 @@ public:
 
     void run();
     void render(float deltatime);
+    void handleInput();
 };
 
 #endif //ENGINE_H

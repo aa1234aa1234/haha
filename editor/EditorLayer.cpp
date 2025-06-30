@@ -6,6 +6,7 @@
 #include "TabView.h"
 
 #include "Engine.h"
+#include "Input.h"
 
 EditorLayer::EditorLayer(Engine* engine) : engine(engine)
 {
@@ -43,6 +44,12 @@ void EditorLayer::update()
 {
 
 }
+
+void EditorLayer::handleInput()
+{
+
+}
+
 
 
 

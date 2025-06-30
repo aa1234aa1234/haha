@@ -33,12 +33,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="06-28">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Application.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EventHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/EventHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/DockSpace.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/DockSpace.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Input.h" beforeDir="false" afterPath="$PROJECT_DIR$/Input.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MouseEvent.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MouseEvent.h" beforeDir="false" afterPath="$PROJECT_DIR$/MouseEvent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/NodeComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SceneNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SceneNode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SceneNode.h" beforeDir="false" afterPath="$PROJECT_DIR$/SceneNode.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/DockSpace.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/DockSpace.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/UILayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/UILayer.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,13 +81,29 @@
     <setting file="file://$PROJECT_DIR$/Application.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Engine.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Engine.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/EventHandler.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Input.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Input.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NodeComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SceneNode.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SceneNode.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Window.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Window.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/editor/DockSpace.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/editor/DockSpace.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/EditorLayer.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/EditorLayer.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/SceneView.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/Tab.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/Tab.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/TabView.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/TabView.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/UIComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/UIContext.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/UIContext.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/main.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ui/UILayer.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ui/UILayer.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,

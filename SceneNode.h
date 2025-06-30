@@ -70,13 +70,17 @@ public:
     void render(Shader* shader, Camera* camera);
     void addComponent(NodeComponent* component);
     void removeComponent(NodeComponent* component);
+    void update();
 
-    template<class T>
-    void handleInput(T input)
+    void handleInput()
     {
         for (auto& p : children)
         {
-            p->handleInput(input);
+            p->handleInput();
+        }
+        for (auto& p : components)
+        {
+            p->handleInput();
         }
     }
 

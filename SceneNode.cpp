@@ -54,3 +54,15 @@ void SceneNode::render(Shader* shader, Camera* camera)
         }
     }
 }
+
+void SceneNode::update()
+{
+    for (auto& p : children)
+    {
+        p->update();
+    }
+    for (auto& p : components)
+    {
+        p->update();
+    }
+}

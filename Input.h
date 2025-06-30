@@ -1,3 +1,4 @@
+
 //
 // Created by sw_303 on 2025-06-21.
 //
@@ -40,6 +41,8 @@ public:
     glm::vec2 getMouseDelta();
     void setMousePos(const float& x, const float& y);
     void setMouseDelta(const float& x, const float& y);
+    void setMousePos(glm::vec2 pos) { mousepos = pos; }
+    void setMouseDelta(glm::vec2 delta) { mousedelta = delta; }
     void setKeyDown(const char& key);
     bool isKeyDown(const char& key);
     EventType getEventType() { return eventType; }

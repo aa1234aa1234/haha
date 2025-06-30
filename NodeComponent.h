@@ -20,6 +20,7 @@ public:
     virtual void render(Shader* shader, Camera* camera) = 0;
     //for scripts
     virtual void update() = 0;
+    virtual void handleInput() = 0;
 };
 
 

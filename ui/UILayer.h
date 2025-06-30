@@ -4,13 +4,14 @@
 
 #ifndef UILAYER_H
 #define UILAYER_H
+#include "Engine.h"
 #include "UIContext.h"
 #include "Window.h"
 
-
+class Engine;
 
 class UILayer {
-    class Engine;
+
 
     UIContext* context;
     Engine* engine = nullptr;
