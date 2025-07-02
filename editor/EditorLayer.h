@@ -14,7 +14,6 @@ class TabView;
 class EditorLayer {
     Engine* engine = nullptr;
 
-    UIContext* context=nullptr;
     TabView* tabView=nullptr;
     SceneView* sceneView=nullptr;
 public:
