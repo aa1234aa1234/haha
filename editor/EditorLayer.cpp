@@ -15,13 +15,13 @@ EditorLayer::EditorLayer(Engine* engine) : engine(engine)
 
 EditorLayer::~EditorLayer()
 {
-    delete context;
+    delete tabView;
+    delete sceneView;
 }
 
 void EditorLayer::init()
 {
-    context = new UIContext();
-    context->init(Engine::getScreenWidth(), Engine::getScreenHeight());
+    UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight());
 
     tabView = new TabView();
     sceneView = new SceneView();
@@ -29,8 +29,8 @@ void EditorLayer::init()
     sceneView->addSceneTexture("Game", engine->getSceneBuffer()->getFrameTexture());
     tabView->setPanelViewComponent(sceneView);
 
-    context->add(tabView);
-    context->add(sceneView);
+    UIContext::getInstance()->add(tabView);
+    UIContext::getInstance()->add(sceneView);
 }
 
 void EditorLayer::render()
