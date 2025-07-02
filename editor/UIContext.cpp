@@ -1,6 +1,7 @@
 #include "UIContext.h"
 #include <functional>
 
+UIContext* UIContext::instance = 0;
 
 UIContext::UIContext() {
 	shader = new Shader("resources/shader/vertex2.glsl", "resources/shader/frag2.glsl");
