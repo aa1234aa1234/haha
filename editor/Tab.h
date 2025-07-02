@@ -1,10 +1,10 @@
 #pragma once
-#include "../header.h"
+#include "header.h"
 #include "UIComponent.h"
 #include "TabView.h"
-#include "../TextHandler.h"
+#include "TextHandler.h"
 
-extern TextHandler* textHandler;
+//extern TextHandler* textHandler;
 
 class Tab : public UIComponent {
 	std::string title;
@@ -21,7 +21,7 @@ public:
 		this->id = id;
 		this->title = std::string(title);
 		uielement = { position,color[active],size,1 };
-		textidx = textHandler->addText(position.x+5, position.y+2, this->title);
+		textidx = TextHandler::getInstance()->addText(position.x+5, position.y+2, this->title);
 	}
 	Tab() : UIComponent() {}
 	~Tab() {

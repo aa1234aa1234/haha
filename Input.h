@@ -18,21 +18,22 @@ class Input {
     glm::vec2 mousepos;
     glm::vec2 mousedelta;
     std::vector<char> keydown;
+    int eventType;
 public:
     enum EventType
     {
-        MOUSE_DOWN,
+        MOUSE_DOWN=0,
         MOUSE_UP,
         MOUSE_MOVE,
         MOUSE_DRAG,
         KEY_DOWN,
-    } eventType;
+    };
     Input();
     ~Input();
 
     static Input* getInstance()
     {
-        if (!instance) return new Input();
+        if (!instance) instance = new Input();
         return instance;
     }
 
@@ -45,7 +46,8 @@ public:
     void setMouseDelta(glm::vec2 delta) { mousedelta = delta; }
     void setKeyDown(const char& key);
     bool isKeyDown(const char& key);
-    EventType getEventType() { return eventType; }
+    int getEventType() { return eventType; }
+    void setEventType(int type) { eventType = type; }
 };
 
 

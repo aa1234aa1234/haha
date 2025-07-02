@@ -1,21 +1,21 @@
-#include "header.h"
-#include "FrameBuffer.h"
-#include "Mesh.h"
-#include "Shader.h"
-#include "ModelImporter.h"
+#include "../header.h"
+#include "../FrameBuffer.h"
+#include "../Mesh.h"
+#include "../Shader.h"
+#include "../ModelImporter.h"
 #include <stb/stb_image.h>
-#include "Camera.h"
-#include "Scene.h"
+#include "../Camera.h"
+#include "../Scene.h"
 #include "UIComponent.h"
-#include "editor/UIContext.h"
-#include "editor/SceneView.h"
-#include "TextHandler.h"
-#include "editor/TabView.h"
-#include "EventHandler.h"
+#include "../editor/UIContext.h"
+#include "../editor/SceneView.h"
+#include "../TextHandler.h"
+#include "../editor/TabView.h"
+#include "../EventHandler.h"
 #include <thread>
 #include <chrono>
 #include <Windows.h>
-#include "Window.h"
+#include "../Window.h"
 #include "Panel.h"
 #include "Tab.h"
 
@@ -41,8 +41,8 @@ GLFWwindow* window;
 GLFWcursor* cursor;
 Scene* scene;
 Shader* screenShader;
-UIContext* context;
-TextHandler* textHandler;
+//UIContext* context;
+//TextHandler* textHandler;
 int windowwidth, windowheight;
 int lastclick = 0;
 unsigned int screenvbo, screenvao, screenebo;
@@ -143,8 +143,11 @@ int main(void)
     stbi_set_flip_vertically_on_load(true);
     scene = new Scene(windowwidth, windowheight);
     screenShader = new Shader("resources/shader/screenvertex.glsl", "resources/shader/screenfrag.glsl");
-    context = new UIContext();
-    textHandler = new TextHandler(windowwidth, windowheight, "resources/font/font (32px).png");
+
+    //textHandler = new TextHandler(windowwidth, windowheight, "resources/font/font (32px).png");
+    UIContext::getInstance()->init(windowwidth,windowheight);
+    TextHandler::makeInstance(windowwidth,windowheight, "resources/font/font (32px).png");
+
     //eventHandler = new EventHandler();
     init();
     //glfwSetWindowMonitor(window, glfwGetPrimaryMonitor(), 0, 0, 1920, 1080, 0);
@@ -162,7 +165,7 @@ int main(void)
         glViewport(0, 0, width, height);
         scene->getCamera()->projection = glm::perspective(glm::radians(scene->getCamera()->fov), (float)width / (float)height, 0.1f, 100.0f);
         scene->resizeSceneBuffer(width, height);
-        context->setSize(width, height);
+        UIContext::getInstance()->setSize(width, height);
         std::cout << width << ' ' << height << std::endl;
         });
 
@@ -173,12 +176,12 @@ int main(void)
             int aa = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
             firstpos.setX(xpos); firstpos.setY(ypos);
             if (aa - lastclick >= GetDoubleClickTime()) {
-                context->queueEvent("click", glm::vec2(xpos, ypos)); lastclick = aa;
+                UIContext::getInstance()->queueEvent("click", glm::vec2(xpos, ypos)); lastclick = aa;
             }
-            else context->queueEvent("doubleclick", glm::vec2(xpos, ypos));
+            else UIContext::getInstance()->queueEvent("doubleclick", glm::vec2(xpos, ypos));
         }
         else if (!action) {
-            context->queueEvent("release", glm::vec2(xpos, ypos));
+            UIContext::getInstance()->queueEvent("release", glm::vec2(xpos, ypos));
             firstmouse = true;
         }
     });
@@ -193,7 +196,7 @@ int main(void)
         }
         //Point offset(xpos - lastpos.getX(), lastpos.getY() - ypos);
 
-        context->queueEvent("drag", glm::vec2(xpos,ypos), glm::vec2(lastpos.getX(), lastpos.getY()));
+        UIContext::getInstance()->queueEvent("drag", glm::vec2(xpos,ypos), glm::vec2(lastpos.getX(), lastpos.getY()));
         lastpos.setX(xpos); lastpos.setY(ypos);
 
         /*float sensitivity = 0.2f;
@@ -233,24 +236,23 @@ int main(void)
 
 
     int browhy = 0;
-    context->setSize(windowwidth, windowheight);
     SceneView* sceneview = new SceneView();
     sceneview->addScene(scene);
     TabView* tabview = new TabView(glm::vec2(0, 0), glm::vec2(950, 25));
     //tabview->addChildComponent(new Panel<SceneView>(glm::vec2(tabview->position.x, tabview->position.y + tabview->size.y), glm::vec2(tabview->size.x, 450), sceneview));
     dynamic_cast<Tab*>(tabview->getTab(1))->setViewComponent(sceneview);
-    context->add(tabview);
-    context->setup();
+    UIContext::getInstance()->add(tabview);
+    UIContext::getInstance()->setup();
     int x = 0, y = 0;
     GLsync previousFrameSync = nullptr;
-    int fps = textHandler->addText(10, 10, "");
+    int fps = TextHandler::getInstance()->addText(10, 10, "");
 
     while (!glfwWindowShouldClose(window))
     {
         float currentFrame = glfwGetTime();
         deltatime = currentFrame - lastframe;
         lastframe = currentFrame;
-        textHandler->editText(10, 10, std::to_string(1/deltatime), fps);
+        TextHandler::getInstance()->editText(10, 10, std::to_string(1/deltatime), fps);
         /*if (previousFrameSync) {
             GLenum res = glClientWaitSync(previousFrameSync, GL_SYNC_FLUSH_COMMANDS_BIT, 1'000'000);
             if (res == GL_TIMEOUT_EXPIRED) {
@@ -261,8 +263,8 @@ int main(void)
         std::this_thread::sleep_for(std::chrono::milliseconds(1/60));
         //glfwPollEvents();
         glfwWaitEventsTimeout(0.007);
-        context->dispatchEvent();
-        context->dispatchUpdate();
+        UIContext::getInstance()->dispatchEvent();
+        UIContext::getInstance()->dispatchUpdate();
         keypress(window);
         scene->getCamera()->projection = glm::perspective(glm::radians(scene->getCamera()->fov), (float)windowwidth / (float)windowheight, 0.1f, 100.0f);
         /* Render here */
@@ -285,8 +287,8 @@ int main(void)
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindTexture(GL_TEXTURE_2D, 0);
         glBindVertexArray(0);*/
-        context->DrawComponents();
-        textHandler->draw();
+        UIContext::getInstance()->DrawComponents();
+        TextHandler::getInstance()->draw();
 
         //context->queueEvent("drag", glm::vec2(x, y), glm::vec2(lastpos.getX(), lastpos.getY()));
         x += 100, y += 100;
@@ -304,9 +306,9 @@ int main(void)
     glDeleteBuffers(1, &screenebo);
     glfwDestroyCursor(cursor);
     delete importer;
-    delete context;
+    UIContext::destroyInstance();
     delete objectshader;
-    delete textHandler;
+    //delete textHandler;
     delete screenShader;
     glfwTerminate();
     return 0;

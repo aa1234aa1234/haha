@@ -15,7 +15,8 @@ public:
     {
         MOUSEDOWN,
         MOUSEUP,
-        MOUSEMOVE
+        MOUSEMOVE,
+        MOUSEDRAG
     } eventType;
 
     MouseEvent() {}

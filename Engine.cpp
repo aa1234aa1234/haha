@@ -7,18 +7,22 @@
 #include "Input.h"
 #include "KeydownEvent.h"
 #include "MouseEvent.h"
+#include "TextHandler.h"
 
 int Engine::screenHeight, Engine::screenWidth;
 bool Engine::isRunning = false;
 bool Engine::editorMode = false;
 
-Engine::Engine(Application* app, int& width, int& height, const std::string& title) : window(), uiLayer(new UILayer(this)), editorLayer(new EditorLayer(this)) {
+Engine::Engine(Application* app, const int& width, const int& height, const std::string& title) : window(), application(app) {
     screenWidth = width;
     screenHeight = height;
     window.init(width,height,title);
+    application->setCallBack(window.getWindow());
+    sceneBuffer = new FrameBuffer(screenWidth,screenHeight);
+    uiLayer = new UILayer(this);
+    editorLayer = new EditorLayer(this);
     uiLayer->init(window);
     editorLayer->init();
-    sceneBuffer = new FrameBuffer(screenWidth,screenHeight);
 }
 
 Engine::~Engine()
@@ -30,7 +34,7 @@ Engine::~Engine()
 
 void Engine::run()
 {
-    double deltatime = 0.0, lastframe = 0.0;
+    float deltatime = 0.0, lastframe = 0.0;
     bool firstmouse = true;
 
     while (isRunning)
@@ -40,9 +44,12 @@ void Engine::run()
         lastframe = currentFrame;
         glfwPollEvents();
 
+        glDisable(GL_DEPTH_TEST);
+        glClearColor(0.09, 0.09, 0.09, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //normal engine code holy shit im making comments omg
-        handleInput();
-        if (!editorMode)
+        handleInput(deltatime);
+        if (editorMode)
         {
             editorLayer->handleInput();
             editorLayer->update();
@@ -73,15 +80,23 @@ void Engine::render(float deltatime)
     {
         editorLayer->render();
     }
+    TextHandler::getInstance()->draw();
 }
 
-void Engine::handleInput()
+void Engine::handleInput(float deltatime)
 {
     IEvent* event = application->getLastInput();
+    if (event == nullptr) return;
     if (event->getId() == "MouseEvent")
+    {
         Input::getInstance()->setMousePos(event->getAs<MouseEvent*>()->getMousePos());
+        Input::getInstance()->setEventType(event->getAs<MouseEvent*>()->getEventType());
+    }
     else if (event->getId() == "KeyDownEvent")
+    {
         Input::getInstance()->setKeyDown(event->getAs<KeydownEvent*>()->getKeycode());
+        Input::getInstance()->setKeyDown(event->getAs<KeydownEvent*>()->getEventType());
+    }
     delete event;
-    application->handleInput();
+    application->handleInput(deltatime);
 }

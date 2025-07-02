@@ -5,12 +5,13 @@
 #include "testing.h"
 
 #include "Engine.h"
+#include "TextHandler.h"
 
 int main(int argc, char** argv)
 {
     Application application;
     Engine engine(&application,1200,900,"Engine");
-    engine.setMode(true);
-    engine.setRunning(true);
+    Engine::setMode(true);
+    Engine::setRunning(true);
     engine.run();
 }

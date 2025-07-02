@@ -9,6 +9,10 @@
 
 class KeydownEvent : public IEvent{
     std::string id = "KeyDownEvent";
+    enum KeyDown
+    {
+        KEY_DOWN = 4
+    } eventType;
     int pressedkey = 0;
 public:
     KeydownEvent(int keycode) {}
@@ -21,6 +25,7 @@ public:
         return typeid(KeydownEvent);
     }
     int getKeycode() { return pressedkey; }
+    int getEventType() { return eventType; }
 };
 
 

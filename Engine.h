@@ -25,7 +25,7 @@ class Engine {
 
 public:
     Engine();
-    Engine(Application* app, int& width, int& height, const std::string& title);
+    Engine(Application* app, const int& width, const int& height, const std::string& title);
     ~Engine();
 
     static int getScreenWidth() { return screenWidth; }
@@ -37,7 +37,7 @@ public:
 
     void run();
     void render(float deltatime);
-    void handleInput();
+    void handleInput(float deltatime);
 };
 
 #endif //ENGINE_H

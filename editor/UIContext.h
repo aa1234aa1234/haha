@@ -52,8 +52,14 @@ public:
 	}
 
 	static UIContext* getInstance() {
-		if (!instance) { return new UIContext(); }
+		if (!instance) instance = new UIContext();
 		return instance;
+	}
+
+	static void destroyInstance()
+	{
+		delete instance;
+		instance = nullptr;
 	}
 
 	void init(int width, int height);
@@ -68,4 +74,5 @@ public:
 	void onDoubleClick(glm::vec2 pos) override;
 	void onUpdate(int start, int end) override;
 };
+
 

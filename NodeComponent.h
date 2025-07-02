@@ -19,7 +19,7 @@ public:
     //for render components
     virtual void render(Shader* shader, Camera* camera) = 0;
     //for scripts
-    virtual void update() = 0;
+    virtual void update(float deltatime) = 0;
     virtual void handleInput() = 0;
 };
 

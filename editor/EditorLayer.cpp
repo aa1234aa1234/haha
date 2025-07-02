@@ -7,6 +7,7 @@
 
 #include "Engine.h"
 #include "Input.h"
+#include "TextHandler.h"
 
 EditorLayer::EditorLayer(Engine* engine) : engine(engine)
 {
@@ -17,37 +18,48 @@ EditorLayer::~EditorLayer()
 {
     delete tabView;
     delete sceneView;
+    UIContext::destroyInstance();
 }
 
 void EditorLayer::init()
 {
     UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight());
+    TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
 
-    tabView = new TabView();
+    tabView = new TabView(glm::vec2(0,0),glm::vec2(Engine::getScreenWidth(),25));
     sceneView = new SceneView();
     sceneView->addSceneTexture("Scene", engine->getSceneBuffer()->getFrameTexture());
     sceneView->addSceneTexture("Game", engine->getSceneBuffer()->getFrameTexture());
     tabView->setPanelViewComponent(sceneView);
 
     UIContext::getInstance()->add(tabView);
-    UIContext::getInstance()->add(sceneView);
+
+    UIContext::getInstance()->setup();
 }
 
 void EditorLayer::render()
 {
     glDisable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    context->DrawComponents();
+    UIContext::getInstance()->DrawComponents();
 }
 
 void EditorLayer::update()
 {
-
+    UIContext::getInstance()->dispatchUpdate();
 }
 
 void EditorLayer::handleInput()
 {
-
+    switch (Input::getInstance()->getEventType())
+    {
+    case Input::EventType::MOUSE_DOWN:
+        UIContext::getInstance()->onClick(Input::getInstance()->getMousePos());
+        break;
+    case Input::EventType::MOUSE_DRAG:
+        UIContext::getInstance()->onDrag(Input::getInstance()->getMousePos(), Input::getInstance()->getMouseDelta());
+        break;
+    }
 }
 
 

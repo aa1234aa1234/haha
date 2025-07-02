@@ -55,14 +55,14 @@ void SceneNode::render(Shader* shader, Camera* camera)
     }
 }
 
-void SceneNode::update()
+void SceneNode::update(float deltatime)
 {
     for (auto& p : children)
     {
-        p->update();
+        p->update(deltatime);
     }
     for (auto& p : components)
     {
-        p->update();
+        p->update(deltatime);
     }
 }

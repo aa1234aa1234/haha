@@ -15,6 +15,7 @@ typedef struct Text {
 };
 
 class TextHandler {
+	static TextHandler* instance;
 	FrameBuffer* textBuffer;
 	int width, height, textureWidth, textureHeight;
 	unsigned int textureId;
@@ -54,6 +55,22 @@ public:
 		glDeleteTextures(1, &textureId);
         glDeleteVertexArrays(1, &vao);
         glDeleteBuffers(1, &vbo);
+	}
+
+	static TextHandler* getInstance()
+	{
+		return instance;
+	}
+
+	static void makeInstance(int w, int h, const char* filepath)
+	{
+		if (instance == 0) instance = new TextHandler(w, h, filepath);
+	}
+
+	static void destroyInstance()
+	{
+		delete instance;
+		instance = nullptr;
 	}
 
     unsigned int getFrameTexture() {

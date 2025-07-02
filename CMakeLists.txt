@@ -6,6 +6,7 @@ file(GLOB SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/editor/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/ui/*.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test/testing.cpp"
 )
 message(${SOURCES})
 add_executable(project ${SOURCES} Thirdparty/src/gl.c)

@@ -70,7 +70,7 @@ public:
     void render(Shader* shader, Camera* camera);
     void addComponent(NodeComponent* component);
     void removeComponent(NodeComponent* component);
-    void update();
+    void update(float deltatime);
 
     void handleInput()
     {

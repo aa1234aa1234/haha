@@ -26,7 +26,7 @@ Element Tab::DrawComponent() {
 
 int Tab::Update(glm::vec2 pos) {
 	uielement = { position,color[active],size,1 };
-	textHandler->editText(position.x + 5, position.y + 2, title, textidx);
+	TextHandler::getInstance()->editText(position.x + 5, position.y + 2, title, textidx);
 	//return UIComponent::Update();
 	return componentId;
 }

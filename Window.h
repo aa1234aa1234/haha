@@ -19,6 +19,8 @@ public:
     void init(const int& width, const int& height, std::string title);
     int getWidth() const;
     int getHeight() const;
+
+    GLFWwindow* getWindow() const;
 };
 
 

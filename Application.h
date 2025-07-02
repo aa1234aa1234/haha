@@ -15,15 +15,29 @@ class Application {
     glm::vec2 lastMousePos;
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
     void mouse_callback(GLFWwindow* window, int button, int action, int mods);
+    void cursorpos_callback(GLFWwindow* window, double xpos, double ypos);
+    static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+        Application* app = static_cast<Application*>(glfwGetWindowUserPointer(window));
+        if (app) app->key_callback(window, key, scancode, action, mods);
+    }
+    static void mouseCallback(GLFWwindow* window, int button, int action, int mods)
+    {
+        Application* app = static_cast<Application*>(glfwGetWindowUserPointer(window));
+        if (app) app->mouse_callback(window, button, action, mods);
+    }
 public:
     Application();
     ~Application();
+
     std::queue<IEvent*>& getInputEvent() { return inputEvent; }
-    IEvent* getLastInput() { IEvent* e = inputEvent.front(); inputEvent.pop(); return e; }
+    IEvent* getLastInput() { if (inputEvent.size()) { IEvent* e = inputEvent.front(); inputEvent.pop(); return e; } return nullptr; }
 
     void render();
-    void update();
-    void handleInput();
+    void update(float deltatime);
+    void handleInput(float deltatime);
+
+    void setCallBack(GLFWwindow* window);
 };
 
 
