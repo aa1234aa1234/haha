@@ -21,6 +21,8 @@ class UIContext : public Adapter
 		DRAG
 	} state;
 
+	static UIContext* instance;
+
 	std::vector<UIComponent*> rootComponents;
 	std::vector<UIComponent*> instanceData;
 	std::vector<Element> dataBuffer;
@@ -48,6 +50,12 @@ public:
 		}
 		instanceData.clear();
 	}
+
+	static UIContext* getInstance() {
+		if (!instance) { return new UIContext(); }
+		return instance;
+	}
+
 	void init(int width, int height);
 	void add(UIComponent* component);
 	void setup();
