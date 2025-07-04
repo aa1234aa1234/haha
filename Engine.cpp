@@ -35,13 +35,13 @@ Engine::~Engine()
 void Engine::run()
 {
     float deltatime = 0.0, lastframe = 0.0;
-    bool firstmouse = true;
 
     while (isRunning)
     {
         float currentFrame = glfwGetTime();
         deltatime = currentFrame - lastframe;
         lastframe = currentFrame;
+
         glfwPollEvents();
 
         glDisable(GL_DEPTH_TEST);
@@ -90,6 +90,7 @@ void Engine::handleInput(float deltatime)
     if (event->getId() == "MouseEvent")
     {
         Input::getInstance()->setMousePos(event->getAs<MouseEvent*>()->getMousePos());
+        Input::getInstance()->setMouseDelta(event->getAs<MouseEvent*>()->getMouseOffset());
         Input::getInstance()->setEventType(event->getAs<MouseEvent*>()->getEventType());
     }
     else if (event->getId() == "KeyDownEvent")

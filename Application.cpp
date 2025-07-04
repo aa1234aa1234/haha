@@ -20,6 +20,7 @@ void Application::mouse_callback(GLFWwindow* window, int button, int action, int
 {
     double xpos, ypos;
     glfwGetCursorPos(window, &xpos, &ypos);
+    if (firstMouse) { lastMousePos = glm::vec2(xpos, ypos); firstMouse = false; }
     MouseEvent* mouseEvent = new MouseEvent(glm::vec2(xpos,ypos), lastMousePos, action == GLFW_RELEASE ? MouseEvent::MOUSEUP : MouseEvent::MOUSEDOWN);
     inputEvent.push(mouseEvent);
 }
@@ -28,14 +29,14 @@ void Application::cursorpos_callback(GLFWwindow* window, double xpos, double ypo
 {
     int action=0;
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1) != 1) action = 1;
-    MouseEvent* mouseEvent = new MouseEvent(glm::vec2(xpos,ypos), lastMousePos, action ? MouseEvent::MOUSEDRAG : MouseEvent::MOUSEMOVE);
+    MouseEvent* mouseEvent = new MouseEvent(glm::vec2(xpos,ypos), lastMousePos, action ? MouseEvent::MOUSEMOVE : MouseEvent::MOUSEDRAG);
     inputEvent.push(mouseEvent);
     lastMousePos = glm::vec2(xpos,ypos);
 }
 
 Application::Application()
 {
-
+    glfwSwapInterval(0);
 }
 
 Application::~Application()
@@ -48,6 +49,7 @@ void Application::setCallBack(GLFWwindow* window)
     glfwSetWindowUserPointer(window, this);
     glfwSetKeyCallback(window,keyCallback);
     glfwSetMouseButtonCallback(window,mouseCallback);
+    glfwSetCursorPosCallback(window,cursorCallback);
 }
 
 void Application::render()

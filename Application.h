@@ -13,6 +13,7 @@ class Application {
     SceneNode root;
     std::queue<IEvent*> inputEvent;
     glm::vec2 lastMousePos;
+    bool firstMouse = true;
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
     void mouse_callback(GLFWwindow* window, int button, int action, int mods);
     void cursorpos_callback(GLFWwindow* window, double xpos, double ypos);
@@ -25,6 +26,10 @@ class Application {
     {
         Application* app = static_cast<Application*>(glfwGetWindowUserPointer(window));
         if (app) app->mouse_callback(window, button, action, mods);
+    }
+    static void cursorCallback(GLFWwindow* window, double xpos, double ypos) {
+        Application *app = static_cast<Application*>(glfwGetWindowUserPointer(window));
+        if (app) { app->cursorpos_callback(window, xpos, ypos); }
     }
 public:
     Application();

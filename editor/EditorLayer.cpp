@@ -53,12 +53,16 @@ void EditorLayer::handleInput()
 {
     switch (Input::getInstance()->getEventType())
     {
-    case Input::EventType::MOUSE_DOWN:
-        UIContext::getInstance()->onClick(Input::getInstance()->getMousePos());
-        break;
-    case Input::EventType::MOUSE_DRAG:
-        UIContext::getInstance()->onDrag(Input::getInstance()->getMousePos(), Input::getInstance()->getMouseDelta());
-        break;
+        case Input::EventType::MOUSE_DOWN:
+            UIContext::getInstance()->onClick(Input::getInstance()->getMousePos());
+            break;
+        case Input::EventType::MOUSE_DRAG:
+            std::cout << Input::getInstance()->getMousePos().x << ' ' << Input::getInstance()->getMouseDelta().y << std::endl;
+            UIContext::getInstance()->onDrag(Input::getInstance()->getMousePos(), Input::getInstance()->getMouseDelta());
+            break;
+        case Input::EventType::MOUSE_UP:
+            UIContext::getInstance()->onRelease(Input::getInstance()->getMousePos());
+            break;
     }
 }
 
