@@ -8,15 +8,16 @@
 
 
 class KeydownEvent : public IEvent{
-    std::string id = "KeyDownEvent";
+
     enum KeyDown
     {
         KEY_DOWN = 4
     } eventType;
+    int id=KeyDown::KEY_DOWN;
     int pressedkey = 0;
 public:
     KeydownEvent(int keycode) {}
-    const std::string& getId() override
+    const int getId() override
     {
         return id;
     }

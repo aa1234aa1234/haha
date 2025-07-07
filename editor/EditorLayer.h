@@ -7,6 +7,7 @@
 #define EDITORLAYER_H
 #include "UIContext.h"
 #include "SceneView.h"
+#include "EventDispatcher.h"
 
 class Engine;
 class TabView;
@@ -23,7 +24,7 @@ public:
     void init();
     void render();
     void update();
-    void handleInput();
+    void handleInput(IEvent& event);
 };
 
 

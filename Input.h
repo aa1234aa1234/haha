@@ -17,8 +17,8 @@ class Input {
     static Input* instance;
     glm::vec2 mousepos;
     glm::vec2 mousedelta;
-    std::vector<char> keydown;
-    int eventType;
+    std::unordered_map<char,bool> keydown;
+    int eventType=-1;
 public:
     enum EventType
     {
@@ -37,7 +37,7 @@ public:
         return instance;
     }
 
-    std::vector<char> getKeyDown();
+    std::unordered_map<char,bool> getKeyDown();
     glm::vec2 getMousePos();
     glm::vec2 getMouseDelta();
     void setMousePos(const float& x, const float& y);

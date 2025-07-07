@@ -8,21 +8,22 @@
 #include <glm/glm.hpp>
 
 class MouseEvent : public IEvent {
-    std::string id = "MouseEvent";
+    int id = -1;
     glm::vec2 mousePos, mouseOffset;
 public:
     enum MouseEventType
     {
-        MOUSEDOWN,
+        MOUSEDOWN=0,
         MOUSEUP,
         MOUSEMOVE,
         MOUSEDRAG
     } eventType;
 
     MouseEvent() {}
-    MouseEvent(glm::vec2 mousePos, glm::vec2 mouseOffset, MouseEventType eventType) : mousePos(mousePos), mouseOffset(mouseOffset), eventType(eventType) {}
+    MouseEvent(glm::vec2 mousePos, glm::vec2 mouseOffset, MouseEventType eventType) : mousePos(mousePos), mouseOffset(mouseOffset), eventType(eventType), id(eventType) {}
+    MouseEvent(glm::vec2 mousePos, MouseEventType eventType) : mousePos(mousePos), eventType(eventType), id(eventType) {}
     ~MouseEvent() {}
-    const std::string& getId() override
+    const int getId() override
     {
         return id;
     }

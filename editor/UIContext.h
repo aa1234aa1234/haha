@@ -12,7 +12,7 @@
 
 
 
-class UIContext : public Adapter
+class UIContext
 {
 
 	enum State {
@@ -68,11 +68,11 @@ public:
 	void setSize(int& width, int& height);
 	void DrawComponents();
 	void pack();
-	void onClick(glm::vec2 pos) override;
-	void onDrag(glm::vec2 pos, glm::vec2 pos2) override;
-	void onRelease(glm::vec2 pos) override;
-	void onDoubleClick(glm::vec2 pos) override;
-	void onUpdate(int start, int end) override;
+	void onClick(glm::vec2 pos);
+	void onDrag(glm::vec2 pos, glm::vec2 pos2);
+	void onRelease(glm::vec2 pos);
+	void onDoubleClick(glm::vec2 pos);
+	void onUpdate(int start, int end);
 };
 
 

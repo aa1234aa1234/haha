@@ -3,9 +3,11 @@
 //
 
 #include "DockSpace.h"
+#include "Engine.h"
 
-DockSpace::DockSpace(const int& width, const int& height)
+DockSpace::DockSpace()
 {
+    width = Engine::getScreenWidth(), height = Engine::getScreenHeight();
     frameBuffer = new FrameBuffer(width, height);
     shader = new Shader();
     shader->createFromSource(std::string(vertex), std::string(frag));

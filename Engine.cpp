@@ -17,6 +17,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     screenWidth = width;
     screenHeight = height;
     window.init(width,height,title);
+    eventDispatcher = new EventDispatcher();
     application->setCallBack(window.getWindow());
     sceneBuffer = new FrameBuffer(screenWidth,screenHeight);
     uiLayer = new UILayer(this);
@@ -49,12 +50,13 @@ void Engine::run()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //normal engine code holy shit im making comments omg
         handleInput(deltatime);
+        application->handleInput(deltatime);
         if (editorMode)
         {
-            editorLayer->handleInput();
             editorLayer->update();
         }
         render(deltatime);
+        Input::getInstance()->setEventType(-1);
         //ill leave this here need to making editor layer
         window.swapBuffers();
     }
@@ -85,19 +87,51 @@ void Engine::render(float deltatime)
 
 void Engine::handleInput(float deltatime)
 {
-    IEvent* event = application->getLastInput();
-    if (event == nullptr) return;
-    if (event->getId() == "MouseEvent")
+    InputEvent event;
+    application->pollInputEvent(event);
+    switch (event.getEventType())
     {
-        Input::getInstance()->setMousePos(event->getAs<MouseEvent*>()->getMousePos());
-        Input::getInstance()->setMouseDelta(event->getAs<MouseEvent*>()->getMouseOffset());
-        Input::getInstance()->setEventType(event->getAs<MouseEvent*>()->getEventType());
+    case Input::EventType::MOUSE_DOWN:
+        {
+            Input::getInstance()->setEventType(Input::EventType::MOUSE_DOWN);
+            Input::getInstance()->setMousePos(event.getMousePos());
+            MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEDOWN);
+            eventDispatcher->dispatchEvent(mouseEvent);
+        }
+        break;
+    case Input::EventType::MOUSE_UP:
+        {
+            MouseEvent mouseEvent = MouseEvent(event.getMousePos(), MouseEvent::MouseEventType::MOUSEDOWN);
+            eventDispatcher->dispatchEvent(mouseEvent);
+            Input::getInstance()->setEventType(Input::EventType::MOUSE_UP);
+            Input::getInstance()->setMousePos(event.getMousePos());
+        }
+        break;
+    case Input::EventType::MOUSE_MOVE:
+        {
+            MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEMOVE);
+            eventDispatcher->dispatchEvent(mouseEvent);
+            Input::getInstance()->setEventType(Input::EventType::MOUSE_MOVE);
+            Input::getInstance()->setMousePos(event.getMousePos());
+            Input::getInstance()->setMouseDelta(event.getMouseDelta());
+        }
+
+        break;
+    case Input::EventType::MOUSE_DRAG:
+        {
+            MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEDRAG);
+            eventDispatcher->dispatchEvent(mouseEvent);
+            Input::getInstance()->setEventType(Input::EventType::MOUSE_DRAG);
+            Input::getInstance()->setMousePos(event.getMousePos());
+            Input::getInstance()->setMouseDelta(event.getMouseDelta());
+        }
+        break;
+    case Input::EventType::KEY_DOWN:
+        Input::getInstance()->setEventType(Input::EventType::KEY_DOWN);
+        Input::getInstance()->setKeyDown(event.getKey());
+        KeydownEvent keydown = KeydownEvent(event.getKey());
+        eventDispatcher->dispatchEvent(keydown);
+        break;
     }
-    else if (event->getId() == "KeyDownEvent")
-    {
-        Input::getInstance()->setKeyDown(event->getAs<KeydownEvent*>()->getKeycode());
-        Input::getInstance()->setKeyDown(event->getAs<KeydownEvent*>()->getEventType());
-    }
-    delete event;
-    application->handleInput(deltatime);
+    if (application->getInputEvents().size()) application->getInputEvents().pop();
 }

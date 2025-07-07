@@ -7,11 +7,12 @@
 
 #include "Engine.h"
 #include "Input.h"
+#include "KeydownEvent.h"
 #include "TextHandler.h"
 
 EditorLayer::EditorLayer(Engine* engine) : engine(engine)
 {
-
+    engine->getEventDispatcher()->registerCallback([this](IEvent& event) { this->handleInput(event); });
 }
 
 EditorLayer::~EditorLayer()
@@ -46,21 +47,29 @@ void EditorLayer::render()
 
 void EditorLayer::update()
 {
-    UIContext::getInstance()->dispatchUpdate();
+    //UIContext::getInstance()->dispatchUpdate();
 }
 
-void EditorLayer::handleInput()
+void EditorLayer::handleInput(IEvent& event)
 {
-    switch (Input::getInstance()->getEventType())
+    switch (event.getId())
     {
         case Input::EventType::MOUSE_DOWN:
             UIContext::getInstance()->onClick(Input::getInstance()->getMousePos());
             break;
+        case Input::EventType::MOUSE_UP:
+            UIContext::getInstance()->onRelease(Input::getInstance()->getMousePos());
+            break;
+        case Input::EventType::MOUSE_MOVE:
+            std::cout << "mousemove" << std::endl;
+            break;
         case Input::EventType::MOUSE_DRAG:
             UIContext::getInstance()->onDrag(Input::getInstance()->getMousePos(), Input::getInstance()->getMouseDelta());
             break;
-        case Input::EventType::MOUSE_UP:
-            UIContext::getInstance()->onRelease(Input::getInstance()->getMousePos());
+
+        case Input::EventType::KEY_DOWN:
+
+            if (Input::getInstance()->isKeyDown(256)) Engine::setRunning(false);
             break;
     }
 }

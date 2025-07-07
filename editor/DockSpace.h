@@ -12,6 +12,7 @@
 
 class FrameBuffer;
 class Shader;
+class Engine;
 
 class DockSpace {
     float ndc[12] = {
@@ -83,10 +84,11 @@ public:
 	Shader* shader;
 	FrameBuffer* frameBuffer;
 	std::vector<OverlayElement> buffer;
+	int width, height;
 	DockNode rootNode;
 	int buffersize = 0;
 
-	DockSpace(const int& width, const int& height);
+	DockSpace();
 
     ~DockSpace() {
 		delete frameBuffer;

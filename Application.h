@@ -7,11 +7,15 @@
 #include "Window.h"
 #include "SceneNode.h"
 
-#include "EventHandler.h"
+#include "EventDispatcher.h"
+#include "Input.h"
+#include "InputEvent.h"
+
 
 class Application {
+
     SceneNode root;
-    std::queue<IEvent*> inputEvent;
+    std::queue<InputEvent> inputEvent;
     glm::vec2 lastMousePos;
     bool firstMouse = true;
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -35,8 +39,14 @@ public:
     Application();
     ~Application();
 
-    std::queue<IEvent*>& getInputEvent() { return inputEvent; }
-    IEvent* getLastInput() { if (inputEvent.size()) { IEvent* e = inputEvent.front(); inputEvent.pop(); return e; } return nullptr; }
+    std::queue<InputEvent>& getInputEvents() { return inputEvent; }
+    void pollInputEvent(InputEvent& event)
+    {
+        if (inputEvent.size())
+        {
+            event = inputEvent.front();
+        }
+    }
 
     void render();
     void update(float deltatime);
@@ -44,6 +54,8 @@ public:
 
     void setCallBack(GLFWwindow* window);
 };
+
+
 
 
 

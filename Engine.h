@@ -9,8 +9,10 @@
 #include "UILayer.h"
 #include "EditorLayer.h"
 #include "FrameBuffer.h"
+#include "EventDispatcher.h"
 
 class UILayer;
+class EventDispatcher;
 
 class Engine {
 
@@ -22,6 +24,7 @@ class Engine {
     UILayer* uiLayer=nullptr;
     EditorLayer* editorLayer=nullptr;
     FrameBuffer* sceneBuffer=nullptr;
+    EventDispatcher* eventDispatcher=nullptr;
 
 public:
     Engine();
@@ -34,6 +37,7 @@ public:
     static void setMode(const bool& mode) { editorMode = mode; }
     static void setRunning(const bool& running) { isRunning = running; }
     FrameBuffer* getSceneBuffer() { return sceneBuffer; }
+    EventDispatcher* getEventDispatcher() { return eventDispatcher; }
 
     void run();
     void render(float deltatime);

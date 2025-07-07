@@ -167,7 +167,8 @@ void UIContext::onClick(glm::vec2 pos) {
 		for (auto& p : rootComponents) {
 			if (cid >= p->getComponentId()) rootid = p->getComponentId();
 		}
-		queueEvent("update", rootid, cid);
+		onUpdate(rootid,cid);
+		//queueEvent("update", rootid, cid);
 	}
 	
 }
@@ -187,7 +188,8 @@ void UIContext::onDrag(glm::vec2 pos, glm::vec2 pos2) {
 		if (cid >= p->getComponentId()) rootid = p->getComponentId();
 	}
 	//queueEvent("update", rootid, cid);
-	callEvent("update", rootid, cid);
+	//callEvent("update", rootid, cid);
+	onUpdate(rootid,cid);
 }
 
 void UIContext::onRelease(glm::vec2 pos) {
@@ -209,7 +211,8 @@ void UIContext::onDoubleClick(glm::vec2 pos) {
 		for (auto& p : rootComponents) {
 			if (cid >= p->getComponentId()) rootid = p->getComponentId();
 		}
-		queueEvent("update", rootid, cid);
+		//queueEvent("update", rootid, cid);
+		onUpdate(rootid,cid);
 	}
 }
 
