@@ -1,4 +1,6 @@
 #include "TabView.h"
+
+#include "Engine.h"
 #include "Panel.h"
 #include "SceneView.h"
 #include "Tab.h"
@@ -10,7 +12,7 @@ void TabView::init() {
 		addChildComponent(new Tab(glm::vec2(position.x + TAB_WIDTH * i, position.y), glm::vec2(TAB_WIDTH, TAB_HEIGHT), i, a[i]));
 	}
 	uielement = { position,color,size,0 };
-	addChildComponent(new Panel<SceneView>(glm::vec2(position.x,position.y+size.y), glm::vec2(size.x,450),nullptr));
+	addChildComponent(new Panel<SceneView>(glm::vec2(position.x,position.y+size.y), glm::vec2(size.x,Engine::getScreenHeight()-size.y),nullptr));
 }
 
 int TabView::Update(glm::vec2 pos) {

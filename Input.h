@@ -27,6 +27,7 @@ public:
         MOUSE_MOVE,
         MOUSE_DRAG,
         KEY_DOWN,
+        KEY_UP
     };
     Input();
     ~Input();
@@ -44,7 +45,7 @@ public:
     void setMouseDelta(const float& x, const float& y);
     void setMousePos(glm::vec2 pos) { mousepos = pos; }
     void setMouseDelta(glm::vec2 delta) { mousedelta = delta; }
-    void setKeyDown(const char& key);
+    void setKeyDown(const char& key, bool down);
     bool isKeyDown(const char& key);
     int getEventType() { return eventType; }
     void setEventType(int type) { eventType = type; }

@@ -9,14 +9,16 @@
 
 class KeydownEvent : public IEvent{
 
-    enum KeyDown
-    {
-        KEY_DOWN = 4
-    } eventType;
-    int id=KeyDown::KEY_DOWN;
+
+    int id=-1;
     int pressedkey = 0;
 public:
-    KeydownEvent(int keycode) {}
+    enum KeyDown
+    {
+        KEY_DOWN = 4,
+        KEY_UP
+    } eventType;
+    KeydownEvent(int keycode, int id) : id(id) {}
     const int getId() override
     {
         return id;

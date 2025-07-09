@@ -39,9 +39,9 @@ void Input::setMouseDelta(const float& x, const float& y)
     mousedelta.y = y;
 }
 
-void Input::setKeyDown(const char& key)
+void Input::setKeyDown(const char& key, bool down)
 {
-    keydown[key] = true;
+    keydown[key] = down;
 }
 
 bool Input::isKeyDown(const char& key)

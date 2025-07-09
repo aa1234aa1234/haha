@@ -10,7 +10,7 @@ class InputEvent
     int eventType=-1;
 public:
     InputEvent() {}
-    InputEvent(int key) : key(key), eventType(Input::EventType::KEY_DOWN) {}
+    InputEvent(int key, int eventType) : key(key), eventType(eventType) {}
     InputEvent(glm::vec2 mousePos, int eventType) : mousePos(mousePos), eventType(eventType) {}
     InputEvent(glm::vec2 mousePos, glm::vec2 mouseDelta, int eventType) : mousePos(mousePos), mouseDelta(mouseDelta), eventType(eventType) {}
     ~InputEvent() {}

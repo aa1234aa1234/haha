@@ -52,6 +52,7 @@ void EditorLayer::update()
 
 void EditorLayer::handleInput(IEvent& event)
 {
+    if (!Engine::getMode()) return;
     switch (event.getId())
     {
         case Input::EventType::MOUSE_DOWN:

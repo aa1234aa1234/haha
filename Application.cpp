@@ -11,7 +11,7 @@
 
 void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    InputEvent keyEvent = InputEvent(key);
+    InputEvent keyEvent = InputEvent(key, action == GLFW_RELEASE ? KeydownEvent::KeyDown::KEY_UP : KeydownEvent::KeyDown::KEY_DOWN);
     inputEvent.push(keyEvent);
 }
 

@@ -10,6 +10,7 @@
 #include "EditorLayer.h"
 #include "FrameBuffer.h"
 #include "EventDispatcher.h"
+#include "FrameLimiter.h"
 
 class UILayer;
 class EventDispatcher;
@@ -25,6 +26,7 @@ class Engine {
     EditorLayer* editorLayer=nullptr;
     FrameBuffer* sceneBuffer=nullptr;
     EventDispatcher* eventDispatcher=nullptr;
+    FrameLimiter frameLimiter;
 
 public:
     Engine();
@@ -36,12 +38,13 @@ public:
     bool running() { return isRunning; }
     static void setMode(const bool& mode) { editorMode = mode; }
     static void setRunning(const bool& running) { isRunning = running; }
+    static bool getMode() { return editorMode; }
     FrameBuffer* getSceneBuffer() { return sceneBuffer; }
     EventDispatcher* getEventDispatcher() { return eventDispatcher; }
 
     void run();
     void render(float deltatime);
-    void handleInput(float deltatime);
+    void handleInput(float deltatime, InputEvent& event);
 };
 
 #endif //ENGINE_H
