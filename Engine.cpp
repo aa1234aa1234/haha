@@ -17,6 +17,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     screenWidth = width;
     screenHeight = height;
     window.init(width,height,title);
+    glfwSwapInterval(0);
     eventDispatcher = new EventDispatcher();
     application->setCallBack(window.getWindow());
     sceneBuffer = new FrameBuffer(screenWidth,screenHeight);
@@ -37,12 +38,14 @@ void Engine::run()
 {
     float deltatime = 0.0, lastframe = 0.0;
     int fps = TextHandler::getInstance()->addText(10, 10, "");
+    int frames = 0;
     while (isRunning)
     {
+        frameLimiter.begin();
         float currentFrame = glfwGetTime();
         deltatime = currentFrame - lastframe;
         lastframe = currentFrame;
-        TextHandler::getInstance()->editText(10, 10, std::to_string(1/deltatime), fps);
+        TextHandler::getInstance()->editText(10, 10, std::to_string(frames), fps);
 
         glfwPollEvents();
 
@@ -61,6 +64,7 @@ void Engine::run()
         }
         application->update(deltatime);
         render(deltatime);
+        frames = frameLimiter.end();
         //Input::getInstance()->setEventType(-1);
         //ill leave this here need to making editor layer
         window.swapBuffers();

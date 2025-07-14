@@ -32,25 +32,21 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="07-02">
-      <change beforePath="$PROJECT_DIR$/.idea/haha.iml" beforeDir="false" />
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="07-09">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Adapter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Adapter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Application.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/EventHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Input.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Input.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Input.h" beforeDir="false" afterPath="$PROJECT_DIR$/Input.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KeydownEvent.h" beforeDir="false" afterPath="$PROJECT_DIR$/KeydownEvent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MouseEvent.h" beforeDir="false" afterPath="$PROJECT_DIR$/MouseEvent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/DockSpace.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/DockSpace.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/DockSpace.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/DockSpace.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameLimiter.h" beforeDir="false" afterPath="$PROJECT_DIR$/FrameLimiter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/Container.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/Container.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/Container.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/Container.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/Tab.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/Tab.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/UIContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/UIContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/shader/frag2.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/frag2.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/shader/vertex2.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/vertex2.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,17 +140,13 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\D412\Desktop\수강생403\김정우\haha\editor" />
       <recent name="C:\Users\D412\Desktop\수강생403\김정우\haha\test" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.project">
     <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
     </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="project" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
@@ -204,7 +196,9 @@
       <workItem from="1751089765282" duration="136000" />
       <workItem from="1751089928101" duration="7202000" />
       <workItem from="1751443206094" duration="10136000" />
-      <workItem from="1751875197246" duration="10256000" />
+      <workItem from="1751875197246" duration="10468000" />
+      <workItem from="1752047665763" duration="10492000" />
+      <workItem from="1752479972990" duration="9910000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />
@@ -246,7 +240,23 @@
       <option name="project" value="LOCAL" />
       <updated>1751453776716</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="07-07">
+      <option name="closed" value="true" />
+      <created>1751885730077</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1751885730077</updated>
+    </task>
+    <task id="LOCAL-00007" summary="07-09">
+      <option name="closed" value="true" />
+      <created>1752058258925</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1752058258925</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +272,9 @@
     <MESSAGE value="06-28" />
     <MESSAGE value="06-30" />
     <MESSAGE value="07-02" />
-    <option name="LAST_COMMIT_MESSAGE" value="07-02" />
+    <MESSAGE value="07-07" />
+    <MESSAGE value="07-09" />
+    <option name="LAST_COMMIT_MESSAGE" value="07-09" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

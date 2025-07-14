@@ -6,23 +6,17 @@
 #include "Panel.h"
 #include "SceneView.h"
 #include "Tab.h"
+#include "UIContext.h"
 
 void Container::init() {
     isDraggable = true;
-    const char* a[] = { "Game","Scene" };
-    for (int i = 0; i < TAB_NUM; i++) {
-        addChildComponent(new Tab(glm::vec2(position.x + TAB_WIDTH * i, position.y), glm::vec2(TAB_WIDTH, TAB_HEIGHT), i, a[i]));
-    }
-    uielement = { position,color,size,0 };
-    addChildComponent(new Panel<SceneView>(glm::vec2(position.x,position.y+size.y), glm::vec2(size.x,450),nullptr));
+    clipRect = glm::vec4(position.x, position.y+TAB_HEIGHT, size.x, size.y-TAB_HEIGHT);
 }
+
 
 int Container::Update(glm::vec2 pos) {
     for (int i = 0; i < TAB_NUM; i++) {
         if (i != selectedtab) dynamic_cast<Tab*>(childComponents[i])->setActive(0);
-        else {
-            dynamic_cast<Panel<SceneView>*>(childComponents[TAB_NUM])->changeViewComponent(dynamic_cast<Tab*>(childComponents[i])->getViewComponent());
-        }
     }
 
     UIComponent::Update();
@@ -48,6 +42,13 @@ int Container::onDrag(glm::vec2 pos, glm::vec2 pos2) {
     return childComponents[childComponents.size()-1]->getComponentId();
 }
 
+void Container::addTab(Tab* tab)
+{
+    addChildComponent(tab);
+    TAB_NUM++;
+    UIContext::getInstance()->getComponent(tab->getActiveComponent())->uielement.clipRect = this->clipRect;
+};
+
 void Container::resize(glm::vec2 size) {
     this->size.x = size.x;
     this->size.y = size.y;
@@ -59,13 +60,5 @@ int Container::onDoubleClick(glm::vec2 pos) {
 
     resize(glm::vec2(1700,900));
     return childComponents[childComponents.size() - 1]->getComponentId();
-}
-
-void Container::setPanelViewComponent(UIComponent* component)
-{
-    for (int i = 0; i<TAB_NUM; i++)
-    {
-        dynamic_cast<Tab*>(childComponents[i])->setViewComponent(component);
-    }
 }
 

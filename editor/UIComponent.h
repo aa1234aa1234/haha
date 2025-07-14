@@ -16,15 +16,18 @@ typedef struct Element {
 	glm::vec3 color;
 	glm::vec2 size;
 	int id;
+	glm::vec4 clipRect = glm::vec4(-1, -1, -1, -1);
 };
 
+using ComponentID = int32_t;
 
 class UIComponent
 {
 protected:
-	int componentId;
+	ComponentID componentId;
 	void destroy();
 	bool isDraggable = false;
+	bool isVisible = true;
 public:
 	UIComponent* parentComponent;
 	std::vector<UIComponent*> childComponents;
@@ -34,7 +37,13 @@ public:
 	UIComponent(const glm::vec2& pos, const glm::vec2& size);
 	UIComponent();
 	~UIComponent();
-	
+
+	static ComponentID generateID()
+	{
+		static ComponentID id = 0;
+		return id++;
+	}
+
 	virtual void genVertices();
 	virtual Element DrawComponent();
 	virtual int Update(glm::vec2 pos = glm::vec2());
@@ -46,5 +55,6 @@ public:
 	virtual int onDrag(glm::vec2 pos, glm::vec2 pos2);
 	virtual int onDoubleClick(glm::vec2 pos);
 	bool Draggable() { return isDraggable; }
+	bool Visible() { return isVisible; }
 };
 

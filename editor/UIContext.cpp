@@ -44,6 +44,10 @@ UIContext::UIContext() {
 	glEnableVertexAttribArray(4);
 	glVertexAttribDivisor(4, 1);
 
+	glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(Element), (void*)(offsetof(Element, clipRect)));
+	glEnableVertexAttribArray(5);
+	glVertexAttribDivisor(5, 1);
+
 	
 	
 	

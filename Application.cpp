@@ -36,7 +36,7 @@ void Application::cursorpos_callback(GLFWwindow* window, double xpos, double ypo
 
 Application::Application()
 {
-    glfwSwapInterval(0);
+
 }
 
 Application::~Application()

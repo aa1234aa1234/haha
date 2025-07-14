@@ -73,6 +73,7 @@ public:
 	void onRelease(glm::vec2 pos);
 	void onDoubleClick(glm::vec2 pos);
 	void onUpdate(int start, int end);
+	UIComponent* getComponent(int id) { return instanceData[id]; }
 };
 
 

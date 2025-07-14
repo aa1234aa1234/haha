@@ -8,7 +8,7 @@
 
 class Tab : public UIComponent {
 	std::string title;
-	int id = 0, textidx;
+	int id = 0, textidx, activeComponentId = -1;
 	bool active = 0;
 	UIComponent* viewComponent=nullptr;
 	glm::vec3* color = new glm::vec3[2]{ glm::vec3(40,40,40),glm::vec3(60,60,60) };;
@@ -28,6 +28,7 @@ public:
 		destroy();
 		delete color;
 	}
+	int getActiveComponent() { return activeComponentId; }
 	Element DrawComponent() override;
 	int Update(glm::vec2 pos) override;
 	int onClick(glm::vec2 pos) override;

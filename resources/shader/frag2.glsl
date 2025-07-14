@@ -4,6 +4,7 @@ in vec3 colors;
 in vec2 pos;
 in vec2 size;
 flat in int typeId;
+in vec4 clipRect;
 uniform sampler2D tex;
 uniform float width;
 uniform float height;
@@ -39,6 +40,7 @@ void idk(vec3 color) {
         }
     }
     else FragColor.a = 1.0;
+    if(clipRect.x != -1 && clipRect.y != -1 && clipRect.z != -1 && clipRect.w != -1);
 }
 
 void main()

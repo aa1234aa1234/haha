@@ -11,6 +11,7 @@
 #include "FrameBuffer.h"
 #include "EventDispatcher.h"
 #include "FrameLimiter.h"
+#define FRAME_LIMIT 144
 
 class UILayer;
 class EventDispatcher;
@@ -26,7 +27,7 @@ class Engine {
     EditorLayer* editorLayer=nullptr;
     FrameBuffer* sceneBuffer=nullptr;
     EventDispatcher* eventDispatcher=nullptr;
-    FrameLimiter frameLimiter;
+    FrameLimiter frameLimiter = FrameLimiter(FRAME_LIMIT);
 
 public:
     Engine();

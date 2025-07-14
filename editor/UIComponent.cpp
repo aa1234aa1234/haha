@@ -8,7 +8,7 @@ void UIComponent::destroy() {
     //if(parentComponent != nullptr) delete parentComponent;
 }
 
-UIComponent::UIComponent(const glm::vec2& pos, const glm::vec2& size) : parentComponent(nullptr) {
+UIComponent::UIComponent(const glm::vec2& pos, const glm::vec2& size) : parentComponent(nullptr), componentId(generateID()) {
 	position.x = pos.x;
 	position.y = pos.y;
     this->size.x = size.x;
@@ -16,7 +16,7 @@ UIComponent::UIComponent(const glm::vec2& pos, const glm::vec2& size) : parentCo
 	genVertices();
 }
 
-UIComponent::UIComponent() : parentComponent(nullptr) {
+UIComponent::UIComponent() : parentComponent(nullptr), componentId(generateID()) {
 }
 
 UIComponent::~UIComponent() {
@@ -89,7 +89,7 @@ void UIComponent::getUIElements(std::vector<Element>& v, std::vector<UIComponent
         for (auto& p : a->childComponents) {
             q.push(p);
         }
-        a->componentId = v.size();
+        //a->componentId = v.size();
         v.push_back(a->uielement);
         v1.reserve(v1.size() + 1);
         v1.emplace_back(a);
