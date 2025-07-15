@@ -42,6 +42,7 @@ public:
     static bool getMode() { return editorMode; }
     FrameBuffer* getSceneBuffer() { return sceneBuffer; }
     EventDispatcher* getEventDispatcher() { return eventDispatcher; }
+    Application* getApplication() { return application; }
 
     void run();
     void render(float deltatime);

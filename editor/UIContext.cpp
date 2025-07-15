@@ -108,7 +108,7 @@ void UIContext::setSize(int& width, int& height) {
 	}
 }
 
-void UIContext::DrawComponents() {
+void UIContext::DrawComponents(Engine& engine) {
 	
 	//float aspect = (float)width / height;
 	

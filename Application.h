@@ -47,7 +47,7 @@ public:
             event = inputEvent.front();
         }
     }
-
+    SceneNode& getRoot() { return root; }
     void render();
     void update(float deltatime);
     void handleInput(float deltatime);

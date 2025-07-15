@@ -42,11 +42,12 @@ void EditorLayer::render()
 {
     glDisable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    UIContext::getInstance()->DrawComponents();
+    UIContext::getInstance()->DrawComponents(*engine);
 }
 
 void EditorLayer::update()
 {
+    //i will come back to this at a later date
     //UIContext::getInstance()->dispatchUpdate();
 }
 

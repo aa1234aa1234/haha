@@ -8,9 +8,7 @@
 #define MAX_COMPONENTS 10000
 
 
-
-
-
+class Engine;
 
 class UIContext
 {
@@ -66,7 +64,7 @@ public:
 	void add(UIComponent* component);
 	void setup();
 	void setSize(int& width, int& height);
-	void DrawComponents();
+	void DrawComponents(Engine& engine);
 	void pack();
 	void onClick(glm::vec2 pos);
 	void onDrag(glm::vec2 pos, glm::vec2 pos2);
