@@ -28,9 +28,9 @@ int TabView::Update(glm::vec2 pos) {
 	return childComponents[childComponents.size()-1]->getComponentId();
 }
 
-Element TabView::DrawComponent() {
+Element TabView::UpdateElement() {
 	uielement = { position,color,size, 0};
-	for (auto& p : childComponents) p->DrawComponent();
+	for (auto& p : childComponents) p->UpdateElement();
 	return uielement;
 }
 

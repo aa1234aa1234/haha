@@ -8,12 +8,12 @@
 #include "UIContext.h"
 #include "Window.h"
 
+//entire class needs to be touched up on
+
 class Engine;
 
 class UILayer {
 
-
-    UIContext* context;
     Engine* engine = nullptr;
 public:
     UILayer(Engine* engine);

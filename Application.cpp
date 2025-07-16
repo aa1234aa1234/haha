@@ -36,7 +36,8 @@ void Application::cursorpos_callback(GLFWwindow* window, double xpos, double ypo
 
 Application::Application()
 {
-
+    SceneNode* node = new SceneNode("TestNode");
+    root.addSceneNode(node);
 }
 
 Application::~Application()

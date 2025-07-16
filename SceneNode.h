@@ -63,6 +63,7 @@ public:
     }
 
     NodeID getID() const { return id; }
+    std::string getName() const { return name; }
     void setParent(SceneNode* node) { parent = node; }
     void addSceneNode(SceneNode* node);
     void removeSceneNode(SceneNode* node);
@@ -85,6 +86,7 @@ public:
     }
 
     std::vector<NodeComponent*>& getComponents() { return components; }
+    std::vector<SceneNode*>& getChildren() { return children; }
     Transform& getTransform() { return this->transform; }
 };
 

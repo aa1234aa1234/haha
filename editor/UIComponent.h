@@ -3,6 +3,8 @@
 #include "../Shader.h"
 #include <queue>
 
+#include "Engine.h"
+
 //extern UIContext* context;
 
 struct UIElements {
@@ -45,7 +47,8 @@ public:
 	}
 
 	virtual void genVertices();
-	virtual Element DrawComponent();
+	virtual Element UpdateElement();
+	virtual void render(Engine& engine);
 	virtual int Update(glm::vec2 pos = glm::vec2());
 	virtual void getUIElements(std::vector<Element>& v, std::vector<UIComponent*>& v1);
 	void generateQuad(glm::vec3 color);

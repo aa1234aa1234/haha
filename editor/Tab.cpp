@@ -18,7 +18,7 @@ int Tab::onClick(glm::vec2 pos) {
 	}
 }
 
-Element Tab::DrawComponent() {
+Element Tab::UpdateElement() {
 	uielement = { position,color[active],size,1 };
 	//textHandler->draw(position.x, position.y, title);
 	return uielement;

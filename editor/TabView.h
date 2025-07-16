@@ -28,7 +28,7 @@ public:
 	void init();
 	int Update(glm::vec2 pos = glm::vec2()) override;
 	int onClick(glm::vec2 pos) override;
-	Element DrawComponent() override;
+	Element UpdateElement() override;
 	int onDrag(glm::vec2 pos, glm::vec2 pos2) override;
 	int onDoubleClick(glm::vec2 pos) override;
 	void resize(glm::vec2 size);

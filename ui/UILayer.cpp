@@ -11,18 +11,16 @@ UILayer::UILayer(Engine* engine) : engine(engine)
 
 UILayer::~UILayer()
 {
-    delete context;
 }
 
 void UILayer::init(Window& window)
 {
-    context = new UIContext();
-    context->init(window.getWidth(), window.getHeight());
 }
 
 void UILayer::render()
 {
-    context->DrawComponents();
+    //i will get backto this
+    //context->DrawComponents();
 }
 
 void UILayer::handlevent()

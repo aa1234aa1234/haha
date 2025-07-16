@@ -5,6 +5,7 @@ UIContext* UIContext::instance = 0;
 
 UIContext::UIContext() {
 	shader = new Shader("resources/shader/vertex2.glsl", "resources/shader/frag2.glsl");
+	dockspace = new DockSpace();
 	//overlayElement = new LayoutOverlay(width,height);
 	float ndc[] = { 
 		1.0, 1.0 ,
@@ -126,7 +127,7 @@ void UIContext::DrawComponents(Engine& engine) {
 		i++;
 	}*/
 	for (auto& p : rootComponents) {
-		p->DrawComponent();
+		p->UpdateElement();
 	}
 	shader->use();
 	glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
@@ -136,6 +137,11 @@ void UIContext::DrawComponents(Engine& engine) {
 	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instanceData.size());
 
 	//overlayElement->render();
+	if (state == DRAG)
+	{
+		dockspace->end();
+		dockspace->render();
+	}
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	GLenum err;

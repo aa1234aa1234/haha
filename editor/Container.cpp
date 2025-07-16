@@ -24,9 +24,9 @@ int Container::Update(glm::vec2 pos) {
     return childComponents[childComponents.size()-1]->getComponentId();
 }
 
-Element Container::DrawComponent() {
+Element Container::UpdateElement() {
     uielement = { position,color,size, 0};
-    for (auto& p : childComponents) p->DrawComponent();
+    for (auto& p : childComponents) p->UpdateElement();
     return uielement;
 }
 
@@ -38,6 +38,8 @@ int Container::onClick(glm::vec2 pos) {
 int Container::onDrag(glm::vec2 pos, glm::vec2 pos2) {
     //std::cout << "drag" << std::endl;
     position = position + (pos - pos2);
+    clipRect.x = position.x;
+    clipRect.y = position.y+TAB_HEIGHT;
     UIComponent::Update(pos-pos2);
     return childComponents[childComponents.size()-1]->getComponentId();
 }
@@ -47,6 +49,7 @@ void Container::addTab(Tab* tab)
     addChildComponent(tab);
     TAB_NUM++;
     UIContext::getInstance()->getComponent(tab->getActiveComponent())->uielement.clipRect = this->clipRect;
+    UIContext::getInstance()->getComponent(tab->getActiveComponent())->uielement.position = glm::vec2(clipRect.x, clipRect.y);
 };
 
 void Container::resize(glm::vec2 size) {

@@ -42,7 +42,7 @@ void UIComponent::generateQuad(glm::vec3 color) {
     uielements.push_back({ glm::vec2(-1.0,1.0),  glm::vec2(-1.0,1.0),   glm::vec3(0.45, 0.45, 0.45) });*/
 }
 
-Element UIComponent::DrawComponent() {
+Element UIComponent::UpdateElement() {
     return uielement;
 }
 
@@ -53,7 +53,7 @@ int UIComponent::Update(glm::vec2 pos) {
             p->Update();
         }
     }
-    DrawComponent();
+    UpdateElement();
     return 0;
 }
 
@@ -78,6 +78,8 @@ int UIComponent::onDrag(glm::vec2 pos, glm::vec2 pos2) {
 int UIComponent::onDoubleClick(glm::vec2 pos) {
     return componentId;
 }
+
+void UIComponent::render(Engine& engine) {}
 
 void UIComponent::getUIElements(std::vector<Element>& v, std::vector<UIComponent*>& v1) {
 

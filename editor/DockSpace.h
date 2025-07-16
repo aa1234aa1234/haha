@@ -29,14 +29,17 @@ class DockSpace {
 
     layout(location = 0) in vec2 position;
     layout(location = 1) in vec4 acolor;
+    layout(location = 2) in int alayout;
 
     out vec2 pos;
     out vec4 colors;
+    flat out int m_layout;
 
     void main() {
-        gl_Position = vec4(position, 1.0);
+        gl_Position = vec4(position, 0.0, 1.0);
         colors = acolor;
         pos = position;
+		m_layout = alayout;
     }
     )";
 
@@ -47,6 +50,7 @@ class DockSpace {
 
     in vec4 colors;
     in vec2 pos;
+    flat in int m_layout;
 
 	vec4 NormalizeRGB(vec4 color) {
 		return vec4(color.xyz/255.0,color.a);
@@ -122,6 +126,7 @@ public:
 	void end();
 	void render();
 	void update();
+	void resize();
 };
 
 

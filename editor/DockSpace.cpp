@@ -62,3 +62,9 @@ void DockSpace::update()
 
 }
 
+void DockSpace::resize()
+{
+    int width = Engine::getScreenWidth(), height = Engine::getScreenHeight();
+    frameBuffer->resize(width, height);
+}
+

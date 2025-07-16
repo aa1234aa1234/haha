@@ -16,6 +16,7 @@ class Container : public UIComponent {
     glm::vec3 color = glm::vec3(40, 40, 40);
     glm::vec2 mousedownpos = glm::vec2();
     glm::vec4 clipRect = glm::vec4();
+    UIComponent* viewComponent;
 public:
     int selectedtab = 0;
     Container() : UIComponent() {
@@ -36,7 +37,7 @@ public:
     void addTab(Tab* tab);
     int Update(glm::vec2 pos = glm::vec2()) override;
     int onClick(glm::vec2 pos) override;
-    Element DrawComponent() override;
+    Element UpdateElement() override;
     int onDrag(glm::vec2 pos, glm::vec2 pos2) override;
     int onDoubleClick(glm::vec2 pos) override;
     void resize(glm::vec2 size);

@@ -1,10 +1,12 @@
 #pragma once
-#include "../header.h"
+#include "header.h"
 #include "UIComponent.h"
 #include <map>
-#include "../EventHandler.h"
-#include "../Adapter.h"
-#include "../FrameBuffer.h"
+
+#include "DockSpace.h"
+#include "EventHandler.h"
+#include "Adapter.h"
+#include "FrameBuffer.h"
 #define MAX_COMPONENTS 10000
 
 
@@ -26,6 +28,7 @@ class UIContext
 	std::vector<Element> dataBuffer;
 	Shader* shader;
 	//LayoutOverlay* overlayElement;
+	DockSpace* dockspace;
 	unsigned int vao,vbo,instancevbo;
 	int width, height;
 	int targetId = -5000;
@@ -38,6 +41,7 @@ public:
 		glDeleteBuffers(1, &vbo);
 		glDeleteBuffers(1, &instancevbo);
 		delete shader;
+		if (dockspace != nullptr) delete dockspace;
 		//delete overlayElement;
 		for (auto& p : rootComponents) {
 			delete p;
@@ -50,7 +54,7 @@ public:
 	}
 
 	static UIContext* getInstance() {
-		if (!instance) instance = new UIContext();
+		if (!instance) { instance = new UIContext(); }
 		return instance;
 	}
 

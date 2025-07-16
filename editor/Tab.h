@@ -29,7 +29,7 @@ public:
 		delete color;
 	}
 	int getActiveComponent() { return activeComponentId; }
-	Element DrawComponent() override;
+	Element UpdateElement() override;
 	int Update(glm::vec2 pos) override;
 	int onClick(glm::vec2 pos) override;
 	void setActive(int a) { active = a; }

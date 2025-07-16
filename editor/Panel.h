@@ -18,7 +18,7 @@ public:
 		delete viewComponent;
 	}
 
-	Element DrawComponent() override {
+	Element UpdateElement() override {
 		if (viewComponent != nullptr) {
 			viewComponent->renderScene();
 			glBindTexture(GL_TEXTURE_2D, viewComponent->getSceneTexture());
@@ -38,7 +38,7 @@ public:
 	}
 
 	int Update(glm::vec2 pos = glm::vec2()) override {
-		DrawComponent();
+		UpdateElement();
 		
 		uielement = { position, glm::vec3(0,0,0), size, 2 };
 		
