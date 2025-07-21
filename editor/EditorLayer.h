@@ -8,6 +8,7 @@
 #include "UIContext.h"
 #include "SceneView.h"
 #include "EventDispatcher.h"
+#include "ObjectView.h"
 
 class Engine;
 class TabView;
@@ -17,6 +18,7 @@ class EditorLayer {
 
     TabView* tabView=nullptr;
     SceneView* sceneView=nullptr;
+    ObjectView* objectView=nullptr;
 public:
     EditorLayer(Engine* engine);
     ~EditorLayer();

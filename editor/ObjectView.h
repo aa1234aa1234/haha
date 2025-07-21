@@ -5,7 +5,10 @@
 #ifndef OBJECTVIEW_H
 #define OBJECTVIEW_H
 #include "UIComponent.h"
+#include "SceneNode.h"
 #include <vector>
+
+class SceneNode;
 
 class ObjectView : public UIComponent {
     struct TreeNode
@@ -26,7 +29,7 @@ class ObjectView : public UIComponent {
         delete node;
     }
 public:
-    ObjectView();
+    ObjectView(const glm::vec2& pos, const glm::vec2& size);
     ~ObjectView()
     {
         destroy();

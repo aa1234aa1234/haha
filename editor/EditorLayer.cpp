@@ -19,6 +19,7 @@ EditorLayer::~EditorLayer()
 {
     delete tabView;
     delete sceneView;
+    delete objectView;
     UIContext::destroyInstance();
 }
 
@@ -29,11 +30,13 @@ void EditorLayer::init()
 
     tabView = new TabView(glm::vec2(0,0),glm::vec2(Engine::getScreenWidth(),25));
     sceneView = new SceneView();
+    objectView = new ObjectView(glm::vec2(0,0),glm::vec2(200,Engine::getScreenHeight()));
     sceneView->addSceneTexture("Scene", engine->getSceneBuffer()->getFrameTexture());
     sceneView->addSceneTexture("Game", engine->getSceneBuffer()->getFrameTexture());
     tabView->setPanelViewComponent(sceneView);
 
     UIContext::getInstance()->add(tabView);
+    UIContext::getInstance()->add(objectView);
 
     UIContext::getInstance()->setup();
 }

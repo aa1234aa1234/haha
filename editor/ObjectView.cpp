@@ -4,6 +4,10 @@
 
 #include "ObjectView.h"
 
+ObjectView::ObjectView(const glm::vec2& pos, const glm::vec2& size) : UIComponent(pos,size) {
+    this->uielement = {pos,glm::vec3(255,0,0), size, 121};
+}
+
 void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node)
 {
     node->text = sceneNode->getName();
@@ -21,4 +25,8 @@ void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node)
         child->text = "this is a work in progress";
         node->children.push_back(child);
     }
+}
+
+void ObjectView::render(Engine& engine) {
+
 }

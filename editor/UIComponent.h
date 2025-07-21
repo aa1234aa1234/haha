@@ -3,9 +3,9 @@
 #include "../Shader.h"
 #include <queue>
 
-#include "Engine.h"
-
 //extern UIContext* context;
+
+class Engine;
 
 struct UIElements {
 	glm::vec2 position;
