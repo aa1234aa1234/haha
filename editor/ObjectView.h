@@ -36,6 +36,7 @@ public:
         destroyTree(&root);
     }
 
+    TreeNode& getRoot() { return root; }
     void loadTree(SceneNode* sceneNode, TreeNode* node);
     void render(Engine& engine) override;
 };
