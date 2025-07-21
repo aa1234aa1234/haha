@@ -36,6 +36,7 @@ void EditorLayer::init()
     tabView->setPanelViewComponent(sceneView);
 
     UIContext::getInstance()->add(tabView);
+    UIContext::getInstance()->add(sceneView);
     UIContext::getInstance()->add(objectView);
 
     UIContext::getInstance()->setup();

@@ -2,7 +2,7 @@
 
 void UIComponent::destroy() {
     for (auto& p : childComponents) {
-        delete p;
+        if (p != nullptr) delete p;
     }
     childComponents.clear();
     //if(parentComponent != nullptr) delete parentComponent;

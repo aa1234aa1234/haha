@@ -68,8 +68,6 @@ void UIContext::add(UIComponent* component) {
 
 	rootComponents.reserve(rootComponents.size() + 1);
 	rootComponents.emplace_back(component);
-	
-	
 }
 
 
