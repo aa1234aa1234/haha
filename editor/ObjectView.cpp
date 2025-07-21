@@ -5,7 +5,7 @@
 #include "ObjectView.h"
 
 ObjectView::ObjectView(const glm::vec2& pos, const glm::vec2& size) : UIComponent(pos,size) {
-    this->uielement = {pos,glm::vec3(255,0,0), size, 121};
+    this->uielement = {pos,glm::vec3(40,40,40), size, 121};
 }
 
 void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node)
@@ -29,4 +29,9 @@ void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node)
 
 void ObjectView::render(Engine& engine) {
 
+}
+
+int ObjectView::onClick(glm::vec2 pos)
+{
+    return -1;
 }

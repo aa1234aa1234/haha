@@ -134,6 +134,11 @@ void UIContext::DrawComponents(Engine& engine) {
 	
 	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instanceData.size());
 
+	for (auto& p : rootComponents)
+	{
+		p->render(engine);
+	}
+
 	//overlayElement->render();
 	if (state == DRAG)
 	{

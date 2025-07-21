@@ -38,7 +38,7 @@ public:
         {
             averageframe += frametimes[i];
         }
-        averageframe /= cnt;
+        averageframe /= static_cast<float>(cnt);
         fps = averageframe > 0 ? 1.0/averageframe : FRAME_LIMIT;
     }
 

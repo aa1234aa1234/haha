@@ -8,9 +8,11 @@ layout(location = 5) in vec4 aclipRect;
 out vec3 colors;
 out vec2 pos;
 out vec2 size;
+flat out int fstate;
 flat out int typeId;
 out vec4 clipRect;
 uniform mat4 projection;
+uniform int state=0;
 
 void main()
 {
@@ -18,10 +20,12 @@ void main()
     if(few.x == -1.0) few.x = 0.0;
     if(few.y == -1.0) few.y = 0.0;
     vec2 pos1 = aUIPos + (few*asize);
-    gl_Position = projection * vec4(pos1,0.0,1.0);
+    if(fstate == 1) gl_Position = projection * vec4(pos1, 1.0, 1.0);
+    else gl_Position = projection * vec4(pos1,0.0,1.0);
     pos = few;
     size = asize;
     colors = aColor;
     typeId = type;
     clipRect = aclipRect;
+    fstate = state;
 }

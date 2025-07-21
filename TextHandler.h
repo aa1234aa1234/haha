@@ -12,6 +12,7 @@ typedef struct Character {
 typedef struct Text {
     float posx, posy;
     std::string text;
+	float textScale = 0.5f;
 };
 
 class TextHandler {
@@ -77,13 +78,13 @@ public:
         return textBuffer->getFrameTexture();
     }
 
-    int addText(float posx, float posy, std::string text) {
-        this->text.push_back({ posx,posy,text });
+    int addText(float posx, float posy, std::string text, float textscale = 0.5f) {
+        this->text.push_back({ posx,posy,text, textscale });
         return this->text.size()-1;
     }
 
-    void editText(float posx, float posy, std::string text, int idx) {
-        this->text[idx] = { posx, posy, text };
+    void editText(float posx, float posy, std::string text, int idx, float textscale = 0.5f) {
+        this->text[idx] = { posx, posy, text, textscale };
     }
 
 	void draw() {
@@ -104,14 +105,14 @@ public:
             for (auto& p : k.text) {
 
                 Character ch = characters[p];
-                //float xpos = (k.posx - ch.originX * textScale) / (width / 2.0) - 1, xpos1 = (k.posx - ch.originX * textScale + ch.width * textScale) / (width / 2.0) - 1;
-                //float ypos = 1.0 - (k.posy - (ch.originY) * textScale) / (height / 2.0), ypos1 = 1.0 - ((k.posy - ch.originY * textScale) + ch.height * textScale) / (height / 2.0);
-                //float ypos = 1.0 - (posy - ch.originY * textScale) / (height / 2.0), ypos1 = 1.0 - ((posy - ch.originY * textScale + ch.height * textScale)) / (height / 2.0);
-                
-                float w = ch.width * textScale;
-                float h = ch.height * textScale;
-                float xpos = k.posx - ch.originX * textScale, xpos1 = xpos+w;
-                float ypos = k.posy+mx*textScale - ch.originY * textScale, ypos1 = ypos+h;
+                //float xpos = (k.posx - ch.originX * k.textScale) / (width / 2.0) - 1, xpos1 = (k.posx - ch.originX * k.textScale + ch.width * k.textScale) / (width / 2.0) - 1;
+                //float ypos = 1.0 - (k.posy - (ch.originY) * k.textScale) / (height / 2.0), ypos1 = 1.0 - ((k.posy - ch.originY * k.textScale) + ch.height * k.textScale) / (height / 2.0);
+                //float ypos = 1.0 - (posy - ch.originY * k.textScale) / (height / 2.0), ypos1 = 1.0 - ((posy - ch.originY * k.textScale + ch.height * k.textScale)) / (height / 2.0);
+
+                float w = ch.width * k.textScale;
+                float h = ch.height * k.textScale;
+                float xpos = k.posx - ch.originX * k.textScale, xpos1 = xpos+w;
+                float ypos = k.posy+mx*k.textScale - ch.originY * k.textScale, ypos1 = ypos+h;
                 float x = ch.x / (float)textureWidth, y = ch.y / (float)textureHeight;
                 float x1 = (ch.x + ch.width) / (float)textureWidth, y1 = (ch.y + ch.height) / (float)textureHeight;
                 glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -127,7 +128,7 @@ public:
                 //std::vector<float> aa(24);
                 //glGetBufferSubData(GL_ARRAY_BUFFER, 0, 6 * 4 * sizeof(float), aa.data());
                 glDrawArrays(GL_TRIANGLES, 0, 6);
-                k.posx += ch.advance * textScale;
+                k.posx += ch.advance * k.textScale;
             }
             k.posx = x;
             k.posy = y;
@@ -137,6 +138,7 @@ public:
         glBindVertexArray(0);
         glBindTexture(GL_TEXTURE_2D, 0);
 	}
+
 	void ImportAtlas(const char* path) {
 		glGenTextures(1, &textureId);
 		int components;

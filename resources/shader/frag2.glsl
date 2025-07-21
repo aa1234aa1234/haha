@@ -5,10 +5,10 @@ in vec2 pos;
 in vec2 size;
 flat in int typeId;
 in vec4 clipRect;
+flat in int fstate;
 uniform sampler2D tex;
 uniform float width;
 uniform float height;
-uniform int state=0;
 uniform float borderWidth=5.0;
 vec3 NormalizeRGB(vec3 color) {
     return color.xyz/255.0;
@@ -33,7 +33,7 @@ void idk(vec3 color) {
         FragColor = vec4(color,1.0);
         break;
     }
-    if(state == 1) {
+    if(fstate == 1) {
         FragColor.a = 0.5;
         if (pos.x < borderx || pos.x > (1.0 - borderx) || pos.y < bordery || pos.y > (1.0 - bordery)) {
             FragColor = vec4(NormalizeRGB(vec3(120,90,125)),1.0);

@@ -38,7 +38,7 @@ public:
 	glm::vec3 size;
 	UIComponent(const glm::vec2& pos, const glm::vec2& size);
 	UIComponent();
-	~UIComponent();
+	virtual ~UIComponent();
 
 	static ComponentID generateID()
 	{
