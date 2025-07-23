@@ -43,7 +43,7 @@ Application::Application() : root("rootNode")
     root.addSceneNode(node);
     root.addSceneNode(node1);
     root.addSceneNode(node2);
-    root.addSceneNode(node3);
+    node2->addSceneNode(node3);
 }
 
 Application::~Application()

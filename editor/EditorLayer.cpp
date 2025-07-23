@@ -28,7 +28,7 @@ void EditorLayer::init()
     UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight());
     TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
 
-    tabView = new TabView(glm::vec2(0,0),glm::vec2(Engine::getScreenWidth(),25));
+    tabView = new TabView(glm::vec2(200,0),glm::vec2(Engine::getScreenWidth()-200,25));
     sceneView = new SceneView();
     objectView = new ObjectView(glm::vec2(0,0),glm::vec2(200,Engine::getScreenHeight()));
     objectView->init(&engine->getApplication()->getRoot());

@@ -17,7 +17,7 @@ class TreeRenderer;
 
 struct TreeNode
 {
-    bool expanded = false, selected = false;
+    bool expanded = false, selected = false, visible = true;
     int textIndex = -1;
     std::string text;
     std::vector<TreeNode*> children;
@@ -31,23 +31,32 @@ class ObjectView : public UIComponent {
     TreeNode* root;
     std::vector<TreeNode*> nodes;
 
+    float ndc[12] = {
+        1.0, 1.0,
+        1.0,-1.0,
+        -1.0,1.0,
+        -1.0,-1.0,
+        1.0,-1.0,
+        -1.0,1.0,
+    };
+
     unsigned int vao, vbo;
     Shader* shader = nullptr;
     const char* vertex = R"(
     #version 330 core
 
     layout(location = 0) in vec2 position;
-    layout(location = 1) in int expanded;
 
     out vec2 pos;
-    flat out int big;
 
     uniform mat4 projection;
 
     void main() {
-        gl_Position = projection * vec4(position, 0.0, 1.0);
         pos = position;
-        big = expanded;
+        if(pos.x == -1.0) pos.x = 0;
+        if(pos.y == -1.0) pos.y = 0;
+        gl_Position = projection * vec4(pos, 0.0, 1.0);
+
     }
     )";
 
@@ -57,14 +66,20 @@ class ObjectView : public UIComponent {
     layout (location = 0) out vec4 fragColor;
 
     in vec2 pos;
-    flat in int big;
+
+    uniform float selectedRow=-1.0;
+    uniform float rowHeight;
+    uniform float height;
 
 	vec4 NormalizeRGB(vec4 color) {
 		return vec4(color.xyz/255.0,color.a);
 	}
 
     void main() {
-        //if (colors.a != 0.0) fragColor = colors; else fragColor = vec4(1.0,1.0,1.0,0.0);
+        //if(selectedRow != -1.0 && pos.y >= (1.0/height*rowCount*rowHeight*selectedRow)+(1.0/height*15) && pos.y <= (1.0/height*rowCount*rowHeight*selectedRow)+(1.0/height*15)+(1.0/height*rowHeight)) fragColor = NormalizeRGB(vec4(46,67,110,1.0));
+        if(selectedRow != -1.0 && height-gl_FragCoord.y >= rowHeight*selectedRow+15 && height-gl_FragCoord.y <= rowHeight*(selectedRow+1)+15) fragColor = NormalizeRGB(vec4(46,67,110,1.0));
+        else fragColor.a = 0.0;
+        //else fragColor = NormalizeRGB(vec4(46,67,110,1.0));
     }
     )";
 
@@ -87,6 +102,7 @@ public:
     TreeNode* getRoot() { return root; }
     void init(SceneNode* root);
     void loadTree(SceneNode* sceneNode, TreeNode* node, int width, int height);
+    void updateTree(int idx, bool visibility);
     void render(Engine& engine) override;
     int onClick(glm::vec2 pos) override;
 };

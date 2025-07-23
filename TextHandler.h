@@ -13,6 +13,7 @@ typedef struct Text {
     float posx, posy;
     std::string text;
 	float textScale = 0.5f;
+	unsigned int frameBuffer = 0;
 };
 
 class TextHandler {
@@ -78,14 +79,20 @@ public:
         return textBuffer->getFrameTexture();
     }
 
-    int addText(float posx, float posy, std::string text, float textscale = 0.5f) {
+    int addText(float posx, float posy, std::string text, float textscale = 0.5f, unsigned int frameBuffer = 0) {
         this->text.push_back({ posx,posy,text, textscale });
         return this->text.size()-1;
     }
 
-    void editText(float posx, float posy, std::string text, int idx, float textscale = 0.5f) {
+    void editText(float posx, float posy, std::string text, int idx, float textscale = 0.5f, unsigned int frameBuffer = 0) {
         this->text[idx] = { posx, posy, text, textscale };
     }
+
+	int removeText(int idx)
+	{
+		this->text.erase(this->text.begin() + idx);
+		return -1;
+	}
 
 	void draw() {
         shader->use();
@@ -99,6 +106,7 @@ public:
             float x = k.posx;
             float y = k.posy;
             float mx = 1e9;
+        	if (k.frameBuffer) glBindFramebuffer(GL_FRAMEBUFFER, k.frameBuffer);
             for (auto& p : k.text) {
                 if (characters[p].height < mx) mx = characters[p].height;
             }
@@ -134,6 +142,7 @@ public:
             k.posy = y;
         }
         //textBuffer->unbind();
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
         glBindTexture(GL_TEXTURE_2D, 0);

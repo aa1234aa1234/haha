@@ -161,7 +161,8 @@ int UIContext::findComponent(glm::vec2 pos) {
 			id = p->getComponentId();
 		}
 	}
-	return id == targetId ? -2 : id;
+	//return id == targetId ? -2 : id;
+	return id;
 }
 
 void UIContext::pack() {
