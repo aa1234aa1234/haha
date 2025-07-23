@@ -142,8 +142,8 @@ void UIContext::DrawComponents(Engine& engine) {
 	//overlayElement->render();
 	if (state == DRAG)
 	{
-		dockspace->end();
-		dockspace->render();
+		//dockspace->end();
+		//dockspace->render();
 	}
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
 

@@ -47,7 +47,7 @@ void Engine::run()
         lastframe = currentFrame;
         char buf[1024];
         sprintf(buf, "FPS: %.1f", frames);
-        TextHandler::getInstance()->editText(10, 10, buf, fps, 1.0);
+        TextHandler::getInstance()->editText(1000, 860, buf, fps, 1.0);
 
         glfwPollEvents();
 

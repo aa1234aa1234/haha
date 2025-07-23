@@ -31,7 +31,7 @@ void EditorLayer::init()
     tabView = new TabView(glm::vec2(0,0),glm::vec2(Engine::getScreenWidth(),25));
     sceneView = new SceneView();
     objectView = new ObjectView(glm::vec2(0,0),glm::vec2(200,Engine::getScreenHeight()));
-    objectView->loadTree(&engine->getApplication()->getRoot(), &objectView->getRoot());
+    objectView->init(&engine->getApplication()->getRoot());
     sceneView->addSceneTexture("Scene", engine->getSceneBuffer()->getFrameTexture());
     sceneView->addSceneTexture("Game", engine->getSceneBuffer()->getFrameTexture());
     tabView->setPanelViewComponent(sceneView);

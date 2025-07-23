@@ -34,10 +34,16 @@ void Application::cursorpos_callback(GLFWwindow* window, double xpos, double ypo
     lastMousePos = glm::vec2(xpos,ypos);
 }
 
-Application::Application()
+Application::Application() : root("rootNode")
 {
-    SceneNode* node = new SceneNode("TestNode");
+    SceneNode* node = new SceneNode("TestNode1");
+    SceneNode* node1 = new SceneNode("TestNode2");
+    SceneNode* node2 = new SceneNode("TestNode3");
+    SceneNode* node3 = new SceneNode("TestNode4");
     root.addSceneNode(node);
+    root.addSceneNode(node1);
+    root.addSceneNode(node2);
+    root.addSceneNode(node3);
 }
 
 Application::~Application()

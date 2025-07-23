@@ -8,9 +8,9 @@
 
 SceneNode::SceneNode() : id(generateId()), parent(nullptr) {}
 
-SceneNode::SceneNode(const std::string& name, const glm::vec3& translation, const glm::vec3& rotation, const glm::vec3& scale) : id(generateId()), parent(nullptr), transform(translation,rotation,scale) {}
+SceneNode::SceneNode(const std::string& name, const glm::vec3& translation, const glm::vec3& rotation, const glm::vec3& scale) : id(generateId()), parent(nullptr), transform(translation,rotation,scale), name(name) {}
 
-SceneNode::SceneNode(const std::string& name) : id(generateId()), parent(nullptr) {}
+SceneNode::SceneNode(const std::string& name) : id(generateId()), parent(nullptr), name(name) {}
 
 SceneNode::~SceneNode()
 {
