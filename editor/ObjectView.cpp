@@ -33,7 +33,8 @@ ObjectView::ObjectView(const glm::vec2& pos, const glm::vec2& size) : UIComponen
 
 void ObjectView::init(SceneNode* root) {
     loadTree(root,this->root, 5+position.x, 15+position.y);
-    updateTree(0, this->root->expanded);
+    updateTree(0);
+    for (auto& p : nodes) p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45);
 }
 
 void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node, int width, int height)
@@ -45,7 +46,7 @@ void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node, int width, int h
     nodes.reserve(nodes.size() + 1);
     nodes.emplace_back(node);
     if (!node->children.size()) {
-        node->icon.visible = false;
+        //node->icon.visible = false;
     }
     for (int i = 0; i<sceneNode->getChildren().size(); i++)
     {
@@ -69,12 +70,12 @@ void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node, int width, int h
     }
 }
 
-void ObjectView::updateTree(int idx, bool visibilty)
+void ObjectView::updateTree(int idx)
 {
     if (idx+1 >= nodes.size()) return;
     for (int i = idx+1; i<nodes.size(); i++)
     {
-        if (nodes[i]->parent != nodes[idx]->parent) nodes[i]->visible = visibilty;
+        if (nodes[i]->parent != nodes[idx]->parent) { nodes[i]->visible = nodes[i]->parent->expanded & nodes[idx]->expanded; nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded; }
     }
 }
 
@@ -83,10 +84,10 @@ void ObjectView::render(Engine& engine) {
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     for (auto& p : nodes) {
-        if (!p->visible) continue;
+        if (!p->visible) { TextHandler::getInstance()->editText(p->position.x+tabWidth+1, p->position.y+2, "", p->textIndex, 0.45); }
+        else TextHandler::getInstance()->editText(p->position.x+tabWidth+1, p->position.y+2, p->text, p->textIndex, 0.45);
         p->icon.render();
         if (p->textIndex == -1) p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45);
-        else if (!p->visible) { p->textIndex = TextHandler::getInstance()->removeText(p->textIndex);}
     }
 }
 
@@ -94,7 +95,7 @@ int ObjectView::onClick(glm::vec2 pos)
 {
     int selectedrow = 2;
     for (int i = 0; i<nodes.size(); i++) {
-        if (nodes[i]->icon.onClick(pos)) { nodes[i]->expanded = !nodes[i]->expanded; updateTree(i,nodes[i]->expanded); return -1; }
+        if (nodes[i]->icon.onClick(pos)) { nodes[i]->expanded = !nodes[i]->expanded; updateTree(i); return -1; }
     }
     shader->use();
     glUniform1f(glGetUniformLocation(shader->getId(), "selectedRow"), selectedrow);

@@ -39,13 +39,14 @@ void Engine::run()
     float deltatime = 0.0, lastframe = 0.0;
     int fps = TextHandler::getInstance()->addText(10, 10, "");
     float frames = 0;
+    char buf[1024];
     while (isRunning)
     {
         frameLimiter.begin();
         float currentFrame = glfwGetTime();
         deltatime = currentFrame - lastframe;
         lastframe = currentFrame;
-        char buf[1024];
+
         sprintf(buf, "FPS: %.1f", frames);
         TextHandler::getInstance()->editText(1000, 860, buf, fps, 1.0);
 

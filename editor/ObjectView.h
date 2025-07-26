@@ -102,7 +102,7 @@ public:
     TreeNode* getRoot() { return root; }
     void init(SceneNode* root);
     void loadTree(SceneNode* sceneNode, TreeNode* node, int width, int height);
-    void updateTree(int idx, bool visibility);
+    void updateTree(int idx);
     void render(Engine& engine) override;
     int onClick(glm::vec2 pos) override;
 };
