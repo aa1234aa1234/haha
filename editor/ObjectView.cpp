@@ -32,7 +32,7 @@ ObjectView::ObjectView(const glm::vec2& pos, const glm::vec2& size) : UIComponen
 }
 
 void ObjectView::init(SceneNode* root) {
-    loadTree(root,this->root, 5+position.x, 15+position.y);
+    loadTree(root,this->root, STARTING_OFFSETX+position.x, STARTING_OFFSETY+position.y);
     updateTree(0);
     for (auto& p : nodes) p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45);
 }
@@ -45,9 +45,7 @@ void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node, int width, int h
     node->icon.size = glm::vec2(tabWidth,rowHeight);
     nodes.reserve(nodes.size() + 1);
     nodes.emplace_back(node);
-    if (!node->children.size()) {
-        //node->icon.visible = false;
-    }
+
     for (int i = 0; i<sceneNode->getChildren().size(); i++)
     {
         TreeNode* child = new TreeNode();
@@ -68,14 +66,34 @@ void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node, int width, int h
         nodes.reserve(nodes.size() + 1);
         nodes.emplace_back(child);
     }
+    if (!node->children.size()) {
+        node->icon.visible = false;
+    }
 }
 
 void ObjectView::updateTree(int idx)
 {
     if (idx+1 >= nodes.size()) return;
+    int cnt = 0;
     for (int i = idx+1; i<nodes.size(); i++)
     {
-        if (nodes[i]->parent != nodes[idx]->parent) { nodes[i]->visible = nodes[i]->parent->expanded & nodes[idx]->expanded; nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded; }
+        if (nodes[i]->parent != nodes[idx]->parent)
+        {
+            nodes[i]->visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+            nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+            cnt++;
+        }
+        else
+        {
+            nodes[i]->position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
+            nodes[i]->icon.position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
+        }
+    }
+    if (selectedrow >= 0 && selectedrow < nodes.size() && !nodes[selectedrow]->visible)
+    {
+        selectedrow = -1;
+        shader->use();
+        glUniform1f(glGetUniformLocation(shader->getId(), "selectedRow"), selectedrow);
     }
 }
 
@@ -93,10 +111,17 @@ void ObjectView::render(Engine& engine) {
 
 int ObjectView::onClick(glm::vec2 pos)
 {
-    int selectedrow = 2;
     for (int i = 0; i<nodes.size(); i++) {
-        if (nodes[i]->icon.onClick(pos)) { nodes[i]->expanded = !nodes[i]->expanded; updateTree(i); return -1; }
+        if (nodes[i]->icon.onClick(pos))
+        {
+            nodes[i]->expanded = !nodes[i]->expanded;
+            updateTree(i); return -1;
+        }
     }
+    selectedrow = (pos.y-STARTING_OFFSETY)/rowHeight;
+    if (selectedrow >= nodes.size()) return -1;
+    else if (!nodes[selectedrow]->visible) return -1;
+    //if (nodes[selectedrow]->icon.onClick(pos)) { nodes[selectedrow]->expanded = !nodes[selectedrow]->expanded; updateTree(selectedrow); return -1; }
     shader->use();
     glUniform1f(glGetUniformLocation(shader->getId(), "selectedRow"), selectedrow);
     return -1;

@@ -30,7 +30,7 @@ void EditorLayer::init()
 
     tabView = new TabView(glm::vec2(200,0),glm::vec2(Engine::getScreenWidth()-200,25));
     sceneView = new SceneView();
-    objectView = new ObjectView(glm::vec2(0,0),glm::vec2(200,Engine::getScreenHeight()));
+    objectView = new ObjectView(glm::vec2(0,0),glm::vec2(200,Engine::getScreenHeight()-200));
     objectView->init(&engine->getApplication()->getRoot());
     sceneView->addSceneTexture("Scene", engine->getSceneBuffer()->getFrameTexture());
     sceneView->addSceneTexture("Game", engine->getSceneBuffer()->getFrameTexture());
@@ -68,7 +68,6 @@ void EditorLayer::handleInput(IEvent& event)
             UIContext::getInstance()->onRelease(Input::getInstance()->getMousePos());
             break;
         case Input::EventType::MOUSE_MOVE:
-            std::cout << "mousemove" << std::endl;
             break;
         case Input::EventType::MOUSE_DRAG:
             UIContext::getInstance()->onDrag(Input::getInstance()->getMousePos(), Input::getInstance()->getMouseDelta());

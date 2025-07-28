@@ -4,6 +4,8 @@
 
 #ifndef OBJECTVIEW_H
 #define OBJECTVIEW_H
+#define STARTING_OFFSETX 5
+#define STARTING_OFFSETY 15
 #include "UIComponent.h"
 #include "SceneNode.h"
 #include "Shader.h"
@@ -30,6 +32,7 @@ class ObjectView : public UIComponent {
     int rowHeight = 20, tabWidth = 20;
     TreeNode* root;
     std::vector<TreeNode*> nodes;
+    int selectedrow = -1;
 
     float ndc[12] = {
         1.0, 1.0,
