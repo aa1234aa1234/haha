@@ -28,11 +28,18 @@ struct TreeNode
     ExpandIcon icon;
 };
 
+struct SegmentTreeNode
+{
+    int sum;
+    int start,end;
+};
+
 class ObjectView : public UIComponent {
     int rowHeight = 20, tabWidth = 20;
     TreeNode* root;
     std::vector<TreeNode*> nodes;
-    int selectedrow = -1;
+    std::vector<SegmentTreeNode> segmentTree;
+    int selectedrow = -1, numberofvisiblerows = 0;
 
     float ndc[12] = {
         1.0, 1.0,
@@ -94,6 +101,7 @@ class ObjectView : public UIComponent {
         }
         delete node;
     }
+    void initSegmentTree(int idx, TreeNode* parent);
 public:
     ObjectView(const glm::vec2& pos, const glm::vec2& size);
     ~ObjectView()
