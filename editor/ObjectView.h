@@ -102,9 +102,11 @@ class ObjectView : public UIComponent {
         }
         delete node;
     }
-    void initSegmentTree(int nodeIdx, TreeNode* parent);
+    void initSegmentTree(TreeNode* treeNode);
     int buildTree(int start, int end, int node);
     void updateTree(int start, int end, int node, int indexStart, int indexEnd, int diff);
+    int sum(int start, int end, int node, int indexStart, int indexEnd);
+    int getNodeIndex(int start, int end, int node, int idx);
 public:
     ObjectView(const glm::vec2& pos, const glm::vec2& size);
     ~ObjectView()

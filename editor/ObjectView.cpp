@@ -31,30 +31,24 @@ ObjectView::ObjectView(const glm::vec2& pos, const glm::vec2& size) : UIComponen
     glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
 }
 
-void ObjectView::initSegmentTree(int nodeIdx, TreeNode* parent)
+void ObjectView::initSegmentTree(TreeNode* treeNode)
 {
     static int idx = 0;
+    int nodeidx = idx;
     SegmentTreeNode node{};
-    node.start = nodeIdx;
-    if (!nodeIdx) node.end = nodes.size()-1;
-    else node.end = nodeIdx;
-    for (int i = nodeIdx+1; i<nodes.size(); i++)
+    node.start = idx++;
+    for (auto& p : treeNode->children)
     {
-        if (nodes[i]->parent != parent)
-        {
-            initSegmentTree(i, nodes[i]->parent);
-        }
-        else {
-            node.end = i-1;
-            break;
-        }
+        initSegmentTree(p);
     }
-    segmentIndex[nodeIdx+1] = node;
+    node.end = idx-1;
+    segmentIndex[nodeidx+1] = node;
 }
 
 int ObjectView::buildTree(int start, int end, int node) {
     if (start == end) {
-        return segmentTree[node] = (nodes[start-1]->expanded ? nodes[start-1]->children.size() : 0);
+        //return segmentTree[node] = (nodes[start-1]->expanded ? nodes[start-1]->children.size() : 0);
+        return segmentTree[node] = 1;
     }
     int mid = (start+end)>>1;
     return segmentTree[node] = buildTree(start, mid, node*2) + buildTree(mid+1, end, node*2+1);
@@ -64,7 +58,7 @@ void ObjectView::updateTree(int start, int end, int node, int indexStart, int in
     if (start > end || end < indexStart || start > indexEnd) return;
 
     if (start == end) {
-        segmentTree[node] = diff;
+        segmentTree[node] += diff;
         return;
     }
     int mid = (start+end)>>1;
@@ -72,6 +66,26 @@ void ObjectView::updateTree(int start, int end, int node, int indexStart, int in
     updateTree(mid+1, end, node*2+1, indexStart, indexEnd, diff);
     segmentTree[node] = segmentTree[node*2] + segmentTree[node*2+1];
 }
+
+int ObjectView::sum(int start, int end, int node, int indexStart, int indexEnd)
+{
+    if (start > indexEnd || end < indexStart) return 0;
+    if (indexStart <= start && indexEnd >= end) return segmentTree[node];
+    int ans = 0;
+    int mid = (start+end)>>1;
+    ans += sum(start, mid, node*2, indexStart, indexEnd);
+    ans += sum(mid+1, end, node*2+1, indexStart, indexEnd);
+    return ans;
+}
+
+int ObjectView::getNodeIndex(int start, int end, int node, int idx)
+{
+    if (start == end) return start;
+    int mid = (start+end)>>1;
+    if (segmentTree[node*2] >= idx) return getNodeIndex(start, mid, node*2, idx);
+    return getNodeIndex(mid+1, end, node*2+1, idx-segmentTree[node * 2]);
+}
+
 
 void ObjectView::init(SceneNode* root) {
     loadTree(root,this->root, STARTING_OFFSETX+position.x, STARTING_OFFSETY+position.y);
@@ -81,9 +95,9 @@ void ObjectView::init(SceneNode* root) {
         p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45);
     }
     segmentIndex.resize(nodes.size());
-    segmentTree.reserve(nodes.size()*4);
+    segmentTree.resize(nodes.size()*4);
     segmentIndex.push_back({0,0,0});
-    initSegmentTree(0, this->root->parent);
+    initSegmentTree(this->root);
     buildTree(1, nodes.size()-1, 1);
     updateTree(0);
 }
@@ -123,31 +137,43 @@ void ObjectView::updateTree(int idx)
 {
     if (idx+1 >= nodes.size()) return;
     int cnt = 0;
-    updateTree(1, nodes.size()-1, idx+1, segmentIndex[idx].start, segmentIndex[idx].end);
-    std::cout << segmentTree[1] << std::endl;
-    for (int i = idx+1; i<nodes.size(); i++)
+    //updateTree(1, nodes.size()-1, idx+1, segmentIndex[idx].start, segmentIndex[idx].end, nodes[idx]->expanded ? -segmentTree[idx+1] : segmentTree[idx+1]);
+    int sum1 = sum(1,nodes.size()-1, 1, segmentIndex[idx+1].start, segmentIndex[idx+1].end);
+    std::cout << sum1 << " sum" << std::endl;
+    for (int i = idx+1; i<idx+sum1; i++)
     {
-        if (nodes[i]->parent != nodes[idx]->parent)
+        if (nodes[idx]->expanded)
         {
-            if (nodes[i]->parent->expanded) cnt++;
-            nodes[i]->visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
-            nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+            if (nodes[i]->parent->expanded)
+            {
+                nodes[i]->visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+                nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+                cnt++;
+            }
         }
         else
         {
-            nodes[i]->position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
-            nodes[i]->icon.position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
+            if (nodes[i]->visible)
+            {
+                nodes[i]->visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+                nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+                cnt++;
+            }
         }
+    }
+    for (int i = idx+sum1; i<nodes.size(); i++)
+    {
+        nodes[i]->position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
+        nodes[i]->icon.position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
     }
     numberofvisiblerows += cnt*(nodes[idx]->expanded ? 1 : -1);
     std::cout << selectedrow << "," << numberofvisiblerows << std::endl;
     if (selectedrow != -1 && selectedrow > idx)
     {
-        selectedrow += cnt*(nodes[idx]->expanded ? 1 : -1);
         shader->use();
         glUniform1f(glGetUniformLocation(shader->getId(), "selectedRow"), selectedrow);
     }
-    if (selectedrow >= 0 && selectedrow < nodes.size() && !nodes[selectedrow+(numberofvisiblerows-1)]->visible)
+    if (selectedrow >= 0 && selectedrow < nodes.size() && !nodes[selectedrow]->visible)
     {
         selectedrow = -1;
         shader->use();
@@ -169,7 +195,9 @@ void ObjectView::render(Engine& engine) {
 
 int ObjectView::onClick(glm::vec2 pos)
 {
+
     for (int i = 0; i<nodes.size(); i++) {
+        if (!nodes[i]->visible) continue;
         if (nodes[i]->icon.onClick(pos))
         {
             if (!nodes[i]->children.size()) return -1;
@@ -177,12 +205,18 @@ int ObjectView::onClick(glm::vec2 pos)
             updateTree(i);
             return -1;
         }
+        if (nodes[i]->position.y <= pos.y && pos.y <= nodes[i]->position.y+rowHeight)
+        {
+            selectedrow = i;
+            break;
+        }
     }
-    selectedrow = (pos.y-STARTING_OFFSETY)/rowHeight;
+    int selectedrowa = (pos.y-STARTING_OFFSETY)/rowHeight;
+    std::cout << selectedrowa << ' ' << getNodeIndex(1,nodes.size()-1, 1, selectedrowa+1) << std::endl;
     if (selectedrow >= nodes.size()) return -1;
-    if (!nodes[selectedrow+(numberofvisiblerows-1)]->visible) return -1;
+    if (!nodes[selectedrow]->visible) return -1;
     //if (nodes[selectedrow]->icon.onClick(pos)) { nodes[selectedrow]->expanded = !nodes[selectedrow]->expanded; updateTree(selectedrow); return -1; }
     shader->use();
-    glUniform1f(glGetUniformLocation(shader->getId(), "selectedRow"), selectedrow);
+    glUniform1f(glGetUniformLocation(shader->getId(), "selectedRow"), selectedrowa);
     return -1;
 }
