@@ -44,7 +44,10 @@ Application::Application() : root("rootNode")
     root.addSceneNode(node1);
     root.addSceneNode(node2);
     node2->addSceneNode(node3);
-    for (int i = 5; i<60; i++)
+    for (int i = 0; i<10; i++) {
+        node3->addSceneNode(new SceneNode("TestNode" + std::to_string(i+5)));
+    }
+    for (int i = 15; i<60; i++)
     {
         root.addSceneNode(new SceneNode("TestNode" + std::to_string(i)));
     }

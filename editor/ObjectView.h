@@ -38,7 +38,8 @@ class ObjectView : public UIComponent {
     int rowHeight = 20, tabWidth = 20;
     TreeNode* root;
     std::vector<TreeNode*> nodes;
-    std::vector<SegmentTreeNode> segmentTree;
+    std::vector<SegmentTreeNode> segmentIndex;
+    std::vector<int> segmentTree;
     int selectedrow = -1, numberofvisiblerows = 0;
 
     float ndc[12] = {
@@ -102,6 +103,8 @@ class ObjectView : public UIComponent {
         delete node;
     }
     void initSegmentTree(int nodeIdx, TreeNode* parent);
+    int buildTree(int start, int end, int node);
+    void updateTree(int start, int end, int node, int indexStart, int indexEnd, int diff);
 public:
     ObjectView(const glm::vec2& pos, const glm::vec2& size);
     ~ObjectView()
