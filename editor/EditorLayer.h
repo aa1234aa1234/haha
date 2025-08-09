@@ -5,6 +5,7 @@
 
 #ifndef EDITORLAYER_H
 #define EDITORLAYER_H
+#include "Container.h"
 #include "UIContext.h"
 #include "SceneView.h"
 #include "EventDispatcher.h"

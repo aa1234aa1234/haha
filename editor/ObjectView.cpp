@@ -21,6 +21,7 @@ ObjectView::ObjectView(const glm::vec2& pos, const glm::vec2& size) : UIComponen
     root = new TreeNode();
     shader = new Shader();
     shader->createFromSource(vertex,frag);
+    frameBuffer = new FrameBuffer(size.x,size.y);
     this->uielement = {pos, glm::vec3(40, 40, 40), size, 121};
     shader->use();
     glUniform1f(glGetUniformLocation(shader->getId(), "rowHeight"), rowHeight);
@@ -88,6 +89,7 @@ int ObjectView::getNodeIndex(int start, int end, int node, int idx)
 
 
 void ObjectView::init(SceneNode* root) {
+    this->root->visible = true;
     loadTree(root,this->root, STARTING_OFFSETX+position.x, STARTING_OFFSETY+position.y);
 
     for (auto& p : nodes)
@@ -118,6 +120,7 @@ void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node, int width, int h
 
         loadTree(sceneNode->getChildren()[i], child, width+tabWidth, height+rowHeight*(i+1));
         node->children.push_back(child);
+
     }
     for (int i = 0; i<sceneNode->getComponents().size(); i++)
     {
@@ -166,12 +169,13 @@ void ObjectView::updateTree(int idx)
         nodes[i]->position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
         nodes[i]->icon.position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
     }
+    std::cout << cnt << std::endl;
     numberofvisiblerows += cnt*(nodes[idx]->expanded ? 1 : -1);
-    std::cout << selectedrow << "," << numberofvisiblerows << std::endl;
+    //std::cout << selectedrow << "," << numberofvisiblerows << std::endl;
     if (selectedrow != -1 && selectedrow > idx)
     {
         shader->use();
-        glUniform1f(glGetUniformLocation(shader->getId(), "selectedRow"), selectedrow);
+        glUniform1f(glGetUniformLocation(shader->getId(), "selectedRow"), (nodes[selectedrow]->position.y-STARTING_OFFSETY)/rowHeight);
     }
     if (selectedrow >= 0 && selectedrow < nodes.size() && !nodes[selectedrow]->visible)
     {
@@ -195,7 +199,6 @@ void ObjectView::render(Engine& engine) {
 
 int ObjectView::onClick(glm::vec2 pos)
 {
-
     for (int i = 0; i<nodes.size(); i++) {
         if (!nodes[i]->visible) continue;
         if (nodes[i]->icon.onClick(pos))

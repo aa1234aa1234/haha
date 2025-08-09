@@ -51,6 +51,9 @@ Application::Application() : root("rootNode")
     {
         root.addSceneNode(new SceneNode("TestNode" + std::to_string(i)));
     }
+    root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
+    root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
+    root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
 }
 
 Application::~Application()

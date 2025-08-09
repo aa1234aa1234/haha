@@ -28,6 +28,7 @@ void EditorLayer::init()
     UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight());
     TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
 
+
     tabView = new TabView(glm::vec2(200,0),glm::vec2(Engine::getScreenWidth()-200,25));
     sceneView = new SceneView();
     objectView = new ObjectView(glm::vec2(0,0),glm::vec2(200,Engine::getScreenHeight()-200));
@@ -73,8 +74,7 @@ void EditorLayer::handleInput(IEvent& event)
             UIContext::getInstance()->onDrag(Input::getInstance()->getMousePos(), Input::getInstance()->getMouseDelta());
             break;
 
-        case Input::EventType::KEY_DOWN:
-
+    case Input::EventType::KEY_DOWN:
             if (Input::getInstance()->isKeyDown(256)) Engine::setRunning(false);
             break;
     }

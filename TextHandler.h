@@ -13,7 +13,7 @@ typedef struct Text {
     float posx, posy;
     std::string text;
 	float textScale = 0.5f;
-	unsigned int frameBuffer = 0;
+	unsigned int frameBuffer;
 };
 
 class TextHandler {
@@ -80,12 +80,12 @@ public:
     }
 
     int addText(float posx, float posy, std::string text, float textscale = 0.5f, unsigned int frameBuffer = 0) {
-        this->text.push_back({ posx,posy,text, textscale });
+        this->text.push_back({ posx,posy,text, textscale, frameBuffer });
         return this->text.size()-1;
     }
 
     void editText(float posx, float posy, std::string text, int idx, float textscale = 0.5f, unsigned int frameBuffer = 0) {
-        this->text[idx] = { posx, posy, text, textscale };
+        this->text[idx] = { posx, posy, text, textscale, frameBuffer };
     }
 
 	int removeText(int idx)
@@ -106,7 +106,11 @@ public:
             float x = k.posx;
             float y = k.posy;
             float mx = 1e9;
-        	if (k.frameBuffer) glBindFramebuffer(GL_FRAMEBUFFER, k.frameBuffer);
+        	if (k.frameBuffer)
+        	{
+        		std::cout << "fewafwae " << k.frameBuffer << std::endl;
+        		glBindFramebuffer(GL_FRAMEBUFFER, k.frameBuffer);
+        	}
             for (auto& p : k.text) {
                 if (characters[p].height < mx) mx = characters[p].height;
             }

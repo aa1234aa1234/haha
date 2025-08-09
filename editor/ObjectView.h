@@ -14,12 +14,14 @@
 #include "Icon.h"
 #include <ExpandIcon.h>
 
+#include "FrameBuffer.h"
+
 class SceneNode;
 class TreeRenderer;
 
 struct TreeNode
 {
-    bool expanded = false, selected = false, visible = true;
+    bool expanded = false, selected = false, visible = false;
     int textIndex = -1;
     std::string text;
     std::vector<TreeNode*> children;
@@ -37,6 +39,7 @@ struct SegmentTreeNode
 class ObjectView : public UIComponent {
     int rowHeight = 20, tabWidth = 20;
     TreeNode* root;
+    FrameBuffer* frameBuffer;
     std::vector<TreeNode*> nodes;
     std::vector<SegmentTreeNode> segmentIndex;
     std::vector<int> segmentTree;
@@ -111,6 +114,7 @@ public:
     ObjectView(const glm::vec2& pos, const glm::vec2& size);
     ~ObjectView()
     {
+        if (frameBuffer) delete frameBuffer;
         destroy();
         destroyTree(root);
     }
