@@ -87,8 +87,17 @@ public:
 
     void editText(float posx, float posy, std::string text, int idx, float textscale = 0.5f, unsigned int frameBuffer = 0) {
         this->text[idx] = { posx, posy, text, textscale, frameBuffer };
-		drawText(this->text[idx]);
     }
+
+	void updateText(float posx, float posy, std::string text, int idx, float textscale = 0.5f, unsigned int frameBuffer = 0)
+	{
+		editText(posx, posy, text, idx, textscale, frameBuffer);
+		if (frameBuffer)
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		}
+	}
 
 	int removeText(int idx)
 	{
@@ -140,7 +149,7 @@ public:
         }
         k.posx = x;
         k.posy = y;
-		//if (k.frameBuffer) k.drawn = true;
+		if (k.frameBuffer) k.drawn = true;
 	}
 
 	void draw() {
