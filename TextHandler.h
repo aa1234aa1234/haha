@@ -14,6 +14,7 @@ typedef struct Text {
     std::string text;
 	float textScale = 0.5f;
 	unsigned int frameBuffer;
+	bool drawn=false;
 };
 
 class TextHandler {
@@ -86,12 +87,60 @@ public:
 
     void editText(float posx, float posy, std::string text, int idx, float textscale = 0.5f, unsigned int frameBuffer = 0) {
         this->text[idx] = { posx, posy, text, textscale, frameBuffer };
+		drawText(this->text[idx]);
     }
 
 	int removeText(int idx)
 	{
 		this->text.erase(this->text.begin() + idx);
 		return -1;
+	}
+
+	void drawText(Text& k)
+	{
+		float x = k.posx;
+        float y = k.posy;
+        float mx = 1e9;
+        if (k.frameBuffer || !k.frameBuffer)
+        {
+        	std::cout << "fewafwae " << k.frameBuffer << std::endl;
+
+        	glBindFramebuffer(GL_FRAMEBUFFER, k.frameBuffer);
+        }
+        for (auto& p : k.text) {
+            if (characters[p].height < mx) mx = characters[p].height;
+        }
+        for (auto& p : k.text) {
+
+            Character ch = characters[p];
+            //float xpos = (k.posx - ch.originX * k.textScale) / (width / 2.0) - 1, xpos1 = (k.posx - ch.originX * k.textScale + ch.width * k.textScale) / (width / 2.0) - 1;
+            //float ypos = 1.0 - (k.posy - (ch.originY) * k.textScale) / (height / 2.0), ypos1 = 1.0 - ((k.posy - ch.originY * k.textScale) + ch.height * k.textScale) / (height / 2.0);
+            //float ypos = 1.0 - (posy - ch.originY * k.textScale) / (height / 2.0), ypos1 = 1.0 - ((posy - ch.originY * k.textScale + ch.height * k.textScale)) / (height / 2.0);
+
+            float w = ch.width * k.textScale;
+            float h = ch.height * k.textScale;
+            float xpos = k.posx - ch.originX * k.textScale, xpos1 = xpos+w;
+            float ypos = k.posy+mx*k.textScale - ch.originY * k.textScale, ypos1 = ypos+h;
+            float x = ch.x / (float)textureWidth, y = ch.y / (float)textureHeight;
+            float x1 = (ch.x + ch.width) / (float)textureWidth, y1 = (ch.y + ch.height) / (float)textureHeight;
+            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+            float vertices[6][4] = {
+                xpos, ypos, x, y,
+                xpos1, ypos, x1, y,
+                xpos1, ypos1, x1, y1,
+                xpos, ypos, x, y,
+                xpos1, ypos1, x1, y1,
+                xpos, ypos1, x, y1
+            };
+            glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float) * 6 * 4, vertices);
+            //std::vector<float> aa(24);
+            //glGetBufferSubData(GL_ARRAY_BUFFER, 0, 6 * 4 * sizeof(float), aa.data());
+            glDrawArrays(GL_TRIANGLES, 0, 6);
+            k.posx += ch.advance * k.textScale;
+        }
+        k.posx = x;
+        k.posy = y;
+		//if (k.frameBuffer) k.drawn = true;
 	}
 
 	void draw() {
@@ -103,47 +152,7 @@ public:
         glBindTexture(GL_TEXTURE_2D, textureId);
         glBindVertexArray(vao);
         for (auto& k : text) {
-            float x = k.posx;
-            float y = k.posy;
-            float mx = 1e9;
-        	if (k.frameBuffer)
-        	{
-        		std::cout << "fewafwae " << k.frameBuffer << std::endl;
-        		glBindFramebuffer(GL_FRAMEBUFFER, k.frameBuffer);
-        	}
-            for (auto& p : k.text) {
-                if (characters[p].height < mx) mx = characters[p].height;
-            }
-            for (auto& p : k.text) {
-
-                Character ch = characters[p];
-                //float xpos = (k.posx - ch.originX * k.textScale) / (width / 2.0) - 1, xpos1 = (k.posx - ch.originX * k.textScale + ch.width * k.textScale) / (width / 2.0) - 1;
-                //float ypos = 1.0 - (k.posy - (ch.originY) * k.textScale) / (height / 2.0), ypos1 = 1.0 - ((k.posy - ch.originY * k.textScale) + ch.height * k.textScale) / (height / 2.0);
-                //float ypos = 1.0 - (posy - ch.originY * k.textScale) / (height / 2.0), ypos1 = 1.0 - ((posy - ch.originY * k.textScale + ch.height * k.textScale)) / (height / 2.0);
-
-                float w = ch.width * k.textScale;
-                float h = ch.height * k.textScale;
-                float xpos = k.posx - ch.originX * k.textScale, xpos1 = xpos+w;
-                float ypos = k.posy+mx*k.textScale - ch.originY * k.textScale, ypos1 = ypos+h;
-                float x = ch.x / (float)textureWidth, y = ch.y / (float)textureHeight;
-                float x1 = (ch.x + ch.width) / (float)textureWidth, y1 = (ch.y + ch.height) / (float)textureHeight;
-                glBindBuffer(GL_ARRAY_BUFFER, vbo);
-                float vertices[6][4] = {
-                    xpos, ypos, x, y,
-                    xpos1, ypos, x1, y,
-                    xpos1, ypos1, x1, y1,
-                    xpos, ypos, x, y,
-                    xpos1, ypos1, x1, y1,
-                    xpos, ypos1, x, y1
-                };
-                glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float) * 6 * 4, vertices);
-                //std::vector<float> aa(24);
-                //glGetBufferSubData(GL_ARRAY_BUFFER, 0, 6 * 4 * sizeof(float), aa.data());
-                glDrawArrays(GL_TRIANGLES, 0, 6);
-                k.posx += ch.advance * k.textScale;
-            }
-            k.posx = x;
-            k.posy = y;
+            if (!k.drawn && !k.frameBuffer) drawText(k);
         }
         //textBuffer->unbind();
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);

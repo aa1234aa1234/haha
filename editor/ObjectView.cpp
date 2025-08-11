@@ -21,14 +21,14 @@ ObjectView::ObjectView(const glm::vec2& pos, const glm::vec2& size) : UIComponen
     root = new TreeNode();
     shader = new Shader();
     shader->createFromSource(vertex,frag);
-    frameBuffer = new FrameBuffer(size.x,size.y);
+    frameBuffer = new FrameBuffer(Engine::getScreenWidth(),Engine::getScreenHeight());
     this->uielement = {pos, glm::vec3(40, 40, 40), size, 121};
     shader->use();
     glUniform1f(glGetUniformLocation(shader->getId(), "rowHeight"), rowHeight);
     glUniform1f(glGetUniformLocation(shader->getId(),"height"), Engine::getScreenHeight());
     glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(Engine::getScreenWidth()), static_cast<float>(Engine::getScreenHeight()), 0.0f);
     mat = glm::translate(mat, glm::vec3(pos, 0.0f));
-    mat = glm::scale(mat, glm::vec3(size, 1.0f));
+    mat = glm::scale(mat, glm::vec3(size, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
 }
 
@@ -94,7 +94,7 @@ void ObjectView::init(SceneNode* root) {
 
     for (auto& p : nodes)
     {
-        p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45);
+        p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45, frameBuffer->getFrameBuffer());
     }
     segmentIndex.resize(nodes.size());
     segmentTree.resize(nodes.size()*4);
@@ -102,6 +102,11 @@ void ObjectView::init(SceneNode* root) {
     initSegmentTree(this->root);
     buildTree(1, nodes.size()-1, 1);
     updateTree(0);
+
+    frameBuffer->bind();
+    glClearColor(40.0/255.0, 40.0/255.0, 40.0/255.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    frameBuffer->unbind();
 }
 
 void ObjectView::loadTree(SceneNode* sceneNode, TreeNode* node, int width, int height)
@@ -187,13 +192,15 @@ void ObjectView::updateTree(int idx)
 
 void ObjectView::render(Engine& engine) {
     shader->use();
+
+    glBindTexture(GL_TEXTURE_2D, frameBuffer->getFrameTexture());
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     for (auto& p : nodes) {
-        if (!p->visible) { TextHandler::getInstance()->editText(p->position.x+tabWidth+1, p->position.y+2, "", p->textIndex, 0.45); }
-        else TextHandler::getInstance()->editText(p->position.x+tabWidth+1, p->position.y+2, p->text, p->textIndex, 0.45);
+        if (!p->visible) { TextHandler::getInstance()->editText(p->position.x+tabWidth+1, p->position.y+2, "", p->textIndex, 0.45, frameBuffer->getFrameBuffer()); }
+        else TextHandler::getInstance()->editText(p->position.x+tabWidth+1, p->position.y+2, p->text, p->textIndex, 0.45, frameBuffer->getFrameBuffer());
         p->icon.render();
-        if (p->textIndex == -1) p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45);
+        if (p->textIndex == -1) p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45, frameBuffer->getFrameBuffer());
     }
 }
 
@@ -215,7 +222,7 @@ int ObjectView::onClick(glm::vec2 pos)
         }
     }
     int selectedrowa = (pos.y-STARTING_OFFSETY)/rowHeight;
-    std::cout << selectedrowa << ' ' << getNodeIndex(1,nodes.size()-1, 1, selectedrowa+1) << std::endl;
+    std::cout << selectedrow << ' ' << getNodeIndex(1,nodes.size()-1, 1, selectedrowa+1) << std::endl;
     if (selectedrow >= nodes.size()) return -1;
     if (!nodes[selectedrow]->visible) return -1;
     //if (nodes[selectedrow]->icon.onClick(pos)) { nodes[selectedrow]->expanded = !nodes[selectedrow]->expanded; updateTree(selectedrow); return -1; }

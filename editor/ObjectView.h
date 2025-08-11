@@ -51,7 +51,7 @@ class ObjectView : public UIComponent {
         -1.0,1.0,
         -1.0,-1.0,
         1.0,-1.0,
-        -1.0,1.0,
+        -1.0,1.0
     };
 
     unsigned int vao, vbo;
@@ -62,6 +62,7 @@ class ObjectView : public UIComponent {
     layout(location = 0) in vec2 position;
 
     out vec2 pos;
+    out vec2 texturepos;
 
     uniform mat4 projection;
 
@@ -70,7 +71,7 @@ class ObjectView : public UIComponent {
         if(pos.x == -1.0) pos.x = 0;
         if(pos.y == -1.0) pos.y = 0;
         gl_Position = projection * vec4(pos, 0.0, 1.0);
-
+        texturepos = (vec2((projection * vec4(pos, 0.0, 1.0)).xy) + vec2(1.0,1.0))/2;
     }
     )";
 
@@ -80,10 +81,12 @@ class ObjectView : public UIComponent {
     layout (location = 0) out vec4 fragColor;
 
     in vec2 pos;
+    in vec2 texturepos;
 
     uniform float selectedRow=-1.0;
     uniform float rowHeight;
     uniform float height;
+    uniform sampler2D tex;
 
 	vec4 NormalizeRGB(vec4 color) {
 		return vec4(color.xyz/255.0,color.a);
@@ -93,6 +96,7 @@ class ObjectView : public UIComponent {
         //if(selectedRow != -1.0 && pos.y >= (1.0/height*rowCount*rowHeight*selectedRow)+(1.0/height*15) && pos.y <= (1.0/height*rowCount*rowHeight*selectedRow)+(1.0/height*15)+(1.0/height*rowHeight)) fragColor = NormalizeRGB(vec4(46,67,110,1.0));
         if(selectedRow != -1.0 && height-gl_FragCoord.y >= rowHeight*selectedRow+15 && height-gl_FragCoord.y <= rowHeight*(selectedRow+1)+15) fragColor = NormalizeRGB(vec4(46,67,110,1.0));
         else fragColor.a = 0.0;
+        fragColor = texture(tex,vec2(texturepos.x,texturepos.y));
         //else fragColor = NormalizeRGB(vec4(46,67,110,1.0));
     }
     )";
