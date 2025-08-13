@@ -181,7 +181,8 @@ void UIContext::onClick(glm::vec2 pos) {
 		for (auto& p : rootComponents) {
 			if (cid >= p->getComponentId()) rootid = p->getComponentId();
 		}
-		onUpdate(rootid,cid);
+		//onUpdate(rootid,cid);
+		updateBatches.push_back({rootid,cid});
 		//queueEvent("update", rootid, cid);
 	}
 	
@@ -203,7 +204,8 @@ void UIContext::onDrag(glm::vec2 pos, glm::vec2 pos2) {
 	}
 	//queueEvent("update", rootid, cid);
 	//callEvent("update", rootid, cid);
-	onUpdate(rootid,cid);
+	//onUpdate(rootid,cid);
+	updateBatches.push_back({rootid,cid});
 }
 
 void UIContext::onRelease(glm::vec2 pos) {
@@ -218,7 +220,8 @@ void UIContext::onDoubleClick(glm::vec2 pos) {
 	std::cout << "double click" << std::endl;
 	int id = findComponent(pos);
 	if (id != -2 && id != -1) onClick(pos);
-	else if (id == -2) {
+	else if (id == -2)
+	{
 		int cid = 0, rootid = 0;
 		cid = instanceData[targetId]->onDoubleClick(pos);
 		if (cid == -1) return;
@@ -226,7 +229,8 @@ void UIContext::onDoubleClick(glm::vec2 pos) {
 			if (cid >= p->getComponentId()) rootid = p->getComponentId();
 		}
 		//queueEvent("update", rootid, cid);
-		onUpdate(rootid,cid);
+		updateBatches.push_back({rootid,cid});
+		//onUpdate(rootid,cid);
 	}
 }
 
@@ -238,4 +242,14 @@ void UIContext::onUpdate(int start, int end) {
 	glBufferSubData(GL_ARRAY_BUFFER, sizeof(Element) * start, sizeof(Element) * (end+1), v.data());
 	//glBufferSubData(GL_ARRAY_BUFFER, 0, 0, (void*)0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void UIContext::update()
+{
+	for (auto& p : updateBatches)
+	{
+		onUpdate(p.start,p.end);
+	}
+
+	updateBatches.clear();
 }

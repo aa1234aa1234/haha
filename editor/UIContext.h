@@ -15,6 +15,11 @@ class Engine;
 class UIContext
 {
 
+	struct UpdateBatch
+	{
+		int start,end;
+	};
+
 	enum State {
 		IDLE,
 		CLICK,
@@ -26,6 +31,7 @@ class UIContext
 	std::vector<UIComponent*> rootComponents;
 	std::vector<UIComponent*> instanceData;
 	std::vector<Element> dataBuffer;
+	std::vector<UpdateBatch> updateBatches;
 	Shader* shader;
 	//LayoutOverlay* overlayElement;
 	DockSpace* dockspace;
@@ -75,6 +81,7 @@ public:
 	void onRelease(glm::vec2 pos);
 	void onDoubleClick(glm::vec2 pos);
 	void onUpdate(int start, int end);
+	void update();
 	UIComponent* getComponent(int id) { return instanceData[id]; }
 };
 

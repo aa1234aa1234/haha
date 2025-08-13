@@ -92,11 +92,7 @@ public:
 	void updateText(float posx, float posy, std::string text, int idx, float textscale = 0.5f, unsigned int frameBuffer = 0)
 	{
 		editText(posx, posy, text, idx, textscale, frameBuffer);
-		if (frameBuffer)
-		{
-			glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		}
+		this->text[idx].drawn = false;
 	}
 
 	int removeText(int idx)
@@ -112,7 +108,7 @@ public:
         float mx = 1e9;
         if (k.frameBuffer || !k.frameBuffer)
         {
-        	std::cout << "fewafwae " << k.frameBuffer << std::endl;
+        	//std::cout << "fewafwae " << k.frameBuffer << std::endl;
 
         	glBindFramebuffer(GL_FRAMEBUFFER, k.frameBuffer);
         }
@@ -161,7 +157,8 @@ public:
         glBindTexture(GL_TEXTURE_2D, textureId);
         glBindVertexArray(vao);
         for (auto& k : text) {
-            if (!k.drawn && !k.frameBuffer) drawText(k);
+            if (k.drawn) continue;
+        	drawText(k);
         }
         //textBuffer->unbind();
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);

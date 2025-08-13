@@ -43,8 +43,16 @@ class ObjectView : public UIComponent {
     std::vector<TreeNode*> nodes;
     std::vector<SegmentTreeNode> segmentIndex;
     std::vector<int> segmentTree;
-    int selectedrow = -1, numberofvisiblerows = 0;
+    int selectedrow = -1, numberofvisiblerows = 1;
 
+    // float ndc[24] = {
+    //     1.0, 1.0, 0, 0,
+    //     1.0,-1.0, 0, 0,
+    //     -1.0,1.0, 0, 0,
+    //     -1.0,-1.0, 0, 0,
+    //     1.0,-1.0, 0, 0,
+    //     -1.0,1.0, 0, 0
+    // };
     float ndc[12] = {
         1.0, 1.0,
         1.0,-1.0,

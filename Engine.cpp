@@ -93,6 +93,7 @@ void Engine::render(float deltatime)
     if (editorMode)
     {
         editorLayer->render();
+        editorLayer->update();
     }
     TextHandler::getInstance()->draw();
 }
@@ -150,6 +151,11 @@ void Engine::handleInput(float deltatime, InputEvent& event)
             Input::getInstance()->setKeyDown(event.getKey(), false);
             KeydownEvent keydown = KeydownEvent(event.getKey(),Input::EventType::KEY_UP);
             eventDispatcher->dispatchEvent(keydown);
+        }
+        break;
+    case Input::EventType::SCROLL:
+        {
+            Input::getInstance()->setEventType(Input::EventType::SCROLL);
         }
         break;
     }

@@ -17,6 +17,7 @@ class Input {
     static Input* instance;
     glm::vec2 mousepos;
     glm::vec2 mousedelta;
+    double xoffset, yoffset;
     std::unordered_map<char,bool> keydown;
     int eventType=-1;
 public:
@@ -27,7 +28,8 @@ public:
         MOUSE_MOVE,
         MOUSE_DRAG,
         KEY_DOWN,
-        KEY_UP
+        KEY_UP,
+        SCROLL
     };
     Input();
     ~Input();
@@ -47,6 +49,8 @@ public:
     void setMouseDelta(glm::vec2 delta) { mousedelta = delta; }
     void setKeyDown(const char& key, bool down);
     bool isKeyDown(const char& key);
+    void setXOffset(const double& x) { xoffset = x; }
+    void setYOffset(const double& y) { yoffset = y; }
     int getEventType() { return eventType; }
     void setEventType(int type) { eventType = type; }
 };

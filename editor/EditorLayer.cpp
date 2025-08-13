@@ -9,6 +9,7 @@
 #include "Input.h"
 #include "KeydownEvent.h"
 #include "TextHandler.h"
+#include "SystemCoordinator.h"
 
 EditorLayer::EditorLayer(Engine* engine) : engine(engine)
 {
@@ -21,6 +22,7 @@ EditorLayer::~EditorLayer()
     delete sceneView;
     delete objectView;
     UIContext::destroyInstance();
+    SystemCoordinator::destroyInstance();
 }
 
 void EditorLayer::init()
@@ -54,7 +56,7 @@ void EditorLayer::render()
 void EditorLayer::update()
 {
     //i will come back to this at a later date
-    //UIContext::getInstance()->dispatchUpdate();
+    UIContext::getInstance()->update();
 }
 
 void EditorLayer::handleInput(IEvent& event)

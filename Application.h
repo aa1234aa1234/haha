@@ -21,6 +21,7 @@ class Application {
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
     void mouse_callback(GLFWwindow* window, int button, int action, int mods);
     void cursorpos_callback(GLFWwindow* window, double xpos, double ypos);
+    void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
     static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
     {
         Application* app = static_cast<Application*>(glfwGetWindowUserPointer(window));
@@ -34,6 +35,11 @@ class Application {
     static void cursorCallback(GLFWwindow* window, double xpos, double ypos) {
         Application *app = static_cast<Application*>(glfwGetWindowUserPointer(window));
         if (app) { app->cursorpos_callback(window, xpos, ypos); }
+    }
+    static void scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+    {
+        Application* app = static_cast<Application*>(glfwGetWindowUserPointer(window));
+        if (app) { app->scroll_callback(window, xoffset, yoffset); }
     }
 public:
     Application();

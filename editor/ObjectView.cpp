@@ -174,9 +174,8 @@ void ObjectView::updateTree(int idx)
         nodes[i]->position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
         nodes[i]->icon.position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
     }
-    std::cout << cnt << std::endl;
     numberofvisiblerows += cnt*(nodes[idx]->expanded ? 1 : -1);
-    //std::cout << selectedrow << "," << numberofvisiblerows << std::endl;
+    std::cout << numberofvisiblerows << std::endl;
     if (selectedrow != -1 && selectedrow > idx)
     {
         shader->use();
@@ -191,6 +190,7 @@ void ObjectView::updateTree(int idx)
 }
 
 void ObjectView::render(Engine& engine) {
+
     shader->use();
 
     glBindTexture(GL_TEXTURE_2D, frameBuffer->getFrameTexture());
@@ -202,6 +202,10 @@ void ObjectView::render(Engine& engine) {
         p->icon.render();
         if (p->textIndex == -1) p->textIndex = TextHandler::getInstance()->addText(p->position.x+tabWidth+1, p->position.y+2, p->text, 0.45, frameBuffer->getFrameBuffer());
     }
+    frameBuffer->bind();
+    glClearColor(40.0/255.0, 40.0/255.0, 40.0/255.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    frameBuffer->unbind();
 }
 
 int ObjectView::onClick(glm::vec2 pos)

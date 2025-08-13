@@ -7,6 +7,7 @@
 
 #include "KeydownEvent.h"
 #include "MouseEvent.h"
+#include "ScrollEvent.h"
 
 
 void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -32,6 +33,12 @@ void Application::cursorpos_callback(GLFWwindow* window, double xpos, double ypo
     InputEvent mouseEvent = InputEvent(glm::vec2(xpos,ypos), lastMousePos, action ? MouseEvent::MouseEventType::MOUSEMOVE : MouseEvent::MouseEventType::MOUSEDRAG);
     inputEvent.push(mouseEvent);
     lastMousePos = glm::vec2(xpos,ypos);
+}
+
+void Application::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    InputEvent scrollEvent = InputEvent(xoffset,yoffset, ScrollEvent::ScrollEventType::SCROLL);
+    inputEvent.push(scrollEvent);
 }
 
 Application::Application() : root("rootNode")
@@ -67,6 +74,7 @@ void Application::setCallBack(GLFWwindow* window)
     glfwSetKeyCallback(window,keyCallback);
     glfwSetMouseButtonCallback(window,mouseCallback);
     glfwSetCursorPosCallback(window,cursorCallback);
+    glfwSetScrollCallback(window, scrollCallback);
 }
 
 void Application::render()
