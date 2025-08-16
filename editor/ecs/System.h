@@ -10,6 +10,7 @@
 
 class System
 {
+public:
     std::set<EntityID> entities;
 };
 

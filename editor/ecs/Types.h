@@ -6,6 +6,7 @@
 #define TYPES_H
 #define MAX_COMPONENTS 5000
 #include <bitset>
+#include <typeinfo>
 #include <cstdint>
 
 
