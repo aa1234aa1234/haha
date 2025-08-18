@@ -33,6 +33,10 @@ public:
     {
         return signatures[entity];
     }
+
+    Entity* getEntity(EntityID entity) {
+        return entities[entity];
+    }
 };
 
 #endif //ENTITYMANAGER_H

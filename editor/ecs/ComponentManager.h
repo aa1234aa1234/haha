@@ -12,10 +12,10 @@ class ComponentManager
     std::unordered_map<const char*, IComponentArray*> components;
     std::unordered_map<const char*, uint32_t> componentTypes;
     template<typename T>
-    T* getComponentArray()
+    ComponentArray<T>* getComponentArray()
     {
         if (components.find(typeid(T).name()) == components.end()) return nullptr;
-        return static_cast<T*>(components[typeid(T).name()]);
+        return static_cast<ComponentArray<T>*>(components[typeid(T).name()]);
     }
 public:
     ComponentManager() {}
@@ -35,7 +35,7 @@ public:
     void registerComponent()
     {
         static uint32_t componentType = 0;
-        components.insert({typeid(T).name(), new T()});
+        components.insert({typeid(T).name(), new ComponentArray<T>()});
         componentTypes.insert({typeid(T).name(), componentType});
         componentType++;
     }
@@ -56,6 +56,11 @@ public:
     void addComponent(EntityID entity, T component)
     {
         getComponentArray<T>()->Insert(entity,component);
+    }
+
+    template<typename T>
+    bool EntityHasComponent(EntityID entity) {
+        return getComponentArray<T>()->Has(entity);
     }
 };
 

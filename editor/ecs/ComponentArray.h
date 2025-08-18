@@ -35,6 +35,10 @@ public:
         return components[EntityToIndex[entityID]];
     }
 
+    bool Has(EntityID entityID) {
+        return EntityToIndex[entityID];
+    }
+
     void Remove(EntityID entityID)
     {
         components[EntityToIndex[entityID]] = components[componentCount-1];

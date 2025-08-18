@@ -3,6 +3,8 @@
 //
 
 #include "EditorLayer.h"
+
+#include "ECSObjectView.h"
 #include "TabView.h"
 
 #include "Engine.h"
@@ -27,6 +29,10 @@ EditorLayer::~EditorLayer()
 
 void EditorLayer::init()
 {
+    SystemCoordinator::getInstance()->RegisterComponent<TransformComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<ContentComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<ScrollableComponent>();
+    ECSObjectView* testobject = new ECSObjectView(glm::vec2(0,0), glm::vec2(100,500));
     UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight());
     TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
 

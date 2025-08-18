@@ -96,7 +96,7 @@ void Shader::use() {
 	}*/
 	GLenum err;
 	while ((err = glGetError()) != GL_NO_ERROR) {
-		std::cout << err << ' ' << id << std::endl;
+		std::cout << err << ' ' << id << ' ' << this << std::endl;
 	}
 }
 

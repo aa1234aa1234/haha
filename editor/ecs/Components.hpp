@@ -21,10 +21,11 @@ struct ContentComponent
 
 struct ScrollableComponent
 {
-    glm::quat rotation;
+    bool horizontal, vertical;
     int offset;
     int maxScroll;
 };
+
 
 #define COMPONENTS_H
 

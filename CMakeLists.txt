@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/editor/ecs/*.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/editor/ecs/Components/*.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/editor/ecs/Systems*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/editor/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/ui/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/test/testing.cpp"
@@ -15,6 +17,8 @@ add_executable(project ${SOURCES} Thirdparty/src/gl.c)
 add_subdirectory(Thirdparty/glfw)
 include_directories(Thirdparty/includes)
 include_directories(editor/ecs)
+include_directories(editor/ecs/Components)
+include_directories(editor/ecs/Systems)
 include_directories(editor)
 include_directories(ui)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
