@@ -43,6 +43,20 @@ public:
     }
 
     void RegisterEntity(Entity* entity);
+
+    template<typename T>
+    void AddComponent(EntityID entity, T component) {
+        componentManager->addComponent(entity, component);
+        auto signature = entityManager->getSignature(entity);
+        signature.set(componentManager->getComponentType<T>(), true);
+        entityManager->setSignature(entity, signature);
+        systemManager->updateEntitySignature(entity, signature);
+    }
+
+    template<typename T>
+    T& GetComponent(Entity entity) {
+        return componentManager->getComponent<T>(entity);
+    }
 };
 
 

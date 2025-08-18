@@ -34,7 +34,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="08-09">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/System.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/ComponentManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/ComponentManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/Entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Entity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Types.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Types.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +164,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CLionExternalConfigurable",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -173,13 +175,13 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.project">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="project" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
@@ -243,6 +245,7 @@
       <workItem from="1754712252969" duration="595000" />
       <workItem from="1754713261017" duration="12852000" />
       <workItem from="1755326959146" duration="784000" />
+      <workItem from="1755507015261" duration="903000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />

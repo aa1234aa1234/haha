@@ -10,6 +10,7 @@
 class ComponentManager
 {
     std::unordered_map<const char*, IComponentArray*> components;
+    std::unordered_map<const char*, uint32_t> componentTypes;
     template<typename T>
     T* getComponentArray()
     {
@@ -33,13 +34,22 @@ public:
     template<typename T>
     void registerComponent()
     {
-        components.insert({typeid(T).name, new T()});
+        static uint32_t componentType = 0;
+        components.insert({typeid(T).name(), new T()});
+        componentTypes.insert({typeid(T).name(), componentType});
+        componentType++;
     }
 
     template<typename T>
     void removeComponent(EntityID entity)
     {
         getComponentArray<T>()->Remove(entity);
+    }
+
+    template<typename T>
+    uint32_t getComponentType() {
+        if (componentTypes.find(typeid(T).name()) == componentTypes.end()) { throw std::runtime_error("component type not found"); }
+        return componentTypes[typeid(T).name()];
     }
 
     template<typename T>

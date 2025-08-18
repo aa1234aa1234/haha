@@ -7,6 +7,7 @@
 #define ENTITY_H
 
 #include "Engine.h"
+#include "Types.h"
 
 class Entity
 {

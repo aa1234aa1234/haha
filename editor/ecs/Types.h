@@ -8,6 +8,7 @@
 #include <bitset>
 #include <typeinfo>
 #include <cstdint>
+#include <stdexcept>
 
 
 using EntityID = int64_t;
