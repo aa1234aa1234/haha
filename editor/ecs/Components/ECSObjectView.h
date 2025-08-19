@@ -22,7 +22,7 @@ public:
         frameBuffer = new FrameBuffer(Engine::getScreenWidth(), Engine::getScreenHeight());
         SystemCoordinator::getInstance()->RegisterEntity(this);
         SystemCoordinator::getInstance()->AddComponent(getId(), TransformComponent{position,size,glm::vec4(40,40,40,1)});
-        SystemCoordinator::getInstance()->AddComponent(getId(), ScrollableComponent{0, 0,0,0});
+        SystemCoordinator::getInstance()->AddComponent(getId(), ScrollableComponent{0,0,0,0});
     }
 
     void update() override {
