@@ -5,12 +5,16 @@
 #ifndef COMPONENTMANAGER_H
 #define COMPONENTMANAGER_H
 
+#include <iostream>
+#include <ostream>
+
 #include "ComponentArray.h"
 
 class ComponentManager
 {
-    std::unordered_map<const char*, IComponentArray*> components;
-    std::unordered_map<const char*, uint32_t> componentTypes;
+    ComponentType componentType{};
+    std::unordered_map<const char*, IComponentArray*> components{};
+    std::unordered_map<const char*, ComponentType> componentTypes{};
     template<typename T>
     ComponentArray<T>* getComponentArray()
     {
@@ -34,10 +38,9 @@ public:
     template<typename T>
     void registerComponent()
     {
-        static uint32_t componentType = 0;
         components.insert({typeid(T).name(), new ComponentArray<T>()});
         componentTypes.insert({typeid(T).name(), componentType});
-        componentType++;
+        ++componentType;
     }
 
     template<typename T>
@@ -47,7 +50,7 @@ public:
     }
 
     template<typename T>
-    uint32_t getComponentType() {
+    ComponentType getComponentType() {
         if (componentTypes.find(typeid(T).name()) == componentTypes.end()) { throw std::runtime_error("component type not found"); }
         return componentTypes[typeid(T).name()];
     }

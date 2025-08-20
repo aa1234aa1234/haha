@@ -62,6 +62,21 @@ public:
     T& GetComponent(EntityID entity) {
         return componentManager->getComponent<T>(entity);
     }
+
+    template<typename T>
+    uint32_t GetComponentType() {
+        return componentManager->getComponentType<T>();
+    }
+
+    template<typename T>
+    T* RegisterSystem() {
+        return systemManager->registerSystem<T>();
+    }
+
+    template<typename T>
+    void SetSystemSignature(Signature signature) {
+        systemManager->setSignature<T>(signature);
+    }
 };
 
 

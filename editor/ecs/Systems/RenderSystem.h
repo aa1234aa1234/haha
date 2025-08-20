@@ -19,8 +19,7 @@ public:
     ~RenderSystem() {}
 
     void Initialize(int& width, int& height) {
-        shader = new Shader();
-        shader->createFromSource("resources/shader/editor/editorvert.glsl","resources/shader/editor/editorfrag.glsl");
+        shader = new Shader("resources/shader/editor/editorvert.glsl","resources/shader/editor/editorfrag.glsl");
 
         shader->use();
         glUniform1f(glGetUniformLocation(shader->getId(), "width"), width);

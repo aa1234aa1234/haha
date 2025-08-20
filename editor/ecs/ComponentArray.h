@@ -17,7 +17,7 @@ public:
 template<typename T>
 class ComponentArray : public IComponentArray
 {
-    std::array<T, MAX_COMPONENTS> components;
+    std::array<T, MAX_ENTITIES> components;
     std::unordered_map<EntityID,int> EntityToIndex;
     std::unordered_map<int,EntityID> IndexToEntity;
     int componentCount=0;

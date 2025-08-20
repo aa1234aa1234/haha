@@ -4,9 +4,6 @@
 
 #include "Entity.h"
 
-void Entity::render(Engine &engine) {
-
-}
 
 void Entity::update() {
 }

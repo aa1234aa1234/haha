@@ -103,6 +103,7 @@ public:
 
 	void drawText(Text& k)
 	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		float x = k.posx;
         float y = k.posy;
         float mx = 1e9;
@@ -128,7 +129,7 @@ public:
             float ypos = k.posy+mx*k.textScale - ch.originY * k.textScale, ypos1 = ypos+h;
             float x = ch.x / (float)textureWidth, y = ch.y / (float)textureHeight;
             float x1 = (ch.x + ch.width) / (float)textureWidth, y1 = (ch.y + ch.height) / (float)textureHeight;
-            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
             float vertices[6][4] = {
                 xpos, ypos, x, y,
                 xpos1, ypos, x1, y,

@@ -7,9 +7,11 @@
 #include "EventHandler.h"
 #include "Adapter.h"
 #include "FrameBuffer.h"
+#include "RenderSystem.h"
 #define MAX_COMPONENTS 10000
 
 
+class ECSObjectView;
 class Engine;
 
 class UIContext
@@ -27,6 +29,8 @@ class UIContext
 	} state;
 
 	static UIContext* instance;
+	RenderSystem* rendersystem;
+	ECSObjectView* testobject = nullptr;
 
 	std::vector<UIComponent*> rootComponents;
 	std::vector<UIComponent*> instanceData;

@@ -23,7 +23,6 @@ EditorLayer::~EditorLayer()
     delete tabView;
     delete sceneView;
     delete objectView;
-    delete testobject;
     UIContext::destroyInstance();
     SystemCoordinator::destroyInstance();
 }
@@ -33,7 +32,6 @@ void EditorLayer::init()
     SystemCoordinator::getInstance()->RegisterComponent<TransformComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<ContentComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<ScrollableComponent>();
-    testobject = new ECSObjectView(glm::vec2(0,0), glm::vec2(100,500));
     UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight());
     TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
 
@@ -64,8 +62,6 @@ void EditorLayer::update()
 {
     //i will come back to this at a later date
     UIContext::getInstance()->update();
-    testobject->update();
-    SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(testobject->getId()).offset++;
 }
 
 void EditorLayer::handleInput(IEvent& event)

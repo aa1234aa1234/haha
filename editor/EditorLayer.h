@@ -22,7 +22,6 @@ class EditorLayer {
     TabView* tabView=nullptr;
     SceneView* sceneView=nullptr;
     ObjectView* objectView=nullptr;
-    ECSObjectView* testobject;
 public:
     EditorLayer(Engine* engine);
     ~EditorLayer();

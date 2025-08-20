@@ -6,7 +6,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "Engine.h"
+//#include "Engine.h"
 #include "Types.h"
 
 class Entity
@@ -20,7 +20,7 @@ public:
     }
     virtual ~Entity() = default;
 
-    virtual void render(Engine& engine);
+    //virtual void render(Engine& engine);
     virtual void update();
     int getId() { return id; }
 };
