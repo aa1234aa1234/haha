@@ -9,6 +9,7 @@
 
 class ECSObjectView : public Entity {
     FrameBuffer* frameBuffer;
+    int* offset;
 public:
     ECSObjectView(glm::vec2 position, glm::vec2 size) {
         Initialize(position, size);
