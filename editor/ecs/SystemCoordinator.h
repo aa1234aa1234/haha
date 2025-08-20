@@ -59,7 +59,7 @@ public:
     }
 
     template<typename T>
-    T& GetComponent(Entity entity) {
+    T& GetComponent(EntityID entity) {
         return componentManager->getComponent<T>(entity);
     }
 };

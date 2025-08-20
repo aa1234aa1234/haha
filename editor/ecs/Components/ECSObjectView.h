@@ -16,18 +16,20 @@ public:
     }
 
     ~ECSObjectView() {
-        delete frameBuffer;
+        if (frameBuffer) delete frameBuffer;
+        if (offset != nullptr) delete offset;
     }
 
     void Initialize(glm::vec2 position, glm::vec2 size) {
-        frameBuffer = new FrameBuffer(Engine::getScreenWidth(), Engine::getScreenHeight());
+        //frameBuffer = new FrameBuffer(Engine::getScreenWidth(), Engine::getScreenHeight());
         SystemCoordinator::getInstance()->RegisterEntity(this);
         SystemCoordinator::getInstance()->AddComponent(getId(), TransformComponent{position,size,glm::vec4(40,40,40,1)});
         SystemCoordinator::getInstance()->AddComponent(getId(), ScrollableComponent{0,0,0,0});
+        offset = &SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(getId()).offset;
     }
 
     void update() override {
-
+        std::cout << "offset: " << offset << std::endl;
     }
 
     void render(Engine& engine) override {

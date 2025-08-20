@@ -10,7 +10,9 @@
 #include "SceneView.h"
 #include "EventDispatcher.h"
 #include "ObjectView.h"
+#include "ECSObjectView.h"
 
+class ECSObjectView;
 class Engine;
 class TabView;
 
@@ -20,6 +22,7 @@ class EditorLayer {
     TabView* tabView=nullptr;
     SceneView* sceneView=nullptr;
     ObjectView* objectView=nullptr;
+    ECSObjectView* testobject;
 public:
     EditorLayer(Engine* engine);
     ~EditorLayer();
