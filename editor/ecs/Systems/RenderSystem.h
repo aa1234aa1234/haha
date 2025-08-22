@@ -11,6 +11,7 @@
 class RenderSystem : public System {
     unsigned int vao,vbo,instancevbo;
     Shader* shader = nullptr;
+    int width,height;
 public:
 
     RenderSystem() {
@@ -19,6 +20,8 @@ public:
     ~RenderSystem() {}
 
     void Initialize(int& width, int& height) {
+        this->width = width;
+        this->height = height;
         shader = new Shader("resources/shader/editor/editorvert.glsl","resources/shader/editor/editorfrag.glsl");
 
         shader->use();
@@ -51,7 +54,7 @@ public:
         glEnableVertexAttribArray(1);
         glVertexAttribDivisor(1, 1);
 
-        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(TransformComponent), (void*)(offsetof(TransformComponent, color)));
+        glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(TransformComponent), (void*)(offsetof(TransformComponent, color)));
         glEnableVertexAttribArray(2);
         glVertexAttribDivisor(2, 1);
 
@@ -69,9 +72,6 @@ public:
 
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-        shader->use();
-        glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
-        glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
 
 
         Signature signature;
@@ -81,11 +81,17 @@ public:
 
     void Update() {
         std::vector<TransformComponent> data;
-        for (auto& p : entities) {
-            auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(p);
+        std::set<EntityID>::iterator it;
+        for (it = entities.begin(); it != entities.end(); it++) {
+            if (it == entities.end()) break;
+            auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(*it);
             data.push_back(transform);
-            std::cout << "transform component: " << transform.position.x << std::endl;
+            //std::cout << "transform component: " << transform.position.x << std::endl;
         }
+
+        shader->use();
+        glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
+        glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
 
         glBindBuffer(GL_ARRAY_BUFFER, instancevbo);
         glBufferSubData(GL_ARRAY_BUFFER, 0, data.size() * sizeof(TransformComponent), data.data());

@@ -1,10 +1,10 @@
 #version 330 core
 layout(location = 0) in vec2 aPos;
 layout(location = 1) in vec2 aUIPos;
-layout(location = 2) in vec3 aColor;
+layout(location = 2) in vec4 aColor;
 layout(location = 3) in vec2 asize;
 layout(location = 4) in vec4 aclipRect;
-out vec3 colors;
+out vec4 colors;
 out vec2 pos;
 out vec2 size;
 flat out int fstate;

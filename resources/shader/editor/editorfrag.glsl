@@ -1,6 +1,6 @@
 #version 330 core
 out vec4 FragColor;
-in vec3 colors;
+in vec4 colors;
 in vec2 pos;
 in vec2 size;
 flat in int typeId;
@@ -46,7 +46,7 @@ void idk(vec3 color) {
 void main()
 {
     vec2 invert = vec2(pos.x,1.0-pos.y);
-    vec3 color = NormalizeRGB(colors);
+    vec3 color = NormalizeRGB(colors.xyz);
 
     //if (pos.x < border || pos.x > (1.0 - border) || pos.y < border || pos.y > (1.0 - border)) {
         //FragColor = vec4(1.0,1.0,1.0,0.0);
@@ -56,6 +56,6 @@ void main()
         //else FragColor = vec4(color,1.0);
     //}
 
-    FragColor = vec4(color,1.0);
+    FragColor = vec4(color,colors.a);
     //FragColor = vec4(0.0,1.0,0.0,1.0);
 }

@@ -8,8 +8,10 @@ UIContext* UIContext::instance = 0;
 UIContext::UIContext() {
 
 	rendersystem = SystemCoordinator::getInstance()->RegisterSystem<RenderSystem>();
+	scrollrendersystem = SystemCoordinator::getInstance()->RegisterSystem<ScrollbarRenderSystem>();
 	int w = Engine::getScreenWidth(), h = Engine::getScreenHeight();
 	rendersystem->Initialize(w,h);
+	scrollrendersystem->Initialize(w,h);
 	testobject = new ECSObjectView(glm::vec2(100,100), glm::vec2(300,500));
 	shader = new Shader("resources/shader/vertex2.glsl", "resources/shader/frag2.glsl");
 	dockspace = new DockSpace();
@@ -62,7 +64,6 @@ UIContext::UIContext() {
 	
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	delete rendersystem;
 }
 
 void UIContext::init(int width, int height)
@@ -161,6 +162,7 @@ void UIContext::DrawComponents(Engine& engine) {
 	}
 
 	rendersystem->Update();
+	scrollrendersystem->Update();
 
 	glBindVertexArray(0);
 }

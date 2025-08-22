@@ -10,7 +10,7 @@
 struct TransformComponent
 {
     glm::vec2 position;
-    glm::vec3 color;
+    glm::vec4 color;
     glm::vec2 size;
     glm::vec4 clipRect = glm::vec4(-1, -1, -1, -1);
 };
@@ -25,6 +25,7 @@ struct ScrollableComponent
     bool horizontal, vertical;
     int offset;
     int maxScroll;
+    int scrollBarId = -1;
 };
 
 

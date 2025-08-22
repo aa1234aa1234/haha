@@ -34,20 +34,15 @@
   <component name="ChangeListManager">
     <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="08-20">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TextHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/TextHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/UIContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/UIContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/ComponentArray.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/ComponentArray.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/ComponentManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/ComponentManager.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Components.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ECSObjectView.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ECSObjectView.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Entity.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Entity.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Entity.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/SystemManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/SystemManager.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/RenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/RenderSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Types.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/shader/editor/editorfrag.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/editor/editorfrag.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/shader/editor/editorvert.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/editor/editorvert.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,29 +69,6 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -174,7 +146,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.project.executor": "Debug",
+    "CMake Application.project.executor": "Run",
     "CMake Debug.project.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -206,13 +178,13 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.project">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="project" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
@@ -278,6 +250,7 @@
       <workItem from="1755326959146" duration="784000" />
       <workItem from="1755507015261" duration="7192000" />
       <workItem from="1755676615624" duration="9985000" />
+      <workItem from="1755832131194" duration="7568000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />

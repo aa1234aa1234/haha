@@ -8,6 +8,7 @@
 #include "Adapter.h"
 #include "FrameBuffer.h"
 #include "RenderSystem.h"
+#include "ScrollbarRenderSystem.h"
 #define MAX_COMPONENTS 10000
 
 
@@ -30,6 +31,7 @@ class UIContext
 
 	static UIContext* instance;
 	RenderSystem* rendersystem;
+	ScrollbarRenderSystem* scrollrendersystem;
 	ECSObjectView* testobject = nullptr;
 
 	std::vector<UIComponent*> rootComponents;

@@ -77,6 +77,11 @@ public:
     void SetSystemSignature(Signature signature) {
         systemManager->setSignature<T>(signature);
     }
+
+    template<typename T>
+    bool EntityHasComponent(EntityID entity) {
+        return componentManager->EntityHasComponent<T>(entity);
+    }
 };
 
 
