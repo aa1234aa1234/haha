@@ -148,8 +148,10 @@ void ObjectView::updateTree(int idx)
     //updateTree(1, nodes.size()-1, idx+1, segmentIndex[idx].start, segmentIndex[idx].end, nodes[idx]->expanded ? -segmentTree[idx+1] : segmentTree[idx+1]);
     int sum1 = sum(1,nodes.size()-1, 1, segmentIndex[idx+1].start, segmentIndex[idx+1].end);
     std::cout << sum1 << " sum" << std::endl;
+    std::vector<char> bitset(sum1);
     for (int i = idx+1; i<idx+sum1; i++)
     {
+        bitset[i] = nodes[i]->expanded;
         if (nodes[idx]->expanded)
         {
             if (nodes[i]->parent->expanded)
@@ -174,6 +176,7 @@ void ObjectView::updateTree(int idx)
         nodes[i]->position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
         nodes[i]->icon.position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
     }
+    std::cout << "cnt: " << cnt << std::endl;
     numberofvisiblerows += cnt*(nodes[idx]->expanded ? 1 : -1);
     std::cout << numberofvisiblerows << std::endl;
     if (selectedrow != -1 && selectedrow > idx)

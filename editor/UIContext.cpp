@@ -161,8 +161,8 @@ void UIContext::DrawComponents(Engine& engine) {
 		std::cout << err << " uicontext" << std::endl;
 	}
 
-	rendersystem->Update();
-	scrollrendersystem->Update();
+	//rendersystem->Update();
+	//scrollrendersystem->Update();
 
 	glBindVertexArray(0);
 }
