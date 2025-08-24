@@ -147,13 +147,14 @@ void ObjectView::updateTree(int idx)
     int cnt = 0;
     //updateTree(1, nodes.size()-1, idx+1, segmentIndex[idx].start, segmentIndex[idx].end, nodes[idx]->expanded ? -segmentTree[idx+1] : segmentTree[idx+1]);
     int sum1 = sum(1,nodes.size()-1, 1, segmentIndex[idx+1].start, segmentIndex[idx+1].end);
-    std::cout << sum1 << " sum" << std::endl;
-    std::vector<char> bitset(sum1);
     for (int i = idx+1; i<idx+sum1; i++)
     {
-        bitset[i] = nodes[i]->expanded;
         if (nodes[idx]->expanded)
         {
+            if (!nodes[i]->parent->expanded)
+            {
+                i+=sum(1,nodes.size()-1,1,segmentIndex[i+1].start, segmentIndex[i+1].end);
+            }
             if (nodes[i]->parent->expanded)
             {
                 nodes[i]->visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
@@ -165,8 +166,8 @@ void ObjectView::updateTree(int idx)
         {
             if (nodes[i]->visible)
             {
-                nodes[i]->visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
-                nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+                nodes[i]->visible = false;
+                nodes[i]->icon.visible = false;
                 cnt++;
             }
         }
