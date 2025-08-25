@@ -9,6 +9,7 @@
 #include "FrameBuffer.h"
 #include "RenderSystem.h"
 #include "ScrollbarRenderSystem.h"
+#include "TreeNodeRenderSystem.h"
 #define MAX_COMPONENTS 10000
 
 
@@ -32,6 +33,7 @@ class UIContext
 	static UIContext* instance;
 	RenderSystem* rendersystem;
 	ScrollbarRenderSystem* scrollrendersystem;
+	TreeNodeRenderSystem* treenoderenderer;
 	ECSObjectView* testobject = nullptr;
 
 	std::vector<UIComponent*> rootComponents;
@@ -39,6 +41,7 @@ class UIContext
 	std::vector<Element> dataBuffer;
 	std::vector<UpdateBatch> updateBatches;
 	Shader* shader;
+	Engine* engine;
 	//LayoutOverlay* overlayElement;
 	DockSpace* dockspace;
 	unsigned int vao,vbo,instancevbo;
@@ -76,7 +79,7 @@ public:
 		instance = nullptr;
 	}
 
-	void init(int width, int height);
+	void init(int width, int height, Engine* engine);
 	void add(UIComponent* component);
 	void setup();
 	void setSize(int& width, int& height);

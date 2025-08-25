@@ -7,12 +7,6 @@ UIContext* UIContext::instance = 0;
 
 UIContext::UIContext() {
 
-	rendersystem = SystemCoordinator::getInstance()->RegisterSystem<RenderSystem>();
-	scrollrendersystem = SystemCoordinator::getInstance()->RegisterSystem<ScrollbarRenderSystem>();
-	int w = Engine::getScreenWidth(), h = Engine::getScreenHeight();
-	rendersystem->Initialize(w,h);
-	scrollrendersystem->Initialize(w,h);
-	testobject = new ECSObjectView(glm::vec2(100,100), glm::vec2(300,500));
 	shader = new Shader("resources/shader/vertex2.glsl", "resources/shader/frag2.glsl");
 	dockspace = new DockSpace();
 	//overlayElement = new LayoutOverlay(width,height);
@@ -66,10 +60,18 @@ UIContext::UIContext() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void UIContext::init(int width, int height)
+void UIContext::init(int width, int height, Engine* engine)
 {
+	this->engine = engine;
+	rendersystem = SystemCoordinator::getInstance()->RegisterSystem<RenderSystem>();
+	scrollrendersystem = SystemCoordinator::getInstance()->RegisterSystem<ScrollbarRenderSystem>();
+	treenoderenderer = SystemCoordinator::getInstance()->RegisterSystem<TreeNodeRenderSystem>();
+	int w = Engine::getScreenWidth(), h = Engine::getScreenHeight();
+	rendersystem->Initialize(w,h);
+	scrollrendersystem->Initialize(w,h);
+	treenoderenderer->Initialize(w,h);
+	testobject = new ECSObjectView(glm::vec2(100,100), glm::vec2(300,500), engine->getApplication());
 	setSize(width,height);
-
 }
 
 void UIContext::add(UIComponent* component) {
@@ -161,8 +163,9 @@ void UIContext::DrawComponents(Engine& engine) {
 		std::cout << err << " uicontext" << std::endl;
 	}
 
-	//rendersystem->Update();
-	//scrollrendersystem->Update();
+	rendersystem->Update();
+	scrollrendersystem->Update();
+	treenoderenderer->Update(testobject->getId());
 
 	glBindVertexArray(0);
 }

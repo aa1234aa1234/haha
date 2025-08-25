@@ -32,7 +32,10 @@ void EditorLayer::init()
     SystemCoordinator::getInstance()->RegisterComponent<TransformComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<ContentComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<ScrollableComponent>();
-    UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight());
+    SystemCoordinator::getInstance()->RegisterComponent<TextComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<TreeNodeComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<PositionComponent>();
+    UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight(), engine);
     TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
 
 

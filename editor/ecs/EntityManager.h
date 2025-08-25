@@ -11,7 +11,7 @@
 class EntityManager
 {
     std::vector<Entity*> entities;
-    std::array<Signature, MAX_COMPONENTS> signatures;
+    std::array<Signature, MAX_ENTITIES> signatures;
 public:
     ~EntityManager()
     {

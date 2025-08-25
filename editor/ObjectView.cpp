@@ -177,6 +177,7 @@ void ObjectView::updateTree(int idx)
         nodes[i]->position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
         nodes[i]->icon.position.y += cnt*rowHeight * (nodes[idx]->expanded ? 1 : -1);
     }
+    std::cout << "sum: " << sum1 << std::endl;
     std::cout << "cnt: " << cnt << std::endl;
     numberofvisiblerows += cnt*(nodes[idx]->expanded ? 1 : -1);
     std::cout << numberofvisiblerows << std::endl;

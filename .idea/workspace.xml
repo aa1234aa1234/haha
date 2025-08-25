@@ -6,6 +6,7 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppGeneralOptions" type="string" />
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
@@ -25,18 +26,21 @@
       <config projectName="project" targetName="update_mappings" />
     </generated>
   </component>
-  <component name="CMakeSettings">
+  <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" GENERATION_OPTIONS="-G Ninja" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="08-23">
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="08-20">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Components.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/TextHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ObjectView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ObjectView.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ECSObjectView.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ECSObjectView.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/EntityManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/EntityManager.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +63,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/aa1234aa1234/haha.git&quot;,
-    &quot;accountId&quot;: &quot;0b6922c9-ac46-4e33-8fbe-c6ac1e6a3e79&quot;
+    &quot;accountId&quot;: &quot;39cf6f15-5c9e-4d56-aee3-e7bd05bc811d&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -109,73 +113,46 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Engine.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Engine.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/EventHandler.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Input.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Input.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KeydownEvent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MouseEvent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/NodeComponent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SceneNode.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SceneNode.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TextHandler.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TextHandler.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Window.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Window.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/DockSpace.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/DockSpace.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/EditorLayer.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/EditorLayer.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/SceneView.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/Tab.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/Tab.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/TabView.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/TabView.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/UIComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/UIContext.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/editor/UIContext.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test/main.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ui/UILayer.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ui/UILayer.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2zaG87H14GfuqWcbb60UlBkGXAv" />
+  <component name="ProjectId" id="2z7hqA027jZLawnanlkuBkkdOfy" />
+  <component name="ProjectStatusUIService">{
+  &quot;uiKindId&quot;: &quot;Widget&quot;
+}</component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -183,9 +160,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "CMake Application.project.executor": "Run",
+    "CMake Debug.project.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
@@ -194,6 +173,7 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/sw_306/code/kjw/haha/resources/shader/editor",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -203,7 +183,21 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sw_306\code\kjw\haha\resources\shader\editor" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sw_306\code\kjw\haha\editor\ecs\Components" />
+      <recent name="C:\Users\sw_306\code\kjw\haha\editor\ecs" />
+      <recent name="C:\Users\D412\Desktop\수강생403\김정우\haha\editor" />
+      <recent name="C:\Users\D412\Desktop\수강생403\김정우\haha\test" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.project">
+    <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -234,7 +228,13 @@
       <item itemvalue="CMake Application.project" />
       <item itemvalue="CMake Application.uninstall" />
       <item itemvalue="CMake Application.update_mappings" />
+      <item itemvalue="CMake Debug.project" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="CMake Debug.project" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -243,24 +243,31 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1750484000883</updated>
-      <workItem from="1750484003181" duration="11418000" />
-      <workItem from="1751961612082" duration="3672000" />
-      <workItem from="1752066466722" duration="796000" />
-      <workItem from="1752566327788" duration="1682000" />
-      <workItem from="1752573593109" duration="1790000" />
-      <workItem from="1752593047203" duration="70000" />
-      <workItem from="1752731068712" duration="727000" />
-      <workItem from="1752918991488" duration="2491000" />
-      <workItem from="1753077820917" duration="1885000" />
-      <workItem from="1753102774161" duration="10011000" />
-      <workItem from="1753248829829" duration="1501000" />
-      <workItem from="1753339765949" duration="990000" />
-      <workItem from="1753490283308" duration="19000" />
-      <workItem from="1754037486825" duration="868000" />
-      <workItem from="1754105246583" duration="19000" />
-      <workItem from="1755871594648" duration="3766000" />
-      <workItem from="1756038549964" duration="1000" />
-      <workItem from="1756093343780" duration="2059000" />
+      <workItem from="1750484003181" duration="11475000" />
+      <workItem from="1751088218293" duration="1012000" />
+      <workItem from="1751089270031" duration="39000" />
+      <workItem from="1751089334632" duration="51000" />
+      <workItem from="1751089414127" duration="325000" />
+      <workItem from="1751089765282" duration="136000" />
+      <workItem from="1751089928101" duration="7202000" />
+      <workItem from="1751443206094" duration="10136000" />
+      <workItem from="1751875197246" duration="10468000" />
+      <workItem from="1752047665763" duration="10492000" />
+      <workItem from="1752479972990" duration="9957000" />
+      <workItem from="1752652505770" duration="9413000" />
+      <workItem from="1753084707751" duration="644000" />
+      <workItem from="1753085744113" duration="442000" />
+      <workItem from="1753086228258" duration="56000" />
+      <workItem from="1753259024858" duration="8547000" />
+      <workItem from="1753518856066" duration="233000" />
+      <workItem from="1753519171453" duration="3374000" />
+      <workItem from="1754111538325" duration="5636000" />
+      <workItem from="1754712252969" duration="595000" />
+      <workItem from="1754713261017" duration="12852000" />
+      <workItem from="1755326959146" duration="784000" />
+      <workItem from="1755507015261" duration="7192000" />
+      <workItem from="1755676615624" duration="10032000" />
+      <workItem from="1756108567936" duration="10272000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />
@@ -272,61 +279,133 @@
     </task>
     <task id="LOCAL-00002" summary="06-21">
       <option name="closed" value="true" />
-      <created>1751632546903</created>
+      <created>1750499053198</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1751632546903</updated>
+      <updated>1750499053198</updated>
     </task>
-    <task id="LOCAL-00003" summary="07-04">
+    <task id="LOCAL-00003" summary="06-28">
       <option name="closed" value="true" />
-      <created>1751638559102</created>
+      <created>1751089545681</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1751638559102</updated>
+      <updated>1751089545681</updated>
     </task>
-    <task id="LOCAL-00004" summary="07-04">
+    <task id="LOCAL-00004" summary="06-30">
       <option name="closed" value="true" />
-      <created>1751638727504</created>
+      <created>1751280663127</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1751638727504</updated>
+      <updated>1751280663127</updated>
     </task>
-    <task id="LOCAL-00005" summary="07-16">
+    <task id="LOCAL-00005" summary="07-02">
       <option name="closed" value="true" />
-      <created>1752593082672</created>
+      <created>1751453776716</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1752593082672</updated>
+      <updated>1751453776716</updated>
     </task>
-    <task id="LOCAL-00006" summary="07-21">
+    <task id="LOCAL-00006" summary="07-07">
       <option name="closed" value="true" />
-      <created>1753079919922</created>
+      <created>1751885730077</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1753079919922</updated>
+      <updated>1751885730077</updated>
     </task>
-    <task id="LOCAL-00007" summary="07-23">
+    <task id="LOCAL-00007" summary="07-09">
       <option name="closed" value="true" />
-      <created>1753251786642</created>
+      <created>1752058258925</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1753251786642</updated>
+      <updated>1752058258925</updated>
     </task>
-    <task id="LOCAL-00008" summary="08-23">
+    <task id="LOCAL-00008" summary="07-14">
       <option name="closed" value="true" />
-      <created>1755879396064</created>
+      <created>1752490527615</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1755879396064</updated>
+      <updated>1752490527615</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="07-16">
+      <option name="closed" value="true" />
+      <created>1752663356067</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1752663356067</updated>
+    </task>
+    <task id="LOCAL-00010" summary="07-21">
+      <option name="closed" value="true" />
+      <created>1753095261488</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1753095261488</updated>
+    </task>
+    <task id="LOCAL-00011" summary="07-26">
+      <option name="closed" value="true" />
+      <created>1753522557583</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1753522557583</updated>
+    </task>
+    <task id="LOCAL-00012" summary="08-02">
+      <option name="closed" value="true" />
+      <created>1754127185069</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1754127185069</updated>
+    </task>
+    <task id="LOCAL-00013" summary="08-09">
+      <option name="closed" value="true" />
+      <created>1754731179648</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1754731179648</updated>
+    </task>
+    <task id="LOCAL-00014" summary="08-18 test">
+      <option name="closed" value="true" />
+      <created>1755508077372</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1755508077373</updated>
+    </task>
+    <task id="LOCAL-00015" summary="08-18">
+      <option name="closed" value="true" />
+      <created>1755514262534</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1755514262534</updated>
+    </task>
+    <task id="LOCAL-00016" summary="08-20">
+      <option name="closed" value="true" />
+      <created>1755683626273</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1755683626273</updated>
+    </task>
+    <task id="LOCAL-00017" summary="08-20">
+      <option name="closed" value="true" />
+      <created>1755687176422</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1755687176422</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,13 +416,44 @@
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="06-21" />
-    <MESSAGE value="07-04" />
+    <MESSAGE value="06-28" />
+    <MESSAGE value="06-30" />
+    <MESSAGE value="07-02" />
+    <MESSAGE value="07-07" />
+    <MESSAGE value="07-09" />
+    <MESSAGE value="07-14" />
     <MESSAGE value="07-16" />
     <MESSAGE value="07-21" />
-    <MESSAGE value="07-23" />
-    <MESSAGE value="08-23" />
-    <option name="LAST_COMMIT_MESSAGE" value="08-23" />
+    <MESSAGE value="07-26" />
+    <MESSAGE value="08-02" />
+    <MESSAGE value="08-09" />
+    <MESSAGE value="08-18 test" />
+    <MESSAGE value="08-18" />
+    <MESSAGE value="08-20" />
+    <option name="LAST_COMMIT_MESSAGE" value="08-20" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="SystemCoordinator::getInstance()" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

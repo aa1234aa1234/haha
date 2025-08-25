@@ -101,6 +101,59 @@ public:
 		return -1;
 	}
 
+	void manualDrawText(Text& k) {
+		shader->use();
+		//textBuffer->bind();
+		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
+		glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+		glBindTexture(GL_TEXTURE_2D, textureId);
+		glBindVertexArray(vao);
+
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		float x = k.posx;
+        float y = k.posy;
+        float mx = 1e9;
+        for (auto& p : k.text) {
+            if (characters[p].height < mx) mx = characters[p].height;
+        }
+        for (auto& p : k.text) {
+
+            Character ch = characters[p];
+            //float xpos = (k.posx - ch.originX * k.textScale) / (width / 2.0) - 1, xpos1 = (k.posx - ch.originX * k.textScale + ch.width * k.textScale) / (width / 2.0) - 1;
+            //float ypos = 1.0 - (k.posy - (ch.originY) * k.textScale) / (height / 2.0), ypos1 = 1.0 - ((k.posy - ch.originY * k.textScale) + ch.height * k.textScale) / (height / 2.0);
+            //float ypos = 1.0 - (posy - ch.originY * k.textScale) / (height / 2.0), ypos1 = 1.0 - ((posy - ch.originY * k.textScale + ch.height * k.textScale)) / (height / 2.0);
+
+            float w = ch.width * k.textScale;
+            float h = ch.height * k.textScale;
+            float xpos = k.posx - ch.originX * k.textScale, xpos1 = xpos+w;
+            float ypos = k.posy+mx*k.textScale - ch.originY * k.textScale, ypos1 = ypos+h;
+            float x = ch.x / (float)textureWidth, y = ch.y / (float)textureHeight;
+            float x1 = (ch.x + ch.width) / (float)textureWidth, y1 = (ch.y + ch.height) / (float)textureHeight;
+
+            float vertices[6][4] = {
+                xpos, ypos, x, y,
+                xpos1, ypos, x1, y,
+                xpos1, ypos1, x1, y1,
+                xpos, ypos, x, y,
+                xpos1, ypos1, x1, y1,
+                xpos, ypos1, x, y1
+            };
+            glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float) * 6 * 4, vertices);
+            //std::vector<float> aa(24);
+            //glGetBufferSubData(GL_ARRAY_BUFFER, 0, 6 * 4 * sizeof(float), aa.data());
+            glDrawArrays(GL_TRIANGLES, 0, 6);
+            k.posx += ch.advance * k.textScale;
+        }
+        k.posx = x;
+        k.posy = y;
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
 	void drawText(Text& k)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
