@@ -44,6 +44,8 @@ public:
 
     void RegisterEntity(Entity* entity);
 
+    EntityID CreateEntity();
+
     template<typename T>
     void RegisterComponent() {
         componentManager->registerComponent<T>();

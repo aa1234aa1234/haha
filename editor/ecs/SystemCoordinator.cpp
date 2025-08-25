@@ -10,3 +10,9 @@ void SystemCoordinator::RegisterEntity(Entity* entity)
 {
     entityManager->addEntity(entity);
 }
+
+EntityID SystemCoordinator::CreateEntity() {
+    auto entity = new Entity();
+    RegisterEntity(entity);
+    return entity->getId();
+}

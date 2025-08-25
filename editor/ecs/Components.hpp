@@ -17,7 +17,7 @@ struct TransformComponent
 
 struct ContentComponent
 {
-    std::vector<Entity*> entities;
+    std::vector<EntityID> entities;
 };
 
 struct ScrollableComponent
@@ -28,6 +28,19 @@ struct ScrollableComponent
     int scrollBarId = -1;
 };
 
+struct TreeNodeComponent {
+    bool expanded = false, selected = false, visible = false;
+    int textIndex = -1;
+    EntityID parent = -1;
+};
+
+struct PositionComponent {
+    glm::vec2 position;
+};
+
+struct TextComponent {
+    std::string text;
+};
 
 #define COMPONENTS_H
 
