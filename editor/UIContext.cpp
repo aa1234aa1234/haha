@@ -165,7 +165,7 @@ void UIContext::DrawComponents(Engine& engine) {
 
 	rendersystem->Update();
 	scrollrendersystem->Update();
-	treenoderenderer->Update(testobject->getId());
+	treenoderenderer->Update();
 
 	glBindVertexArray(0);
 }

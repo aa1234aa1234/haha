@@ -32,6 +32,7 @@ struct TreeNodeComponent {
     bool expanded = false, selected = false, visible = false;
     int textIndex = -1;
     EntityID parent = -1;
+    EntityID treeView = -1;
 };
 
 struct PositionComponent {

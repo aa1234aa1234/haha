@@ -72,12 +72,12 @@ public:
         SystemCoordinator::getInstance()->SetSystemSignature<TreeNodeRenderSystem>(signature);
     }
 
-    void Update(const EntityID treeView) {
-        auto treeviewtransform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treeView);
+    void Update() {
         std::vector<Element> data;
         std::vector<Text> texts;
         for (auto& p : entities) {
             auto treenode = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(p);
+	    auto treeviewtransform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treenode.treeView);
             if (!treenode.visible) continue;
             auto position = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(p);
             std::string text = SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text;

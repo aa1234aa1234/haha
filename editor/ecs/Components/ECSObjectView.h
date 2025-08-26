@@ -174,7 +174,7 @@ public:
         EntityID id = SystemCoordinator::getInstance()->CreateEntity();
         SystemCoordinator::getInstance()->AddComponent(id, TextComponent{std::move(text)});
         SystemCoordinator::getInstance()->AddComponent(id, PositionComponent{pos});
-        SystemCoordinator::getInstance()->AddComponent(id, TreeNodeComponent{0,0,0,-1,parent});
+        SystemCoordinator::getInstance()->AddComponent(id, TreeNodeComponent{0,0,0,-1,parent,getId()});
         SystemCoordinator::getInstance()->AddComponent(id, ContentComponent{});
         return id;
     }
