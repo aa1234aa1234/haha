@@ -70,7 +70,7 @@ void UIContext::init(int width, int height, Engine* engine)
 	rendersystem->Initialize(w,h);
 	scrollrendersystem->Initialize(w,h);
 	treenoderenderer->Initialize(w,h);
-	testobject = new ECSObjectView(glm::vec2(100,100), glm::vec2(300,500), engine->getApplication());
+	testobject = new ECSObjectView(glm::vec2(200,100), glm::vec2(300,500), engine->getApplication());
 	setSize(width,height);
 }
 

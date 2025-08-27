@@ -41,7 +41,7 @@ public:
         glGenBuffers(1, &vbo);
         glGenBuffers(1, &instancevbo);
         glBindBuffer(GL_ARRAY_BUFFER, instancevbo);
-        glBufferData(GL_ARRAY_BUFFER, MAX_COMPONENTS * sizeof(Element), NULL, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, 1000 * sizeof(Element), NULL, GL_DYNAMIC_DRAW);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(vao);
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -77,15 +77,15 @@ public:
         std::vector<Text> texts;
         glEnable(GL_SCISSOR_TEST);
         auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treeView);
-        //glScissor(transform.position.x, height-transform.position.y, transform.size.x, transform.size.y);
+        glScissor(transform.position.x, height-transform.position.y, transform.size.x, transform.size.y);
         for (auto& p : entities) {
             auto treenode = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(p);
 	        auto treeviewtransform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treenode.treeView);
             if (!treenode.visible) continue;
             auto position = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(p);
             std::string text = SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text;
-            data.emplace_back(Element{position.position,glm::vec2(treeviewtransform.size.x, ROWHEIGHT),treenode.selected});
-            texts.emplace_back(Text{position.position.x+TABWIDTH+1, position.position.y+2, text});
+            data.push_back(Element{position.position,glm::vec2(treeviewtransform.size.x, ROWHEIGHT),treenode.selected});
+            texts.push_back(Text{position.position.x+TABWIDTH+1, position.position.y+2, text});
         }
 
         shader->use();
@@ -98,7 +98,6 @@ public:
         glBindVertexArray(vao);
 
         glDrawArraysInstanced(GL_TRIANGLES, 0, 6, data.size());
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         for (auto& p : texts) {
             TextHandler::getInstance()->manualDrawText(p);

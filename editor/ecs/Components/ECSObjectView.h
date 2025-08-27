@@ -86,7 +86,7 @@ public:
         ScrollBar* scrollbar = new ScrollBar();
         scrollbar->Initialize(position, size);
         SystemCoordinator::getInstance()->RegisterEntity(this);
-        SystemCoordinator::getInstance()->AddComponent(getId(), TransformComponent{position,glm::vec4(255,255,255,1), size});
+        SystemCoordinator::getInstance()->AddComponent(getId(), TransformComponent{position,glm::vec4(40,40,40,1), size});
         SystemCoordinator::getInstance()->AddComponent(getId(), ScrollableComponent{0,0,0,0, scrollbar->getId()});
         SystemCoordinator::getInstance()->AddComponent(getId(), ContentComponent{});
 
@@ -97,9 +97,7 @@ public:
         SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(rootNode).visible = true;
         SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(rootNode).expanded = true;
         loadTree(&app->getRoot(),rootNode,position.x+STARTING_OFFSETX,position.y+STARTING_OFFSETY, entities);
-        for (auto& p : entities) {
-            std::cout << SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text << std::endl;
-        }
+
         int entitysize = entities.size();
         segmentIndex.resize(entitysize);
         segmentTree.resize(entitysize*4);
@@ -107,6 +105,13 @@ public:
         initSegmentTree(rootNode);
         buildTree(1, entitysize-1, 1);
         updateTree(0,entities);
+
+        //updateTree(0, entities);
+        for (auto& p : entities) {
+            bool visible = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(p).visible;
+            std::string text = SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text;
+            std::cout << text << ' ' << visible << std::endl;
+        }
     }
 
     void loadTree(SceneNode* sceneNode, EntityID node, int width, int height, std::vector<EntityID>& entities) {
@@ -137,26 +142,28 @@ public:
         auto& nodeidx = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[idx]);
         for (int i = idx+1; i<idx+sum1; i++)
         {
-            auto& nodei = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[i]);
-            auto& nodeiparent = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodei.parent);
+            TreeNodeComponent* nodei = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[i]);
+            TreeNodeComponent* nodeiparent = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodei->parent);
             if (nodeidx.expanded)
             {
-                if (!nodeiparent.expanded)
+                if (!nodeiparent->expanded)
                 {
                     i+=sum(1,nodes.size()-1,1,segmentIndex[i+1].start, segmentIndex[i+1].end);
+                    nodei = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[i]);
+                    nodeiparent = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodei->parent);
                 }
-                if (nodeiparent.expanded)
+                if (nodeiparent->expanded)
                 {
-                    nodei.visible = nodeiparent.expanded & nodeidx.expanded;
+                    nodei->visible = nodeiparent->expanded & nodeidx.expanded;
                     //nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
                     cnt++;
                 }
             }
             else
             {
-                if (nodei.visible)
+                if (nodei->visible)
                 {
-                    nodei.visible = false;
+                    nodei->visible = false;
                     //nodes[i]->icon.visible = false;
                     cnt++;
                 }

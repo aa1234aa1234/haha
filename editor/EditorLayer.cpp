@@ -35,8 +35,8 @@ void EditorLayer::init()
     SystemCoordinator::getInstance()->RegisterComponent<TextComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<TreeNodeComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<PositionComponent>();
-    UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight(), engine);
     TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
+    UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight(), engine);
 
 
     tabView = new TabView(glm::vec2(200,0),glm::vec2(Engine::getScreenWidth()-200,25));
