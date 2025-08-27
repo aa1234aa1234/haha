@@ -23,10 +23,11 @@ struct ContentComponent
 struct ScrollableComponent
 {
     bool horizontal, vertical;
-    int offset;
+    float offset;
     int maxScroll;
     int scrollBarId = -1;
 };
+
 
 struct TreeNodeComponent {
     bool expanded = false, selected = false, visible = false;
@@ -41,6 +42,10 @@ struct PositionComponent {
 
 struct TextComponent {
     std::string text;
+};
+
+struct HoverableComponent {
+    unsigned int hoverShader;
 };
 
 #define COMPONENTS_H

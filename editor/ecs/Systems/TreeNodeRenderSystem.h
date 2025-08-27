@@ -77,15 +77,17 @@ public:
         std::vector<Text> texts;
         glEnable(GL_SCISSOR_TEST);
         auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treeView);
-        glScissor(transform.position.x, height-transform.position.y, transform.size.x, transform.size.y);
-        for (auto& p : entities) {
+        auto scrollcomponent = SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(treeView);
+        auto entities = SystemCoordinator::getInstance()->GetComponent<ContentComponent>(treeView);
+        glScissor(transform.position.x, height-(transform.position.y+transform.size.y), transform.size.x, transform.size.y);
+        float offset = scrollcomponent.offset;
+        for (auto& p : this->entities) {
             auto treenode = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(p);
-	        auto treeviewtransform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treenode.treeView);
             if (!treenode.visible) continue;
             auto position = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(p);
             std::string text = SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text;
-            data.push_back(Element{position.position,glm::vec2(treeviewtransform.size.x, ROWHEIGHT),treenode.selected});
-            texts.push_back(Text{position.position.x+TABWIDTH+1, position.position.y+2, text});
+            data.push_back(Element{glm::vec2(transform.position.x+STARTING_OFFSETX,position.position.y-offset),glm::vec2(transform.size.x, ROWHEIGHT),treenode.expanded});
+            texts.push_back(Text{position.position.x+TABWIDTH+1, position.position.y+2-offset, text});
         }
 
         shader->use();

@@ -66,10 +66,12 @@ void UIContext::init(int width, int height, Engine* engine)
 	rendersystem = SystemCoordinator::getInstance()->RegisterSystem<RenderSystem>();
 	scrollrendersystem = SystemCoordinator::getInstance()->RegisterSystem<ScrollbarRenderSystem>();
 	treenoderenderer = SystemCoordinator::getInstance()->RegisterSystem<TreeNodeRenderSystem>();
+	scrollsystem = SystemCoordinator::getInstance()->RegisterSystem<ScrollableSystem>();
 	int w = Engine::getScreenWidth(), h = Engine::getScreenHeight();
 	rendersystem->Initialize(w,h);
 	scrollrendersystem->Initialize(w,h);
 	treenoderenderer->Initialize(w,h);
+	scrollsystem->Initialize();
 	testobject = new ECSObjectView(glm::vec2(200,100), glm::vec2(300,500), engine->getApplication());
 	setSize(width,height);
 }
@@ -163,6 +165,7 @@ void UIContext::DrawComponents(Engine& engine) {
 		std::cout << err << " uicontext" << std::endl;
 	}
 
+	scrollsystem->Update();
 	rendersystem->Update();
 	scrollrendersystem->Update();
 	treenoderenderer->Update(testobject->getId());

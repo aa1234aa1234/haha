@@ -35,6 +35,7 @@ void EditorLayer::init()
     SystemCoordinator::getInstance()->RegisterComponent<TextComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<TreeNodeComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<PositionComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<HoverableComponent>();
     TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
     UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight(), engine);
 

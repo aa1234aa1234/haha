@@ -67,6 +67,7 @@ void Engine::run()
         }
         application->update(deltatime);
         render(deltatime);
+        Input::getInstance()->setEventType(-1);
         frames = frameLimiter.end();
         //Input::getInstance()->setEventType(-1);
         //ill leave this here need to making editor layer
@@ -155,6 +156,8 @@ void Engine::handleInput(float deltatime, InputEvent& event)
         break;
     case Input::EventType::SCROLL:
         {
+            Input::getInstance()->setXOffset(event.getScrollDelta().x);
+            Input::getInstance()->setYOffset(event.getScrollDelta().y);
             Input::getInstance()->setEventType(Input::EventType::SCROLL);
         }
         break;

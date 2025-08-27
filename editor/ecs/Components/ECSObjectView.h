@@ -5,7 +5,7 @@
 #ifndef ECSOBJECTVIEW_H
 #define ECSOBJECTVIEW_H
 #define STARTING_OFFSETX 5
-#define STARTING_OFFSETY 15
+#define STARTING_OFFSETY 5
 #define ROWHEIGHT 20
 #define TABWIDTH 20
 #include "Components.hpp"
@@ -24,7 +24,9 @@ class ECSObjectView : public Entity {
     std::vector<ECSSegmentTreeNode> segmentIndex;
     std::vector<int> segmentTree;
     FrameBuffer* frameBuffer;
-    int* offset;
+    int totalrows = 0;
+    float* offset;
+    int* maxScroll;
     EntityID rootNode;
 
     void initSegmentTree(EntityID treeNode) {
@@ -91,7 +93,8 @@ public:
         SystemCoordinator::getInstance()->AddComponent(getId(), ContentComponent{});
 
         offset = &SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(getId()).offset;
-        auto entities = SystemCoordinator::getInstance()->GetComponent<ContentComponent>(getId()).entities;
+        maxScroll = &SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(getId()).maxScroll;
+        auto& entities = SystemCoordinator::getInstance()->GetComponent<ContentComponent>(getId()).entities;
 
         rootNode = CreateTreeNode();
         SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(rootNode).visible = true;
@@ -177,6 +180,8 @@ public:
         }
         std::cout << "sum: " << sum1 << std::endl;
         std::cout << "cnt: " << cnt << std::endl;
+        totalrows += cnt*(nodeidx.expanded ? 1 : -1);
+        *maxScroll = totalrows * rowHeight + STARTING_OFFSETY - SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId()).size.y;
     }
 
     EntityID CreateTreeNode(EntityID parent = -1, std::string text="", glm::vec2 pos=glm::vec2()) {
@@ -192,6 +197,12 @@ public:
         *offset = 20;
         std::cout << "offset: " << *offset << std::endl;
     }
+
+    int getTotalRows() {
+        return totalrows;
+    }
+
+
 };
 
 #endif //ECSOBJECTVIEW_H

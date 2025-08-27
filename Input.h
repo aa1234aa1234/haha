@@ -51,6 +51,8 @@ public:
     bool isKeyDown(const char& key);
     void setXOffset(const double& x) { xoffset = x; }
     void setYOffset(const double& y) { yoffset = y; }
+    double getXOffset() { return xoffset; }
+    double getYOffset() { return yoffset; }
     int getEventType() { return eventType; }
     void setEventType(int type) { eventType = type; }
 };

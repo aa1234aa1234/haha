@@ -46,6 +46,10 @@ public:
 
     EntityID CreateEntity();
 
+    Entity* GetEntity(EntityID entity) {
+        return entityManager->getEntity(entity);
+    }
+
     template<typename T>
     void RegisterComponent() {
         componentManager->registerComponent<T>();
