@@ -94,6 +94,8 @@ public:
         auto entities = SystemCoordinator::getInstance()->GetComponent<ContentComponent>(getId()).entities;
 
         rootNode = CreateTreeNode();
+        SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(rootNode).visible = true;
+        SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(rootNode).expanded = true;
         loadTree(&app->getRoot(),rootNode,position.x+STARTING_OFFSETX,position.y+STARTING_OFFSETY, entities);
         for (auto& p : entities) {
             std::cout << SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text << std::endl;

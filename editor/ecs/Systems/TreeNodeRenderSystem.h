@@ -72,12 +72,15 @@ public:
         SystemCoordinator::getInstance()->SetSystemSignature<TreeNodeRenderSystem>(signature);
     }
 
-    void Update() {
+    void Update(const EntityID treeView) {
         std::vector<Element> data;
         std::vector<Text> texts;
+        glEnable(GL_SCISSOR_TEST);
+        auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treeView);
+        //glScissor(transform.position.x, height-transform.position.y, transform.size.x, transform.size.y);
         for (auto& p : entities) {
             auto treenode = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(p);
-	    auto treeviewtransform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treenode.treeView);
+	        auto treeviewtransform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treenode.treeView);
             if (!treenode.visible) continue;
             auto position = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(p);
             std::string text = SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text;
@@ -100,6 +103,7 @@ public:
         for (auto& p : texts) {
             TextHandler::getInstance()->manualDrawText(p);
         }
+        glDisable(GL_SCISSOR_TEST);
     }
 };
 
