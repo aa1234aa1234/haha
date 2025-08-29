@@ -12,6 +12,7 @@ vec3 NormalizeRGB(vec3 color) {
 
 void main()
 {
-    if(isSelected == 0) FragColor = vec4(NormalizeRGB(vec3(40,40,40)),1.0);
-    else FragColor = vec4(NormalizeRGB(vec3(46,67,110)),1.0);
+    FragColor = vec4(NormalizeRGB((isSelected == 1 ? vec3(46,67,110) : vec3(40,40,40))), 1.0);
+    //if(isSelected == 0) FragColor = vec4(NormalizeRGB(vec3(40,40,40)),1.0);
+    //else FragColor = vec4(NormalizeRGB(vec3(46,67,110)),1.0);
 }

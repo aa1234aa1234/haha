@@ -81,7 +81,7 @@ public:
         auto entities = SystemCoordinator::getInstance()->GetComponent<ContentComponent>(treeView);
         glScissor(transform.position.x, height-(transform.position.y+transform.size.y), transform.size.x, transform.size.y);
         float offset = scrollcomponent.offset;
-        for (auto& p : this->entities) {
+        for (auto& p : entities.entities) {
             auto treenode = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(p);
             if (!treenode.visible) continue;
             auto position = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(p);
