@@ -86,7 +86,7 @@ public:
             if (!treenode.visible) continue;
             auto position = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(p);
             std::string text = SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text;
-            data.push_back(Element{glm::vec2(transform.position.x+STARTING_OFFSETX,position.position.y-offset),glm::vec2(transform.size.x, ROWHEIGHT),treenode.expanded});
+            data.push_back(Element{glm::vec2(transform.position.x+STARTING_OFFSETX,position.position.y-offset),glm::vec2(transform.size.x, ROWHEIGHT),treenode.selected});
             texts.push_back(Text{position.position.x+TABWIDTH+1, position.position.y+2-offset, text});
         }
 
@@ -105,6 +105,8 @@ public:
             TextHandler::getInstance()->manualDrawText(p);
         }
         glDisable(GL_SCISSOR_TEST);
+
+
     }
 };
 

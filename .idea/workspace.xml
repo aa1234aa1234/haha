@@ -32,10 +32,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="08-25">
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="08-16">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/Components.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ECSObjectView.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ECSObjectView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/SystemCoordinator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/TreeNodeRenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/TreeNodeRenderSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/shader/editor/treenodefrag.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/editor/treenodefrag.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,19 +53,6 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <excluded-from-favorite>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="master" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -71,10 +64,24 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/aa1234aa1234/haha.git&quot;,
-    &quot;accountId&quot;: &quot;39cf6f15-5c9e-4d56-aee3-e7bd05bc811d&quot;
+    &quot;accountId&quot;: &quot;165dcd27-ebc0-4733-a294-3238d8e3bc83&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -114,16 +121,13 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2z7hqA027jZLawnanlkuBkkdOfy" />
-  <component name="ProjectStatusUIService">{
-  &quot;uiKindId&quot;: &quot;Widget&quot;
-}</component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.project.executor": "Debug",
+    "CMake Application.project.executor": "Run",
     "CMake Debug.project.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -137,23 +141,17 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/sw_306/code/kjw/haha/resources/shader/editor",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "settings.editor.selected.configurable": "CLionExternalConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\sw_306\code\kjw\haha\resources\shader\editor" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\sw_306\code\kjw\haha\editor\ecs\Components" />
-      <recent name="C:\Users\sw_306\code\kjw\haha\editor\ecs" />
       <recent name="C:\Users\D412\Desktop\수강생403\김정우\haha\editor" />
       <recent name="C:\Users\D412\Desktop\수강생403\김정우\haha\test" />
     </key>
@@ -161,11 +159,6 @@
   <component name="RunManager" selected="CMake Application.project">
     <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
     </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="project" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
@@ -228,12 +221,9 @@
       <workItem from="1754111538325" duration="5636000" />
       <workItem from="1754712252969" duration="595000" />
       <workItem from="1754713261017" duration="12852000" />
-      <workItem from="1755326959146" duration="784000" />
-      <workItem from="1755507015261" duration="7192000" />
-      <workItem from="1755676615624" duration="10032000" />
-      <workItem from="1756108567936" duration="10521000" />
-      <workItem from="1756281256278" duration="10314000" />
-      <workItem from="1756440359119" duration="3520000" />
+      <workItem from="1755326959146" duration="810000" />
+      <workItem from="1755928227580" duration="7528000" />
+      <workItem from="1756532342447" duration="12260000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />
@@ -339,47 +329,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754731179648</updated>
     </task>
-    <task id="LOCAL-00014" summary="08-18 test">
+    <task id="LOCAL-00014" summary="08-16">
       <option name="closed" value="true" />
-      <created>1755508077372</created>
+      <created>1755337226035</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1755508077373</updated>
+      <updated>1755337226035</updated>
     </task>
-    <task id="LOCAL-00015" summary="08-18">
-      <option name="closed" value="true" />
-      <created>1755514262534</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1755514262534</updated>
-    </task>
-    <task id="LOCAL-00016" summary="08-20">
-      <option name="closed" value="true" />
-      <created>1755683626273</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1755683626273</updated>
-    </task>
-    <task id="LOCAL-00017" summary="08-20">
-      <option name="closed" value="true" />
-      <created>1755687176422</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1755687176422</updated>
-    </task>
-    <task id="LOCAL-00018" summary="08-25">
-      <option name="closed" value="true" />
-      <created>1756119155462</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1756119155462</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,18 +372,8 @@
     <MESSAGE value="07-26" />
     <MESSAGE value="08-02" />
     <MESSAGE value="08-09" />
-    <MESSAGE value="08-18 test" />
-    <MESSAGE value="08-18" />
-    <MESSAGE value="08-20" />
-    <MESSAGE value="08-25" />
-    <option name="LAST_COMMIT_MESSAGE" value="08-25" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="CMakeRunConfiguration">
-        <watch expression="SystemCoordinator::getInstance()" />
-      </configuration>
-    </watches-manager>
+    <MESSAGE value="08-16" />
+    <option name="LAST_COMMIT_MESSAGE" value="08-16" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

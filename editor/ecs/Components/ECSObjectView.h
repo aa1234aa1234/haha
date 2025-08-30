@@ -24,6 +24,7 @@ class ECSObjectView : public Entity {
     std::vector<ECSSegmentTreeNode> segmentIndex;
     std::vector<int> segmentTree;
     FrameBuffer* frameBuffer;
+    int selectedRow = -1;
     int totalrows = 0;
     float* offset;
     int* maxScroll;
@@ -73,6 +74,11 @@ class ECSObjectView : public Entity {
         ans += sum(mid+1, end, node*2+1, indexStart, indexEnd);
         return ans;
     }
+
+    void clicknode(EntityID node)
+    {
+
+    }
 public:
     ECSObjectView(glm::vec2 position, glm::vec2 size, Application* app) {
         Initialize(position, size, app);
@@ -120,6 +126,10 @@ public:
     void loadTree(SceneNode* sceneNode, EntityID node, int width, int height, std::vector<EntityID>& entities) {
         SystemCoordinator::getInstance()->GetComponent<TextComponent>(node).text = sceneNode->getName();
         SystemCoordinator::getInstance()->GetComponent<PositionComponent>(node).position = glm::vec2(width,height);
+        auto& boundingbox = SystemCoordinator::getInstance()->GetComponent<ClickableComponent>(node).boundingBox;
+        auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId());
+        boundingbox = glm::vec4(glm::vec2(transform.position.x,height), boundingbox.z, boundingbox.w);
+        SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(node).boundingBox = glm::vec4(width,height,tabWidth,rowHeight);
         entities.reserve(entities.size() + 1);
         entities.emplace_back(node);
         for (int i=0; i<sceneNode->getChildren().size(); i++) {
@@ -138,7 +148,7 @@ public:
     }
 
     void updateTree(int idx, std::vector<EntityID>& nodes) {
-        if (idx+1 >= nodes.size()) return;
+        if (idx+1 >= nodes.size() || idx < 0) return;
         int cnt = 0;
         //updateTree(1, nodes.size()-1, idx+1, segmentIndex[idx].start, segmentIndex[idx].end, nodes[idx]->expanded ? -segmentTree[idx+1] : segmentTree[idx+1]);
         int sum1 = sum(1,nodes.size()-1, 1, segmentIndex[idx+1].start, segmentIndex[idx+1].end);
@@ -190,12 +200,30 @@ public:
         SystemCoordinator::getInstance()->AddComponent(id, PositionComponent{pos});
         SystemCoordinator::getInstance()->AddComponent(id, TreeNodeComponent{0,0,0,-1,parent,getId()});
         SystemCoordinator::getInstance()->AddComponent(id, ContentComponent{});
+        SystemCoordinator::getInstance()->AddComponent(id, RenderableIcon{static_cast<uint32_t>(-1), glm::vec4(pos,glm::vec2(tabWidth,rowHeight))});
+        SystemCoordinator::getInstance()->AddComponent(id, ClickableComponent{glm::vec4(pos,glm::vec2(SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId()).size.x, rowHeight)), [this](EntityID entity)
+        {
+            auto& treenode = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(entity);
+            if (!treenode.visible) return;
+            glm::vec4& iconBoundingBox = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(entity).boundingBox;
+            const glm::vec2& mousePos = Input::getInstance()->getMousePos();
+            if (iconBoundingBox.x <= mousePos.x && mousePos.x <= iconBoundingBox.x + iconBoundingBox.z && iconBoundingBox.y <= mousePos.y && mousePos.y <= iconBoundingBox.y + iconBoundingBox.w)
+            {
+                treenode.expanded = !treenode.expanded;
+                std::cout << "haha lcikc" << std::endl;
+                selectedRow = entity;
+                SystemCoordinator::getInstance()->AddComponent(getId(), DirtyComponent{});
+            }
+            else
+            {
+
+            }
+        }});
         return id;
     }
 
     void update() override {
-        *offset = 20;
-        std::cout << "offset: " << *offset << std::endl;
+        updateTree(selectedRow-rootNode, SystemCoordinator::getInstance()->GetComponent<ContentComponent>(getId()).entities);
     }
 
     int getTotalRows() {

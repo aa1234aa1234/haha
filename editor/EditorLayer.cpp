@@ -27,7 +27,7 @@ EditorLayer::~EditorLayer()
     SystemCoordinator::destroyInstance();
 }
 
-void EditorLayer::init()
+void EditorLayer::RegisterComponents()
 {
     SystemCoordinator::getInstance()->RegisterComponent<TransformComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<ContentComponent>();
@@ -36,6 +36,14 @@ void EditorLayer::init()
     SystemCoordinator::getInstance()->RegisterComponent<TreeNodeComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<PositionComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<HoverableComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<DirtyComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<ClickableComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<RenderableIcon>();
+}
+
+void EditorLayer::init()
+{
+    RegisterComponents();
     TextHandler::makeInstance(Engine::getScreenWidth(), Engine::getScreenHeight(), "resources/font/font (32px).png");
     UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight(), engine);
 

@@ -26,6 +26,7 @@ public:
     EditorLayer(Engine* engine);
     ~EditorLayer();
 
+    void RegisterComponents();
     void init();
     void render();
     void update();

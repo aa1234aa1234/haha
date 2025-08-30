@@ -3,6 +3,7 @@
 //
 #pragma once
 #ifndef COMPONENTS_H
+#include <functional>
 #include <vector>
 
 #include "Entity.h"
@@ -47,6 +48,20 @@ struct TextComponent {
 struct HoverableComponent {
     unsigned int hoverShader;
 };
+
+struct ClickableComponent
+{
+    glm::vec4 boundingBox;
+    std::function<void(EntityID)> onClick;
+};
+
+struct RenderableIcon
+{
+    unsigned int iconTexture=-1;
+    glm::vec4 boundingBox;
+};
+
+struct DirtyComponent {};
 
 #define COMPONENTS_H
 

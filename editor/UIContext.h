@@ -6,11 +6,13 @@
 #include "DockSpace.h"
 #include "EventHandler.h"
 #include "Adapter.h"
+#include "ClickSystem.h"
 #include "FrameBuffer.h"
 #include "RenderSystem.h"
 #include "ScrollableSystem.h"
 #include "ScrollbarRenderSystem.h"
 #include "TreeNodeRenderSystem.h"
+#include "UpdateSystem.h"
 #define MAX_COMPONENTS 10000
 
 
@@ -36,6 +38,8 @@ class UIContext
 	ScrollbarRenderSystem* scrollrendersystem;
 	TreeNodeRenderSystem* treenoderenderer;
 	ScrollableSystem* scrollsystem;
+	UpdateSystem* updatesystem;
+	ClickSystem* clicksystem;
 	ECSObjectView* testobject = nullptr;
 
 	std::vector<UIComponent*> rootComponents;

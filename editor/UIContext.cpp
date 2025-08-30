@@ -67,11 +67,15 @@ void UIContext::init(int width, int height, Engine* engine)
 	scrollrendersystem = SystemCoordinator::getInstance()->RegisterSystem<ScrollbarRenderSystem>();
 	treenoderenderer = SystemCoordinator::getInstance()->RegisterSystem<TreeNodeRenderSystem>();
 	scrollsystem = SystemCoordinator::getInstance()->RegisterSystem<ScrollableSystem>();
+	updatesystem = SystemCoordinator::getInstance()->RegisterSystem<UpdateSystem>();
+	clicksystem = SystemCoordinator::getInstance()->RegisterSystem<ClickSystem>();
 	int w = Engine::getScreenWidth(), h = Engine::getScreenHeight();
 	rendersystem->Initialize(w,h);
 	scrollrendersystem->Initialize(w,h);
 	treenoderenderer->Initialize(w,h);
 	scrollsystem->Initialize();
+	updatesystem->Initialize();
+	clicksystem->Initialize();
 	testobject = new ECSObjectView(glm::vec2(200,100), glm::vec2(300,500), engine->getApplication());
 	setSize(width,height);
 }
@@ -166,9 +170,12 @@ void UIContext::DrawComponents(Engine& engine) {
 	}
 
 	scrollsystem->Update();
+	clicksystem->Update();
+	updatesystem->Update();
 	rendersystem->Update();
 	scrollrendersystem->Update();
 	treenoderenderer->Update(testobject->getId());
+
 
 	glBindVertexArray(0);
 }
