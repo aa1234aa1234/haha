@@ -22,13 +22,17 @@ public:
 
     void Update()
     {
-        auto it = entities.rbegin();
-        for (; it != entities.rend(); )
+        if (!entities.size()) return;
+        std::vector<std::set<EntityID>::iterator> placeholder;
+        auto it = entities.begin();
+        for (; it != entities.end(); ++it)
         {
             SystemCoordinator::getInstance()->GetEntity(*it)->update();
-            SystemCoordinator::getInstance()->RemoveComponent<DirtyComponent>(*it);
+            //SystemCoordinator::getInstance()->RemoveComponent<DirtyComponent>(*it);
+            placeholder.push_back(it);
             std::cout << "updatesystem" << std::endl;
         }
+        for (auto& p : placeholder) SystemCoordinator::getInstance()->RemoveComponent<DirtyComponent>(*p);
     }
 };
 

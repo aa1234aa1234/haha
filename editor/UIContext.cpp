@@ -69,6 +69,7 @@ void UIContext::init(int width, int height, Engine* engine)
 	scrollsystem = SystemCoordinator::getInstance()->RegisterSystem<ScrollableSystem>();
 	updatesystem = SystemCoordinator::getInstance()->RegisterSystem<UpdateSystem>();
 	clicksystem = SystemCoordinator::getInstance()->RegisterSystem<ClickSystem>();
+	iconrenderer = SystemCoordinator::getInstance()->RegisterSystem<IconRenderSystem>();
 	int w = Engine::getScreenWidth(), h = Engine::getScreenHeight();
 	rendersystem->Initialize(w,h);
 	scrollrendersystem->Initialize(w,h);
@@ -76,7 +77,8 @@ void UIContext::init(int width, int height, Engine* engine)
 	scrollsystem->Initialize();
 	updatesystem->Initialize();
 	clicksystem->Initialize();
-	testobject = new ECSObjectView(glm::vec2(200,100), glm::vec2(300,500), engine->getApplication());
+	iconrenderer->Initialize(w,h);
+	testobject = new ECSObjectView(glm::vec2(0,0), glm::vec2(300,Engine::getScreenHeight()), engine->getApplication());
 	setSize(width,height);
 }
 
@@ -174,7 +176,12 @@ void UIContext::DrawComponents(Engine& engine) {
 	updatesystem->Update();
 	rendersystem->Update();
 	scrollrendersystem->Update();
+
+	//systems that draw child components
+	glEnable(GL_SCISSOR_TEST);
 	treenoderenderer->Update(testobject->getId());
+	iconrenderer->Update();
+	glDisable(GL_SCISSOR_TEST);
 
 
 	glBindVertexArray(0);

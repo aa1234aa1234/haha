@@ -25,7 +25,7 @@ public:
                 auto& scrollcomponent = SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(p);
                 auto& transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(p);
                 if (transform.position.x <= Input::getInstance()->getMousePos().x && Input::getInstance()->getMousePos().x <= transform.position.x+transform.size.x && transform.position.y <= Input::getInstance()->getMousePos().y && Input::getInstance()->getMousePos().y <= transform.position.y+transform.size.y) {
-                    if (transform.size.y >= scrollcomponent.maxScroll) continue;
+                    if (transform.size.y >= scrollcomponent.maxScroll*2) continue;
                     scrollcomponent.offset = scrollcomponent.offset+45*Input::getInstance()->getYOffset()*-1;
                     scrollcomponent.offset = scrollcomponent.offset < 0 ? 0 : scrollcomponent.offset;
                     scrollcomponent.offset = scrollcomponent.offset > scrollcomponent.maxScroll ? scrollcomponent.maxScroll : scrollcomponent.offset;

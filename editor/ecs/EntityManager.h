@@ -21,7 +21,8 @@ public:
 
     void addEntity(Entity* entity)
     {
-        entities.push_back(entity);
+        entities.resize(entities.size() + entity->getId() + 1);
+        entities[entity->getId()] = entity;
     }
 
     void setSignature(EntityID entity, Signature signature)

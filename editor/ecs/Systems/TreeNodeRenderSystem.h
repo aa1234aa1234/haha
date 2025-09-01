@@ -75,7 +75,6 @@ public:
     void Update(const EntityID treeView) {
         std::vector<Element> data;
         std::vector<Text> texts;
-        glEnable(GL_SCISSOR_TEST);
         auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treeView);
         auto scrollcomponent = SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(treeView);
         auto entities = SystemCoordinator::getInstance()->GetComponent<ContentComponent>(treeView);
@@ -104,7 +103,6 @@ public:
         for (auto& p : texts) {
             TextHandler::getInstance()->manualDrawText(p);
         }
-        glDisable(GL_SCISSOR_TEST);
 
 
     }

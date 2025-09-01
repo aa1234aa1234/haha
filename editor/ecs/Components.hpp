@@ -33,7 +33,6 @@ struct ScrollableComponent
 struct TreeNodeComponent {
     bool expanded = false, selected = false, visible = false;
     int textIndex = -1;
-    EntityID parent = -1;
     EntityID treeView = -1;
 };
 
@@ -57,11 +56,16 @@ struct ClickableComponent
 
 struct RenderableIcon
 {
-    unsigned int iconTexture=-1;
+    glm::vec4 uvRect;
     glm::vec4 boundingBox;
+    glm::vec4 renderRect;
 };
 
 struct DirtyComponent {};
+
+struct ParentComponent {
+    EntityID parent=-1;
+};
 
 #define COMPONENTS_H
 

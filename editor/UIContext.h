@@ -8,6 +8,7 @@
 #include "Adapter.h"
 #include "ClickSystem.h"
 #include "FrameBuffer.h"
+#include "IconRenderSystem.h"
 #include "RenderSystem.h"
 #include "ScrollableSystem.h"
 #include "ScrollbarRenderSystem.h"
@@ -40,6 +41,7 @@ class UIContext
 	ScrollableSystem* scrollsystem;
 	UpdateSystem* updatesystem;
 	ClickSystem* clicksystem;
+	IconRenderSystem* iconrenderer;
 	ECSObjectView* testobject = nullptr;
 
 	std::vector<UIComponent*> rootComponents;
