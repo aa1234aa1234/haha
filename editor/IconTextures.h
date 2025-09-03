@@ -4,11 +4,11 @@
 
 #ifndef PROJECT_ICONTEXTURES_H
 #define PROJECT_ICONTEXTURES_H
-#define EXPAND_ARROW glm::vec4(0,0,969,564);
+#define EXPAND_ARROW glm::vec4(0,0,696,564)
 #include "glm/glm.hpp"
 
 inline glm::vec4 GetIcon(glm::vec4 uvrect, glm::vec2 atlasSize) {
-    return glm::vec4(uvrect.x,uvrect.y,uvrect.z/atlasSize.x, uvrect.w/atlasSize.y);
+    return glm::vec4(uvrect.x/atlasSize.x,uvrect.y/atlasSize.y,uvrect.z/atlasSize.x, uvrect.w/atlasSize.y);
 }
 
 #endif //PROJECT_ICONTEXTURES_H

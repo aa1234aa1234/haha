@@ -22,7 +22,12 @@ class TreeNodeRenderSystem : public System{
 
 public:
     TreeNodeRenderSystem() {}
-    ~TreeNodeRenderSystem() {}
+    ~TreeNodeRenderSystem() {
+        delete shader;
+        glDeleteVertexArrays(1, &vao);
+        glDeleteBuffers(1, &vbo);
+        glDeleteBuffers(1, &instancevbo);
+    }
 
     void Initialize(int& width, int& height) {
         this->width = width;

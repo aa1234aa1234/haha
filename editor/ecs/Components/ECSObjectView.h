@@ -12,6 +12,7 @@
 #include "ScrollBar.h"
 #include "SystemCoordinator.h"
 #include "Application.h"
+#include "IconTextures.h"
 
 struct ECSSegmentTreeNode
 {
@@ -128,7 +129,9 @@ public:
         auto& boundingbox = SystemCoordinator::getInstance()->GetComponent<ClickableComponent>(node).boundingBox;
         auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId());
         boundingbox = glm::vec4(glm::vec2(transform.position.x,height), boundingbox.z, boundingbox.w);
-        SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(node).boundingBox = glm::vec4(width,height,tabWidth,rowHeight);
+        auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(node);
+        icon.boundingBox = glm::vec4(width,height,tabWidth,rowHeight);
+        icon.renderRect = icon.boundingBox+glm::vec4(1,1,-1,-1);
         entities.reserve(entities.size() + 1);
         entities.emplace_back(node);
         for (int i=0; i<sceneNode->getChildren().size(); i++) {
@@ -186,6 +189,9 @@ public:
             auto& nodei = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(nodes[i]);
             nodei.position.y += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
             SystemCoordinator::getInstance()->GetComponent<ClickableComponent>(nodes[i]).boundingBox.y += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
+            auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
+            //icon.boundingBox += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
+            //icon.renderRect += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
             //nodes[i]->icon.position.y += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
         }
         std::cout << "sum: " << sum1 << std::endl;
@@ -201,7 +207,7 @@ public:
         SystemCoordinator::getInstance()->AddComponent(id, TreeNodeComponent{0,0,0,-1,getId()});
         SystemCoordinator::getInstance()->AddComponent(id, ContentComponent{});
         SystemCoordinator::getInstance()->AddComponent(id, ParentComponent{parent});
-        SystemCoordinator::getInstance()->AddComponent(id, RenderableIcon{glm::vec4(), glm::vec4(pos,glm::vec2(tabWidth,rowHeight)), glm::vec4(pos+glm::vec2(1,1), glm::vec2(tabWidth,rowHeight)-glm::vec2(1,1))});
+        SystemCoordinator::getInstance()->AddComponent(id, RenderableIcon{EXPAND_ARROW, glm::vec4(pos,glm::vec2(tabWidth,rowHeight)), glm::vec4(pos+glm::vec2(1,1), glm::vec2(tabWidth,rowHeight)-glm::vec2(1,1))});
         //temporary implementation please fix at later date
         SystemCoordinator::getInstance()->AddComponent(id, ClickableComponent{glm::vec4(pos,glm::vec2(SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId()).size.x, rowHeight)), [this](EntityID entity)
         {
