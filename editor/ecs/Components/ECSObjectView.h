@@ -103,7 +103,7 @@ public:
         maxScroll = &SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(getId()).maxScroll;
         auto& entities = SystemCoordinator::getInstance()->GetComponent<ContentComponent>(getId()).entities;
 
-        rootNode = CreateTreeNode();
+        rootNode = CreateTreeNode(getId());
         SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(rootNode).visible = true;
         loadTree(&app->getRoot(),rootNode,position.x+STARTING_OFFSETX,position.y+STARTING_OFFSETY, entities);
 
@@ -158,6 +158,7 @@ public:
         for (int i = idx+1; i<idx+sum1; i++)
         {
             TreeNodeComponent* nodei = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[i]);
+            RenderableIcon* nodeicon = &SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
             TreeNodeComponent* nodeiparent = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(SystemCoordinator::getInstance()->GetComponent<ParentComponent>(nodes[i]).parent);
             if (nodeidx.expanded)
             {
@@ -171,6 +172,7 @@ public:
                 {
                     nodei->visible = nodeiparent->expanded & nodeidx.expanded;
                     //nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
+                    nodeicon->visible = nodeiparent->expanded & nodeidx.expanded;
                     cnt++;
                 }
             }
@@ -180,6 +182,7 @@ public:
                 {
                     nodei->visible = false;
                     //nodes[i]->icon.visible = false;
+                    nodeicon->visible = false;
                     cnt++;
                 }
             }

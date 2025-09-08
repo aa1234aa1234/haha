@@ -66,6 +66,7 @@ public:
 
         Signature signature;
         signature.set(SystemCoordinator::getInstance()->GetComponentType<RenderableIcon>(), true);
+
         SystemCoordinator::getInstance()->SetSystemSignature<IconRenderSystem>(signature);
 
     	ImportAtlas("resources/textures/atlas.png");
@@ -75,7 +76,19 @@ public:
     	std::vector<Element> data;
     	for (auto& p : entities) {
     		auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(p);
-    		data.push_back({GetIcon(icon.uvRect,glm::vec2(textureWidth,textureHeight)), icon.renderRect});
+    		if (!icon.visible) continue;
+    		auto renderRect = icon.renderRect;
+
+    		EntityID currentEntity = p;
+    		while (SystemCoordinator::getInstance()->EntityHasComponent<ParentComponent>(currentEntity)) {
+    			EntityID parent = SystemCoordinator::getInstance()->GetComponent<ParentComponent>(currentEntity).parent;
+    			if (SystemCoordinator::getInstance()->EntityHasComponent<ScrollableComponent>(parent)) {
+    				renderRect.y -= SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(parent).offset;
+    			}
+
+    			currentEntity = parent;
+    		}
+    		data.push_back({GetIcon(icon.uvRect,glm::vec2(textureWidth,textureHeight)), renderRect});
     	}
 
     	shader->use();
@@ -84,6 +97,7 @@ public:
     	glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
 
     	glBindBuffer(GL_ARRAY_BUFFER, instancevbo);
+    	glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(Element), nullptr, GL_STREAM_DRAW);
     	glBufferSubData(GL_ARRAY_BUFFER, 0, data.size() * sizeof(Element), data.data());
 
     	glBindVertexArray(vao);

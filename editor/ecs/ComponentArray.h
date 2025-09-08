@@ -36,7 +36,7 @@ public:
     }
 
     bool Has(EntityID entityID) {
-        return EntityToIndex[entityID];
+        return EntityToIndex.count(entityID);
     }
 
     void Remove(EntityID entityID)

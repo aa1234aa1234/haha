@@ -26,7 +26,7 @@ class TextHandler {
     std::vector<Text> text;
     Shader* shader;
     float textScale = 0.5f;
-    unsigned int vao, vbo;
+    unsigned int vao, vbo, instancevbo;
 public:
 	TextHandler(int w, int h, const char* filepath) : width(std::move(w)), height(std::move(h)) {
 		textBuffer = new FrameBuffer();
@@ -36,6 +36,8 @@ public:
         shader->use();
         glUniform1f(glGetUniformLocation(shader->getId(), "width"), static_cast<float>(width));
         glUniform1f(glGetUniformLocation(shader->getId(), "height"), static_cast<float>(height));
+
+
         glGenBuffers(1, &vbo);
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
@@ -58,6 +60,7 @@ public:
 		glDeleteTextures(1, &textureId);
         glDeleteVertexArrays(1, &vao);
         glDeleteBuffers(1, &vbo);
+		glDeleteBuffers(1, &instancevbo);
 	}
 
 	static TextHandler* getInstance()

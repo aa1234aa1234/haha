@@ -5,7 +5,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 #define MAX_COMPONENTS 32
-#define MAX_ENTITIES 5000
+#define MAX_ENTITIES 1000
 #include <bitset>
 #include <typeinfo>
 #include <typeindex>
