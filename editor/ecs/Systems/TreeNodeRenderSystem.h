@@ -5,7 +5,7 @@
 #ifndef PROJECT_TREENODERENDERSYSTEM_H
 #define PROJECT_TREENODERENDERSYSTEM_H
 #include "Components.hpp"
-#include "ECSObjectView.h"
+#include "ECSAssetBrowser.h"
 #include "SystemCoordinator.h"
 #include "TextHandler.h"
 
@@ -19,6 +19,8 @@ class TreeNodeRenderSystem : public System{
         glm::vec2 size;
         bool selected=false;
     };
+
+    std::vector<Element> instanceData;
 
 public:
     TreeNodeRenderSystem() {}
@@ -75,10 +77,16 @@ public:
         Signature signature;
         signature.set(SystemCoordinator::getInstance()->GetComponentType<TreeNodeComponent>(), true);
         SystemCoordinator::getInstance()->SetSystemSignature<TreeNodeRenderSystem>(signature);
+        shader->use();
+        glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(this->width), static_cast<float>(this->height), 0.0f);
+        glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
+        instanceData.reserve(1000);
     }
 
     void Update(const EntityID treeView) {
-        std::vector<Element> data;
+        shader->use();
+        int elementCount = 0;
+        instanceData.clear();
         std::vector<Text> texts;
         auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(treeView);
         auto scrollcomponent = SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(treeView);
@@ -89,21 +97,19 @@ public:
             auto treenode = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(p);
             if (!treenode.visible) continue;
             auto position = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(p);
+            if (position.position.y-offset < -(ROWHEIGHT) || position.position.y-offset > transform.position.y+transform.size.y) continue;
             std::string text = SystemCoordinator::getInstance()->GetComponent<TextComponent>(p).text;
-            data.push_back(Element{glm::vec2(transform.position.x+STARTING_OFFSETX,position.position.y-offset),glm::vec2(transform.size.x, ROWHEIGHT),treenode.selected});
+            instanceData.emplace_back(Element{glm::vec2(transform.position.x+STARTING_OFFSETX,position.position.y-offset),glm::vec2(transform.size.x, ROWHEIGHT),treenode.selected});
             texts.push_back(Text{position.position.x+TABWIDTH+1, position.position.y+2-offset, text});
+            elementCount++;
         }
 
-        shader->use();
-        glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
-        glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
-
         glBindBuffer(GL_ARRAY_BUFFER, instancevbo);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, data.size() * sizeof(Element), data.data());
+        glBufferSubData(GL_ARRAY_BUFFER, 0, elementCount * sizeof(Element), instanceData.data());
 
         glBindVertexArray(vao);
 
-        glDrawArraysInstanced(GL_TRIANGLES, 0, 6, data.size());
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 6, elementCount);
 
         for (auto& p : texts) {
             TextHandler::getInstance()->manualDrawText(p);

@@ -78,7 +78,7 @@ void UIContext::init(int width, int height, Engine* engine)
 	updatesystem->Initialize();
 	clicksystem->Initialize();
 	iconrenderer->Initialize(w,h);
-	testobject = new ECSObjectView(glm::vec2(0,0), glm::vec2(300,Engine::getScreenHeight()), engine->getApplication());
+	testobject = new ECSAssetBrowser(glm::vec2(0,0), glm::vec2(300,Engine::getScreenHeight()), engine->getApplication());
 	setSize(width,height);
 }
 

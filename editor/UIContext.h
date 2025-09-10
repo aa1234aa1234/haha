@@ -17,7 +17,7 @@
 #define MAX_COMPONENTS 10000
 
 
-class ECSObjectView;
+class ECSAssetBrowser;
 class Engine;
 
 class UIContext
@@ -42,7 +42,7 @@ class UIContext
 	UpdateSystem* updatesystem;
 	ClickSystem* clicksystem;
 	IconRenderSystem* iconrenderer;
-	ECSObjectView* testobject = nullptr;
+	ECSAssetBrowser* testobject = nullptr;
 
 	std::vector<UIComponent*> rootComponents;
 	std::vector<UIComponent*> instanceData;

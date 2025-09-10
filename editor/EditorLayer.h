@@ -10,9 +10,9 @@
 #include "SceneView.h"
 #include "EventDispatcher.h"
 #include "ObjectView.h"
-#include "ECSObjectView.h"
+#include "ECSAssetBrowser.h"
 
-class ECSObjectView;
+class ECSAssetBrowser;
 class Engine;
 class TabView;
 

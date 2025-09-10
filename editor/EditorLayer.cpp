@@ -4,7 +4,7 @@
 
 #include "EditorLayer.h"
 
-#include "ECSObjectView.h"
+#include "ECSAssetBrowser.h"
 #include "TabView.h"
 
 #include "Engine.h"
@@ -94,7 +94,7 @@ void EditorLayer::handleInput(IEvent& event)
             UIContext::getInstance()->onDrag(Input::getInstance()->getMousePos(), Input::getInstance()->getMouseDelta());
             break;
 
-    case Input::EventType::KEY_DOWN:
+        case Input::EventType::KEY_DOWN:
             if (Input::getInstance()->isKeyDown(256)) Engine::setRunning(false);
             break;
     }

@@ -70,31 +70,34 @@ public:
         SystemCoordinator::getInstance()->SetSystemSignature<IconRenderSystem>(signature);
 
     	ImportAtlas("resources/textures/atlas.png");
+    	shader->use();
+
+    	glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
+    	glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
     }
 
     void Update() {
     	std::vector<Element> data;
+    	auto* sc = SystemCoordinator::getInstance();
     	for (auto& p : entities) {
-    		auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(p);
+    		auto& icon = sc->GetComponent<RenderableIcon>(p);
     		if (!icon.visible) continue;
     		auto renderRect = icon.renderRect;
+    		if (renderRect.y < 0 || renderRect.y > height) continue;
 
     		EntityID currentEntity = p;
-    		while (SystemCoordinator::getInstance()->EntityHasComponent<ParentComponent>(currentEntity)) {
-    			EntityID parent = SystemCoordinator::getInstance()->GetComponent<ParentComponent>(currentEntity).parent;
-    			if (SystemCoordinator::getInstance()->EntityHasComponent<ScrollableComponent>(parent)) {
-    				renderRect.y -= SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(parent).offset;
+    		while (sc->EntityHasComponent<ParentComponent>(currentEntity)) {
+    			EntityID parent = sc->GetComponent<ParentComponent>(currentEntity).parent;
+    			if (sc->EntityHasComponent<ScrollableComponent>(parent)) {
+    				renderRect.y -= sc->GetComponent<ScrollableComponent>(parent).offset;
     			}
 
     			currentEntity = parent;
     		}
     		data.push_back({GetIcon(icon.uvRect,glm::vec2(textureWidth,textureHeight)), renderRect});
     	}
-
-    	shader->use();
+		shader->use();
     	glBindTexture(GL_TEXTURE_2D, textureAtlas);
-    	glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
-    	glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
 
     	glBindBuffer(GL_ARRAY_BUFFER, instancevbo);
     	glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(Element), nullptr, GL_STREAM_DRAW);

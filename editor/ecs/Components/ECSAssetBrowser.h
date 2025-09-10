@@ -20,7 +20,7 @@ struct ECSSegmentTreeNode
     int start,end;
 };
 
-class ECSObjectView : public Entity {
+class ECSAssetBrowser : public Entity {
     int rowHeight=20, tabWidth=20;
     std::vector<ECSSegmentTreeNode> segmentIndex;
     std::vector<int> segmentTree;
@@ -81,12 +81,12 @@ class ECSObjectView : public Entity {
 
     }
 public:
-    ECSObjectView(glm::vec2 position, glm::vec2 size, Application* app) {
+    ECSAssetBrowser(glm::vec2 position, glm::vec2 size, Application* app) {
         Initialize(position, size, app);
 
     }
 
-    ~ECSObjectView() {
+    ~ECSAssetBrowser() {
         if (frameBuffer) delete frameBuffer;
         if (offset != nullptr) delete offset;
     }
@@ -105,6 +105,7 @@ public:
 
         rootNode = CreateTreeNode(getId());
         SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(rootNode).visible = true;
+        SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(rootNode).visible = true;
         loadTree(&app->getRoot(),rootNode,position.x+STARTING_OFFSETX,position.y+STARTING_OFFSETY, entities);
 
         int entitysize = entities.size();
@@ -172,7 +173,10 @@ public:
                 {
                     nodei->visible = nodeiparent->expanded & nodeidx.expanded;
                     //nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
-                    nodeicon->visible = nodeiparent->expanded & nodeidx.expanded;
+                    if (SystemCoordinator::getInstance()->GetComponent<ContentComponent>(nodes[i]).entities.size()) {
+                        nodeicon->visible = nodeiparent->expanded & nodeidx.expanded;
+                    }
+
                     cnt++;
                 }
             }
@@ -215,6 +219,7 @@ public:
         SystemCoordinator::getInstance()->AddComponent(id, ClickableComponent{glm::vec4(pos,glm::vec2(SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId()).size.x, rowHeight)), [this](EntityID entity)
         {
             auto& treenode = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(entity);
+            auto& uvrect = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(entity).uvRect;
             int childrensize = SystemCoordinator::getInstance()->GetComponent<ContentComponent>(entity).entities.size();
             if (!treenode.visible) return;
             glm::vec4 iconBoundingBox = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(entity).boundingBox;
@@ -226,6 +231,7 @@ public:
             {
                 if (!childrensize) return;
                 treenode.expanded = !treenode.expanded;
+                uvrect = treenode.expanded ? EXPANDED_ARROW : EXPAND_ARROW;
                 std::cout << "haha lcikc" << std::endl;
                 selectedRow = entity;
                 SystemCoordinator::getInstance()->AddComponent(getId(), DirtyComponent{});
