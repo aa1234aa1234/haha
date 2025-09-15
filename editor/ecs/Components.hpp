@@ -54,6 +54,7 @@ struct ClickableComponent
     std::function<void(EntityID)> onClick;
 };
 
+//maybe combine with TextureComponent on later date
 struct RenderableIcon
 {
     glm::vec4 uvRect;
@@ -66,6 +67,10 @@ struct DirtyComponent {};
 
 struct ParentComponent {
     EntityID parent=-1;
+};
+
+struct TextureComponent {
+    unsigned int texture;
 };
 
 #define COMPONENTS_H

@@ -25,6 +25,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     editorLayer = new EditorLayer(this);
     uiLayer->init(window);
     editorLayer->init();
+    sceneCamera = new CameraComponent(window.getWindow());
 }
 
 Engine::~Engine()

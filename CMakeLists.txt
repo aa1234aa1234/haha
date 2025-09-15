@@ -4,6 +4,7 @@ project(project)
 set(CMAKE_CXX_STANDARD 17)
 file(GLOB SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/Components/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/editor/ecs/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/editor/ecs/Components/*.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/editor/ecs/Systems*.cpp"

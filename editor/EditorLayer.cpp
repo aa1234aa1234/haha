@@ -40,6 +40,7 @@ void EditorLayer::RegisterComponents()
     SystemCoordinator::getInstance()->RegisterComponent<ClickableComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<RenderableIcon>();
     SystemCoordinator::getInstance()->RegisterComponent<ParentComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<TextureComponent>();
 }
 
 void EditorLayer::init()

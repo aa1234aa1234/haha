@@ -12,15 +12,15 @@ class SceneNode;
 class NodeComponent {
     SceneNode* parent;
 public:
-    NodeComponent();
-    virtual ~NodeComponent();
+    NodeComponent() : parent(nullptr) {}
+    virtual ~NodeComponent() {}
 
     void setParent(SceneNode* node) { this->parent = node; }
     //for render components
-    virtual void render(Shader* shader, Camera* camera) = 0;
+    virtual void render(Shader* shader, Camera* camera) {}
     //for scripts
-    virtual void update(float deltatime) = 0;
-    virtual void handleInput() = 0;
+    virtual void update(float deltatime) {}
+    virtual void handleInput() {}
 };
 
 

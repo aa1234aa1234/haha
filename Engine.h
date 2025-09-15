@@ -11,8 +11,10 @@
 #include "FrameBuffer.h"
 #include "EventDispatcher.h"
 #include "FrameLimiter.h"
+#include "Components/CameraComponent.h"
 #define FRAME_LIMIT 144
 
+class CameraComponent;
 class UILayer;
 class EventDispatcher;
 
@@ -28,6 +30,7 @@ class Engine {
     FrameBuffer* sceneBuffer=nullptr;
     EventDispatcher* eventDispatcher=nullptr;
     FrameLimiter frameLimiter = FrameLimiter(FRAME_LIMIT);
+    CameraComponent* sceneCamera=nullptr;
 
 public:
     Engine();
@@ -43,6 +46,7 @@ public:
     FrameBuffer* getSceneBuffer() { return sceneBuffer; }
     EventDispatcher* getEventDispatcher() { return eventDispatcher; }
     Application* getApplication() { return application; }
+    Window& getWindow() { return window; }
 
     void run();
     void render(float deltatime);

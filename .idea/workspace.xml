@@ -32,15 +32,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="09-08">
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="09-10">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/CameraComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Components/CameraComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/CameraComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Components/CameraComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/NodeComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/IconTextures.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/IconTextures.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/UIContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/UIContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Components.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ECSObjectView.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ECSAssetBrowser.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/IconRenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/IconRenderSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/TreeNodeRenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/TreeNodeRenderSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/textures/atlas.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/textures/atlas.png" afterDir="false" />
@@ -314,6 +315,11 @@
     <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="project" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -384,7 +390,8 @@
       <workItem from="1756887888826" duration="8082000" />
       <workItem from="1757317826386" duration="8466000" />
       <workItem from="1757328522402" duration="303000" />
-      <workItem from="1757490732399" duration="10360000" />
+      <workItem from="1757490732399" duration="10421000" />
+      <workItem from="1757922997563" duration="8998000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />
@@ -562,7 +569,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757328819322</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="09-10">
+      <option name="closed" value="true" />
+      <created>1757501625746</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1757501625746</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +620,8 @@
     <MESSAGE value="09-01" />
     <MESSAGE value="09-03" />
     <MESSAGE value="09-08" />
-    <option name="LAST_COMMIT_MESSAGE" value="09-08" />
+    <MESSAGE value="09-10" />
+    <option name="LAST_COMMIT_MESSAGE" value="09-10" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

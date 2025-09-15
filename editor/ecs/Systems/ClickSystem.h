@@ -18,6 +18,7 @@ public:
     {
         Signature signature;
         signature.set(SystemCoordinator::getInstance()->GetComponentType<ClickableComponent>(), true);
+        signature.set(SystemCoordinator::getInstance()->GetComponentType<TransformComponent>(), true);
         SystemCoordinator::getInstance()->SetSystemSignature<ClickSystem>(signature);
     }
 

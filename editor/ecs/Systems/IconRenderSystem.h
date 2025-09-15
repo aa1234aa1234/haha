@@ -17,6 +17,8 @@ class IconRenderSystem : public System {
 		glm::vec4 textureCoords;
 		glm::vec4 renderBox;
 	};
+
+	std::vector<Element> instanceData;
 public:
     IconRenderSystem() {};
     ~IconRenderSystem() {
@@ -70,14 +72,17 @@ public:
         SystemCoordinator::getInstance()->SetSystemSignature<IconRenderSystem>(signature);
 
     	ImportAtlas("resources/textures/atlas.png");
+    	instanceData.reserve(5000);
     	shader->use();
-
     	glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
     	glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
     }
 
     void Update() {
-    	std::vector<Element> data;
+
+    	shader->use();
+    	int elementCount = 0;
+    	instanceData.clear();
     	auto* sc = SystemCoordinator::getInstance();
     	for (auto& p : entities) {
     		auto& icon = sc->GetComponent<RenderableIcon>(p);
@@ -94,18 +99,20 @@ public:
 
     			currentEntity = parent;
     		}
-    		data.push_back({GetIcon(icon.uvRect,glm::vec2(textureWidth,textureHeight)), renderRect});
+    		instanceData.emplace_back(Element{GetIcon(icon.uvRect,glm::vec2(textureWidth,textureHeight)), renderRect});
+    		elementCount++;
     	}
-		shader->use();
+
+
     	glBindTexture(GL_TEXTURE_2D, textureAtlas);
 
     	glBindBuffer(GL_ARRAY_BUFFER, instancevbo);
-    	glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(Element), nullptr, GL_STREAM_DRAW);
-    	glBufferSubData(GL_ARRAY_BUFFER, 0, data.size() * sizeof(Element), data.data());
+    	glBufferData(GL_ARRAY_BUFFER, elementCount * sizeof(Element), nullptr, GL_STREAM_DRAW);
+    	glBufferSubData(GL_ARRAY_BUFFER, 0, elementCount * sizeof(Element), instanceData.data());
 
     	glBindVertexArray(vao);
 
-    	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, data.size());
+    	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instanceData.size());
     	glBindTexture(GL_TEXTURE_2D, 0);
     }
 

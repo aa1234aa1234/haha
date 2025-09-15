@@ -77,14 +77,14 @@ public:
         Signature signature;
         signature.set(SystemCoordinator::getInstance()->GetComponentType<TreeNodeComponent>(), true);
         SystemCoordinator::getInstance()->SetSystemSignature<TreeNodeRenderSystem>(signature);
-        shader->use();
-        glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(this->width), static_cast<float>(this->height), 0.0f);
-        glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
+
         instanceData.reserve(1000);
     }
 
     void Update(const EntityID treeView) {
         shader->use();
+        glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(this->width), static_cast<float>(this->height), 0.0f);
+        glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
         int elementCount = 0;
         instanceData.clear();
         std::vector<Text> texts;
