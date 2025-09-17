@@ -73,6 +73,10 @@ struct TextureComponent {
     unsigned int texture;
 };
 
+struct NonRenderableBoundingBox {
+    glm::vec4 boundingBox;
+};
+
 #define COMPONENTS_H
 
 #endif //COMPONENTS_H

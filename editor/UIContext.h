@@ -7,9 +7,11 @@
 #include "EventHandler.h"
 #include "Adapter.h"
 #include "ClickSystem.h"
+#include "ECSSceneView.h"
 #include "FrameBuffer.h"
 #include "IconRenderSystem.h"
 #include "RenderSystem.h"
+#include "SceneViewRenderer.h"
 #include "ScrollableSystem.h"
 #include "ScrollbarRenderSystem.h"
 #include "TreeNodeRenderSystem.h"
@@ -42,7 +44,9 @@ class UIContext
 	UpdateSystem* updatesystem;
 	ClickSystem* clicksystem;
 	IconRenderSystem* iconrenderer;
+	SceneViewRenderer* sceneviewrenderer;
 	ECSAssetBrowser* testobject = nullptr;
+	ECSSceneView* sceneview = nullptr;
 
 	std::vector<UIComponent*> rootComponents;
 	std::vector<UIComponent*> instanceData;

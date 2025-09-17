@@ -58,9 +58,12 @@ Application::Application() : root("rootNode")
     {
         root.addSceneNode(new SceneNode("TestNode" + std::to_string(i)));
     }
-    root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
-    root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
-    root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
+    for (int i = 0; i<30; i++) {
+        root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
+        root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
+        root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
+    }
+
 }
 
 Application::~Application()
@@ -79,7 +82,8 @@ void Application::setCallBack(GLFWwindow* window)
 
 void Application::render()
 {
-
+    glClearColor(0.0, 1.0, 1.0,1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Application::handleInput(float deltatime)

@@ -9,14 +9,18 @@
 
 class ECSSceneView : public Entity{
 public:
-    ECSSceneView() {}
+    ECSSceneView(unsigned int texture,glm::vec2 position, glm::vec2 size, glm::vec4 color) {
+        Initialize(texture,position,size,color);
+    }
     ~ECSSceneView() {}
 
-    void Initialize(unsigned int texture) {
+    void Initialize(unsigned int texture,glm::vec2 position, glm::vec2 size, glm::vec4 color) {
         auto* sc = SystemCoordinator::getInstance();
         sc->RegisterEntity(this);
         sc->AddComponent(getId(), TextureComponent{texture});
+        sc->AddComponent(getId(), TransformComponent{position, color, size});
     }
+
 };
 
 #endif //PROJECT_ECSSCENEVIEW_H

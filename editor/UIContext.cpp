@@ -70,6 +70,7 @@ void UIContext::init(int width, int height, Engine* engine)
 	updatesystem = SystemCoordinator::getInstance()->RegisterSystem<UpdateSystem>();
 	clicksystem = SystemCoordinator::getInstance()->RegisterSystem<ClickSystem>();
 	iconrenderer = SystemCoordinator::getInstance()->RegisterSystem<IconRenderSystem>();
+	sceneviewrenderer = SystemCoordinator::getInstance()->RegisterSystem<SceneViewRenderer>();
 	int w = Engine::getScreenWidth(), h = Engine::getScreenHeight();
 	rendersystem->Initialize(w,h);
 	scrollrendersystem->Initialize(w,h);
@@ -78,7 +79,9 @@ void UIContext::init(int width, int height, Engine* engine)
 	updatesystem->Initialize();
 	clicksystem->Initialize();
 	iconrenderer->Initialize(w,h);
+	sceneviewrenderer->Initialize(w,h);
 	testobject = new ECSAssetBrowser(glm::vec2(0,0), glm::vec2(300,Engine::getScreenHeight()), engine->getApplication());
+	sceneview = new ECSSceneView(engine->getSceneBuffer()->getFrameTexture(), glm::vec2(300,0), glm::vec2(Engine::getScreenWidth()-300, Engine::getScreenHeight()), glm::vec4(255,0,0,1.0));
 	setSize(width,height);
 }
 
@@ -182,6 +185,7 @@ void UIContext::DrawComponents(Engine& engine) {
 	treenoderenderer->Update(testobject->getId());
 	iconrenderer->Update();
 	glDisable(GL_SCISSOR_TEST);
+	sceneviewrenderer->Update();
 
 
 	glBindVertexArray(0);

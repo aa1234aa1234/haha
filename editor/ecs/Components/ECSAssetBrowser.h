@@ -131,6 +131,7 @@ public:
         auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId());
         boundingbox = glm::vec4(glm::vec2(transform.position.x,height), boundingbox.z, boundingbox.w);
         auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(node);
+        SystemCoordinator::getInstance()->GetComponent<NonRenderableBoundingBox>(node).boundingBox = glm::vec4(transform.position.x, height, transform.size.x, rowHeight);
         icon.boundingBox = glm::vec4(width,height,tabWidth,rowHeight);
         icon.renderRect = icon.boundingBox+glm::vec4(1,1,-1,-1);
         entities.reserve(entities.size() + 1);
@@ -143,7 +144,7 @@ public:
         }
         for (int i = 0; i<sceneNode->getComponents().size(); i++)
         {
-            EntityID child = CreateTreeNode(node, "work in progress", glm::vec2(width+tabWidth,height+rowHeight*(i+1)));
+            EntityID child = CreateTreeNode(node, "work in progress", glm::vec2(width+tabWidth,height+rowHeight*(i+1)),glm::vec4(transform.position.x, height, transform.size.x, rowHeight));
             SystemCoordinator::getInstance()->GetComponent<ContentComponent>(node).entities.emplace_back(child);
             entities.reserve(entities.size() + 1);
             entities.emplace_back(child);
@@ -207,13 +208,14 @@ public:
         *maxScroll = totalrows * rowHeight + STARTING_OFFSETY - SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId()).size.y;
     }
 
-    EntityID CreateTreeNode(EntityID parent = -1, std::string text="", glm::vec2 pos=glm::vec2()) {
+    EntityID CreateTreeNode(EntityID parent = -1, std::string text="", glm::vec2 pos=glm::vec2(), glm::vec4 boundingBox=glm::vec4()) {
         EntityID id = SystemCoordinator::getInstance()->CreateEntity();
         SystemCoordinator::getInstance()->AddComponent(id, TextComponent{std::move(text)});
         SystemCoordinator::getInstance()->AddComponent(id, PositionComponent{pos});
         SystemCoordinator::getInstance()->AddComponent(id, TreeNodeComponent{0,0,0,-1,getId()});
         SystemCoordinator::getInstance()->AddComponent(id, ContentComponent{});
         SystemCoordinator::getInstance()->AddComponent(id, ParentComponent{parent});
+        SystemCoordinator::getInstance()->AddComponent(id, NonRenderableBoundingBox{boundingBox});
         SystemCoordinator::getInstance()->AddComponent(id, RenderableIcon{EXPAND_ARROW, glm::vec4(pos,glm::vec2(tabWidth,rowHeight)), glm::vec4(pos+glm::vec2(1,1), glm::vec2(tabWidth,rowHeight)-glm::vec2(1,1))});
         //temporary implementation please fix at later date
         SystemCoordinator::getInstance()->AddComponent(id, ClickableComponent{glm::vec4(pos,glm::vec2(SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId()).size.x, rowHeight)), [this](EntityID entity)

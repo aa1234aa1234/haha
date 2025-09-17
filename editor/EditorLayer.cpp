@@ -41,6 +41,7 @@ void EditorLayer::RegisterComponents()
     SystemCoordinator::getInstance()->RegisterComponent<RenderableIcon>();
     SystemCoordinator::getInstance()->RegisterComponent<ParentComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<TextureComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<NonRenderableBoundingBox>();
 }
 
 void EditorLayer::init()
@@ -50,16 +51,16 @@ void EditorLayer::init()
     UIContext::getInstance()->init(Engine::getScreenWidth(), Engine::getScreenHeight(), engine);
 
 
-    tabView = new TabView(glm::vec2(300,0),glm::vec2(Engine::getScreenWidth()-300,25));
-    sceneView = new SceneView();
+    //tabView = new TabView(glm::vec2(300,0),glm::vec2(Engine::getScreenWidth()-300,25));
+    //sceneView = new SceneView();
     //objectView = new ObjectView(glm::vec2(0,0),glm::vec2(200,Engine::getScreenHeight()-200));
     //objectView->init(&engine->getApplication()->getRoot());
-    sceneView->addSceneTexture("Scene", engine->getSceneBuffer()->getFrameTexture());
-    sceneView->addSceneTexture("Game", engine->getSceneBuffer()->getFrameTexture());
-    tabView->setPanelViewComponent(sceneView);
+    //sceneView->addSceneTexture("Scene", engine->getSceneBuffer()->getFrameTexture());
+    //sceneView->addSceneTexture("Game", engine->getSceneBuffer()->getFrameTexture());
+    //tabView->setPanelViewComponent(sceneView);
 
-    UIContext::getInstance()->add(tabView);
-    UIContext::getInstance()->add(sceneView);
+    //UIContext::getInstance()->add(tabView);
+    //UIContext::getInstance()->add(sceneView);
     //UIContext::getInstance()->add(objectView);
 
     UIContext::getInstance()->setup();
