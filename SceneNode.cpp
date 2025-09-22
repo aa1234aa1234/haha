@@ -44,7 +44,7 @@ void SceneNode::removeComponent(NodeComponent* component)
 }
 
 
-void SceneNode::render(Shader* shader, Camera* camera)
+void SceneNode::render(Shader* shader, CameraComponent* camera)
 {
     for (auto& p : children)
     {

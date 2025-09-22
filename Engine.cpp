@@ -18,6 +18,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     screenHeight = height;
     window.init(width,height,title);
     glfwSwapInterval(0);
+    sceneCamera = new CameraComponent(window.getWindow());
     eventDispatcher = new EventDispatcher();
     application->setCallBack(window.getWindow());
     sceneBuffer = new FrameBuffer(screenWidth,screenHeight);
@@ -25,7 +26,6 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     editorLayer = new EditorLayer(this);
     uiLayer->init(window);
     editorLayer->init();
-    sceneCamera = new CameraComponent(window.getWindow());
 }
 
 Engine::~Engine()
@@ -33,11 +33,12 @@ Engine::~Engine()
     delete application;
     delete uiLayer, delete editorLayer;
     delete sceneBuffer;
+    delete sceneCamera;
 }
 
 void Engine::run()
 {
-    float deltatime = 0.0, lastframe = 0.0;
+    float lastframe = 0.0;
     int fps = TextHandler::getInstance()->addText(10, 10, "");
     float frames = 0;
     char buf[1024];

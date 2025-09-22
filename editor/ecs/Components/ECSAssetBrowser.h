@@ -248,7 +248,7 @@ public:
         return id;
     }
 
-    void update() override {
+    void update(float deltatime) override {
         updateTree(selectedRow-rootNode, SystemCoordinator::getInstance()->GetComponent<ContentComponent>(getId()).entities);
     }
 

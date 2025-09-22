@@ -9,6 +9,7 @@
 #include "ClickSystem.h"
 #include "ECSSceneView.h"
 #include "FrameBuffer.h"
+#include "HandleInputSystem.h"
 #include "IconRenderSystem.h"
 #include "RenderSystem.h"
 #include "SceneViewRenderer.h"
@@ -45,6 +46,7 @@ class UIContext
 	ClickSystem* clicksystem;
 	IconRenderSystem* iconrenderer;
 	SceneViewRenderer* sceneviewrenderer;
+	HandleInputSystem* handleinputsystem;
 	ECSAssetBrowser* testobject = nullptr;
 	ECSSceneView* sceneview = nullptr;
 

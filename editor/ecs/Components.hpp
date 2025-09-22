@@ -77,6 +77,9 @@ struct NonRenderableBoundingBox {
     glm::vec4 boundingBox;
 };
 
+struct HandleInput {
+};
+
 #define COMPONENTS_H
 
 #endif //COMPONENTS_H

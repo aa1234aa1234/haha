@@ -13,7 +13,7 @@
 using NodeID = uint64_t;
 
 
-class Camera;
+class CameraComponent;
 class Shader;
 class Transform;
 class NodeComponent;
@@ -68,7 +68,7 @@ public:
     void addSceneNode(SceneNode* node);
     void removeSceneNode(SceneNode* node);
     void setName(const std::string& name) { this->name = name; }
-    void render(Shader* shader, Camera* camera);
+    void render(Shader* shader, CameraComponent* camera);
     void addComponent(NodeComponent* component);
     void removeComponent(NodeComponent* component);
     void update(float deltatime);

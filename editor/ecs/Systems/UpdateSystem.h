@@ -20,14 +20,14 @@ public:
         SystemCoordinator::getInstance()->SetSystemSignature<UpdateSystem>(signature);
     }
 
-    void Update()
+    void Update(float deltatime)
     {
         if (!entities.size()) return;
         std::vector<std::set<EntityID>::iterator> placeholder;
         auto it = entities.begin();
         for (; it != entities.end(); ++it)
         {
-            SystemCoordinator::getInstance()->GetEntity(*it)->update();
+            SystemCoordinator::getInstance()->GetEntity(*it)->update(deltatime);
             //SystemCoordinator::getInstance()->RemoveComponent<DirtyComponent>(*it);
             placeholder.push_back(it);
             std::cout << "updatesystem" << std::endl;

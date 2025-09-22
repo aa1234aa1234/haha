@@ -5,8 +5,8 @@
 #ifndef NODECOMPONENT_H
 #define NODECOMPONENT_H
 
+class CameraComponent;
 class Shader;
-class Camera;
 class SceneNode;
 
 class NodeComponent {
@@ -17,7 +17,7 @@ public:
 
     void setParent(SceneNode* node) { this->parent = node; }
     //for render components
-    virtual void render(Shader* shader, Camera* camera) {}
+    virtual void render(Shader* shader, CameraComponent* camera) {}
     //for scripts
     virtual void update(float deltatime) {}
     virtual void handleInput() {}

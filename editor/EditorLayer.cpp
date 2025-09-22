@@ -42,6 +42,7 @@ void EditorLayer::RegisterComponents()
     SystemCoordinator::getInstance()->RegisterComponent<ParentComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<TextureComponent>();
     SystemCoordinator::getInstance()->RegisterComponent<NonRenderableBoundingBox>();
+    SystemCoordinator::getInstance()->RegisterComponent<HandleInput>();
 }
 
 void EditorLayer::init()

@@ -21,7 +21,7 @@ public:
     virtual ~Entity() = default;
 
     //virtual void render(Engine& engine);
-    virtual void update();
+    virtual void update(float deltatime);
     int getId() { return id; }
 };
 

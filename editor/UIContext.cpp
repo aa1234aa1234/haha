@@ -71,6 +71,7 @@ void UIContext::init(int width, int height, Engine* engine)
 	clicksystem = SystemCoordinator::getInstance()->RegisterSystem<ClickSystem>();
 	iconrenderer = SystemCoordinator::getInstance()->RegisterSystem<IconRenderSystem>();
 	sceneviewrenderer = SystemCoordinator::getInstance()->RegisterSystem<SceneViewRenderer>();
+	handleinputsystem = SystemCoordinator::getInstance()->RegisterSystem<HandleInputSystem>();
 	int w = Engine::getScreenWidth(), h = Engine::getScreenHeight();
 	rendersystem->Initialize(w,h);
 	scrollrendersystem->Initialize(w,h);
@@ -80,8 +81,9 @@ void UIContext::init(int width, int height, Engine* engine)
 	clicksystem->Initialize();
 	iconrenderer->Initialize(w,h);
 	sceneviewrenderer->Initialize(w,h);
+	handleinputsystem->Initialize();
 	testobject = new ECSAssetBrowser(glm::vec2(0,0), glm::vec2(300,Engine::getScreenHeight()), engine->getApplication());
-	sceneview = new ECSSceneView(engine->getSceneBuffer()->getFrameTexture(), glm::vec2(300,0), glm::vec2(Engine::getScreenWidth()-300, Engine::getScreenHeight()), glm::vec4(255,0,0,1.0));
+	sceneview = new ECSSceneView(engine->getSceneBuffer()->getFrameTexture(), glm::vec2(300,0), glm::vec2(Engine::getScreenWidth()-300, Engine::getScreenHeight()), glm::vec4(255,0,0,1.0), engine->getSceneCamera());
 	setSize(width,height);
 }
 
@@ -174,9 +176,10 @@ void UIContext::DrawComponents(Engine& engine) {
 		std::cout << err << " uicontext" << std::endl;
 	}
 
+	handleinputsystem->Update(this->engine->getDeltaTime());
 	scrollsystem->Update();
 	clicksystem->Update();
-	updatesystem->Update();
+	updatesystem->Update(this->engine->getDeltaTime());
 	rendersystem->Update();
 	scrollrendersystem->Update();
 

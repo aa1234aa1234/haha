@@ -2,6 +2,7 @@
 // Created by user on 6/15/2025.
 //
 
+#pragma once
 #ifndef ENGINE_H
 #define ENGINE_H
 #include "Window.h"
@@ -11,7 +12,6 @@
 #include "FrameBuffer.h"
 #include "EventDispatcher.h"
 #include "FrameLimiter.h"
-#include "Components/CameraComponent.h"
 #define FRAME_LIMIT 144
 
 class CameraComponent;
@@ -23,6 +23,7 @@ class Engine {
 
     static int screenWidth, screenHeight;
     static bool isRunning, editorMode;
+    float deltatime=0.0;
     Window window;
     Application* application=nullptr;
     UILayer* uiLayer=nullptr;
@@ -43,6 +44,8 @@ public:
     static void setMode(const bool& mode) { editorMode = mode; }
     static void setRunning(const bool& running) { isRunning = running; }
     static bool getMode() { return editorMode; }
+    float getDeltaTime() { return deltatime; }
+    CameraComponent* getSceneCamera() { return sceneCamera; }
     FrameBuffer* getSceneBuffer() { return sceneBuffer; }
     EventDispatcher* getEventDispatcher() { return eventDispatcher; }
     Application* getApplication() { return application; }
