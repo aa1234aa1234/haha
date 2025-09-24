@@ -39,6 +39,12 @@ void CameraComponent::update(float deltaTime) {
     if (Input::getInstance()->isKeyDown(340)) position += cameraspeed * glm::vec3(0.0f, -1.0f, 0.0f);
 }
 
+void CameraComponent::rescale(const int& width, const int& height) {
+    screenWidth = width;
+    screenHeight = height;
+    getProjectionMatrix();
+}
+
 void CameraComponent::updateCameraVectors() {
     glm::vec3 front2;
     front2.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
@@ -55,4 +61,9 @@ void CameraComponent::setRotation(const glm::vec2& rot) {
 
 glm::mat4 CameraComponent::getViewMatrix() {
     return glm::lookAt(position, position + front, up);
+}
+
+glm::mat4 CameraComponent::getProjectionMatrix() {
+    projection = glm::perspective(glm::radians(zoom),static_cast<float>(screenWidth)/static_cast<float>(screenHeight), zNear, zFar);
+    return projection;
 }

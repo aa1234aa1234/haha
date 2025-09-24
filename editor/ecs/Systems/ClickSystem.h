@@ -25,6 +25,7 @@ public:
     void Update()
     {
         if (Input::getInstance()->getEventType() != Input::EventType::MOUSE_DOWN) return;
+
         for (auto& p : entities)
         {
             glm::vec2 mousepos = Input::getInstance()->getMousePos();

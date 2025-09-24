@@ -17,9 +17,13 @@ const float SPEED = 10.0f;
 class Engine;
 
 class CameraComponent : public NodeComponent{
+    int screenWidth, screenHeight;
     float yaw = -90.0f, pitch = 0.0f;
     float fov = 95.0f;
     float cameraspeed = 0.0f;
+    float zoom = 0.0f;
+    float zNear = 0.1f;
+    float zFar = 100.0f;
     glm::vec3 position;
     glm::vec3 front;
     glm::vec3 up;
@@ -31,9 +35,11 @@ public:
     ~CameraComponent() {}
 
     void update(float deltaTime) override;
+    void rescale(const int& width, const int& height);
     void updateCameraVectors();
     void setRotation(const glm::vec2& rot);
     glm::mat4 getViewMatrix();
+    glm::mat4 getProjectionMatrix();
 };
 
 

@@ -109,6 +109,7 @@ void Engine::handleInput(float deltatime, InputEvent& event)
         {
             Input::getInstance()->setEventType(Input::EventType::MOUSE_DOWN);
             Input::getInstance()->setMousePos(event.getMousePos());
+            Input::getInstance()->setKeyDown(LEFT_MOUSE_BUTTON, true);
             MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEDOWN);
             eventDispatcher->dispatchEvent(mouseEvent);
         }
@@ -119,6 +120,7 @@ void Engine::handleInput(float deltatime, InputEvent& event)
             eventDispatcher->dispatchEvent(mouseEvent);
             Input::getInstance()->setEventType(Input::EventType::MOUSE_UP);
             Input::getInstance()->setMousePos(event.getMousePos());
+            Input::getInstance()->setKeyDown(LEFT_MOUSE_BUTTON, false);
         }
         break;
     case Input::EventType::MOUSE_MOVE:

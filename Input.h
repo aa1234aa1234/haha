@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <glm/glm.hpp>
 #include <vector>
+#define LEFT_MOUSE_BUTTON 253
 
 
 class Input {

@@ -46,6 +46,7 @@ void Input::setKeyDown(const char& key, bool down)
 
 bool Input::isKeyDown(const char& key)
 {
-    return keydown.find(key) != keydown.end();
+    if (keydown.find(key) != keydown.end()) return keydown[key];
+    return false;
 }
 
