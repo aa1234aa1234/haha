@@ -1,6 +1,6 @@
-#include "Mesh.h"
+#include "TestMesh.h"
 
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures) : vertices(std::move(vertices)), indices(std::move(indices)), textures(std::move(textures)) {
+TestMesh::TestMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<TestTexture> textures) : vertices(std::move(vertices)), indices(std::move(indices)), textures(std::move(textures)) {
     /*for (auto& v : this->vertices) {
         std::cout << v.Position.x << ' ' << v.Position.y << ' ' << v.Position.z << ' ' << v.Position.x << ' ' << v.Normal.y << ' ' << v.Normal.z << ' ' << v.TexCoords.x << ' ' << v.TexCoords.y << std::endl;
     }*/
@@ -8,14 +8,14 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
 }
 
 
-Mesh::~Mesh() {
+TestMesh::~TestMesh() {
     std::cout << "you" << std::endl;
     //glDeleteVertexArrays(1, &vao);
     //glDeleteBuffers(1, &vbo);
     //glDeleteBuffers(1, &ebo);
 }
 
-void Mesh::setupMesh() {
+void TestMesh::setupMesh() {
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
@@ -37,7 +37,7 @@ void Mesh::setupMesh() {
     glBindVertexArray(0);
 }
 
-void Mesh::Draw(Shader& shader) {
+void TestMesh::Draw(Shader& shader) {
     int diffusecnt = 0, specularcnt = 0;
     
     for (int i = 0; i < textures.size(); i++) {
@@ -73,7 +73,7 @@ void Mesh::Draw(Shader& shader) {
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Mesh::Unbind() {
+void TestMesh::Unbind() {
     glDeleteVertexArrays(1, &vao);
     glDeleteBuffers(1, &vbo);
     glDeleteBuffers(1, &ebo);

@@ -19,7 +19,7 @@ void Model::Draw(Shader& shader) {
 	}
 }
 
-void Model::setMesh(std::vector<Mesh*>& meshes) {
+void Model::setMesh(std::vector<TestMesh*>& meshes) {
 	this->meshes = meshes;
 }
 

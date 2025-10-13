@@ -16,6 +16,7 @@ public:
     void bind() const;
     void unbind() const;
     void fill(const void* data, unsigned int count);
+    unsigned int getCount() const;
 };
 
 

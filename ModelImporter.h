@@ -6,7 +6,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <map>
-#include "Mesh.h"
+#include "TestMesh.h"
 #include "Model.h"
 
 
@@ -17,7 +17,7 @@ struct Material {
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 	float shininess;
-	Texture texture;
+	TestTexture texture;
 	Material() : ambiant(glm::vec3(0.0f, 0.0f, 0.0f)), diffuse(glm::vec3(0.0f, 0.0f, 0.0f)), specular(glm::vec3(0.0f, 0.0f, 0.0f)), name("") {
 
 	}
@@ -39,7 +39,7 @@ public:
 		std::vector<glm::vec2> texcoord;
 		std::vector<glm::vec3> normal;
 		std::vector<unsigned int> indices;
-		std::vector<Mesh*> meshes;
+		std::vector<TestMesh*> meshes;
 		std::unordered_map<std::string, Material> mats;
 		std::string str = std::string(filepath);
 		std::string str1;
@@ -59,7 +59,7 @@ public:
 				loadMaterials(file.c_str(), directory, mats);
 			}
 			if (a == "g" || a == "o") {
-				Mesh* mesh = loadMesh(stream, position, texcoord, normal, mats);
+				TestMesh* mesh = loadMesh(stream, position, texcoord, normal, mats);
 				meshes.reserve(meshes.size() + 1);
 				meshes.emplace_back(mesh);
 			}
@@ -83,12 +83,12 @@ public:
 		return Model(meshes);
 	}
 
-	Mesh* loadMesh(std::ifstream& stream, std::vector<glm::vec3>& position, std::vector<glm::vec2>& texcoord, std::vector<glm::vec3>& normal, std::unordered_map<std::string,Material>& mats) {
+	TestMesh* loadMesh(std::ifstream& stream, std::vector<glm::vec3>& position, std::vector<glm::vec2>& texcoord, std::vector<glm::vec3>& normal, std::unordered_map<std::string,Material>& mats) {
 		std::streampos aaaaaaaaaaaaaaaaaaaa = stream.tellg();
 		std::string line;
 		std::vector<Vertex> vertices;
 		std::vector<unsigned int> indices;
-		std::vector<Texture> textures;
+		std::vector<TestTexture> textures;
 		while (std::getline(stream, line)) {
 			std::istringstream iss(line);
 			std::string a;
@@ -138,7 +138,7 @@ public:
 			else stream.seekg(pos);
 		}
 		stream.seekg(aaaaaaaaaaaaaaaaaaaa);
-		return new Mesh(vertices,indices,textures);
+		return new TestMesh(vertices,indices,textures);
 	}
 	
 	void loadMaterials(const char* filename, const char* directory, std::unordered_map<std::string,Material> &mats) {

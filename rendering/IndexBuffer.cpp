@@ -29,3 +29,8 @@ void IndexBuffer::fill(const void* data, unsigned int count) {
     glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, count * sizeof(unsigned int), data);
 }
 
+unsigned int IndexBuffer::getCount() const {
+    return count;
+}
+
+

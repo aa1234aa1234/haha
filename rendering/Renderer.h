@@ -6,6 +6,10 @@
 #define PROJECT_RENDERER_H
 #include <glm/glm.hpp>
 
+class VertexArray;
+class IndexBuffer;
+class Shader;
+
 class Renderer {
     static Renderer* instance;
 public:
@@ -18,6 +22,8 @@ public:
         if (!instance) instance = new Renderer();
         return instance;
     }
+
+    void draw(VertexArray& vao, IndexBuffer& index, Shader& shader, int instances = 1);
 };
 
 

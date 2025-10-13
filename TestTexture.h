@@ -1,16 +1,16 @@
 #pragma once
 #include <iostream>
 
-class Texture
+class TestTexture
 {
 	unsigned int id;
 	std::string type;
 	std::string path;
 public:
-	Texture(unsigned int id, std::string& type, std::string& filepath);
-	Texture(const char* type);
-	Texture();
-	~Texture();
+	TestTexture(unsigned int id, std::string& type, std::string& filepath);
+	TestTexture(const char* type);
+	TestTexture();
+	~TestTexture();
 	unsigned int getId();
 	std::string getType();
 	std::string getPath();
