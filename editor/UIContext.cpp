@@ -121,9 +121,9 @@ void UIContext::setup() {
 void UIContext::setSize(int& width, int& height) {
 	int a = this->width - width, b = this->height - height;
 	this->width = width, this->height = height;
-	shader->use();
-	glUniform1f(glGetUniformLocation(shader->getId(), "width"), width);
-	glUniform1f(glGetUniformLocation(shader->getId(), "height"), height);
+	// shader->use();
+	// glUniform1f(glGetUniformLocation(shader->getId(), "width"), width);
+	// glUniform1f(glGetUniformLocation(shader->getId(), "height"), height);
 	for (auto& p : rootComponents) {
 		//p->size.x += a;
 		//p->size.y += b;
@@ -151,17 +151,17 @@ void UIContext::DrawComponents(Engine& engine) {
 	for (auto& p : rootComponents) {
 		p->UpdateElement();
 	}
-	shader->use();
-	glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
-	glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
-	glBindVertexArray(vao);
-	
-	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instanceData.size());
+	// shader->use();
+	// glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
+	// glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
+	// glBindVertexArray(vao);
+	//
+	// glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instanceData.size());
 
-	for (auto& p : rootComponents)
-	{
-		p->render(engine);
-	}
+	// for (auto& p : rootComponents)
+	// {
+	// 	p->render(engine);
+	// }
 
 	//overlayElement->render();
 	if (state == DRAG)

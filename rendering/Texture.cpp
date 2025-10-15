@@ -13,7 +13,7 @@ Texture::Texture(std::string filePath) {
 }
 
 Texture::Texture(std::vector<std::string> faces) : renderId(0), width(0), height(0), target(GL_TEXTURE_CUBE_MAP) {
-    stbi_set_flip_vertically_on_load(0);
+    stbi_set_flip_vertically_on_load(1);
     glGenTextures(1, &renderId);
     bind();
     int channels;

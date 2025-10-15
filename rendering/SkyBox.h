@@ -24,6 +24,7 @@ public:
     ~SkyBox();
 
     void render(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);
+    void setUpBuffers();
 };
 
 

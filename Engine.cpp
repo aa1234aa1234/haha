@@ -8,6 +8,7 @@
 #include "KeydownEvent.h"
 #include "MouseEvent.h"
 #include "TextHandler.h"
+#include "rendering/RenderingEngine.h"
 
 int Engine::screenHeight, Engine::screenWidth;
 bool Engine::isRunning = false;
@@ -19,6 +20,9 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     window.init(width,height,title);
     glfwSwapInterval(0);
     sceneCamera = new CameraComponent(window.getWindow());
+    editorCamera = new CameraComponent(window.getWindow());
+    sceneCamera->rescale(width,height);
+    editorCamera->rescale(width,height);
     eventDispatcher = new EventDispatcher();
     application->setCallBack(window.getWindow());
     sceneBuffer = new FrameBuffer(screenWidth,screenHeight);
@@ -26,6 +30,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     editorLayer = new EditorLayer(this);
     uiLayer->init(window);
     editorLayer->init();
+    renderingEngine = new RenderingEngine(this);
 }
 
 Engine::~Engine()
@@ -34,6 +39,8 @@ Engine::~Engine()
     delete uiLayer, delete editorLayer;
     delete sceneBuffer;
     delete sceneCamera;
+    delete editorCamera;
+    delete renderingEngine;
 }
 
 void Engine::run()
@@ -85,7 +92,7 @@ void Engine::render(float deltatime)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     sceneBuffer->bind();
-    application->render();
+    application->render(renderingEngine);
 
     if (editorMode)
     {

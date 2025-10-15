@@ -27,8 +27,8 @@ class VertexBufferLayout {
     std::vector<VertexBufferElement> elements;
 
 public:
-    VertexBufferLayout();
-    ~VertexBufferLayout();
+    VertexBufferLayout() {}
+    ~VertexBufferLayout() {}
 
     template<typename T> void push(unsigned int count) {}
 
@@ -36,12 +36,12 @@ public:
     int getStride() { return stride; }
 };
 
-template<> void VertexBufferLayout::push<float>(unsigned int count) {
+template<> inline void VertexBufferLayout::push<float>(unsigned int count) {
     elements.push_back(VertexBufferElement{GL_FLOAT, count, GL_FALSE});
     stride += count * sizeof(float);
 }
 
-template<> void VertexBufferLayout::push<int>(unsigned int count) {
+template<> inline void VertexBufferLayout::push<int>(unsigned int count) {
     elements.push_back(VertexBufferElement{GL_INT, count, GL_FALSE});
     stride += count * sizeof(int);
 }

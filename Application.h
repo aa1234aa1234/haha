@@ -11,6 +11,7 @@
 #include "Input.h"
 #include "InputEvent.h"
 
+class RenderingEngine;
 
 class Application {
 
@@ -54,7 +55,7 @@ public:
         }
     }
     SceneNode& getRoot() { return root; }
-    void render();
+    void render(RenderingEngine* renderingengine);
     void update(float deltatime);
     void handleInput(float deltatime);
 

@@ -17,6 +17,7 @@
 class CameraComponent;
 class UILayer;
 class EventDispatcher;
+class RenderingEngine;
 
 class Engine {
 
@@ -32,6 +33,8 @@ class Engine {
     EventDispatcher* eventDispatcher=nullptr;
     FrameLimiter frameLimiter = FrameLimiter(FRAME_LIMIT);
     CameraComponent* sceneCamera=nullptr;
+    CameraComponent* editorCamera=nullptr;
+    RenderingEngine* renderingEngine=nullptr;
 
 public:
     Engine();
@@ -46,6 +49,7 @@ public:
     static bool getMode() { return editorMode; }
     float getDeltaTime() { return deltatime; }
     CameraComponent* getSceneCamera() { return sceneCamera; }
+    CameraComponent* getEditorCamera() { return editorCamera; }
     FrameBuffer* getSceneBuffer() { return sceneBuffer; }
     EventDispatcher* getEventDispatcher() { return eventDispatcher; }
     Application* getApplication() { return application; }

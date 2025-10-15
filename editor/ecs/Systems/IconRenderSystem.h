@@ -73,14 +73,15 @@ public:
 
     	ImportAtlas("resources/textures/atlas.png");
     	instanceData.reserve(5000);
-    	shader->use();
-    	glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
-    	glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
+    	//shader->use();
+
     }
 
     void Update() {
 
     	shader->use();
+    	glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
+    	glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
     	int elementCount = 0;
     	instanceData.clear();
     	auto* sc = SystemCoordinator::getInstance();

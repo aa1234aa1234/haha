@@ -8,6 +8,7 @@
 #include "KeydownEvent.h"
 #include "MouseEvent.h"
 #include "ScrollEvent.h"
+#include "rendering/RenderingEngine.h"
 
 
 void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -80,11 +81,11 @@ void Application::setCallBack(GLFWwindow* window)
     glfwSetScrollCallback(window, scrollCallback);
 }
 
-void Application::render()
+void Application::render(RenderingEngine* renderingengine)
 {
-
     glClearColor(0.0, 1.0, 1.0,1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    renderingengine->render(&root);
 }
 
 void Application::handleInput(float deltatime)
