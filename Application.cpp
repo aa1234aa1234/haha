@@ -42,6 +42,10 @@ void Application::scroll_callback(GLFWwindow* window, double xoffset, double yof
     inputEvent.push(scrollEvent);
 }
 
+void Application::error_callback(void* user_data, int error, const char* description) {
+    std::cerr << error << ' ' << description << '\n';
+}
+
 Application::Application() : root("rootNode")
 {
     SceneNode* node = new SceneNode("TestNode1");
@@ -79,6 +83,14 @@ void Application::setCallBack(GLFWwindow* window)
     glfwSetMouseButtonCallback(window,mouseCallback);
     glfwSetCursorPosCallback(window,cursorCallback);
     glfwSetScrollCallback(window, scrollCallback);
+    glfwSetErrorCallback(globalErrorHandler);
+    ErrorHandler errorHandler = error_handler;
+    errorHandler.user_data = this;
+    errorHandler.handler = [](void* user_data, int error, const char* description) {
+        std::cout << error << ' ' << description << '\n';
+    };
+    glfwRequestWindowAttention(window);
+    error_handler = errorHandler;
 }
 
 void Application::render(RenderingEngine* renderingengine)

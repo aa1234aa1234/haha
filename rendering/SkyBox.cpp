@@ -15,6 +15,7 @@ SkyBox::SkyBox(std::vector<std::string> faces) {
     texture = new Texture(faces);
     shader = new Shader();
     shader->createFromSource("resources/shader/cubemap.glsl");
+
     setUpBuffers();
 }
 
@@ -86,6 +87,7 @@ void SkyBox::setUpBuffers() {
     layout.push<float>(3);
     vao->addBuffer(*vbo, layout);
     ibo = new IndexBuffer(indices, 36);
+
 }
 
 void SkyBox::render(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) {

@@ -5,6 +5,7 @@
 #include "Texture.h"
 
 #include "stb/stb_image.h"
+#include "ErrorHandler.h"
 
 Texture::Texture() : renderId(0), target(GL_NONE) {}
 
@@ -14,13 +15,13 @@ Texture::Texture(std::string filePath) {
 
 Texture::Texture(std::vector<std::string> faces) : renderId(0), width(0), height(0), target(GL_TEXTURE_CUBE_MAP) {
     stbi_set_flip_vertically_on_load(1);
-    glGenTextures(1, &renderId);
+    GLCall(glGenTextures(1, &renderId));
     bind();
     int channels;
     for (int i = 0; i < faces.size(); i++) {
         unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &channels, 0);
         if (data) {
-            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            GLCall(glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data));
         }
         else {
             std::cout << "error when loading cubemap";
@@ -41,7 +42,7 @@ void Texture::initCubeMap(int width, int height) {
     this->width = width;
     this->height = height;
     for (int i = 0; i<6; i++) {
-        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+        GLCall(glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL));
     }
     setFiltering(GL_LINEAR,GL_LINEAR);
     setWrapping(GL_CLAMP_TO_EDGE);
@@ -49,11 +50,11 @@ void Texture::initCubeMap(int width, int height) {
 }
 
 void Texture::bind() {
-    glBindTexture(target, renderId);
+    GLCall(glBindTexture(target, renderId));
 }
 
 void Texture::unbind() {
-    glBindTexture(target, 0);
+    GLCall(glBindTexture(target, 0));
 }
 
 void Texture::setWrapping(GLenum mode) {

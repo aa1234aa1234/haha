@@ -1,6 +1,7 @@
 #include "Shader.h"
 
 #include <sstream>
+#include "ErrorHandler.h"
 
 Shader::Shader(const char* filepath1, const char* filepath2) {
 	std::string content1 = "", content2 = "",line="";
@@ -76,6 +77,7 @@ void Shader::createFromSource(const std::string& source) {
 			ss[type] << line << '\n';
 		}
 	}
+	//std::cout << ss[0].str() << std::endl << ss[1].str() << std::endl;
 	createFromSource(ss[0].str(),ss[1].str());
 }
 
@@ -113,17 +115,14 @@ void Shader::createFromSource(const std::string& vertexsrc, const std::string& f
 }
 
 void Shader::use() {
-	glUseProgram(id);
+	GLCall(glUseProgram(id));
 	//std::cout << "use " << id << std::endl;
 	
 	/*GLenum err = glGetError();
 	if (err != GL_NO_ERROR) {
 		std::cerr << "OpenGL Error after glUseProgram(): " << err << " " << id << std::endl;
 	}*/
-	GLenum err;
-	while ((err = glGetError()) != GL_NO_ERROR) {
-		std::cout << err << ' ' << id << ' ' << this << std::endl;
-	}
+
 }
 
 unsigned int Shader::getId() {

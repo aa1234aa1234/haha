@@ -13,7 +13,20 @@
 
 class RenderingEngine;
 
+typedef void (*glfw_error_handler_function)(void* user_data, int error_code, const char* description);
+thread_local static struct ErrorHandler {
+    void* user_data;
+    glfw_error_handler_function handler;
+} error_handler = {NULL, NULL};
+
+static void globalErrorHandler(int error_code, const char* description) {
+    if (error_handler.handler != NULL) {
+        error_handler.handler(error_handler.user_data, error_code, description);
+    }
+}
+
 class Application {
+
 
     SceneNode root;
     std::queue<InputEvent> inputEvent;
@@ -23,6 +36,7 @@ class Application {
     void mouse_callback(GLFWwindow* window, int button, int action, int mods);
     void cursorpos_callback(GLFWwindow* window, double xpos, double ypos);
     void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+    void error_callback(void* user_data, int error, const char* description);
     static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
     {
         Application* app = static_cast<Application*>(glfwGetWindowUserPointer(window));

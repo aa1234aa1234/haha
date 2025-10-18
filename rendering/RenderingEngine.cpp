@@ -13,7 +13,7 @@ RenderingEngine::RenderingEngine(Engine* engine) : engine(engine) {
 }
 
 RenderingEngine::~RenderingEngine() {
-    delete skybox;
+    if (skybox) delete skybox;
 }
 
 void RenderingEngine::render(SceneNode* scenenode) {

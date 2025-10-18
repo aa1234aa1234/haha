@@ -13,12 +13,12 @@ class SceneNode;
 
 class RenderingEngine {
     std::vector<std::string> cubeMapFaces = {
-        "resources/textures/cubemap/front.jpg",
-        "resources/textures/cubemap/back.jpg",
+        "resources/textures/cubemap/right.jpg",
+        "resources/textures/cubemap/left.jpg",
         "resources/textures/cubemap/top.jpg",
         "resources/textures/cubemap/bottom.jpg",
-        "resources/textures/cubemap/left.jpg",
-        "resources/textures/cubemap/right.jpg"
+        "resources/textures/cubemap/back.jpg",
+        "resources/textures/cubemap/front.jpg"
     };
     Engine* engine=nullptr;
     SkyBox* skybox=nullptr;

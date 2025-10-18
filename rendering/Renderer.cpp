@@ -8,6 +8,8 @@
 #include "Shader.h"
 #include <GLFW/glfw3.h>
 
+#include "ErrorHandler.h"
+
 Renderer* Renderer::instance = 0;
 
 void Renderer::clearScreen() {
@@ -24,7 +26,7 @@ void Renderer::draw(VertexArray& vao, IndexBuffer& index, Shader& shader, int in
     vao.bind();
     index.bind();
     if (instances > 1) {
-        glDrawElementsInstanced(GL_TRIANGLES, index.getCount(), GL_UNSIGNED_INT, 0, instances);
+        GLCall(glDrawElementsInstanced(GL_TRIANGLES, index.getCount(), GL_UNSIGNED_INT, 0, instances));
     }
-    else glDrawElements(GL_TRIANGLES, index.getCount(), GL_UNSIGNED_INT, nullptr);
+    else GLCall(glDrawElements(GL_TRIANGLES, index.getCount(), GL_UNSIGNED_INT, 0));
 }
