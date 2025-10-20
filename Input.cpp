@@ -12,7 +12,7 @@ Input::Input() : mousepos(0.0,0.0), mousedelta(0.0,0.0) {}
 
 Input::~Input() {}
 
-std::unordered_map<char,bool> Input::getKeyDown()
+std::unordered_map<unsigned int,bool> Input::getKeyDown()
 {
     return keydown;
 }
@@ -39,12 +39,12 @@ void Input::setMouseDelta(const float& x, const float& y)
     mousedelta.y = y;
 }
 
-void Input::setKeyDown(const char& key, bool down)
+void Input::setKeyDown(const unsigned int& key, bool down)
 {
     keydown[key] = down;
 }
 
-bool Input::isKeyDown(const char& key)
+bool Input::isKeyDown(const unsigned int& key)
 {
     if (keydown.find(key) != keydown.end()) return keydown[key];
     return false;

@@ -13,8 +13,8 @@ Texture::Texture(std::string filePath) {
 
 }
 
-Texture::Texture(std::vector<std::string> faces) : renderId(0), width(0), height(0), target(GL_TEXTURE_CUBE_MAP) {
-    stbi_set_flip_vertically_on_load(1);
+Texture::Texture(const std::vector<std::string> &faces) : renderId(0), width(0), height(0), target(GL_TEXTURE_CUBE_MAP) {
+    stbi_set_flip_vertically_on_load(0);
     GLCall(glGenTextures(1, &renderId));
     bind();
     int channels;
@@ -31,7 +31,7 @@ Texture::Texture(std::vector<std::string> faces) : renderId(0), width(0), height
     setFiltering(GL_LINEAR,GL_LINEAR);
     setWrapping(GL_CLAMP_TO_EDGE);
     unbind();
-    stbi_set_flip_vertically_on_load(0);
+    stbi_set_flip_vertically_on_load(1);
 }
 
 Texture::~Texture() {}
@@ -58,12 +58,12 @@ void Texture::unbind() {
 }
 
 void Texture::setWrapping(GLenum mode) {
-    glTexParameteri(target, GL_TEXTURE_WRAP_S, mode);
-    glTexParameteri(target, GL_TEXTURE_WRAP_T, mode);
-    if (target == GL_TEXTURE_CUBE_MAP) glTextureParameteri(target, GL_TEXTURE_WRAP_R, mode);
+    GLCall(glTexParameteri(target, GL_TEXTURE_WRAP_S, mode));
+    GLCall(glTexParameteri(target, GL_TEXTURE_WRAP_T, mode));
+    if (target == GL_TEXTURE_CUBE_MAP) GLCall(glTexParameteri(target, GL_TEXTURE_WRAP_R, mode));
 }
 
 void Texture::setFiltering(GLenum minfilter, GLenum magfilter) {
-    glTexParameteri(target, GL_TEXTURE_MIN_FILTER, minfilter);
-    glTexParameteri(target, GL_TEXTURE_MAG_FILTER, magfilter);
+    GLCall(glTexParameteri(target, GL_TEXTURE_MIN_FILTER, minfilter));
+    GLCall(glTexParameteri(target, GL_TEXTURE_MAG_FILTER, magfilter));
 }

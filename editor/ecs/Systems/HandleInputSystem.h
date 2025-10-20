@@ -8,6 +8,7 @@
 #include "SystemCoordinator.h"
 
 class HandleInputSystem : public System {
+    EntityID selectedEntity=-1;
 public:
     HandleInputSystem() {}
     ~HandleInputSystem() {}
@@ -21,8 +22,25 @@ public:
 
     void Update(float deltatime) {
         if (Input::getInstance()->getEventType() == -1) return;
+        if (Input::getInstance()->getEventType() == Input::EventType::MOUSE_DOWN) {
+            for (auto& p : entities) {
+                auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(p);
+                auto mousepos = Input::getInstance()->getMousePos();
+                if (mousepos.x >= transform.position.x &&
+                        mousepos.x <= transform.position.x+transform.size.x &&
+                        mousepos.y >= transform.position.y &&
+                        mousepos.y <= transform.position.y+transform.size.y) {
+                    selectedEntity = p;
+                    SystemCoordinator::getInstance()->GetEntity(p)->update(deltatime);
+                    return;
+                        }
+            }
+        }
         for (auto& p : entities) {
-            SystemCoordinator::getInstance()->GetEntity(p)->update(deltatime);
+            if (selectedEntity == p) {
+                SystemCoordinator::getInstance()->GetEntity(p)->update(deltatime);
+                break;
+            }
         }
     }
 };

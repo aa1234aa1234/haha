@@ -6,6 +6,7 @@
 
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
+#include "ErrorHandler.h"
 
 VertexArray::VertexArray() {
     glCreateVertexArrays(1, &renderId);
@@ -29,8 +30,8 @@ void VertexArray::addBuffer(VertexBuffer& vertexbuffer, VertexBufferLayout& layo
     auto& element = layout.getElements();
     int offset = 0;
     for (int i = 0; i < element.size(); i++) {
-        glEnableVertexAttribArray(i);
-        glVertexAttribPointer(i, element[i].count, element[i].type, element[i].normalized, layout.getStride(), reinterpret_cast<const void*>(offset));
+        GLCall(glEnableVertexAttribArray(i));
+        GLCall(glVertexAttribPointer(i, element[i].count, element[i].type, element[i].normalized, layout.getStride(), reinterpret_cast<const void*>(offset)));
         offset += sizeof(VertexBufferElement::getTypeSize(element[i].type)) * element[i].count;
     }
 }

@@ -20,7 +20,7 @@ class SkyBox {
     Shader* shader;
 
 public:
-    SkyBox(std::vector<std::string> faces);
+    SkyBox(const std::vector<std::string> &faces);
     ~SkyBox();
 
     void render(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);

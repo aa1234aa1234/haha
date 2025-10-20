@@ -16,7 +16,7 @@ public:
     Texture();
     Texture(std::string filePath);
     //for cube maps
-    Texture(std::vector<std::string> faces);
+    Texture(const std::vector<std::string> &faces);
     ~Texture();
 
     void bind();

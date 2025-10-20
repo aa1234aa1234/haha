@@ -27,14 +27,14 @@ void CameraComponent::update(float deltaTime) {
         setRotation(glm::vec2(pitch,yaw));
     }
     cameraspeed = 2.0f * deltaTime;
-    if (Input::getInstance()->isKeyDown('w')) {
+    if (Input::getInstance()->isKeyDown('W')) {
         position += cameraspeed * front;
     }
-    if (Input::getInstance()->isKeyDown('s')) {
+    if (Input::getInstance()->isKeyDown('S')) {
         position -= cameraspeed * front;
     }
-    if (Input::getInstance()->isKeyDown('a')) position -= glm::normalize(glm::cross(front, up)) * cameraspeed;
-    if (Input::getInstance()->isKeyDown('d')) position += glm::normalize(glm::cross(front, up)) * cameraspeed;
+    if (Input::getInstance()->isKeyDown('A')) position -= glm::normalize(glm::cross(front, up)) * cameraspeed;
+    if (Input::getInstance()->isKeyDown('D')) position += glm::normalize(glm::cross(front, up)) * cameraspeed;
     if (Input::getInstance()->isKeyDown(' ')) position += cameraspeed * glm::vec3(0.0f, 1.0f, 0.0f);
     if (Input::getInstance()->isKeyDown(340)) position += cameraspeed * glm::vec3(0.0f, -1.0f, 0.0f);
 }
@@ -64,6 +64,6 @@ glm::mat4 CameraComponent::getViewMatrix() {
 }
 
 glm::mat4 CameraComponent::getProjectionMatrix() {
-    projection = glm::perspective(glm::radians(zoom),static_cast<float>(screenWidth)/static_cast<float>(screenHeight), zNear, zFar);
+    projection = glm::perspective(glm::radians(fov),static_cast<float>(screenWidth)/static_cast<float>(screenHeight), zNear, zFar);
     return projection;
 }

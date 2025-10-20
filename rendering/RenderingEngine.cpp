@@ -3,6 +3,7 @@
 //
 
 #include "RenderingEngine.h"
+#include "ErrorHandler.h"
 #include "Engine.h"
 #include "SkyBox.h"
 
@@ -17,5 +18,7 @@ RenderingEngine::~RenderingEngine() {
 }
 
 void RenderingEngine::render(SceneNode* scenenode) {
+    glDepthFunc(GL_LEQUAL);
     skybox->render(sceneCamera->getProjectionMatrix(), sceneCamera->getViewMatrix());
+    glDepthFunc(GL_LESS);
 }

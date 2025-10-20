@@ -23,7 +23,7 @@ struct VertexBufferElement {
 
 class VertexBufferLayout {
 
-    int stride;
+    int stride=0;
     std::vector<VertexBufferElement> elements;
 
 public:

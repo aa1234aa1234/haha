@@ -11,7 +11,7 @@
 #include "VertexBufferLayout.h"
 #include "Texture.h"
 
-SkyBox::SkyBox(std::vector<std::string> faces) {
+SkyBox::SkyBox(const std::vector<std::string> &faces) {
     texture = new Texture(faces);
     shader = new Shader();
     shader->createFromSource("resources/shader/cubemap.glsl");
@@ -80,6 +80,7 @@ void SkyBox::setUpBuffers() {
         20, 21, 22,
         22, 23, 20
     };
+
 
     vao = new VertexArray();
     vbo = new VertexBuffer(skyboxVertices, 24 * 3 * sizeof(float), GL_STATIC_DRAW);

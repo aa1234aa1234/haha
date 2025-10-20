@@ -26,6 +26,7 @@ class CameraComponent : public NodeComponent{
     float zFar = 100.0f;
     glm::vec3 position;
     glm::vec3 front;
+    glm::vec3 worldUp;
     glm::vec3 up;
     glm::vec3 direction;
     glm::mat4 projection = glm::mat4(1.0f);
