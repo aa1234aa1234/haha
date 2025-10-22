@@ -19,7 +19,7 @@ public:
     Texture(const std::vector<std::string> &faces);
     ~Texture();
 
-    void bind();
+    void bind(const int& slot = 0);
     void unbind();
 
     void initCubeMap(int width, int height);

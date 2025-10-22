@@ -66,9 +66,18 @@ void Engine::run()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         //normal engine code holy shit im making comments omg
-        InputEvent event;
+        InputEvents event;
         application->pollInputEvent(event);
-        handleInput(deltatime,event);
+
+        //------------           please refactor this holy shit           ---------------------
+        handleInput(deltatime,event.keyDown);
+        handleInput(deltatime,event.keyUp);
+        handleInput(deltatime,event.scroll);
+        handleInput(deltatime,event.mouseDown);
+        handleInput(deltatime,event.mouseUp);
+        handleInput(deltatime,event.mouseDrag);
+        handleInput(deltatime,event.mouseMove);
+        std::cout << Input::getInstance()->getEventType() << std::endl;
         application->handleInput(deltatime);
         if (editorMode)
         {
@@ -173,5 +182,5 @@ void Engine::handleInput(float deltatime, InputEvent& event)
         }
         break;
     }
-    if (application->getInputEvents().size()) application->getInputEvents().pop();
+    if (application->getInputEvents().size()) application->popEvent();
 }

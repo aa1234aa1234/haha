@@ -8,7 +8,6 @@
 #include "SceneNode.h"
 
 #include "EventDispatcher.h"
-#include "Input.h"
 #include "InputEvent.h"
 
 class RenderingEngine;
@@ -25,11 +24,16 @@ static void globalErrorHandler(int error_code, const char* description) {
     }
 }
 
+struct InputEvents {
+    InputEvent mouseDown, mouseUp, mouseMove, mouseDrag, keyDown, keyUp, scroll;
+};
+
 class Application {
 
 
     SceneNode root;
-    std::queue<InputEvent> inputEvent;
+    std::map<int,int> inputCnt;
+    std::map<int, std::queue<InputEvent>> inputEvent;
     glm::vec2 lastMousePos;
     bool firstMouse = true;
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -60,18 +64,17 @@ public:
     Application();
     ~Application();
 
-    std::queue<InputEvent>& getInputEvents() { return inputEvent; }
-    void pollInputEvent(InputEvent& event)
+    std::map<int,std::queue<InputEvent>>& getInputEvents() { return inputEvent; }
+    void pollInputEvent(InputEvents& event)
     {
-        if (inputEvent.size())
-        {
-            event = inputEvent.front();
-        }
+
+        event = {inputEvent[0].back(),inputEvent[1].back(),inputEvent[2].back(),inputEvent[3].back(),inputEvent[4].back(),inputEvent[5].back(),inputEvent[6].back()};
     }
     SceneNode& getRoot() { return root; }
     void render(RenderingEngine* renderingengine);
     void update(float deltatime);
     void handleInput(float deltatime);
+    void popEvent();
 
     void setCallBack(GLFWwindow* window);
 };

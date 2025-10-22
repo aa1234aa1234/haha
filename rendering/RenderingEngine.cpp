@@ -18,7 +18,7 @@ RenderingEngine::~RenderingEngine() {
 }
 
 void RenderingEngine::render(SceneNode* scenenode) {
-    glDepthFunc(GL_LEQUAL);
+    glDepthMask(GL_FALSE);
     skybox->render(sceneCamera->getProjectionMatrix(), sceneCamera->getViewMatrix());
-    glDepthFunc(GL_LESS);
+    glDepthMask(GL_TRUE);
 }

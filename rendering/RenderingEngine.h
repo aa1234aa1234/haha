@@ -17,8 +17,8 @@ class RenderingEngine {
         "resources/textures/cubemap/left.jpg",
         "resources/textures/cubemap/top.jpg",
         "resources/textures/cubemap/bottom.jpg",
-        "resources/textures/cubemap/back.jpg",
-        "resources/textures/cubemap/front.jpg"
+        "resources/textures/cubemap/front.jpg",
+        "resources/textures/cubemap/back.jpg"
     };
     Engine* engine=nullptr;
     SkyBox* skybox=nullptr;

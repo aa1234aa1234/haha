@@ -49,7 +49,8 @@ void Texture::initCubeMap(int width, int height) {
     unbind();
 }
 
-void Texture::bind() {
+void Texture::bind(const int& slot) {
+    GLCall(glActiveTexture(GL_TEXTURE0 + slot));
     GLCall(glBindTexture(target, renderId));
 }
 

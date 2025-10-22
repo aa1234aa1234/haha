@@ -9,12 +9,13 @@
 #include "MouseEvent.h"
 #include "ScrollEvent.h"
 #include "rendering/RenderingEngine.h"
+#include "Input.h"
 
 
 void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     InputEvent keyEvent = InputEvent(key, action == GLFW_RELEASE ? KeydownEvent::KeyDown::KEY_UP : KeydownEvent::KeyDown::KEY_DOWN);
-    inputEvent.push(keyEvent);
+    inputEvent[keyEvent.getEventType()].push(keyEvent);
 }
 
 void Application::mouse_callback(GLFWwindow* window, int button, int action, int mods)
@@ -23,7 +24,7 @@ void Application::mouse_callback(GLFWwindow* window, int button, int action, int
     glfwGetCursorPos(window, &xpos, &ypos);
     if (firstMouse) { lastMousePos = glm::vec2(xpos, ypos); firstMouse = false; }
     InputEvent mouseEvent =InputEvent(glm::vec2(xpos,ypos), action == GLFW_RELEASE ? MouseEvent::MouseEventType::MOUSEUP : MouseEvent::MouseEventType::MOUSEDOWN);
-    inputEvent.push(mouseEvent);
+    inputEvent[mouseEvent.getEventType()].push(mouseEvent);
     if (action == GLFW_RELEASE) firstMouse = true;
 }
 
@@ -31,15 +32,16 @@ void Application::cursorpos_callback(GLFWwindow* window, double xpos, double ypo
 {
     int action=0;
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1) != 1) action = 1;
-    InputEvent mouseEvent = InputEvent(glm::vec2(xpos,ypos), lastMousePos, action ? MouseEvent::MouseEventType::MOUSEMOVE : MouseEvent::MouseEventType::MOUSEDRAG);
-    inputEvent.push(mouseEvent);
+    InputEvent mouseEvent = InputEvent(glm::vec2(xpos,ypos), lastMousePos-glm::vec2(xpos,ypos), action ? MouseEvent::MouseEventType::MOUSEMOVE : MouseEvent::MouseEventType::MOUSEDRAG);
+    inputCnt[mouseEvent.getEventType()]++;
+    inputEvent[mouseEvent.getEventType()].push(mouseEvent);
     lastMousePos = glm::vec2(xpos,ypos);
 }
 
 void Application::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     InputEvent scrollEvent = InputEvent(xoffset,yoffset, ScrollEvent::ScrollEventType::SCROLL);
-    inputEvent.push(scrollEvent);
+    inputEvent[scrollEvent.getEventType()].push(scrollEvent);
 }
 
 void Application::error_callback(void* user_data, int error, const char* description) {
@@ -109,5 +111,12 @@ void Application::update(float deltatime)
 {
     root.update(deltatime);
 }
+
+void Application::popEvent() {
+    for (int i = 0; i<inputEvent.size(); i++) {
+        if (inputEvent[i].size()) inputEvent[i].pop();
+    }
+}
+
 
 
