@@ -57,7 +57,7 @@ public:
 
     void run();
     void render(float deltatime);
-    void handleInput(float deltatime, InputEvent& event);
+    void handleInput(float deltatime, InputEvent event);
 };
 
 #endif //ENGINE_H

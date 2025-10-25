@@ -9,6 +9,7 @@ class InputEvent
     double xoffset,yoffset;
     glm::vec2 mousePos, mouseDelta;
     int eventType=-1;
+    bool active=false;
 public:
     InputEvent() {}
     InputEvent(int key, int eventType) : key(key), eventType(eventType) {}
@@ -22,6 +23,8 @@ public:
     glm::vec2 getMouseDelta() { return mouseDelta; }
     glm::vec2 getScrollDelta() { return glm::vec2(xoffset,yoffset); }
     int getKey() { return key; }
+    bool isActive() { return active; }
+    void setActive(bool active) { this->active = active; }
 };
 #define INPUTEVENT_H
 

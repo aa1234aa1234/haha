@@ -15,6 +15,7 @@
 void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     InputEvent keyEvent = InputEvent(key, action == GLFW_RELEASE ? KeydownEvent::KeyDown::KEY_UP : KeydownEvent::KeyDown::KEY_DOWN);
+    keyEvent.setActive(true);
     inputEvent[keyEvent.getEventType()].push(keyEvent);
 }
 
@@ -24,6 +25,7 @@ void Application::mouse_callback(GLFWwindow* window, int button, int action, int
     glfwGetCursorPos(window, &xpos, &ypos);
     if (firstMouse) { lastMousePos = glm::vec2(xpos, ypos); firstMouse = false; }
     InputEvent mouseEvent =InputEvent(glm::vec2(xpos,ypos), action == GLFW_RELEASE ? MouseEvent::MouseEventType::MOUSEUP : MouseEvent::MouseEventType::MOUSEDOWN);
+    mouseEvent.setActive(true);
     inputEvent[mouseEvent.getEventType()].push(mouseEvent);
     if (action == GLFW_RELEASE) firstMouse = true;
 }
@@ -34,6 +36,7 @@ void Application::cursorpos_callback(GLFWwindow* window, double xpos, double ypo
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1) != 1) action = 1;
     InputEvent mouseEvent = InputEvent(glm::vec2(xpos,ypos), lastMousePos-glm::vec2(xpos,ypos), action ? MouseEvent::MouseEventType::MOUSEMOVE : MouseEvent::MouseEventType::MOUSEDRAG);
     inputCnt[mouseEvent.getEventType()]++;
+    mouseEvent.setActive(true);
     inputEvent[mouseEvent.getEventType()].push(mouseEvent);
     lastMousePos = glm::vec2(xpos,ypos);
 }
@@ -41,6 +44,7 @@ void Application::cursorpos_callback(GLFWwindow* window, double xpos, double ypo
 void Application::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     InputEvent scrollEvent = InputEvent(xoffset,yoffset, ScrollEvent::ScrollEventType::SCROLL);
+    scrollEvent.setActive(true);
     inputEvent[scrollEvent.getEventType()].push(scrollEvent);
 }
 

@@ -21,8 +21,8 @@ public:
     }
 
     void Update(float deltatime) {
-        if (Input::getInstance()->getEventType() == -1) return;
-        if (Input::getInstance()->getEventType() == Input::EventType::MOUSE_DOWN) {
+        if (Input::getInstance()->getEvent() == -1) return;
+        if (Input::getInstance()->getEventType()[Input::EventType::MOUSE_DOWN]) {
             for (auto& p : entities) {
                 auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(p);
                 auto mousepos = Input::getInstance()->getMousePos();

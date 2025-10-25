@@ -15,7 +15,7 @@ void CameraComponent::update(float deltaTime) {
         inputType = Input::EventType::MOUSE_MOVE;
     }
 
-    if (Input::getInstance()->getEventType() == inputType) {
+    if (Input::getInstance()->getEventType()[inputType]) {
         float sensitivity = 0.2f;
         glm::vec2 mouseOffset = Input::getInstance()->getMouseDelta();
         mouseOffset.x *= sensitivity;

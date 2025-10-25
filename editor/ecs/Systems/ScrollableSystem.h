@@ -20,7 +20,7 @@ public:
     }
 
     void Update() {
-        if (Input::getInstance()->getEventType() == Input::EventType::SCROLL) {
+        if (Input::getInstance()->getEventType()[Input::EventType::SCROLL]) {
             bool shift = Input::getInstance()->isKeyDown(340);
             std::cout << shift << std::endl;
             for (auto& p : entities) {

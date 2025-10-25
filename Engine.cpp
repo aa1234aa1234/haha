@@ -77,7 +77,6 @@ void Engine::run()
         handleInput(deltatime,event.mouseUp);
         handleInput(deltatime,event.mouseDrag);
         handleInput(deltatime,event.mouseMove);
-        std::cout << Input::getInstance()->getEventType() << std::endl;
         application->handleInput(deltatime);
         if (editorMode)
         {
@@ -85,7 +84,16 @@ void Engine::run()
         }
         application->update(deltatime);
         render(deltatime);
-        Input::getInstance()->setEventType(-1);
+
+        Input::getInstance()->setEvent(-1);
+        for (auto& p : Input::getInstance()->getEventType())
+        {
+            Input::getInstance()->setEventType(p.first,false);
+        }
+        if (Input::getInstance()->isKeyDown('A'))
+        {
+            std::cout << "123" << std::endl;
+        }
         frames = frameLimiter.end();
         //Input::getInstance()->setEventType(-1);
         //ill leave this here need to making editor layer
@@ -117,33 +125,46 @@ void Engine::render(float deltatime)
     TextHandler::getInstance()->draw();
 }
 
-void Engine::handleInput(float deltatime, InputEvent& event)
+void Engine::handleInput(float deltatime, InputEvent event)
 {
+    if (event.getEventType() != -1) Input::getInstance()->setEvent(event.getEventType());
     switch (event.getEventType())
     {
     case Input::EventType::MOUSE_DOWN:
         {
-            Input::getInstance()->setEventType(Input::EventType::MOUSE_DOWN);
+            Input::getInstance()->setEventType(Input::EventType::MOUSE_DOWN, event.isActive());
             Input::getInstance()->setMousePos(event.getMousePos());
-            Input::getInstance()->setKeyDown(LEFT_MOUSE_BUTTON, true);
-            MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEDOWN);
-            eventDispatcher->dispatchEvent(mouseEvent);
+            Input::getInstance()->setKeyDown(LEFT_MOUSE_BUTTON, event.isActive());
+            if (event.isActive())
+            {
+                MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEDOWN);
+                eventDispatcher->dispatchEvent(mouseEvent);
+            }
+
         }
         break;
     case Input::EventType::MOUSE_UP:
         {
-            MouseEvent mouseEvent = MouseEvent(event.getMousePos(), MouseEvent::MouseEventType::MOUSEUP);
-            eventDispatcher->dispatchEvent(mouseEvent);
-            Input::getInstance()->setEventType(Input::EventType::MOUSE_UP);
+            if (event.isActive())
+            {
+                MouseEvent mouseEvent = MouseEvent(event.getMousePos(), MouseEvent::MouseEventType::MOUSEUP);
+                eventDispatcher->dispatchEvent(mouseEvent);
+            }
+
+            Input::getInstance()->setEventType(Input::EventType::MOUSE_UP, event.isActive());
             Input::getInstance()->setMousePos(event.getMousePos());
-            Input::getInstance()->setKeyDown(LEFT_MOUSE_BUTTON, false);
+            Input::getInstance()->setKeyDown(LEFT_MOUSE_BUTTON, !event.isActive());
         }
         break;
     case Input::EventType::MOUSE_MOVE:
         {
-            MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEMOVE);
-            eventDispatcher->dispatchEvent(mouseEvent);
-            Input::getInstance()->setEventType(Input::EventType::MOUSE_MOVE);
+            if (event.isActive())
+            {
+                MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEMOVE);
+                eventDispatcher->dispatchEvent(mouseEvent);
+            }
+
+            Input::getInstance()->setEventType(Input::EventType::MOUSE_MOVE, event.isActive());
             Input::getInstance()->setMousePos(event.getMousePos());
             Input::getInstance()->setMouseDelta(event.getMouseDelta());
         }
@@ -151,34 +172,46 @@ void Engine::handleInput(float deltatime, InputEvent& event)
         break;
     case Input::EventType::MOUSE_DRAG:
         {
-            MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEDRAG);
-            eventDispatcher->dispatchEvent(mouseEvent);
-            Input::getInstance()->setEventType(Input::EventType::MOUSE_DRAG);
+            if (event.isActive())
+            {
+                MouseEvent mouseEvent = MouseEvent(event.getMousePos(), event.getMouseDelta(), MouseEvent::MouseEventType::MOUSEDRAG);
+                eventDispatcher->dispatchEvent(mouseEvent);
+            }
+
+            Input::getInstance()->setEventType(Input::EventType::MOUSE_DRAG, event.isActive());
             Input::getInstance()->setMousePos(event.getMousePos());
             Input::getInstance()->setMouseDelta(event.getMouseDelta());
         }
         break;
     case Input::EventType::KEY_DOWN:
         {
-            Input::getInstance()->setEventType(Input::EventType::KEY_DOWN);
-            Input::getInstance()->setKeyDown(event.getKey(), true);
-            KeydownEvent keydown = KeydownEvent(event.getKey(),Input::EventType::KEY_DOWN);
-            eventDispatcher->dispatchEvent(keydown);
+            Input::getInstance()->setEventType(Input::EventType::KEY_DOWN, event.isActive());
+            Input::getInstance()->setKeyDown(event.getKey(), event.isActive());
+            if (event.isActive())
+            {
+                KeydownEvent keydown = KeydownEvent(event.getKey(),Input::EventType::KEY_DOWN);
+                eventDispatcher->dispatchEvent(keydown);
+            }
+
         }
         break;
     case Input::EventType::KEY_UP:
         {
-            Input::getInstance()->setEventType(Input::EventType::KEY_UP);
-            Input::getInstance()->setKeyDown(event.getKey(), false);
-            KeydownEvent keydown = KeydownEvent(event.getKey(),Input::EventType::KEY_UP);
-            eventDispatcher->dispatchEvent(keydown);
+            Input::getInstance()->setEventType(Input::EventType::KEY_UP, event.isActive());
+            Input::getInstance()->setKeyDown(event.getKey(), !event.isActive());
+            if (event.isActive())
+            {
+                KeydownEvent keydown = KeydownEvent(event.getKey(),Input::EventType::KEY_UP);
+                eventDispatcher->dispatchEvent(keydown);
+            }
+
         }
         break;
     case Input::EventType::SCROLL:
         {
             Input::getInstance()->setXOffset(event.getScrollDelta().x);
             Input::getInstance()->setYOffset(event.getScrollDelta().y);
-            Input::getInstance()->setEventType(Input::EventType::SCROLL);
+            Input::getInstance()->setEventType(Input::EventType::SCROLL,event.isActive());
         }
         break;
     }

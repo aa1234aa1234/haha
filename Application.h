@@ -68,7 +68,16 @@ public:
     void pollInputEvent(InputEvents& event)
     {
 
-        event = {inputEvent[0].back(),inputEvent[1].back(),inputEvent[2].back(),inputEvent[3].back(),inputEvent[4].back(),inputEvent[5].back(),inputEvent[6].back()};
+        event =
+        {
+            inputEvent[0].size() ? inputEvent[0].back() : InputEvent(),
+            inputEvent[1].size() ? inputEvent[1].back() : InputEvent(),
+            inputEvent[2].size() ? inputEvent[2].back() : InputEvent(),
+            inputEvent[3].size() ? inputEvent[3].back() : InputEvent(),
+            inputEvent[4].size() ? inputEvent[4].back() : InputEvent(),
+            inputEvent[5].size() ? inputEvent[5].back() : InputEvent(),
+            inputEvent[6].size() ? inputEvent[6].back() : InputEvent()
+        };
     }
     SceneNode& getRoot() { return root; }
     void render(RenderingEngine* renderingengine);

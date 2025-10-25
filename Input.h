@@ -21,7 +21,8 @@ class Input {
     glm::vec2 mousedelta;
     double xoffset, yoffset;
     std::unordered_map<unsigned int,bool> keydown;
-    int eventType=-1;
+    int event=-1;
+    std::map<int, int> eventType;
 public:
     enum EventType
     {
@@ -41,7 +42,6 @@ public:
         if (!instance) instance = new Input();
         return instance;
     }
-
     std::unordered_map<unsigned int,bool> getKeyDown();
     glm::vec2 getMousePos();
     glm::vec2 getMouseDelta();
@@ -55,8 +55,10 @@ public:
     void setYOffset(const double& y) { yoffset = y; }
     double getXOffset() { return xoffset; }
     double getYOffset() { return yoffset; }
-    int getEventType() { return eventType; }
-    void setEventType(int type) { eventType = type; }
+    std::map<int,int> getEventType() { return eventType; }
+    int getEvent() { return event; }
+    void setEvent(int type) { event = type; }
+    void setEventType(int type, int active) { eventType[type] = active; }
 };
 
 
