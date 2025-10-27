@@ -7,13 +7,31 @@
 #include "header.h"
 #include <vector>
 
+class VertexArray;
+class IndexBuffer;
+class VertexBuffer;
+class Shader;
+
 template<class VertexType>
 class Mesh {
     std::vector<VertexType> vertices;
     std::vector<GLuint> indices;
-    int instances = 1;
+    int numInstances = 1;
+
+    VertexArray* vao;
+    IndexBuffer* ibo;
+    VertexBuffer* vbo;
+
+    std::vector<glm::mat4> instanceMatrices;
+    VertexBuffer* instancevbo;
+
+    void setUpMesh();
+    void setUpInstanceAttrib();
 public:
     Mesh(std::vector<VertexType>& vertices, std::vector<GLuint>& indices, int instances);
+    ~Mesh();
+
+    void draw(Shader& shader);
 };
 
 

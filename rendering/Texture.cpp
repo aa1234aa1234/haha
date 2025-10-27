@@ -9,7 +9,27 @@
 
 Texture::Texture() : renderId(0), target(GL_NONE) {}
 
-Texture::Texture(std::string filePath) {
+Texture::Texture(std::string filePath) : target(GL_TEXTURE_2D) {
+    GLCall(glGenTextures(1, &renderId));
+    stbi_set_flip_vertically_on_load(true);
+    int channels;
+    unsigned char* data = stbi_load(filePath.c_str(), &width, &height, &channels, 0);
+    if (data) {
+        bind();
+        GLenum format;
+        if (channels == 4) format = GL_RGBA;
+        else if (channels == 3) format = GL_RGB;
+        GLCall(glTexImage2D(target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data));
+        GLCall(glGenerateMipmap(target));
+        setFiltering(GL_LINEAR_MIPMAP_LINEAR,GL_LINEAR);
+        setWrapping(GL_REPEAT);
+        stbi_image_free(data);
+    }
+    else {
+        stbi_image_free(data);
+    }
+
+    unbind();
 
 }
 

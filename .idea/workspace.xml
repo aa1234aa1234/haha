@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="15" type="long" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppGeneralOptions" type="string" />
@@ -32,18 +33,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="08-30">
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="10-22">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Application.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/CameraComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Components/CameraComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Input.h" beforeDir="false" afterPath="$PROJECT_DIR$/Input.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InputEvent.h" beforeDir="false" afterPath="$PROJECT_DIR$/InputEvent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/ClickSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/ClickSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/HandleInputSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/HandleInputSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/ScrollableSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/ScrollableSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rendering/Mesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Mesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rendering/Mesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Mesh.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rendering/Texture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Texture.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +48,16 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -66,10 +68,11 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/aa1234aa1234/haha.git&quot;,
-    &quot;accountId&quot;: &quot;165dcd27-ebc0-4733-a294-3238d8e3bc83&quot;
+    &quot;accountId&quot;: &quot;39cf6f15-5c9e-4d56-aee3-e7bd05bc811d&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -122,6 +125,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2z7hqA027jZLawnanlkuBkkdOfy" />
+  <component name="ProjectStatusUIService">{
+  &quot;uiKindId&quot;: &quot;Widget&quot;
+}</component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -142,27 +148,29 @@
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sw_306/code/kjw/haha/resources/shader/editor&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CLionExternalConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sw_306\code\kjw\haha\resources\shader\editor" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\D412\Desktop\수강생403\김정우\haha\editor" />
-      <recent name="C:\Users\D412\Desktop\수강생403\김정우\haha\test" />
+      <recent name="C:\Users\sw_306\code\kjw\haha\Thirdparty\includes" />
+      <recent name="C:\Users\sw_306\code\kjw\haha\resources\textures\cubemap" />
+      <recent name="C:\Users\sw_306\code\kjw\haha\resources\textures" />
+      <recent name="C:\Users\sw_306\code\kjw\haha\editor\ecs\Components" />
+      <recent name="C:\Users\sw_306\code\kjw\haha\editor\ecs" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.project">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
     </configuration>
@@ -227,10 +235,26 @@
       <workItem from="1754111538325" duration="5636000" />
       <workItem from="1754712252969" duration="595000" />
       <workItem from="1754713261017" duration="12852000" />
-      <workItem from="1755326959146" duration="810000" />
-      <workItem from="1755928227580" duration="7528000" />
-      <workItem from="1756532342447" duration="12410000" />
-      <workItem from="1761370737713" duration="6333000" />
+      <workItem from="1755326959146" duration="784000" />
+      <workItem from="1755507015261" duration="7192000" />
+      <workItem from="1755676615624" duration="10032000" />
+      <workItem from="1756108567936" duration="10521000" />
+      <workItem from="1756281256278" duration="10513000" />
+      <workItem from="1756713312544" duration="10460000" />
+      <workItem from="1756887888826" duration="8082000" />
+      <workItem from="1757317826386" duration="8466000" />
+      <workItem from="1757328522402" duration="303000" />
+      <workItem from="1757490732399" duration="10421000" />
+      <workItem from="1757922997563" duration="9285000" />
+      <workItem from="1758095746642" duration="9010000" />
+      <workItem from="1758527619156" duration="9450000" />
+      <workItem from="1758700544613" duration="8092000" />
+      <workItem from="1759309286425" duration="6687000" />
+      <workItem from="1760341384858" duration="9528000" />
+      <workItem from="1760514742737" duration="10022000" />
+      <workItem from="1760947100825" duration="8936000" />
+      <workItem from="1761119467281" duration="9720000" />
+      <workItem from="1761551481718" duration="8140000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />
@@ -336,23 +360,159 @@
       <option name="project" value="LOCAL" />
       <updated>1754731179648</updated>
     </task>
-    <task id="LOCAL-00014" summary="08-16">
+    <task id="LOCAL-00014" summary="08-18 test">
       <option name="closed" value="true" />
-      <created>1755337226035</created>
+      <created>1755508077372</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1755337226035</updated>
+      <updated>1755508077373</updated>
     </task>
-    <task id="LOCAL-00015" summary="08-30">
+    <task id="LOCAL-00015" summary="08-18">
       <option name="closed" value="true" />
-      <created>1756544838141</created>
+      <created>1755514262534</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1756544838142</updated>
+      <updated>1755514262534</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="08-20">
+      <option name="closed" value="true" />
+      <created>1755683626273</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1755683626273</updated>
+    </task>
+    <task id="LOCAL-00017" summary="08-20">
+      <option name="closed" value="true" />
+      <created>1755687176422</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1755687176422</updated>
+    </task>
+    <task id="LOCAL-00018" summary="08-25">
+      <option name="closed" value="true" />
+      <created>1756119155462</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1756119155462</updated>
+    </task>
+    <task id="LOCAL-00019" summary="08-27">
+      <option name="closed" value="true" />
+      <created>1756291886775</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1756291886775</updated>
+    </task>
+    <task id="LOCAL-00020" summary="09-01">
+      <option name="closed" value="true" />
+      <created>1756723838647</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1756723838647</updated>
+    </task>
+    <task id="LOCAL-00021" summary="09-03">
+      <option name="closed" value="true" />
+      <created>1756896683547</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1756896683547</updated>
+    </task>
+    <task id="LOCAL-00022" summary="09-08">
+      <option name="closed" value="true" />
+      <created>1757328819322</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1757328819322</updated>
+    </task>
+    <task id="LOCAL-00023" summary="09-10">
+      <option name="closed" value="true" />
+      <created>1757501625746</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1757501625746</updated>
+    </task>
+    <task id="LOCAL-00024" summary="09-15">
+      <option name="closed" value="true" />
+      <created>1757933421989</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1757933421989</updated>
+    </task>
+    <task id="LOCAL-00025" summary="09-17">
+      <option name="closed" value="true" />
+      <created>1758106386554</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1758106386554</updated>
+    </task>
+    <task id="LOCAL-00026" summary="09-22">
+      <option name="closed" value="true" />
+      <created>1758538368392</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1758538368392</updated>
+    </task>
+    <task id="LOCAL-00027" summary="09-24">
+      <option name="closed" value="true" />
+      <created>1758711037806</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1758711037806</updated>
+    </task>
+    <task id="LOCAL-00028" summary="10-01">
+      <option name="closed" value="true" />
+      <created>1759316095074</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1759316095074</updated>
+    </task>
+    <task id="LOCAL-00029" summary="10-13">
+      <option name="closed" value="true" />
+      <created>1760352627282</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1760352627282</updated>
+    </task>
+    <task id="LOCAL-00030" summary="10-15">
+      <option name="closed" value="true" />
+      <created>1760525614311</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1760525614312</updated>
+    </task>
+    <task id="LOCAL-00031" summary="10-20">
+      <option name="closed" value="true" />
+      <created>1760957491219</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1760957491219</updated>
+    </task>
+    <task id="LOCAL-00032" summary="10-22">
+      <option name="closed" value="true" />
+      <created>1761130253785</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1761130253785</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,11 +535,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="06-21" />
-    <MESSAGE value="06-28" />
-    <MESSAGE value="06-30" />
-    <MESSAGE value="07-02" />
-    <MESSAGE value="07-07" />
     <MESSAGE value="07-09" />
     <MESSAGE value="07-14" />
     <MESSAGE value="07-16" />
@@ -387,14 +542,46 @@
     <MESSAGE value="07-26" />
     <MESSAGE value="08-02" />
     <MESSAGE value="08-09" />
-    <MESSAGE value="08-16" />
-    <MESSAGE value="08-30" />
-    <option name="LAST_COMMIT_MESSAGE" value="08-30" />
+    <MESSAGE value="08-18 test" />
+    <MESSAGE value="08-18" />
+    <MESSAGE value="08-20" />
+    <MESSAGE value="08-25" />
+    <MESSAGE value="08-27" />
+    <MESSAGE value="09-01" />
+    <MESSAGE value="09-03" />
+    <MESSAGE value="09-08" />
+    <MESSAGE value="09-10" />
+    <MESSAGE value="09-15" />
+    <MESSAGE value="09-17" />
+    <MESSAGE value="09-22" />
+    <MESSAGE value="09-24" />
+    <MESSAGE value="10-01" />
+    <MESSAGE value="10-13" />
+    <MESSAGE value="10-15" />
+    <MESSAGE value="10-20" />
+    <MESSAGE value="10-22" />
+    <option name="LAST_COMMIT_MESSAGE" value="10-22" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ErrorHandler.h</url>
+          <line>23</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Application.cpp</url>
+          <line>29</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="Input::getInstance()" language="C++" />
+        <watch expression="SystemCoordinator::getInstance()" />
+        <watch expression="data[0].textureCoords" />
+        <watch expression="Input::getInstance()" />
       </configuration>
     </watches-manager>
   </component>
