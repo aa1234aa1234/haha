@@ -10,10 +10,21 @@ class Texture;
 class Shader;
 
 class Material {
-    std::string name;
     Texture* diffuseMap;
     Texture* specularMap;
+
+    glm::vec4 diffuseColor{1.0f};
+    glm::vec4 ambientColor{1.0f};
+    glm::vec4 specularColor{1.0f};
+
+protected:
+    std::string name;
     Texture* normalMap;
+    void deleteTextures();
+
+public:
+    Material(const std::string& name) : name(name) {}
+    virtual ~Material() {}
 };
 
 

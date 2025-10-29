@@ -10,6 +10,7 @@ class Engine;
 class SkyBox;
 class CameraComponent;
 class SceneNode;
+class Shader;
 
 class RenderingEngine {
     std::vector<std::string> cubeMapFaces = {
@@ -24,6 +25,8 @@ class RenderingEngine {
     SkyBox* skybox=nullptr;
     CameraComponent* sceneCamera=nullptr;
     CameraComponent* editorCamera=nullptr;
+
+    Shader* mainShader=nullptr;
 public:
     RenderingEngine(Engine* engine);
     ~RenderingEngine();

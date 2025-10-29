@@ -57,3 +57,9 @@ template<class VertexType>
 void Mesh<VertexType>::draw(Shader& shader) {
 
 }
+
+template<class VertexType>
+void Mesh<VertexType>::setMaterialIndex(int materialIndex) {
+    this->materialIndex = materialIndex;
+}
+

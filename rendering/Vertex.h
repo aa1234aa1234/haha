@@ -65,4 +65,20 @@ struct VertexPNCUV {
     }
 };
 
+struct VertexPNTBUV {
+    glm::vec3 position;
+    glm::vec3 normal;
+    glm::vec3 tangent;
+    glm::vec3 bitangent;
+    glm::vec2 texCoord;
+    static VertexBufferLayout getLayout() {
+        VertexBufferLayout layout;
+        layout.push<float>(3);
+        layout.push<float>(3);
+        layout.push<float>(3);
+        layout.push<float>(3);
+        layout.push<float>(2);
+    }
+};
+
 #endif //PROJECT_VERTEX_H

@@ -14,6 +14,7 @@ class Shader;
 
 template<class VertexType>
 class Mesh {
+    int materialIndex = -1;
     std::vector<VertexType> vertices;
     std::vector<GLuint> indices;
     int numInstances = 1;
@@ -32,6 +33,7 @@ public:
     ~Mesh();
 
     void draw(Shader& shader);
+    void setMaterialIndex(int materialIndex);
 };
 
 
