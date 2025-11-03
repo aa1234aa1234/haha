@@ -20,8 +20,8 @@ void CameraComponent::update(float deltaTime) {
         glm::vec2 mouseOffset = Input::getInstance()->getMouseDelta();
         mouseOffset.x *= sensitivity;
         mouseOffset.y *= sensitivity;
-        yaw += mouseOffset.x;
-        pitch += mouseOffset.y;
+        yaw -= mouseOffset.x;
+        pitch -= mouseOffset.y;
         if (pitch > 89.0f) pitch = 89.0f;
         if (pitch < -89.0f) pitch = -89.0f;
         setRotation(glm::vec2(pitch,yaw));

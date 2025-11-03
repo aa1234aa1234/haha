@@ -8,11 +8,18 @@
 
 
 class Texture {
-    GLuint target;
-    std::string filePath;
-    unsigned int renderId;
-    int width, height;
+
 public:
+    enum TextureType {
+        ALBEDO,
+        ROUGHNESS,
+        NORMAL,
+        SPECULAR,
+        AO,
+        METALLIC,
+        DIFFUSE
+    };
+
     Texture();
     Texture(std::string filePath);
     //for cube maps
@@ -25,6 +32,14 @@ public:
     void initCubeMap(int width, int height);
     void setWrapping(GLenum mode);
     void setFiltering(GLenum minfilter, GLenum magfilter);
+    void setType(const int& type);
+
+private:
+    GLuint target;
+    std::string filePath;
+    unsigned int renderId;
+    int width, height;
+    int type;
 };
 
 

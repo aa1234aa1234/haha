@@ -24,7 +24,16 @@ protected:
 
 public:
     Material(const std::string& name) : name(name) {}
+    Material() = default;
     virtual ~Material() {}
+
+    void setDiffuseMap(Texture* diffuseMap);
+    void setSpecularMap(Texture* specularMap);
+    void setNormalMap(Texture* normalMap);
+
+    void setAmbientColor(glm::vec4 ambientColor);
+    void setSpecularColor(glm::vec4 specularColor);
+    void setDiffuseColor(glm::vec4 diffuseColor);
 };
 
 

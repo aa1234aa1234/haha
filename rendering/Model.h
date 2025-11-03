@@ -9,27 +9,35 @@
 #include "Vertex.h"
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
+#include "Mesh.h"
 #include <assimp/postprocess.h>
 
-class Mesh;
+#include "Texture.h"
+
 class Material;
+class Texture;
 
 class Model {
     //this can wait for now
     std::string directory;
     std::string fileName;
     std::vector<Mesh<VertexPNTBUV>> meshes;
-    std::map<int, Material*> materials;
+    std::map<std::string, Material> materials;
 
     Assimp::Importer importer;
     const aiScene* scene=nullptr;
+
+    int numInstances = 1;
 public:
-    Model() {}
-    ~Model() {}
+    Model(const char* directory, const char* fileName, int numInstances = 1) : directory(directory), fileName(fileName), numInstances(numInstances) {}
+    ~Model() {
+        if (scene) delete scene;
+    }
 
     void LoadModel(const std::string& path);
     void processNode(aiNode* node);
-    void processMesh(aiMesh* mesh);
+    Mesh<VertexPNTBUV> processMesh(aiMesh* mesh);
+    Texture* loadTexture(aiMaterial* mat, aiTextureType type, int typeName);
 };
 
 

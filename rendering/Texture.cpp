@@ -88,3 +88,7 @@ void Texture::setFiltering(GLenum minfilter, GLenum magfilter) {
     GLCall(glTexParameteri(target, GL_TEXTURE_MIN_FILTER, minfilter));
     GLCall(glTexParameteri(target, GL_TEXTURE_MAG_FILTER, magfilter));
 }
+
+void Texture::setType(const int& type) {
+    this->type = type;
+}

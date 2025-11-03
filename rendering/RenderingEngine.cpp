@@ -12,6 +12,8 @@
 #include "VertexArray.h"
 #include "VertexBufferLayout.h"
 
+
+
 RenderingEngine::RenderingEngine(Engine* engine) : engine(engine) {
     sceneCamera = engine->getSceneCamera();
     editorCamera = engine->getEditorCamera();

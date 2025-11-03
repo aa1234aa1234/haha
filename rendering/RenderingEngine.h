@@ -28,6 +28,15 @@ class RenderingEngine {
 
     Shader* mainShader=nullptr;
 public:
+    enum SamplerSlot {
+        ALBEDO = 0,
+        DIFFUSE = 0,
+        SPECULAR = 1,
+        METALLIC = 1,
+        NORMAL = 2,
+        ROUGHNESS = 3,
+        AO
+    };
     RenderingEngine(Engine* engine);
     ~RenderingEngine();
 

@@ -8,6 +8,7 @@
 #include "Material.h"
 
 class Texture;
+class Shader;
 
 class PBRMaterial : public Material {
     Texture* albedoMap;
@@ -20,8 +21,30 @@ class PBRMaterial : public Material {
     float roughness;
     float ao;
 public:
-    PBRMaterial();
+    PBRMaterial(const std::string& name);
     ~PBRMaterial();
+
+    void UpdateUniforms(Shader& shader);
+
+    Texture* getAlbedoMap() { return albedoMap; }
+    Texture* getMetallicMap() { return metallicMap; }
+    Texture* getRoughnessMap() { return roughnessMap; }
+    Texture* getAOMap() { return aoMap; }
+
+    glm::vec3 getAlbedo() { return albedo; }
+    float getMetallic() { return metallic; }
+    float getRoughness() { return roughness; }
+    float getAO() { return ao; }
+
+    void setAlbedoMap(Texture* tex) { albedoMap = tex; }
+    void setMetallicMap(Texture* tex) { metallicMap = tex; }
+    void setRoughnessMap(Texture* tex) { roughnessMap = tex; }
+    void setAOMap(Texture* tex) { aoMap = tex; }
+
+    void setAlbedo(glm::vec3 ad) { albedo = ad; }
+    void setMetallic(float m) { metallic = m; }
+    void setRoughness(float r) { roughness = r; }
+    void setAO(float a) { ao = a; }
 };
 
 

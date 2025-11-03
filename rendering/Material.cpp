@@ -4,6 +4,8 @@
 
 #include "Material.h"
 
+#include "Texture.h"
+
 void Material::deleteTextures() {
     delete specularMap;
     delete normalMap;
