@@ -38,6 +38,7 @@ public:
     void processNode(aiNode* node);
     Mesh<VertexPNTBUV> processMesh(aiMesh* mesh);
     Texture* loadTexture(aiMaterial* mat, aiTextureType type, int typeName);
+    void draw(Shader& shader);
 };
 
 

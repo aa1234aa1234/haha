@@ -6,11 +6,13 @@
 #define PROJECT_MESH_H
 #include "header.h"
 #include <vector>
+#include "Vertex.h"
 
 class VertexArray;
 class IndexBuffer;
 class VertexBuffer;
 class Shader;
+class Material;
 
 template<class VertexType>
 class Mesh {
@@ -32,9 +34,9 @@ public:
     Mesh(std::vector<VertexType>& vertices, std::vector<GLuint>& indices, int instances);
     ~Mesh();
 
-    void draw(Shader& shader);
+    void draw(Shader& shader, Material& material);
     void setMaterialName(const std::string& materialName);
+    std::string getName() const { return materialName; }
 };
-
 
 #endif //PROJECT_MESH_H

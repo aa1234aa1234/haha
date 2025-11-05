@@ -78,6 +78,7 @@ struct VertexPNTBUV {
         layout.push<float>(3);
         layout.push<float>(3);
         layout.push<float>(2);
+        return layout;
     }
 };
 

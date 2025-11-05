@@ -24,10 +24,10 @@ const void VertexArray::unbind() {
     glBindVertexArray(0);
 }
 
-void VertexArray::addBuffer(VertexBuffer& vertexbuffer, VertexBufferLayout& layout) {
+void VertexArray::addBuffer(VertexBuffer& vertexbuffer, const VertexBufferLayout& layout) {
     bind();
     vertexbuffer.bind();
-    auto& element = layout.getElements();
+    const auto& element = layout.getElements();
     int offset = 0;
     for (int i = 0; i < element.size(); i++) {
         GLCall(glEnableVertexAttribArray(i));

@@ -32,8 +32,8 @@ public:
 
     template<typename T> void push(unsigned int count) {}
 
-    const std::vector<VertexBufferElement> getElements() { return elements; }
-    int getStride() { return stride; }
+    std::vector<VertexBufferElement> getElements() const { return elements; }
+    int getStride() const { return stride; }
 };
 
 template<> inline void VertexBufferLayout::push<float>(unsigned int count) {

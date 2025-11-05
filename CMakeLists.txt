@@ -26,3 +26,8 @@ include_directories(ui)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(project glfw opengl32)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/Thirdparty/libs/libassimp.dll.a)
+add_custom_command(TARGET project POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_SOURCE_DIR}/Thirdparty/libs/libassimp-6.dll
+        $<TARGET_FILE_DIR:project>)

@@ -9,7 +9,8 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-#include "TestMesh.h"
+#include "Material.h"
+#include "Renderer.h"
 
 template<class VertexType>
 Mesh<VertexType>::Mesh(std::vector<VertexType> &vertices, std::vector<GLuint> &indices, int instances) {
@@ -24,7 +25,7 @@ template<class VertexType>
 void Mesh<VertexType>::setUpMesh() {
     vao = new VertexArray();
     vbo = new VertexBuffer(vertices.data(), vertices.size() * sizeof(VertexType));
-    vao->addBuffer(*vbo, VertexType::getVertexLayout());
+    vao->addBuffer(*vbo, VertexType::getLayout());
 
     if (numInstances > 1) {
         setUpInstanceAttrib();
@@ -54,12 +55,19 @@ Mesh<VertexType>::~Mesh() {
 }
 
 template<class VertexType>
-void Mesh<VertexType>::draw(Shader& shader) {
+void Mesh<VertexType>::draw(Shader& shader, Material& material) {
+    material.UpdateUniforms(shader);
 
+    Renderer::getInstance()->draw(*vao, *ibo, shader, numInstances);
 }
 
 template<class VertexType>
-void Mesh<VertexType>::setMaterialName(const std::string& materialIndex) {
+void Mesh<VertexType>::setMaterialName(const std::string& materialName) {
     this->materialName = materialName;
 }
+
+template Mesh<VertexPNTBUV>::Mesh(std::vector<VertexPNTBUV>& vertices, std::vector<GLuint>& indices, int instances);
+template Mesh<VertexPNTBUV>::~Mesh();
+template void Mesh<VertexPNTBUV>::setMaterialName(const std::string& materialName);
+template void Mesh<VertexPNTBUV>::draw(Shader& shader);
 

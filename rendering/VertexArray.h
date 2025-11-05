@@ -17,7 +17,7 @@ public:
 
     const void bind();
     const void unbind();
-    void addBuffer(VertexBuffer& vertexbuffer, VertexBufferLayout& layout);
+    void addBuffer(VertexBuffer& vertexbuffer, const VertexBufferLayout& layout);
 };
 
 

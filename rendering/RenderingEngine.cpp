@@ -19,12 +19,16 @@ RenderingEngine::RenderingEngine(Engine* engine) : engine(engine) {
     editorCamera = engine->getEditorCamera();
     mainShader = new Shader();
     mainShader->createFromSource("resources/shader/ambient.glsl");
+
+    baseShader = new Shader();
+    baseShader->createFromSource("resources/shader/base.glsl");
     skybox = new SkyBox(cubeMapFaces);
 }
 
 RenderingEngine::~RenderingEngine() {
     if (skybox) delete skybox;
     delete mainShader;
+    delete baseShader;
 }
 
 void RenderingEngine::render(SceneNode* scenenode) {

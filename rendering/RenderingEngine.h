@@ -27,6 +27,7 @@ class RenderingEngine {
     CameraComponent* editorCamera=nullptr;
 
     Shader* mainShader=nullptr;
+    Shader* baseShader=nullptr;
 public:
     enum SamplerSlot {
         ALBEDO = 0,

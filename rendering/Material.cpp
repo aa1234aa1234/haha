@@ -11,3 +11,8 @@ void Material::deleteTextures() {
     delete normalMap;
     delete diffuseMap;
 }
+
+void Material::UpdateUniforms(Shader &shader) {
+
+}
+

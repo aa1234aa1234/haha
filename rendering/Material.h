@@ -27,13 +27,15 @@ public:
     Material() = default;
     virtual ~Material() {}
 
-    void setDiffuseMap(Texture* diffuseMap);
-    void setSpecularMap(Texture* specularMap);
-    void setNormalMap(Texture* normalMap);
+    void setDiffuseMap(Texture* diffuseMap) { this->diffuseMap = diffuseMap; }
+    void setSpecularMap(Texture* specularMap) { this->specularMap = specularMap; }
+    void setNormalMap(Texture* normalMap) { this->normalMap = normalMap; }
 
-    void setAmbientColor(glm::vec4 ambientColor);
-    void setSpecularColor(glm::vec4 specularColor);
-    void setDiffuseColor(glm::vec4 diffuseColor);
+    void setAmbientColor(glm::vec4 ambientColor) { this->ambientColor = ambientColor; }
+    void setSpecularColor(glm::vec4 specularColor) { this->specularColor = specularColor; }
+    void setDiffuseColor(glm::vec4 diffuseColor) { this->diffuseColor = diffuseColor; }
+
+    virtual void UpdateUniforms(Shader& shader);
 };
 
 

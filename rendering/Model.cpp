@@ -24,7 +24,7 @@ void Model::LoadModel(const std::string& path) {
 
 void Model::processNode(aiNode* node) {
     for (int i = 0; i<node->mNumMeshes; i++) {
-        processMesh(scene->mMeshes[node->mMeshes[i]]);
+        meshes.push_back(processMesh(scene->mMeshes[node->mMeshes[i]]));
     }
 
     for (int i = 0; i<node->mNumChildren; i++) {
@@ -156,4 +156,10 @@ Texture* Model::loadTexture(aiMaterial *mat, aiTextureType type, int typeName) {
         }
     }
     return texture;
+}
+
+void Model::draw(Shader& shader) {
+    for (auto& p : meshes) {
+        p.draw(shader,materials[p.getName()]);
+    }
 }

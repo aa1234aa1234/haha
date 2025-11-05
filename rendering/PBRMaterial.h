@@ -24,7 +24,7 @@ public:
     PBRMaterial(const std::string& name);
     ~PBRMaterial();
 
-    void UpdateUniforms(Shader& shader);
+    void UpdateUniforms(Shader& shader) override;
 
     Texture* getAlbedoMap() { return albedoMap; }
     Texture* getMetallicMap() { return metallicMap; }
