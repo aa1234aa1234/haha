@@ -22,9 +22,17 @@ struct Material {
     float shininess; //specular factor
 };
 
+struct BaseLight {
+    vec3 position;
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+}
+
 out vec4 FragColor;
 
 uniform Material material;
+uniform BaseLight light;
 
 void main() {
     FragColor = vec4(1.0,1.0,1.0,1.0);
