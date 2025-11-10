@@ -10,8 +10,11 @@
 void CameraComponent::update(float deltaTime) {
     //might make a cameracompnentcontroller class
     int inputType = Input::EventType::MOUSE_DRAG;
-    if (!Engine::getMode()) {
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    if (!Engine::getMode()) { //add ! later
+        if (!(glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED)) {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        }
+
         inputType = Input::EventType::MOUSE_MOVE;
     }
 

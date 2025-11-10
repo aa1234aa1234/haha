@@ -17,6 +17,8 @@ class Material {
     glm::vec4 ambientColor{1.0f};
     glm::vec4 specularColor{1.0f};
 
+    float shininess=32.0f;
+
 protected:
     std::string name;
     Texture* normalMap;

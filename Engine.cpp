@@ -18,7 +18,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     screenWidth = width;
     screenHeight = height;
     window.init(width,height,title);
-    glfwSwapInterval(0);
+    glfwSwapInterval(1);
     sceneCamera = new CameraComponent(window.getWindow());
     editorCamera = new CameraComponent(window.getWindow());
     sceneCamera->rescale(width,height);
@@ -94,12 +94,12 @@ void Engine::run()
         {
             std::cout << "123" << std::endl;
         }
-        frames = frameLimiter.end();
+        //frames = frameLimiter.end();
         //Input::getInstance()->setEventType(-1);
         //ill leave this here need to making editor layer
         window.swapBuffers();
     }
-
+    glfwTerminate();
 }
 
 void Engine::render(float deltatime)

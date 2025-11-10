@@ -69,5 +69,10 @@ void Mesh<VertexType>::setMaterialName(const std::string& materialName) {
 template Mesh<VertexPNTBUV>::Mesh(std::vector<VertexPNTBUV>& vertices, std::vector<GLuint>& indices, int instances);
 template Mesh<VertexPNTBUV>::~Mesh();
 template void Mesh<VertexPNTBUV>::setMaterialName(const std::string& materialName);
-template void Mesh<VertexPNTBUV>::draw(Shader& shader);
+template void Mesh<VertexPNTBUV>::draw(Shader& shader, Material& material);
+
+template Mesh<VertexPNUV>::Mesh(std::vector<VertexPNUV>& vertices, std::vector<GLuint>& indices, int instances);
+template Mesh<VertexPNUV>::~Mesh();
+template void Mesh<VertexPNUV>::setMaterialName(const std::string& materialName);
+template void Mesh<VertexPNUV>::draw(Shader& shader, Material& material);
 

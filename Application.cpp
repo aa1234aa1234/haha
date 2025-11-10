@@ -57,24 +57,9 @@ Application::Application() : root("rootNode")
     SceneNode* node = new SceneNode("TestNode1");
     SceneNode* node1 = new SceneNode("TestNode2");
     SceneNode* node2 = new SceneNode("TestNode3");
-    SceneNode* node3 = new SceneNode("TestNode4");
     root.addSceneNode(node);
     root.addSceneNode(node1);
     root.addSceneNode(node2);
-    node2->addSceneNode(node3);
-    for (int i = 0; i<10; i++) {
-        node3->addSceneNode(new SceneNode("TestNode" + std::to_string(i+5)));
-    }
-    for (int i = 15; i<100; i++)
-    {
-        root.addSceneNode(new SceneNode("TestNode" + std::to_string(i)));
-    }
-    for (int i = 0; i<30; i++) {
-        root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode1000000000000000000000"));
-        root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
-        root.getChildren()[2]->getChildren()[0]->getChildren()[6]->addSceneNode(new SceneNode("TestNode"));
-    }
-
 }
 
 Application::~Application()

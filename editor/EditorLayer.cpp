@@ -98,7 +98,7 @@ void EditorLayer::handleInput(IEvent& event)
             break;
 
         case Input::EventType::KEY_DOWN:
-            if (Input::getInstance()->isKeyDown(256)) Engine::setRunning(false);
+            if (Input::getInstance()->isKeyDown(GLFW_KEY_LEFT_ALT) && Input::getInstance()->isKeyDown(GLFW_KEY_F4)) Engine::setRunning(false);
             break;
     }
 }

@@ -22,6 +22,10 @@ public:
 
     void Update(float deltatime) {
         //if (Input::getInstance()->getEvent() == -1) return;
+        if (Input::getInstance()->isKeyDown(256) && selectedEntity > -1) {
+            selectedEntity = -1;
+            return;
+        }
         if (Input::getInstance()->getEventType()[Input::EventType::MOUSE_DOWN]) {
             for (auto& p : entities) {
                 auto transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(p);
