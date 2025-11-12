@@ -83,7 +83,7 @@ void UIContext::init(int width, int height, Engine* engine)
 	sceneviewrenderer->Initialize(w,h);
 	handleinputsystem->Initialize();
 	testobject = new ECSAssetBrowser(glm::vec2(0,0), glm::vec2(300,Engine::getScreenHeight()), engine->getApplication());
-	sceneview = new ECSSceneView(engine->getSceneBuffer()->getFrameTexture(), glm::vec2(300,0), glm::vec2(Engine::getScreenWidth()-300, Engine::getScreenHeight()), glm::vec4(255,0,0,1.0), engine->getSceneCamera());
+	sceneview = new ECSSceneView(engine->getSceneBuffer()->getFrameTexture(), glm::vec2(300,0), glm::vec2(Engine::getScreenWidth()-300, Engine::getScreenHeight()), glm::vec4(40,40,40,1.0), engine->getSceneCamera());
 	setSize(width,height);
 }
 

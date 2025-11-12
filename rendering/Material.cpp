@@ -15,6 +15,8 @@ void Material::deleteTextures() {
 }
 
 void Material::UpdateUniforms(Shader &shader) {
+    shader.SetUniform1i("use_pbr", 0);
+
     if (specularMap) {
         shader.SetUniform1i("material.useSpecular", 1);
         specularMap->bind(RenderingEngine::SamplerSlot::SPECULAR);

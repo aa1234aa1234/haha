@@ -65,8 +65,15 @@ in vec3 tex_coord;
 
 uniform Material material;
 uniform PBRMaterial pbr_material;
-uniform BaseLight light;
+//uniform BaseLight light; apparently this isnt really used at all
+uniform vec3 ambientLight;
+uniform bool use_pbr;
+
+vec3 calculateLight(BaseLight base, vec3 normal, vec3 viewDir) {
+    vec3 lightDir = normalize(light
+}
 
 void main() {
+    vec3 ambient = light.ambient * material.ambient;
     FragColor = vec4(1.0,1.0,1.0,1.0);
 }

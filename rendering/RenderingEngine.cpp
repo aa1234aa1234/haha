@@ -20,8 +20,8 @@ RenderingEngine::RenderingEngine(Engine* engine) : engine(engine) {
     mainShader = new Shader();
     mainShader->createFromSource("resources/shader/ambient.glsl");
 
-    baseShader = new Shader();
-    baseShader->createFromSource("resources/shader/base.glsl");
+    ambient = new Shader();
+    ambient->createFromSource("resources/shader/base.glsl");
     skybox = new SkyBox(cubeMapFaces);
 }
 

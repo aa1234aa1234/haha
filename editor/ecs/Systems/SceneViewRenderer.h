@@ -58,9 +58,14 @@ public:
         for (auto& p : entities) {
             glBindTexture(GL_TEXTURE_2D, SystemCoordinator::getInstance()->GetComponent<TextureComponent>(p).texture);
             auto& transform = SystemCoordinator::getInstance()->GetComponent<TransformComponent>(p);
+            float aspect = (float)width / (float)height;
+            float ratio = transform.size.x / transform.size.y;
+            glm::vec2 scale{};
+            if (aspect > ratio) { scale.y = aspect - ratio; }
             glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
-            mat = glm::translate(mat, glm::vec3(transform.position, 0.0f));
+            mat = glm::translate(mat, glm::vec3(glm::vec2(transform.position.x, transform.position.y + (height-transform.size.y * (1/aspect))/2), 0.0f));
             mat = glm::scale(mat, glm::vec3(transform.size, 1.0f));
+            mat = glm::scale(mat, glm::vec3(1, 1/aspect, 1));
             glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
             glDrawArrays(GL_TRIANGLES, 0, 6);
         }

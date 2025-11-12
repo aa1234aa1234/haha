@@ -39,6 +39,7 @@ void PBRMaterial::UpdateUniforms(Shader &shader) {
     if (normalMap) {
         shader.SetUniform1i("pbr_material.useNormal", 1);
         normalMap->bind(RenderingEngine::SamplerSlot::NORMAL);
+        shader.SetUniform1i("pbr_material.normalMap", RenderingEngine::SamplerSlot::NORMAL);
     }
     else {
         shader.SetUniform1i("pbr_material.useNormal", 0);
@@ -47,6 +48,7 @@ void PBRMaterial::UpdateUniforms(Shader &shader) {
     if (metallicMap) {
         shader.SetUniform1i("pbr_material.useMetallic", 1);
         metallicMap->bind(RenderingEngine::SamplerSlot::METALLIC);
+        shader.SetUniform1i("pbr_material.metallicMap", RenderingEngine::SamplerSlot::METALLIC);
     }
     else {
         shader.SetUniform1i("pbr_material.useMetallic", 0);
@@ -55,6 +57,7 @@ void PBRMaterial::UpdateUniforms(Shader &shader) {
     if (roughnessMap) {
         shader.SetUniform1i("pbr_material.useRoughness", 1);
         roughnessMap->bind(RenderingEngine::SamplerSlot::ROUGHNESS);
+        shader.SetUniform1i("pbr_material.roughnessMap", RenderingEngine::SamplerSlot::ROUGHNESS);
     }
     else {
         shader.SetUniform1i("pbr_material.useRoughness", 0);
