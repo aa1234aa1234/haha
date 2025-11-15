@@ -10,6 +10,7 @@
 #include "ScrollEvent.h"
 #include "rendering/RenderingEngine.h"
 #include "Input.h"
+#include "MeshComponent.h"
 
 
 void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -56,10 +57,12 @@ Application::Application() : root("rootNode")
 {
     SceneNode* node = new SceneNode("TestNode1");
     SceneNode* node1 = new SceneNode("TestNode2");
-    SceneNode* node2 = new SceneNode("TestNode3");
+    SceneNode* testobject = new SceneNode("TestObject");
     root.addSceneNode(node);
     root.addSceneNode(node1);
-    root.addSceneNode(node2);
+    root.addSceneNode(testobject);
+    testobject->getTransform().setScale(glm::vec3(10,10,10));
+    testobject->getTransform().setTranslation(glm::vec3(1,1,1));
 }
 
 Application::~Application()

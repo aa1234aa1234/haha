@@ -8,6 +8,7 @@
 
 class Shader;
 class Material;
+template<class VertexType>
 class Mesh;
 
 template<class VertexType>
@@ -16,7 +17,10 @@ class MeshComponent : public NodeComponent {
     Material* material;
 public:
     MeshComponent(Mesh<VertexType>* _mesh, Material* material) : NodeComponent() {}
-    ~MeshComponent() {}
+    ~MeshComponent()
+    {
+        delete _mesh;
+    }
 
     void render(Shader* shader, CameraComponent* camera);
 };

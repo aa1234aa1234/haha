@@ -10,6 +10,7 @@ class Shader;
 class SceneNode;
 
 class NodeComponent {
+protected:
     SceneNode* parent;
 public:
     NodeComponent() : parent(nullptr) {}
