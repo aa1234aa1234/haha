@@ -48,9 +48,9 @@ void Mesh<VertexType>::setUpInstanceAttrib() {
 
 template<class VertexType>
 Mesh<VertexType>::~Mesh() {
-    delete vbo;
-    delete ibo;
-    delete vao;
+    if (vbo) delete vbo;
+    if (ibo) delete ibo;
+    if (vao) delete vao;
     if (instancevbo) delete instancevbo;
 }
 

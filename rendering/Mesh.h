@@ -31,7 +31,7 @@ class Mesh {
     void setUpMesh();
     void setUpInstanceAttrib();
 public:
-    Mesh(std::vector<VertexType>& vertices, std::vector<GLuint>& indices, int instances);
+    Mesh(std::vector<VertexType>& vertices, std::vector<GLuint>& indices, int instances = 1);
     ~Mesh();
 
     void draw(Shader& shader, Material& material);

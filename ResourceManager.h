@@ -8,6 +8,7 @@
 #include <map>
 #include <string>
 
+
 class Material;
 class Texture;
 
@@ -16,9 +17,16 @@ class ResourceManager {
     static ResourceManager* instance;
     std::map<std::string, Material*> materials;
     std::map<std::string, Texture*> textures;
+
+    void destroy();
 public:
     ResourceManager() {}
     ~ResourceManager() {
+
+        destroy();
+    }
+
+    static void deleteInstance() {
         delete instance;
     }
 
@@ -28,7 +36,7 @@ public:
     }
 
     Material* getMaterialByName(const std::string& name);
-    void addMaterial(Material* material, std::string& name);
+    void addMaterial(Material* material, const std::string& name);
     Texture* loadTexture(const std::string& filepath);
 };
 

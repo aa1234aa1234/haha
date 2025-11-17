@@ -16,7 +16,11 @@ class MeshComponent : public NodeComponent {
     Mesh<VertexType>* _mesh;
     Material* material;
 public:
-    MeshComponent(Mesh<VertexType>* _mesh, Material* material) : NodeComponent() {}
+    MeshComponent(Mesh<VertexType>* _mesh, Material* material) : NodeComponent() {
+
+        this->_mesh = _mesh;
+        this->material = material;
+    }
     ~MeshComponent()
     {
         delete _mesh;

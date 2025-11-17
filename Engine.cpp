@@ -6,8 +6,14 @@
 
 #include "Input.h"
 #include "KeydownEvent.h"
+#include "Material.h"
+#include "Mesh.h"
+#include "MeshComponent.h"
+#include "MeshUtils.h"
 #include "MouseEvent.h"
+#include "ResourceManager.h"
 #include "TextHandler.h"
+#include "Vertex.h"
 #include "rendering/RenderingEngine.h"
 
 int Engine::screenHeight, Engine::screenWidth;
@@ -19,6 +25,25 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     screenHeight = height;
     window.init(width,height,title);
     glfwSwapInterval(1);
+
+    SceneNode* testobject = new SceneNode("TestObject");
+
+    testobject->getTransform().setScale(glm::vec3(1,1,1));
+    testobject->getTransform().setTranslation(glm::vec3(1,1,1));
+    Material* testmat = new Material();
+    testmat->setAmbientColor(glm::vec4(0.2,0.2,0.2,1.0));
+    testmat->setDiffuseColor(glm::vec4(0.5,0.5,0.5,1.0));
+    testmat->setSpecularColor(glm::vec4(1.0,1.0,1.0,1.0));
+    ResourceManager::getInstance()->addMaterial(testmat, "testmat");
+
+
+    std::vector<VertexPNTBUV> vertices;
+    std::vector<GLuint> indices;
+    MeshUtils::CubeMesh(vertices, indices);
+    Mesh<VertexPNTBUV>* mesh = new Mesh<VertexPNTBUV>(vertices, indices);
+    testobject->addComponent(new MeshComponent<VertexPNTBUV>(mesh, ResourceManager::getInstance()->getMaterialByName("testmat")));
+    application->getRoot().addSceneNode(testobject);
+
     sceneCamera = new CameraComponent(window.getWindow());
     editorCamera = new CameraComponent(window.getWindow());
     sceneCamera->rescale(width,height);
@@ -31,6 +56,11 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     uiLayer->init(window);
     editorLayer->init();
     renderingEngine = new RenderingEngine(this);
+
+    renderingEngine->setAmbientLight(glm::vec3(1,1,1));
+
+
+
 }
 
 Engine::~Engine()
@@ -41,6 +71,7 @@ Engine::~Engine()
     delete sceneCamera;
     delete editorCamera;
     delete renderingEngine;
+    ResourceManager::deleteInstance();
 }
 
 void Engine::run()

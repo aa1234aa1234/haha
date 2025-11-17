@@ -32,6 +32,10 @@ struct Material {
     vec4 specular;
     float shininess; //specular factor
 
+    bool useDiffuse;
+    bool useSpecular;
+    bool useNormal;
+
     sampler2D diffuseMap;
     sampler2D normalMap;
     sampler2D specularMap;
@@ -61,7 +65,7 @@ out vec4 FragColor;
 
 in vec3 frag_pos;
 in vec3 vnormal;
-in vec3 tex_coord;
+in vec2 tex_coord;
 
 uniform Material material;
 uniform PBRMaterial pbr_material;
@@ -70,10 +74,21 @@ uniform vec3 ambientLight;
 uniform bool use_pbr;
 
 vec3 calculateLight(BaseLight base, vec3 normal, vec3 viewDir) {
-    vec3 lightDir = normalize(base
+    if(use_pbr) {
+    }
+    else {
+        if(material.useDiffuse) {
+
+        }
+    }
+    return vec3(1.0,1.0,1.0);
 }
 
 void main() {
-    vec3 ambient = light.ambient * material.ambient;
-    FragColor = vec4(1.0,1.0,1.0,1.0);
+    if(material.useDiffuse) {
+        FragColor = texture(material.diffuseMap, tex_coord) * vec4(ambientLight, 1.0);
+    }
+    else {
+        FragColor = vec4(ambientLight, 1.0) * material.diffuse;
+    }
 }

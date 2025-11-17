@@ -8,6 +8,7 @@
 #include "Mesh.h"
 #include "SceneNode.h"
 #include "Shader.h"
+#include "CameraComponent.h"
 
 template <class VertexType>
 void MeshComponent<VertexType>::render(Shader* shader, CameraComponent* camera)
@@ -16,7 +17,9 @@ void MeshComponent<VertexType>::render(Shader* shader, CameraComponent* camera)
     model = glm::translate(model, parent->getTransform().getTranslation());
     model = glm::scale(model, parent->getTransform().getScale());
     shader->SetUniformMat4f("model", model);
-    _mesh->draw(shader, *material);
+    shader->SetUniformMat4f("view", camera->getViewMatrix());
+    shader->SetUniformMat4f("projection", camera->getProjectionMatrix());
+    _mesh->draw(*shader, *material);
 }
 
 template void MeshComponent<VertexPNTBUV>::render(Shader* shader, CameraComponent* camera);

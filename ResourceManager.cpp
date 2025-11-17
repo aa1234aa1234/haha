@@ -8,6 +8,17 @@
 
 ResourceManager* ResourceManager::instance = nullptr;
 
+void ResourceManager::destroy() {
+    for (auto& p : materials) {
+        delete p.second;
+    }
+    materials.clear();
+    for (auto& p : textures) {
+        delete p.second;
+    }
+    textures.clear();
+}
+
 Material* ResourceManager::getMaterialByName(const std::string &name) {
     if (materials.find(name) == materials.end()) {
         //add a logger system here
@@ -16,12 +27,12 @@ Material* ResourceManager::getMaterialByName(const std::string &name) {
     return materials[name];
 }
 
-void ResourceManager::addMaterial(Material* material, std::string& name) {
-
-    if (getMaterialByName(name) == nullptr) {
-        name += " (1)";
+void ResourceManager::addMaterial(Material* material, const std::string& name) {
+    std::string name1 = name;
+    if (getMaterialByName(name) != nullptr) {
+        name1 += " (1)";
     }
-    materials[name] = material;
+    materials[name1] = material;
 }
 
 Texture* ResourceManager::loadTexture(const std::string& filepath) {

@@ -28,7 +28,7 @@ RenderingEngine::RenderingEngine(Engine* engine) : engine(engine) {
 RenderingEngine::~RenderingEngine() {
     if (skybox) delete skybox;
     delete mainShader;
-    delete baseShader;
+    delete ambient;
 }
 
 void RenderingEngine::render(SceneNode* scenenode) {
@@ -93,10 +93,16 @@ void RenderingEngine::render(SceneNode* scenenode) {
     VertexBufferLayout layout;
     layout.push<float>(3);
     vao.addBuffer(vbo, layout);
-    mainShader->use();
-    mainShader->SetUniformMat4f("projection", sceneCamera->getProjectionMatrix());
-    mainShader->SetUniformMat4f("view", sceneCamera->getViewMatrix());
-    Renderer::getInstance()->draw(vao,ibo,*mainShader);
+    // mainShader->use();
+    // mainShader->SetUniformMat4f("projection", sceneCamera->getProjectionMatrix());
+    // mainShader->SetUniformMat4f("view", sceneCamera->getViewMatrix());
+    // Renderer::getInstance()->draw(vao,ibo,*mainShader);
+
+
+    ambient->use();
+    ambient->SetUniformVec3("ambientLight", ambientLight);
+    scenenode->render(ambient, sceneCamera);
+
 
 
     glEnable(GL_BLEND);
@@ -104,7 +110,8 @@ void RenderingEngine::render(SceneNode* scenenode) {
     glDepthMask(GL_FALSE);
     glDepthFunc(GL_EQUAL);
     skybox->render(sceneCamera->getProjectionMatrix(), sceneCamera->getViewMatrix());
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_BLEND);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDepthMask(GL_TRUE);
     glDepthFunc(GL_LESS);
 }

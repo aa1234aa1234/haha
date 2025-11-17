@@ -28,6 +28,7 @@ class RenderingEngine {
 
     Shader* mainShader=nullptr;
     Shader* ambient=nullptr;
+    glm::vec3 ambientLight;
 public:
     enum SamplerSlot {
         ALBEDO = 0,
@@ -42,6 +43,7 @@ public:
     ~RenderingEngine();
 
     void render(SceneNode* scenenode);
+    void setAmbientLight(const glm::vec3& ambient) { ambientLight = ambient; }
 };
 
 
