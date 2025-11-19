@@ -62,6 +62,7 @@ void Application::error_callback(void* user_data, int error, const char* descrip
 Application::Application() : root("rootNode")
 {
     SceneNode* node = new SceneNode("TestNode1");
+    node->addSceneNode(new SceneNode("a"));
     root.addSceneNode(node);
 
 

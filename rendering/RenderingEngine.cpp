@@ -97,21 +97,23 @@ void RenderingEngine::render(SceneNode* scenenode) {
     // mainShader->SetUniformMat4f("projection", sceneCamera->getProjectionMatrix());
     // mainShader->SetUniformMat4f("view", sceneCamera->getViewMatrix());
     // Renderer::getInstance()->draw(vao,ibo,*mainShader);
-
+    glDisable(GL_BLEND);
 
     ambient->use();
     ambient->SetUniformVec3("ambientLight", ambientLight);
     scenenode->render(ambient, sceneCamera);
 
-
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_ONE, GL_ONE);
+    // glBlendFunc(GL_ONE, GL_ONE);
+    glDepthFunc(GL_LEQUAL);
     glDepthMask(GL_FALSE);
-    glDepthFunc(GL_EQUAL);
-    skybox->render(sceneCamera->getProjectionMatrix(), sceneCamera->getViewMatrix());
-    glDisable(GL_BLEND);
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_DEPTH_TEST);
+
+    //skybox->render(sceneCamera->getProjectionMatrix(), sceneCamera->getViewMatrix());
+    // //glEnable(GL_BLEND);
+    // //glDisable(GL_BLEND);
+    // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDepthMask(GL_TRUE);
+    glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    glEnable(GL_BLEND);
 }

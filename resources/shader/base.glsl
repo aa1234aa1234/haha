@@ -73,18 +73,13 @@ uniform PBRMaterial pbr_material;
 uniform vec3 ambientLight;
 uniform bool use_pbr;
 
-vec3 calculateLight(BaseLight base, vec3 normal, vec3 viewDir) {
-    if(use_pbr) {
-    }
-    else {
-        if(material.useDiffuse) {
-
-        }
-    }
-    return vec3(1.0,1.0,1.0);
-}
 
 void main() {
+
+    if(use_pbr) {
+        return;
+    }
+
     if(material.useDiffuse) {
         FragColor = texture(material.diffuseMap, tex_coord) * vec4(ambientLight, 1.0);
     }

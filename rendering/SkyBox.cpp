@@ -94,9 +94,9 @@ void SkyBox::setUpBuffers() {
 }
 
 void SkyBox::render(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) {
+
     shader->use();
 
-    glDepthFunc(GL_LEQUAL);
     shader->SetUniformMat4f("projection", projectionMatrix);
     shader->SetUniformMat4f("view", glm::mat4(glm::mat3(viewMatrix)));
     texture->bind();
@@ -105,5 +105,4 @@ void SkyBox::render(const glm::mat4& projectionMatrix, const glm::mat4& viewMatr
 
     vao->unbind();
     ibo->unbind();
-    glDepthFunc(GL_LESS);
 }

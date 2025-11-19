@@ -32,7 +32,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     testobject->getTransform().setTranslation(glm::vec3(1,1,1));
     Material* testmat = new Material();
     testmat->setAmbientColor(glm::vec4(0.2,0.2,0.2,1.0));
-    testmat->setDiffuseColor(glm::vec4(0.5,0.5,0.5,1.0));
+    testmat->setDiffuseColor(glm::vec4(1,1,1,1.0));
     testmat->setSpecularColor(glm::vec4(1.0,1.0,1.0,1.0));
     ResourceManager::getInstance()->addMaterial(testmat, "testmat");
 
@@ -57,7 +57,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     editorLayer->init();
     renderingEngine = new RenderingEngine(this);
 
-    renderingEngine->setAmbientLight(glm::vec3(1,1,1));
+    renderingEngine->setAmbientLight(glm::vec3(0.5,0.5,0.5));
 
 
 
