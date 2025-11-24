@@ -4,6 +4,7 @@
 
 #ifndef NODECOMPONENT_H
 #define NODECOMPONENT_H
+#include <string>
 
 class CameraComponent;
 class Shader;
@@ -22,6 +23,7 @@ public:
     //for scripts
     virtual void update(float deltatime) {}
     virtual void handleInput() {}
+    virtual const std::string getType() { return "NodeComponent"; }
 };
 
 

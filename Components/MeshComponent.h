@@ -4,6 +4,8 @@
 
 #ifndef PROJECT_MESHCOMPONENT_H
 #define PROJECT_MESHCOMPONENT_H
+#include <string>
+
 #include "NodeComponent.h"
 
 class Shader;
@@ -27,6 +29,7 @@ public:
     }
 
     void render(Shader* shader, CameraComponent* camera);
+    const std::string getType() override { return "MeshComponent"; }
 };
 
 

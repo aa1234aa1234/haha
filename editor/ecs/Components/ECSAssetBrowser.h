@@ -124,11 +124,15 @@ public:
         }
     }
 
+    void setIcon(SceneNode* node, NodeComponent* node_component) {
+        if
+    }
+
     void loadTree(SceneNode* sceneNode, EntityID node, int width, int height, std::vector<EntityID>& entities, NodeComponent* node_component = nullptr) {
         SystemCoordinator::getInstance()->GetComponent<TextComponent>(node).text = sceneNode->getName();
         SystemCoordinator::getInstance()->GetComponent<PositionComponent>(node).position = glm::vec2(width,height);
-        if (node_component != nullptr) {
-            SystemCoordinator::getInstance()->GetComponent<TextComponent>(node).text = typeid(node_component).name();
+        if (node_component) {
+            SystemCoordinator::getInstance()->GetComponent<TextComponent>(node).text = node_component->getType();
         }
 
         auto& boundingbox = SystemCoordinator::getInstance()->GetComponent<ClickableComponent>(node).boundingBox;
@@ -140,22 +144,35 @@ public:
         icon.renderRect = icon.boundingBox+glm::vec4(1,1,-1,-1);
         entities.reserve(entities.size() + 1);
         entities.emplace_back(node);
-        int i = 0;
-        for (int i=0; i<sceneNode->getChildren().size(); i++) {
-            EntityID child = CreateTreeNode(node);
 
-            loadTree(sceneNode->getChildren()[i], child, width+tabWidth, height+rowHeight*(i+1), entities);
-            SystemCoordinator::getInstance()->GetComponent<ContentComponent>(node).entities.emplace_back(child);
+
+        for (int i=0,j=0; ; i++) {
+            if (node_component) break;
+
+            if (i < sceneNode->getChildren().size()) {
+                EntityID child = CreateTreeNode(node);
+                loadTree(sceneNode->getChildren()[i], child, width+tabWidth, height+rowHeight*(i+1), entities);
+                SystemCoordinator::getInstance()->GetComponent<ContentComponent>(node).entities.emplace_back(child);
+            }
+            else if (sceneNode->getComponents().size() && j < sceneNode->getComponents().size()) {
+                EntityID child = CreateTreeNode(node);
+                loadTree(sceneNode, child, width+tabWidth, height+rowHeight*(i+1), entities, sceneNode->getComponents()[j]);
+                SystemCoordinator::getInstance()->GetComponent<ContentComponent>(node).entities.emplace_back(child);
+                j++;
+            }
+            else break;
+
+
         }
-        for (; i<sceneNode->getComponents().size(); i++)
-        {
-            EntityID child = CreateTreeNode(node);
-            loadTree(sceneNode, child, width+tabWidth, height+rowHeight*(i+1), entities, sceneNode->getComponents()[i]);
-            //EntityID child = CreateTreeNode(node, typeid(sceneNode->getComponents()[i]).name(), glm::vec2(width+tabWidth,height + rowHeight*(i+1)),glm::vec4(transform.position.x, height + rowHeight*(i+1), transform.size.x, rowHeight));
-            SystemCoordinator::getInstance()->GetComponent<ContentComponent>(node).entities.emplace_back(child);
-            //entities.reserve(entities.size() + 1);
-            //entities.emplace_back(child);
-        }
+        // for (; i<sceneNode->getComponents().size(); i++)
+        // {
+        //     EntityID child = CreateTreeNode(node);
+        //     loadTree(sceneNode, child, width+tabWidth, height+rowHeight*(i+1), entities, sceneNode->getComponents()[i]);
+        //     //EntityID child = CreateTreeNode(node, typeid(sceneNode->getComponents()[i]).name(), glm::vec2(width+tabWidth,height + rowHeight*(i+1)),glm::vec4(transform.position.x, height + rowHeight*(i+1), transform.size.x, rowHeight));
+        //     SystemCoordinator::getInstance()->GetComponent<ContentComponent>(node).entities.emplace_back(child);
+        //     //entities.reserve(entities.size() + 1);
+        //     //entities.emplace_back(child);
+        // }
     }
 
     void updateTree(int idx, std::vector<EntityID>& nodes) {
@@ -164,7 +181,7 @@ public:
         //updateTree(1, nodes.size()-1, idx+1, segmentIndex[idx].start, segmentIndex[idx].end, nodes[idx]->expanded ? -segmentTree[idx+1] : segmentTree[idx+1]);
         int sum1 = sum(1,nodes.size()-1, 1, segmentIndex[idx+1].start, segmentIndex[idx+1].end);
         auto& nodeidx = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[idx]);
-        for (int i = idx+1; i<idx+sum1; i++)
+        for (int i = idx+1; i<=idx+sum1; i++)
         {
             TreeNodeComponent* nodei = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[i]);
             RenderableIcon* nodeicon = &SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
@@ -202,9 +219,11 @@ public:
         for (int i = idx+sum1; i<nodes.size(); i++)
         {
             auto& nodei = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(nodes[i]);
-            nodei.position.y += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
-            SystemCoordinator::getInstance()->GetComponent<ClickableComponent>(nodes[i]).boundingBox.y += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
-            auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
+            if (idx) {
+                nodei.position.y += (cnt-1)*rowHeight * (nodeidx.expanded ? 1 : -1);
+                SystemCoordinator::getInstance()->GetComponent<ClickableComponent>(nodes[i]).boundingBox.y += (cnt-1)*rowHeight * (nodeidx.expanded ? 1 : -1);
+                auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
+            }
             //icon.boundingBox += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
             //icon.renderRect += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
             //nodes[i]->icon.position.y += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);

@@ -43,6 +43,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     Mesh<VertexPNTBUV>* mesh = new Mesh<VertexPNTBUV>(vertices, indices);
     testobject->addComponent(new MeshComponent<VertexPNTBUV>(mesh, ResourceManager::getInstance()->getMaterialByName("testmat")));
     application->getRoot().addSceneNode(testobject);
+    application->getRoot().addSceneNode(new SceneNode("a"));
 
     sceneCamera = new CameraComponent(window.getWindow());
     editorCamera = new CameraComponent(window.getWindow());
