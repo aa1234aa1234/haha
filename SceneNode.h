@@ -62,7 +62,7 @@ public:
         return nullptr;
     }
 
-    NodeID getID() const { return id; }
+    [[nodiscard]] NodeID getID() const { return id; }
     std::string getName() const { return name; }
     void setParent(SceneNode* node) { parent = node; }
     void addSceneNode(SceneNode* node);

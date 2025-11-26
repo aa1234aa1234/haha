@@ -63,6 +63,10 @@ struct RenderableIcon
     bool visible = false;
 };
 
+struct RenderableIcons {
+    std::vector<RenderableIcon> icons;
+};
+
 struct DirtyComponent {};
 
 struct ParentComponent {

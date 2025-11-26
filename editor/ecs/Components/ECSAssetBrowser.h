@@ -124,8 +124,10 @@ public:
         }
     }
 
-    void setIcon(SceneNode* node, NodeComponent* node_component) {
-        if
+    void setIcon(SceneNode* node, NodeComponent* node_component = nullptr) {
+        if (node_component) {
+
+        }
     }
 
     void loadTree(SceneNode* sceneNode, EntityID node, int width, int height, std::vector<EntityID>& entities, NodeComponent* node_component = nullptr) {
@@ -181,7 +183,7 @@ public:
         //updateTree(1, nodes.size()-1, idx+1, segmentIndex[idx].start, segmentIndex[idx].end, nodes[idx]->expanded ? -segmentTree[idx+1] : segmentTree[idx+1]);
         int sum1 = sum(1,nodes.size()-1, 1, segmentIndex[idx+1].start, segmentIndex[idx+1].end);
         auto& nodeidx = SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[idx]);
-        for (int i = idx+1; i<=idx+sum1; i++)
+        for (int i = idx+1; i<idx+sum1+!!!idx; i++)
         {
             TreeNodeComponent* nodei = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[i]);
             RenderableIcon* nodeicon = &SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
@@ -218,14 +220,13 @@ public:
         }
         for (int i = idx+sum1; i<nodes.size(); i++)
         {
+            if (!idx) break;
             auto& nodei = SystemCoordinator::getInstance()->GetComponent<PositionComponent>(nodes[i]);
-            if (idx) {
-                nodei.position.y += (cnt-1)*rowHeight * (nodeidx.expanded ? 1 : -1);
-                SystemCoordinator::getInstance()->GetComponent<ClickableComponent>(nodes[i]).boundingBox.y += (cnt-1)*rowHeight * (nodeidx.expanded ? 1 : -1);
-                auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
-            }
-            //icon.boundingBox += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
-            //icon.renderRect += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
+            nodei.position.y += (cnt)*rowHeight * (nodeidx.expanded ? 1 : -1);
+            SystemCoordinator::getInstance()->GetComponent<ClickableComponent>(nodes[i]).boundingBox.y += (cnt)*rowHeight * (nodeidx.expanded ? 1 : -1);
+            auto& icon = SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
+            icon.boundingBox.y += (cnt)*rowHeight * (nodeidx.expanded ? 1 : -1);
+            icon.renderRect.y += (cnt)*rowHeight * (nodeidx.expanded ? 1 : -1);
             //nodes[i]->icon.position.y += cnt*rowHeight * (nodeidx.expanded ? 1 : -1);
         }
         std::cout << "sum: " << sum1 << std::endl;
@@ -242,6 +243,7 @@ public:
         SystemCoordinator::getInstance()->AddComponent(id, ContentComponent{});
         SystemCoordinator::getInstance()->AddComponent(id, ParentComponent{parent});
         SystemCoordinator::getInstance()->AddComponent(id, NonRenderableBoundingBox{boundingBox});
+        SystemCoordinator::getInstance()->AddComponent(id, RenderableIcons{});
         SystemCoordinator::getInstance()->AddComponent(id, RenderableIcon{EXPAND_ARROW, glm::vec4(pos,glm::vec2(tabWidth,rowHeight)), glm::vec4(pos+glm::vec2(1,1), glm::vec2(tabWidth,rowHeight)-glm::vec2(1,1))});
         //temporary implementation please fix at later date
         SystemCoordinator::getInstance()->AddComponent(id, ClickableComponent{glm::vec4(pos,glm::vec2(SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId()).size.x, rowHeight)), [this](EntityID entity)
@@ -284,5 +286,6 @@ public:
 
 
 };
+
 
 #endif //ECSOBJECTVIEW_H

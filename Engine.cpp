@@ -26,10 +26,10 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     window.init(width,height,title);
     glfwSwapInterval(1);
 
-    SceneNode* testobject = new SceneNode("TestObject");
+    SceneNode* testobject = new SceneNode("TestObject", glm::vec3(1,1,1), glm::vec3(0,0,0), glm::vec3(1,1,1));
 
-    testobject->getTransform().setScale(glm::vec3(1,1,1));
-    testobject->getTransform().setTranslation(glm::vec3(1,1,1));
+    //testobject->getTransform().setScale(glm::vec3(1,1,1));
+    //testobject->getTransform().setTranslation(glm::vec3(1,1,1));
     Material* testmat = new Material();
     testmat->setAmbientColor(glm::vec4(0.2,0.2,0.2,1.0));
     testmat->setDiffuseColor(glm::vec4(1,1,1,1.0));
@@ -44,6 +44,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     testobject->addComponent(new MeshComponent<VertexPNTBUV>(mesh, ResourceManager::getInstance()->getMaterialByName("testmat")));
     application->getRoot().addSceneNode(testobject);
     application->getRoot().addSceneNode(new SceneNode("a"));
+    //application->getRoot().getChildren()[1]->addSceneNode(new SceneNode("a"));
 
     sceneCamera = new CameraComponent(window.getWindow());
     editorCamera = new CameraComponent(window.getWindow());
