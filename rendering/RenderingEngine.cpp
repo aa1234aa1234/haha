@@ -106,7 +106,7 @@ void RenderingEngine::render(SceneNode* scenenode) {
     // glBlendFunc(GL_ONE, GL_ONE);
     glDepthFunc(GL_LEQUAL);
     glDepthMask(GL_FALSE);
-    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_DEPTH_TEST); //this is a test
 
     //skybox->render(sceneCamera->getProjectionMatrix(), sceneCamera->getViewMatrix());
     // //glEnable(GL_BLEND);
