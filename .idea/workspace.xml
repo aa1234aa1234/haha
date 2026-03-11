@@ -35,7 +35,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="11-26">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rendering/RenderingEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/RenderingEngine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rendering/RenderingEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/RenderingEngine.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,11 +293,6 @@
     <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="project" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -385,6 +382,7 @@
       <workItem from="1765179925446" duration="1505000" />
       <workItem from="1772688568749" duration="49000" />
       <workItem from="1772688631441" duration="807000" />
+      <workItem from="1773191879682" duration="4377000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />

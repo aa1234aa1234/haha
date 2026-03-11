@@ -11,6 +11,7 @@ class SkyBox;
 class CameraComponent;
 class SceneNode;
 class Shader;
+class BaseLight;
 
 class RenderingEngine {
     std::vector<std::string> cubeMapFaces = {
@@ -29,6 +30,8 @@ class RenderingEngine {
     Shader* mainShader=nullptr;
     Shader* ambient=nullptr;
     glm::vec3 ambientLight;
+
+    std::vector<BaseLight*> lights;
 public:
     enum SamplerSlot {
         ALBEDO = 0,
@@ -44,6 +47,7 @@ public:
 
     void render(SceneNode* scenenode);
     void setAmbientLight(const glm::vec3& ambient) { ambientLight = ambient; }
+    void addLight(BaseLight* light) { lights.push_back(light); }
 };
 
 

@@ -59,7 +59,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     editorLayer->init();
     renderingEngine = new RenderingEngine(this);
 
-    renderingEngine->setAmbientLight(glm::vec3(0.5,0.5,0.5));
+    renderingEngine->setAmbientLight(glm::vec3(1,1,1));
 
 
 

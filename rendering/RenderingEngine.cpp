@@ -103,6 +103,9 @@ void RenderingEngine::render(SceneNode* scenenode) {
     ambient->SetUniformVec3("ambientLight", ambientLight);
     scenenode->render(ambient, sceneCamera);
 
+    //for light rendering if using forward rendering you compute light values using the light object data and pass the node
+    //data into the light shader
+
     // glBlendFunc(GL_ONE, GL_ONE);
     glDepthFunc(GL_LEQUAL);
     glDepthMask(GL_FALSE);
