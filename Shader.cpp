@@ -68,6 +68,9 @@ void Shader::createFromSource(const std::string& source) {
 	std::stringstream ss[2];
 	int type = -1;
 	for (std::string line; std::getline(iss, line); ) {
+		if(line.find("#include ") != std::string::npos) {
+			appendToStream(line.substr(9, line.size()), ss[type]);
+		}
 		if (line.find("#shader") != std::string::npos) {
 			if (line.find("vertex") != std::string::npos) { type = 0; }
 			else if (line.find("fragment") != std::string::npos) { type = 1; }
@@ -112,6 +115,15 @@ void Shader::createFromSource(const std::string& vertexsrc, const std::string& f
 	glLinkProgram(id);
 
 	std::cout << id << "\n";
+}
+
+void appendToStream(const std::string& filesource, std::stringstream& stream) {
+	std::string line;
+	std::ifstream file(filesource, std::ios::in);
+	while (!file.eof()) {
+		std::getline(file, line);
+		stream << line << '\n';
+	}
 }
 
 void Shader::use() {

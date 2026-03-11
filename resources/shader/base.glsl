@@ -54,12 +54,7 @@ struct PBRMaterial {
     bool useAO;
 };
 
-struct BaseLight {
-    vec3 position;
-    vec3 ambient;
-    vec3 diffuse;
-    vec3 specular;
-};
+#include light.glsl
 
 out vec4 FragColor;
 

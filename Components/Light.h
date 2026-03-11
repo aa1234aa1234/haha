@@ -23,6 +23,7 @@ public:
 
     void setShader(Shader* shader) { this->shader = shader; }
     Shader* getShader() { return shader; }
+	const std::string getType() override { return "BaseLight"; }
 };
 
 
