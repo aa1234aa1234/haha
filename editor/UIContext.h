@@ -7,6 +7,7 @@
 #include "EventHandler.h"
 #include "Adapter.h"
 #include "ClickSystem.h"
+#include "ConsoleLog.h"
 #include "ECSSceneView.h"
 #include "FrameBuffer.h"
 #include "HandleInputSystem.h"
@@ -49,6 +50,7 @@ class UIContext
 	HandleInputSystem* handleinputsystem;
 	ECSAssetBrowser* testobject = nullptr;
 	ECSSceneView* sceneview = nullptr;
+	ConsoleLog* consolelog;
 
 	std::vector<UIComponent*> rootComponents;
 	std::vector<UIComponent*> instanceData;

@@ -69,7 +69,8 @@ void Shader::createFromSource(const std::string& source) {
 	int type = -1;
 	for (std::string line; std::getline(iss, line); ) {
 		if(line.find("#include ") != std::string::npos) {
-			appendToStream(line.substr(9, line.size()), ss[type]);
+			appendToStream(source, line.substr(9, line.size()), ss[type]);
+			continue;
 		}
 		if (line.find("#shader") != std::string::npos) {
 			if (line.find("vertex") != std::string::npos) { type = 0; }
@@ -117,9 +118,11 @@ void Shader::createFromSource(const std::string& vertexsrc, const std::string& f
 	std::cout << id << "\n";
 }
 
-void appendToStream(const std::string& filesource, std::stringstream& stream) {
+void Shader::appendToStream(const std::string& parentfolder, const std::string& filesource, std::stringstream& stream) {
+
 	std::string line;
-	std::ifstream file(filesource, std::ios::in);
+
+	std::ifstream file(parentfolder + "/../" + filesource, std::ios::in);
 	while (!file.eof()) {
 		std::getline(file, line);
 		stream << line << '\n';

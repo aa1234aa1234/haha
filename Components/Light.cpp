@@ -4,6 +4,8 @@
 
 #include "Light.h"
 
+#include "Shader.h"
+
 BaseLight::BaseLight() {
     delete shader;
 }

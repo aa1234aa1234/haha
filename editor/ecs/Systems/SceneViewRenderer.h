@@ -63,9 +63,19 @@ public:
             glm::vec2 scale{};
             if (aspect > ratio) { scale.y = aspect - ratio; }
             glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
-            mat = glm::translate(mat, glm::vec3(glm::vec2(transform.position.x, transform.position.y + (height-transform.size.y * (1/aspect))/2), 0.0f));
+            //mat = glm::translate(mat, glm::vec3(glm::vec2(transform.position.x, transform.position.y + (height-transform.size.y * (1/aspect))/2), 0.0f));
+            glm::vec2 pos = transform.position;
+            if (pos.y * aspect > transform.size.x) {
+                pos.y *= (transform.size.x/aspect/transform.size.y);
+            }
+            else if (pos.y * (transform.size.x/aspect/transform.size.y) > transform.size.y) {
+                pos.x = pos.y * aspect;
+            }
+            //mat = glm::translate(mat, glm::vec3(glm::vec2(transform.position.x, transform.position.y + (height-transform.size.x / (aspect))/2), 0.0f));
+            //mat = glm::translate()
             mat = glm::scale(mat, glm::vec3(transform.size, 1.0f));
-            mat = glm::scale(mat, glm::vec3(1, 1/aspect, 1));
+            mat = glm::scale(mat, glm::vec3(1, (transform.size.x/aspect/transform.size.y), 1));
+
             glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
             glDrawArrays(GL_TRIANGLES, 0, 6);
         }
