@@ -20,7 +20,7 @@ class EditorLayer {
     Engine* engine = nullptr;
 
     TabView* tabView=nullptr;
-    SceneView* sceneView=nullptr;
+    //SceneView* sceneView=nullptr;
     ObjectView* objectView=nullptr;
 public:
     EditorLayer(Engine* engine);

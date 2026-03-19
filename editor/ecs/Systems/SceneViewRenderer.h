@@ -65,16 +65,33 @@ public:
             glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
             //mat = glm::translate(mat, glm::vec3(glm::vec2(transform.position.x, transform.position.y + (height-transform.size.y * (1/aspect))/2), 0.0f));
             glm::vec2 pos = transform.position;
-            if (pos.y * aspect > transform.size.x) {
-                pos.y *= (transform.size.x/aspect/transform.size.y);
+            glm::vec2 size = transform.size;
+            if (transform.size.x < transform.size.y) {
+                if (transform.size.y < transform.size.x/aspect) {
+                    size.x = transform.size.y * aspect;
+                }
+                else size.y = transform.size.x / aspect;
             }
-            else if (pos.y * (transform.size.x/aspect/transform.size.y) > transform.size.y) {
-                pos.x = pos.y * aspect;
+            else if (transform.size.x > transform.size.y) {
+                size.x = transform.size.y * aspect;
             }
+            else {
+                size.y = transform.size.x / aspect;
+            }
+            pos.x += size.x < transform.size.x ? (transform.size.x-size.x)/2 : 0;
+            pos.y += size.y < transform.size.y ? (transform.size.y-size.y)/2 : 0;
+            // if (pos.y * aspect > transform.size.y) {
+            //     pos.y *= (transform.size.x/aspect/transform.size.y);
+            // }
+            // else if (pos.y * (transform.size.x/aspect/transform.size.y) > transform.size.y) {
+            //     pos.x = pos.y * aspect;
+            // }
             //mat = glm::translate(mat, glm::vec3(glm::vec2(transform.position.x, transform.position.y + (height-transform.size.x / (aspect))/2), 0.0f));
             //mat = glm::translate()
-            mat = glm::scale(mat, glm::vec3(transform.size, 1.0f));
-            mat = glm::scale(mat, glm::vec3(1, (transform.size.x/aspect/transform.size.y), 1));
+            mat = glm::translate(mat, glm::vec3(pos,1.0));
+            //mat = glm::scale(mat, glm::vec3(transform.size, 1.0f));
+            //mat = glm::scale(mat, glm::vec3(1, (transform.size.x/aspect/transform.size.y), 1));
+            mat = glm::scale(mat, glm::vec3(size, 1));
 
             glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
             glDrawArrays(GL_TRIANGLES, 0, 6);

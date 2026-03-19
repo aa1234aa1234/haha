@@ -15,6 +15,8 @@
 #include "TextHandler.h"
 #include "Vertex.h"
 #include "rendering/RenderingEngine.h"
+#include "Model.h"
+#include "ModelRenderer.h"
 
 int Engine::screenHeight, Engine::screenWidth;
 bool Engine::isRunning = false;
@@ -42,6 +44,9 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     MeshUtils::CubeMesh(vertices, indices);
     Mesh<VertexPNTBUV>* mesh = new Mesh<VertexPNTBUV>(vertices, indices);
     testobject->addComponent(new MeshComponent<VertexPNTBUV>(mesh, ResourceManager::getInstance()->getMaterialByName("testmat")));
+    //SceneNode* obj = new SceneNode("modeltest");
+    //obj->addComponent(new ModelRenderer(new Model("resources/models", "spider.obj")));
+    //application->getRoot().addSceneNode(obj);
     application->getRoot().addSceneNode(testobject);
     application->getRoot().addSceneNode(new SceneNode("a"));
     //application->getRoot().getChildren()[1]->addSceneNode(new SceneNode("a"));

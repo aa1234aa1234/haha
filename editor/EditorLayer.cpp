@@ -21,7 +21,7 @@ EditorLayer::EditorLayer(Engine* engine) : engine(engine)
 EditorLayer::~EditorLayer()
 {
     delete tabView;
-    delete sceneView;
+    //delete sceneView;
     delete objectView;
     UIContext::destroyInstance();
     SystemCoordinator::destroyInstance();
