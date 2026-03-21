@@ -19,7 +19,7 @@ class TabView;
 class EditorLayer {
     Engine* engine = nullptr;
 
-    TabView* tabView=nullptr;
+    //TabView* tabView=nullptr;
     //SceneView* sceneView=nullptr;
     ObjectView* objectView=nullptr;
 public:

@@ -103,6 +103,7 @@ public:
     		instanceData.emplace_back(Element{GetIcon(icon.uvRect,glm::vec2(textureWidth,textureHeight)), renderRect});
     		elementCount++;
     	}
+    	//std::cout << "iconrender element count: " << elementCount << std::endl;
 
 
     	glBindTexture(GL_TEXTURE_2D, textureAtlas);

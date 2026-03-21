@@ -18,6 +18,7 @@ public:
     void Initialize(glm::vec2 position, glm::vec2 size) {
         SystemCoordinator::getInstance()->RegisterEntity(this);
         SystemCoordinator::getInstance()->AddComponent(getId(), TransformComponent{position,glm::vec4(20,20,20,1), size});
+        SystemCoordinator::getInstance()->AddComponent(getId(), ScrollableComponent{});
     }
 };
 

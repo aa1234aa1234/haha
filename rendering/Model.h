@@ -11,10 +11,9 @@
 #include <assimp/scene.h>
 #include "Mesh.h"
 #include <assimp/postprocess.h>
-
+#include "Material.h"
 #include "Texture.h"
 
-class Material;
 class Texture;
 
 class Model {
@@ -29,7 +28,12 @@ class Model {
 
     int numInstances = 1;
 public:
-    Model(const char* directory, const char* fileName, int numInstances = 1) : directory(directory), fileName(fileName), numInstances(numInstances) {}
+    Model(const char* directory, const char* fileName, int numInstances = 1) : directory(directory), fileName(fileName), numInstances(numInstances)
+    {
+        std::string a = this->directory + this->fileName;
+        //LoadModel(a);
+
+    }
     ~Model() {
         if (scene) delete scene;
     }

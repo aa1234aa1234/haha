@@ -158,7 +158,7 @@ public:
             }
             else if (sceneNode->getComponents().size() && j < sceneNode->getComponents().size()) {
                 EntityID child = CreateTreeNode(node);
-                loadTree(sceneNode, child, width+tabWidth, height+rowHeight*(i+1), entities, sceneNode->getComponents()[j]);
+                loadTree(sceneNode, child, width+tabWidth, height+rowHeight*(i+j+1), entities, sceneNode->getComponents()[j]);
                 SystemCoordinator::getInstance()->GetComponent<ContentComponent>(node).entities.emplace_back(child);
                 j++;
             }
@@ -194,6 +194,7 @@ public:
                 {
                     i+=sum(1,nodes.size()-1,1,segmentIndex[i+1].start, segmentIndex[i+1].end);
                     nodei = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(nodes[i]);
+                    nodeicon = &SystemCoordinator::getInstance()->GetComponent<RenderableIcon>(nodes[i]);
                     nodeiparent = &SystemCoordinator::getInstance()->GetComponent<TreeNodeComponent>(SystemCoordinator::getInstance()->GetComponent<ParentComponent>(nodes[i]).parent);
                 }
                 if (nodeiparent->expanded)
@@ -201,7 +202,8 @@ public:
                     nodei->visible = nodeiparent->expanded & nodeidx.expanded;
                     //nodes[i]->icon.visible = nodes[i]->parent->expanded & nodes[idx]->expanded;
                     if (SystemCoordinator::getInstance()->GetComponent<ContentComponent>(nodes[i]).entities.size()) {
-                        nodeicon->visible = nodeiparent->expanded & nodeidx.expanded;
+                        //nodeicon->visible = nodeiparent->expanded & nodeidx.expanded;
+                        nodeicon->visible = nodei->visible;
                     }
 
                     cnt++;
@@ -257,6 +259,7 @@ public:
             glm::vec2 mousePos = Input::getInstance()->getMousePos();
             iconBoundingBox.y -= *offset;
             nodeBoundingBox.y -= *offset;
+            uvrect.y -= *offset;
             if (iconBoundingBox.x <= mousePos.x && mousePos.x <= iconBoundingBox.x + iconBoundingBox.z && iconBoundingBox.y <= mousePos.y && mousePos.y <= iconBoundingBox.y + iconBoundingBox.w)
             {
                 if (!childrensize) return;

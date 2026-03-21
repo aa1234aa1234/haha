@@ -20,9 +20,9 @@ EditorLayer::EditorLayer(Engine* engine) : engine(engine)
 
 EditorLayer::~EditorLayer()
 {
-    delete tabView;
+    //delete tabView;
     //delete sceneView;
-    delete objectView;
+    //delete objectView;
     UIContext::destroyInstance();
     SystemCoordinator::destroyInstance();
 }
@@ -44,6 +44,7 @@ void EditorLayer::RegisterComponents()
     SystemCoordinator::getInstance()->RegisterComponent<NonRenderableBoundingBox>();
     SystemCoordinator::getInstance()->RegisterComponent<HandleInput>();
     SystemCoordinator::getInstance()->RegisterComponent<RenderableIcons>();
+    SystemCoordinator::getInstance()->RegisterComponent<ContainerComponent>();
 }
 
 void EditorLayer::init()
