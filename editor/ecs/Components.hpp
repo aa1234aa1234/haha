@@ -89,6 +89,10 @@ struct ContainerComponent
     EntityID component = -1;
 };
 
+struct TitleComponent {
+    std::string title="Component";
+};
+
 #define COMPONENTS_H
 
 #endif //COMPONENTS_H

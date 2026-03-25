@@ -4,6 +4,7 @@
 
 #ifndef CONTAINERCOMPONENT_H
 #define CONTAINERCOMPONENT_H
+#include "Components.hpp"
 #include "Entity.h"
 #include "SystemCoordinator.h"
 
@@ -19,7 +20,9 @@ public:
 
     void Initialize(EntityID componentId)
     {
+        auto transform = sc->GetComponent<TransformComponent>(componentId);
         sc->AddComponent(getId(), ContainerComponent {componentId});
+        sc->AddComponent(getId(), TransformComponent{glm::vec2(transform.position, transform.size, glm::vec3(40,40,40))});
     }
 };
 

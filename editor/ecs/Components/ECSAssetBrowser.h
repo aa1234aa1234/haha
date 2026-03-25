@@ -98,6 +98,7 @@ public:
         SystemCoordinator::getInstance()->AddComponent(getId(), TransformComponent{position,glm::vec4(40,40,40,1), size});
         SystemCoordinator::getInstance()->AddComponent(getId(), ScrollableComponent{0,0,0,0, scrollbar->getId()});
         SystemCoordinator::getInstance()->AddComponent(getId(), ContentComponent{});
+        SystemCoordinator::getInstance()->AddComponent(getId(), TitleComponent{"Asset Browser"});
 
         offset = &SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(getId()).offset;
         maxScroll = &SystemCoordinator::getInstance()->GetComponent<ScrollableComponent>(getId()).maxScroll;

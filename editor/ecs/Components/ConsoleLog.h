@@ -10,15 +10,18 @@
 #include <glm/glm.hpp>
 
 class ConsoleLog : public Entity {
+    SystemCoordinator* sc;
 public:
     ConsoleLog(const glm::vec2& position, const glm::vec2& size) {
+        sc = SystemCoordinator::getInstance();
         Initialize(position,size);
     }
 
     void Initialize(glm::vec2 position, glm::vec2 size) {
-        SystemCoordinator::getInstance()->RegisterEntity(this);
-        SystemCoordinator::getInstance()->AddComponent(getId(), TransformComponent{position,glm::vec4(20,20,20,1), size});
-        SystemCoordinator::getInstance()->AddComponent(getId(), ScrollableComponent{});
+        sc->RegisterEntity(this);
+        sc->AddComponent(getId(), TransformComponent{position,glm::vec4(20,20,20,1), size});
+        sc->AddComponent(getId(), ScrollableComponent{});
+        sc->AddComponent(getId(), TitleComponent{"Console"});
     }
 };
 

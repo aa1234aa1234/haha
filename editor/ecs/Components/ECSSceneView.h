@@ -26,6 +26,7 @@ public:
         sc->AddComponent(getId(), TextureComponent{texture});
         sc->AddComponent(getId(), TransformComponent{position, color, size});
         sc->AddComponent(getId(), HandleInput{});
+        sc->AddComponent(getId(), TitleComponent{"Scene"});
     }
 
     void update(float deltatime) override {
