@@ -21,11 +21,12 @@ public:
     void Initialize(EntityID componentId)
     {
         auto& transform = sc->GetComponent<TransformComponent>(componentId);
+        sc->RegisterEntity(this);
         sc->AddComponent(getId(), Container {componentId});
         sc->AddComponent(getId(), TransformComponent{transform.position, glm::vec4(30,30,30,1.0), transform.size});
         transform.position.y += 41;
-        transform.size.y -= 42;
         transform.position.x += 1;
+        transform.size.y -= 42;
         transform.size.x -= 2;
     }
 };
