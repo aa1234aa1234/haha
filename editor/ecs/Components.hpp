@@ -84,7 +84,7 @@ struct NonRenderableBoundingBox {
 struct HandleInput {
 };
 
-struct ContainerComponent
+struct Container
 {
     EntityID component = -1;
 };

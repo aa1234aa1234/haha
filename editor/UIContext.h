@@ -18,6 +18,7 @@
 #include "ScrollbarRenderSystem.h"
 #include "TreeNodeRenderSystem.h"
 #include "UpdateSystem.h"
+#include "ContainerComponent.h"
 #define MAX_COMPONENTS 10000
 
 

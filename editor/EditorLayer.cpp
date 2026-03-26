@@ -44,7 +44,7 @@ void EditorLayer::RegisterComponents()
     SystemCoordinator::getInstance()->RegisterComponent<NonRenderableBoundingBox>();
     SystemCoordinator::getInstance()->RegisterComponent<HandleInput>();
     SystemCoordinator::getInstance()->RegisterComponent<RenderableIcons>();
-    SystemCoordinator::getInstance()->RegisterComponent<ContainerComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<Container>();
     SystemCoordinator::getInstance()->RegisterComponent<TitleComponent>();
 }
 

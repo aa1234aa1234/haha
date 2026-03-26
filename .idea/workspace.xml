@@ -33,14 +33,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="03-19">
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="03-25">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/UIContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Components.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ConsoleLog.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ConsoleLog.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ContainerComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ContainerComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ECSAssetBrowser.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ECSAssetBrowser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ECSSceneView.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ECSSceneView.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +264,8 @@
       <workItem from="1773191879682" duration="4377000" />
       <workItem from="1773290090826" duration="6250000" />
       <workItem from="1773895463502" duration="5801000" />
-      <workItem from="1774400110685" duration="2023000" />
+      <workItem from="1774400110685" duration="2317000" />
+      <workItem from="1774501923728" duration="3386000" />
     </task>
     <task id="LOCAL-00001" summary="06-21">
       <option name="closed" value="true" />
@@ -619,7 +619,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773901283716</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="03-25">
+      <option name="closed" value="true" />
+      <created>1774403461334</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1774403461334</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,7 +650,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="09-01" />
     <MESSAGE value="09-03" />
     <MESSAGE value="09-08" />
     <MESSAGE value="09-10" />
@@ -667,7 +674,8 @@
     <MESSAGE value="11-26" />
     <MESSAGE value="03-12" />
     <MESSAGE value="03-19" />
-    <option name="LAST_COMMIT_MESSAGE" value="03-19" />
+    <MESSAGE value="03-25" />
+    <option name="LAST_COMMIT_MESSAGE" value="03-25" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
