@@ -19,6 +19,7 @@
 #include "TreeNodeRenderSystem.h"
 #include "UpdateSystem.h"
 #include "ContainerComponent.h"
+#include "ContainerRenderSystem.h"
 #define MAX_COMPONENTS 10000
 
 
@@ -49,6 +50,7 @@ class UIContext
 	IconRenderSystem* iconrenderer;
 	SceneViewRenderer* sceneviewrenderer;
 	HandleInputSystem* handleinputsystem;
+	ContainerRenderSystem* containerrendersystem;
 	ECSAssetBrowser* testobject = nullptr;
 	ECSSceneView* sceneview = nullptr;
 	ConsoleLog* consolelog;

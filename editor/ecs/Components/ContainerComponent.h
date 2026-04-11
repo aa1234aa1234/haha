@@ -29,6 +29,11 @@ public:
         transform.size.y -= 42;
         transform.size.x -= 2;
     }
+
+    void update(float deltatime) override
+    {
+
+    }
 };
 
 #endif //CONTAINERCOMPONENT_H

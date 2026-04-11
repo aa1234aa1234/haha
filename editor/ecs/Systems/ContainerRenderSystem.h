@@ -4,6 +4,8 @@
 
 #ifndef CONTAINERRENDERSYSTEM_H
 #define CONTAINERRENDERSYSTEM_H
+#include <unordered_set>
+
 #include "Components.hpp"
 #include "Shader.h"
 #include "System.h"
@@ -15,7 +17,7 @@
 class ContainerRenderSystem : public System {
     SystemCoordinator* sc;
     Shader* shader;
-    int w,h;
+    int w=0,h=0;
     VertexBuffer *vbo, *instancevbo;
     VertexArray* vao;
 
@@ -24,12 +26,11 @@ class ContainerRenderSystem : public System {
         glm::vec2 size;
         bool isSelected = false;
     };
+
+    std::vector<TabData> instanceData;
+
 public:
-    ContainerRenderSystem(const int& width, const int& height) {
-        Initialize(width, height);
-        shader = new Shader();
-        shader->createFromSource("resources/shader/editor/container.glsl");
-    }
+    ContainerRenderSystem() : sc(SystemCoordinator::getInstance()), shader(nullptr), vbo(nullptr), instancevbo(nullptr), vao(nullptr) {}
 
     ~ContainerRenderSystem() {
         if (shader) delete shader;
@@ -38,7 +39,10 @@ public:
         delete instancevbo;
     }
 
-    void Initialize(int& width, int& height) {
+    void Initialize(const int& width, const int& height) {
+        shader = new Shader();
+        shader->createFromSource("resources/shader/editor/container.glsl");
+
         float ndc[] = {
             1.0, 1.0 ,
             1.0,-1.0,
@@ -68,7 +72,29 @@ public:
         Signature signature;
         signature.set(sc->GetComponentType<Container>(), true);
         signature.set(sc->GetComponentType<TransformComponent>(), true);
-        sc->SetSystemSignature<Container>(signature);
+        sc->SetSystemSignature<ContainerRenderSystem>(signature);
+    }
+
+    void Update()
+    {
+        bool updateFlag=false;
+        shader->use();
+        glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(this->w), static_cast<float>(this->h), 0.0f);
+        glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
+        for (auto& p : entities)
+        {
+            if (sc->EntityHasComponent<DirtyComponent>(p)) updateFlag = true;
+            instanceData.push_back(TabData{});
+        }
+        if (updateFlag)
+        {
+            instancevbo->fill(instanceData.data(), instanceData.size() * sizeof(TabData), GL_STATIC_DRAW);
+        }
+
+        vao->bind();
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instanceData.size());
+
+        instanceData.clear();
     }
 };
 
