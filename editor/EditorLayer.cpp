@@ -46,6 +46,7 @@ void EditorLayer::RegisterComponents()
     SystemCoordinator::getInstance()->RegisterComponent<RenderableIcons>();
     SystemCoordinator::getInstance()->RegisterComponent<Container>();
     SystemCoordinator::getInstance()->RegisterComponent<TitleComponent>();
+    SystemCoordinator::getInstance()->RegisterComponent<LogComponent>();
 }
 
 void EditorLayer::init()

@@ -19,7 +19,7 @@ public:
     }
 
     void render(Shader* shader, CameraComponent* camera) override;
-    const std::string getType() override { return "MeshRenderer"; }
+    const std::string getType() override { return "ModelRenderer"; }
 
 };
 

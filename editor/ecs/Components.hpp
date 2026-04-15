@@ -93,6 +93,10 @@ struct TitleComponent {
     std::string title="Component";
 };
 
+struct LogComponent {
+    std::vector<std::string> log;
+};
+
 #define COMPONENTS_H
 
 #endif //COMPONENTS_H

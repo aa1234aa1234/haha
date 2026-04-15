@@ -30,8 +30,8 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
 
     SceneNode* testobject = new SceneNode("TestObject", glm::vec3(1,1,1), glm::vec3(0,0,0), glm::vec3(1,1,1));
 
-    //testobject->getTransform().setScale(glm::vec3(1,1,1));
-    //testobject->getTransform().setTranslation(glm::vec3(1,1,1));
+    testobject->getTransform().setScale(glm::vec3(1,10,1));
+    //testobject->getTransform().setTranslation(glm::vec3(1,10,1));
     Material* testmat = new Material();
     testmat->setAmbientColor(glm::vec4(0.2,0.2,0.2,1.0));
     testmat->setDiffuseColor(glm::vec4(1,1,1,1.0));
