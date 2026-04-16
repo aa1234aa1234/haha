@@ -104,7 +104,7 @@ public:
 		return -1;
 	}
 
-	void manualDrawText(Text& k) {
+	void manualDrawText(Text& k, int widthLim=0, int heightLim = 0) {
 		shader->use();
 		//textBuffer->bind();
 		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
@@ -134,6 +134,8 @@ public:
             float x = ch.x / (float)textureWidth, y = ch.y / (float)textureHeight;
             float x1 = (ch.x + ch.width) / (float)textureWidth, y1 = (ch.y + ch.height) / (float)textureHeight;
 
+			if(k.posx || k.posy || k.posx > widthLim || k.posy > heightLim) continue;
+			
             float vertices[6][4] = {
                 xpos, ypos, x, y,
                 xpos1, ypos, x1, y,
