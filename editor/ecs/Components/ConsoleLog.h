@@ -13,6 +13,7 @@ class ConsoleLog : public Entity {
     SystemCoordinator* sc;
     std::vector<std::string>* log;
     float* offset;
+    static const int LINEHEIGHT=20;
 public:
     ConsoleLog(const glm::vec2& position, const glm::vec2& size) {
         sc = SystemCoordinator::getInstance();
@@ -35,6 +36,10 @@ public:
 
     void addLog(std::string& text) {
         log->push_back(text);
+    }
+
+    void partitionLog() {
+        
     }
 };
 
