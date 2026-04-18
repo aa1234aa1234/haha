@@ -28,7 +28,6 @@ public:
         sc->RegisterEntity(this);
         sc->AddComponent(getId(), TransformComponent{position,glm::vec4(20,20,20,1), size});
         sc->AddComponent(getId(), ScrollableComponent{});
-        sc->AddComponent(getId(), TitleComponent{"Console"});
         sc->AddComponent(getId(), LogComponent{});
         log = &sc->GetComponent<LogComponent>(getId()).log;
         offset = &sc->GetComponent<ScrollableComponent>(getId()).offset;
