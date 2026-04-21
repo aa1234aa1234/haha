@@ -94,6 +94,14 @@ public:
         vao->bind();
         glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instanceData.size());
 
+        //refactor when changing text rendering to batch rendering
+        //make it so the log is already saved to a batch and only updates when a lines is added
+
+        for (auto& p : entities)
+        {
+            ((ConsoleLog*)sc->GetEntity(p))->partitionLog();
+        }
+
         instanceData.clear();
     }
 };
