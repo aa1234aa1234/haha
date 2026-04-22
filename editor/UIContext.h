@@ -20,6 +20,7 @@
 #include "UpdateSystem.h"
 #include "ContainerComponent.h"
 #include "ContainerRenderSystem.h"
+#include "LogRenderSystem.h"
 #define MAX_COMPONENTS 10000
 
 
@@ -51,6 +52,7 @@ class UIContext
 	SceneViewRenderer* sceneviewrenderer;
 	HandleInputSystem* handleinputsystem;
 	ContainerRenderSystem* containerrendersystem;
+	LogRenderSystem* logrendersystem;
 	ECSAssetBrowser* testobject = nullptr;
 	ECSSceneView* sceneview = nullptr;
 	ConsoleLog* consolelog;

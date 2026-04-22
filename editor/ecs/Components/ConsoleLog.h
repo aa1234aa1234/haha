@@ -39,7 +39,8 @@ public:
     }
 
     void partitionLog() {
-        
+		//change this to incorporate offset
+
     }
 };
 

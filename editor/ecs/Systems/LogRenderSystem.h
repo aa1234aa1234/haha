@@ -8,6 +8,7 @@
 #include "System.h"
 #include "SystemCoordinator.h"
 #include "VertexBuffer.h"
+#include "TextHandler.h"
 
 class LogRenderSystem : public System {
     SystemCoordinator* sc;
@@ -26,7 +27,13 @@ public:
     }
 
     void Update() {
-
+		for(auto& p : entities) {
+			auto transform = sc->GetComponent<TransformComponent>(p);
+			std::string text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+			Text t = Text{transform.position.x + 10, transform.position.y + 10, text};
+			TextHandler::getInstance()->manualDrawText(t, transform.position.x+transform.size.x, transform.position.y+transform.size.y, transform.position.x+10, transform.position.y+10);
+			std::cout << "logtest";
+		}
     }
 };
 

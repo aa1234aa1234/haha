@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/user/Desktop/code/haha/build/cmake_install.cmake",
+		"C:/Users/user/Desktop/code/haha/build/Thirdparty/glfw/cmake_install.cmake",
+		"C:/Users/user/Desktop/code/haha/build/Thirdparty/glfw/src/cmake_install.cmake",
+		"C:/Users/user/Desktop/code/haha/build/Thirdparty/glfw/docs/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
