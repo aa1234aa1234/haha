@@ -29,10 +29,12 @@ public:
     void Update() {
 		for(auto& p : entities) {
 			auto transform = sc->GetComponent<TransformComponent>(p);
-			std::string text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-			Text t = Text{transform.position.x + 10, transform.position.y + 10, text};
-			TextHandler::getInstance()->manualDrawText(t, transform.position.x+transform.size.x, transform.position.y+transform.size.y, transform.position.x+10, transform.position.y+10);
-			std::cout << "logtest";
+			std::string text = "i dont know what to put here";
+			Text t = Text{transform.position.x + 10, transform.position.y + 10, text}, t2 = Text{transform.position.x + 10, transform.position.y + 10, "abcabcabcabc"};
+			TextHandler::getInstance()->manualDrawText(t, transform.position.x+transform.size.x, transform.position.y+transform.size.y, transform.position.x, transform.position.y);
+			TextHandler::getInstance()->manualDrawText(t2, transform.position.x+transform.size.x, transform.position.y+transform.size.y, transform.position.x, transform.position.y);
+			std::cout << sc->GetComponent<ScrollableComponent>(p).offset << std::endl;
+			//std::cout << "logtest";
 		}
     }
 };

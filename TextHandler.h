@@ -116,9 +116,9 @@ public:
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		float x = k.posx;
         float y = k.posy;
-        float mx = 1e9;
+        float mx = -1e9;
         for (auto& p : k.text) {
-            if (characters[p].height < mx) mx = characters[p].height;
+            if (characters[p].originY > mx) mx = characters[p].originY;
         }
         for (auto& p : k.text) {
 
@@ -130,7 +130,7 @@ public:
             float w = ch.width * k.textScale;
             float h = ch.height * k.textScale;
             float xpos = k.posx - ch.originX * k.textScale, xpos1 = xpos+w;
-            float ypos = k.posy+mx*k.textScale - ch.originY * k.textScale, ypos1 = ypos+h;
+            float ypos = k.posy + (mx-ch.originY) * k.textScale, ypos1 = ypos+h;
             float x = ch.x / (float)textureWidth, y = ch.y / (float)textureHeight;
             float x1 = (ch.x + ch.width) / (float)textureWidth, y1 = (ch.y + ch.height) / (float)textureHeight;
 
@@ -164,7 +164,7 @@ public:
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		float x = k.posx;
         float y = k.posy;
-        float mx = 1e9;
+        float mx = -1e9;
         if (k.frameBuffer || !k.frameBuffer)
         {
         	//std::cout << "fewafwae " << k.frameBuffer << std::endl;
@@ -172,7 +172,7 @@ public:
         	glBindFramebuffer(GL_FRAMEBUFFER, k.frameBuffer);
         }
         for (auto& p : k.text) {
-            if (characters[p].height < mx) mx = characters[p].height;
+            if (characters[p].originY > mx) mx = characters[p].originY;
         }
         for (auto& p : k.text) {
 
@@ -184,7 +184,7 @@ public:
             float w = ch.width * k.textScale;
             float h = ch.height * k.textScale;
             float xpos = k.posx - ch.originX * k.textScale, xpos1 = xpos+w;
-            float ypos = k.posy+mx*k.textScale - ch.originY * k.textScale, ypos1 = ypos+h;
+            float ypos = k.posy + (mx-ch.originY) * k.textScale, ypos1 = ypos+h;
             float x = ch.x / (float)textureWidth, y = ch.y / (float)textureHeight;
             float x1 = (ch.x + ch.width) / (float)textureWidth, y1 = (ch.y + ch.height) / (float)textureHeight;
 

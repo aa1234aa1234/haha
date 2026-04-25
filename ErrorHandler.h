@@ -5,6 +5,8 @@
 #ifndef ERRORHANDLER_H
 #define ERRORHANDLER_H
 #include <iostream>
+
+#include "UIContext.h"
 //#include <GLFW/glfw3.h>
 
 #define GLCall(x)   \
@@ -22,6 +24,8 @@ inline void glLogError() {
     GLenum error;
     while ((error = glGetError()) != GL_NO_ERROR) {
         std::cout << "[OpenGL Error] " << error << '\n';
+        std::string a = "[OpenGL Error] " + error;
+        UIContext::getInstance()->addLog(a, true);
     }
 }
 

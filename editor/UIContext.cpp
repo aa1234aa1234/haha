@@ -138,6 +138,12 @@ void UIContext::setSize(int& width, int& height) {
 	}
 }
 
+void UIContext::addLog(std::string& log, bool nextLine = false)
+{
+	consolelog->addLog(log, nextLine);
+}
+
+
 void UIContext::DrawComponents(Engine& engine) {
 	
 	//float aspect = (float)width / height;
@@ -186,11 +192,11 @@ void UIContext::DrawComponents(Engine& engine) {
 	handleinputsystem->Update(this->engine->getDeltaTime());
 	scrollsystem->Update();
 	clicksystem->Update();
-	logrendersystem->Update();
 	containerrendersystem->Update();
 	updatesystem->Update(this->engine->getDeltaTime());
 	rendersystem->Update();
 	scrollrendersystem->Update();
+	logrendersystem->Update();
 
 	//systems that draw child components
 	glEnable(GL_SCISSOR_TEST);
@@ -198,6 +204,7 @@ void UIContext::DrawComponents(Engine& engine) {
 	iconrenderer->Update();
 	glDisable(GL_SCISSOR_TEST);
 	sceneviewrenderer->Update();
+
 
 
 	glBindVertexArray(0);

@@ -112,6 +112,8 @@ public:
 	void onDoubleClick(glm::vec2 pos);
 	void onUpdate(int start, int end);
 	void update();
+
+	void addLog(std::string& log, bool nextLine);
 	UIComponent* getComponent(int id) { return instanceData[id]; }
 };
 

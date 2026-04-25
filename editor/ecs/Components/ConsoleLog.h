@@ -34,8 +34,9 @@ public:
         offset = &sc->GetComponent<ScrollableComponent>(getId()).offset;
     }
 
-    void addLog(std::string& text) {
-        log->push_back(text);
+    void addLog(std::string& text, bool nextLine = false) { //subject to change
+        if (!nextLine) (log->back()) += text;
+        else log->push_back(text);
     }
 
     void partitionLog() {
