@@ -29,6 +29,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     glfwSwapInterval(1);
 
     SceneNode* testobject = new SceneNode("TestObject", glm::vec3(1,1,1), glm::vec3(0,0,0), glm::vec3(1,1,1));
+    for (int i = 0; i<100; i++) application->getRoot().addSceneNode(new SceneNode("fEWAffe"));
 
     testobject->getTransform().setScale(glm::vec3(1,10,1));
     //testobject->getTransform().setTranslation(glm::vec3(1,10,1));

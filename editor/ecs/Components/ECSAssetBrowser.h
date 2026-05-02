@@ -236,6 +236,7 @@ public:
         std::cout << "cnt: " << cnt << std::endl;
         totalrows += cnt*(nodeidx.expanded ? 1 : -1);
         *maxScroll = totalrows * rowHeight + STARTING_OFFSETY - SystemCoordinator::getInstance()->GetComponent<TransformComponent>(getId()).size.y;
+        std::cout << "maxscroll: " << *maxScroll << std::endl;
     }
 
     EntityID CreateTreeNode(EntityID parent = -1, std::string text="", glm::vec2 pos=glm::vec2(), glm::vec4 boundingBox=glm::vec4()) {

@@ -9,6 +9,7 @@
 #include "SystemCoordinator.h"
 #include "VertexBuffer.h"
 #include "TextHandler.h"
+#include "ConsoleLog.h"
 
 class LogRenderSystem : public System {
     SystemCoordinator* sc;
@@ -29,12 +30,18 @@ public:
     void Update() {
 		for(auto& p : entities) {
 			auto transform = sc->GetComponent<TransformComponent>(p);
-			std::string text = "i dont know what to put here";
-			Text t = Text{transform.position.x + 10, transform.position.y + 10, text}, t2 = Text{transform.position.x + 10, transform.position.y + 10, "abcabcabcabc"};
-			TextHandler::getInstance()->manualDrawText(t, transform.position.x+transform.size.x, transform.position.y+transform.size.y, transform.position.x, transform.position.y);
-			TextHandler::getInstance()->manualDrawText(t2, transform.position.x+transform.size.x, transform.position.y+transform.size.y, transform.position.x, transform.position.y);
-			std::cout << sc->GetComponent<ScrollableComponent>(p).offset << std::endl;
+			auto logs = dynamic_cast<ConsoleLog*>(sc->GetEntity(p))->partitionLog();
+			//std::string text = "i dont know what to put here";
+			//Text t = Text{transform.position.x + 10, transform.position.y + 10, text};
+			//TextHandler::getInstance()->manualDrawText(t, transform.position.x+transform.size.x, transform.position.y+transform.size.y, transform.position.x, transform.position.y);
+			//std::cout << sc->GetComponent<ScrollableComponent>(p).offset << std::endl;
 			//std::cout << "logtest";
+			auto log = sc->GetComponent<LogComponent>(p);
+			for (int i = logs.x,k=10; i<logs.y; i++,k+=ROW_HEIGHT)
+			{
+				Text t = Text{transform.position.x+10, transform.position.y+k, log.log[i]};
+				TextHandler::getInstance()->manualDrawText(t, transform.position.x+transform.size.x, transform.position.y+transform.size.y, transform.position.x, transform.position.y);
+			}
 		}
     }
 };

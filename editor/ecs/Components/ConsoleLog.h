@@ -13,6 +13,7 @@ class ConsoleLog : public Entity {
     SystemCoordinator* sc;
     std::vector<std::string>* log;
     float* offset;
+    int* maxScroll;
     static const int LINEHEIGHT=20;
 public:
     ConsoleLog(const glm::vec2& position, const glm::vec2& size) {
@@ -32,16 +33,22 @@ public:
         sc->AddComponent(getId(), LogComponent{});
         log = &sc->GetComponent<LogComponent>(getId()).log;
         offset = &sc->GetComponent<ScrollableComponent>(getId()).offset;
+        maxScroll = &sc->GetComponent<ScrollableComponent>(getId()).maxScroll;
     }
 
     void addLog(std::string& text, bool nextLine = false) { //subject to change
         if (!nextLine) (log->back()) += text;
-        else log->push_back(text);
+        else
+        {
+            log->push_back(text);
+            *maxScroll = LINEHEIGHT * log->size() - sc->GetComponent<TransformComponent>(getId()).size.y;
+        }
     }
 
-    void partitionLog() {
+    glm::vec2 partitionLog() {
 		//change this to incorporate offset
-
+        if (offset == nullptr) return {};
+        return glm::vec2((*offset)/LINEHEIGHT, ((*offset)+sc->GetComponent<TransformComponent>(getId()).size.y)/LINEHEIGHT);
     }
 };
 
