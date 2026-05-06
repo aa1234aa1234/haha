@@ -99,7 +99,7 @@ public:
 
         for (auto& p : entities)
         {
-            ((ConsoleLog*)sc->GetEntity(p))->partitionLog();
+
         }
 
         instanceData.clear();

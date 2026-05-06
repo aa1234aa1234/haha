@@ -67,7 +67,13 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
 
     renderingEngine->setAmbientLight(glm::vec3(1,1,1));
 
-
+    for (int i = 0; i<25; i++) {
+        for (int j = 0; j<25; j++) {
+            UIContext::getInstance()->addLog(i);
+            UIContext::getInstance()->addLog(' ');
+        }
+        UIContext::getInstance()->addLog("", true);
+    }
 
 }
 
@@ -132,6 +138,10 @@ void Engine::run()
         if (Input::getInstance()->isKeyDown('A'))
         {
             std::cout << "123" << std::endl;
+            // char aa[1024];
+            // sprintf(aa, "%lf", deltatime);
+            // std::string a = aa;
+            // UIContext::getInstance()->addLog(a, true);
         }
         //frames = frameLimiter.end();
         //Input::getInstance()->setEventType(-1);

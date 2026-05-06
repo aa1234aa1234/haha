@@ -2,6 +2,7 @@
 #include "header.h"
 #include "UIComponent.h"
 #include <map>
+#include <sstream>
 
 #include "DockSpace.h"
 #include "EventHandler.h"
@@ -113,7 +114,15 @@ public:
 	void onUpdate(int start, int end);
 	void update();
 
-	void addLog(std::string& log, bool nextLine);
+	template<typename T>
+	void addLog(const T& log, bool nextLine=false)
+	{
+		std::stringstream ss;
+		ss << log;
+		std::string a = ss.str();
+		consolelog->addLog(a, nextLine);
+	}
+
 	UIComponent* getComponent(int id) { return instanceData[id]; }
 };
 

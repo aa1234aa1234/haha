@@ -1,5 +1,6 @@
 #include "UIContext.h"
 #include <functional>
+#include <sstream>
 
 #include "Engine.h"
 
@@ -138,10 +139,7 @@ void UIContext::setSize(int& width, int& height) {
 	}
 }
 
-void UIContext::addLog(std::string& log, bool nextLine = false)
-{
-	consolelog->addLog(log, nextLine);
-}
+
 
 
 void UIContext::DrawComponents(Engine& engine) {

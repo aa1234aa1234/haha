@@ -41,7 +41,8 @@ public:
         else
         {
             log->push_back(text);
-            *maxScroll = LINEHEIGHT * log->size() - sc->GetComponent<TransformComponent>(getId()).size.y;
+            *maxScroll = LINEHEIGHT * log->size() - sc->GetComponent<TransformComponent>(getId()).size.y + 20;
+            if (*maxScroll > 0) *offset += LINEHEIGHT;
         }
     }
 
