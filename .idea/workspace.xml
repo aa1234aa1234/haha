@@ -33,14 +33,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="04-15">
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="05-02">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/UIContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/UIContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/UIContext.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editor/ecs/Components/ConsoleLog.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components/ConsoleLog.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/ContainerRenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/ContainerRenderSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/LogRenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/LogRenderSystem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,44 +65,10 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/aa1234aa1234/haha.git&quot;,
-    &quot;accountId&quot;: &quot;b4e423e2-e9c2-4f8f-8874-3c5e820d0138&quot;
+    &quot;accountId&quot;: &quot;165dcd27-ebc0-4733-a294-3238d8e3bc83&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -165,7 +126,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.project.executor": "Debug",
+    "CMake Application.project.executor": "Run",
     "CMake Debug.project.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -186,7 +147,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.language.and.region",
+    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -300,19 +261,20 @@
       <workItem from="1772688631441" duration="807000" />
       <workItem from="1773191879682" duration="4377000" />
       <workItem from="1773290090826" duration="6250000" />
-      <workItem from="1773895463502" duration="5801000" />
-      <workItem from="1774400110685" duration="2317000" />
-      <workItem from="1774501923728" duration="3728000" />
-      <workItem from="1776232209843" duration="2851000" />
-      <workItem from="1778046833166" duration="4713000" />
-    </task>
-    <task id="LOCAL-00001" summary="06-21">
-      <option name="closed" value="true" />
-      <created>1750489872379</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1750489872379</updated>
+      <workItem from="1773895463502" duration="5538000" />
+      <workItem from="1774076284828" duration="7739000" />
+      <workItem from="1774519311676" duration="2626000" />
+      <workItem from="1774660166563" duration="21000" />
+      <workItem from="1774660885821" duration="53000" />
+      <workItem from="1775891960198" duration="139000" />
+      <workItem from="1775892127861" duration="5281000" />
+      <workItem from="1776149033798" duration="3512000" />
+      <workItem from="1776755446348" duration="5919000" />
+      <workItem from="1776926885408" duration="1371000" />
+      <workItem from="1777099115409" duration="7979000" />
+      <workItem from="1777700349841" duration="5745000" />
+      <workItem from="1778140775116" duration="675000" />
+      <workItem from="1779515879698" duration="1814000" />
     </task>
     <task id="LOCAL-00002" summary="06-21">
       <option name="closed" value="true" />
@@ -650,39 +612,63 @@
       <option name="project" value="LOCAL" />
       <updated>1773296775628</updated>
     </task>
-    <task id="LOCAL-00044" summary="03-19">
+    <task id="LOCAL-00044" summary="03-21">
       <option name="closed" value="true" />
-      <created>1773901283716</created>
+      <created>1774085437423</created>
       <option name="number" value="00044" />
       <option name="presentableId" value="LOCAL-00044" />
       <option name="project" value="LOCAL" />
-      <updated>1773901283716</updated>
+      <updated>1774085437423</updated>
     </task>
-    <task id="LOCAL-00045" summary="03-25">
+    <task id="LOCAL-00045" summary="03-26">
       <option name="closed" value="true" />
-      <created>1774403461334</created>
+      <created>1774521940921</created>
       <option name="number" value="00045" />
       <option name="presentableId" value="LOCAL-00045" />
       <option name="project" value="LOCAL" />
-      <updated>1774403461334</updated>
+      <updated>1774521940921</updated>
     </task>
-    <task id="LOCAL-00046" summary="03-26">
+    <task id="LOCAL-00046" summary="04-11">
       <option name="closed" value="true" />
-      <created>1774505760463</created>
+      <created>1775898402841</created>
       <option name="number" value="00046" />
       <option name="presentableId" value="LOCAL-00046" />
       <option name="project" value="LOCAL" />
-      <updated>1774505760463</updated>
+      <updated>1775898402841</updated>
     </task>
-    <task id="LOCAL-00047" summary="04-15">
+    <task id="LOCAL-00047" summary="04-14">
       <option name="closed" value="true" />
-      <created>1776237724291</created>
+      <created>1776164282391</created>
       <option name="number" value="00047" />
       <option name="presentableId" value="LOCAL-00047" />
       <option name="project" value="LOCAL" />
-      <updated>1776237724291</updated>
+      <updated>1776164282391</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="04-21">
+      <option name="closed" value="true" />
+      <created>1776769346605</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1776769346605</updated>
+    </task>
+    <task id="LOCAL-00049" summary="04-25">
+      <option name="closed" value="true" />
+      <created>1777108099564</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1777108099565</updated>
+    </task>
+    <task id="LOCAL-00050" summary="05-02">
+      <option name="closed" value="true" />
+      <created>1777714053846</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1777714053847</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,9 +691,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="09-10" />
-    <MESSAGE value="09-15" />
-    <MESSAGE value="09-17" />
     <MESSAGE value="09-22" />
     <MESSAGE value="09-24" />
     <MESSAGE value="10-01" />
@@ -726,22 +709,16 @@
     <MESSAGE value="11-24" />
     <MESSAGE value="11-26" />
     <MESSAGE value="03-12" />
-    <MESSAGE value="03-19" />
-    <MESSAGE value="03-25" />
+    <MESSAGE value="03-21" />
     <MESSAGE value="03-26" />
-    <MESSAGE value="04-15" />
-    <option name="LAST_COMMIT_MESSAGE" value="04-15" />
+    <MESSAGE value="04-11" />
+    <MESSAGE value="04-14" />
+    <MESSAGE value="04-21" />
+    <MESSAGE value="04-25" />
+    <MESSAGE value="05-02" />
+    <option name="LAST_COMMIT_MESSAGE" value="05-02" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/editor/UIContext.h</url>
-          <line>121</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="SystemCoordinator::getInstance()" />

@@ -37,7 +37,7 @@ public:
     }
 
     void addLog(std::string& text, bool nextLine = false) { //subject to change
-        if (!nextLine) (log->back()) += text;
+        if (!nextLine && log->size()) (log->back()) += text;
         else
         {
             log->push_back(text);
