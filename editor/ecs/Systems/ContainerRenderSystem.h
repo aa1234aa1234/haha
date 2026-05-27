@@ -20,6 +20,8 @@ class ContainerRenderSystem : public System {
     int w=0,h=0;
     VertexBuffer *vbo, *instancevbo;
     VertexArray* vao;
+    bool updateFlag=true;
+    const glm::vec2 TAB_SIZE = glm::vec2(40,100);
 
     struct TabData {
         glm::vec2 position;
@@ -77,14 +79,15 @@ public:
 
     void Update()
     {
-        bool updateFlag=false;
+
         shader->use();
         glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(this->w), static_cast<float>(this->h), 0.0f);
         glUniformMatrix4fv(glGetUniformLocation(shader->getId(), "projection"), 1, GL_FALSE, glm::value_ptr(mat));
         for (auto& p : entities)
         {
             if (sc->EntityHasComponent<DirtyComponent>(p)) updateFlag = true;
-            instanceData.push_back(TabData{});
+            auto transform = sc->GetComponent<TransformComponent>(p);
+            instanceData.push_back(TabData{transform.position, TAB_SIZE, true});
         }
         if (updateFlag)
         {
@@ -103,6 +106,7 @@ public:
         }
 
         instanceData.clear();
+        updateFlag = false;
     }
 };
 

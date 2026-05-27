@@ -190,9 +190,10 @@ void UIContext::DrawComponents(Engine& engine) {
 	handleinputsystem->Update(this->engine->getDeltaTime());
 	scrollsystem->Update();
 	clicksystem->Update();
-	containerrendersystem->Update();
+
 	updatesystem->Update(this->engine->getDeltaTime());
 	rendersystem->Update();
+	containerrendersystem->Update();
 	scrollrendersystem->Update();
 	logrendersystem->Update();
 
