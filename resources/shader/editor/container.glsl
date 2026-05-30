@@ -15,7 +15,7 @@ void main() {
     vec2 few = aPos;
     if(few.x == -1.0) few.x = 0.0;
     if(few.y == -1.0) few.y = 0.0;
-    vec2 pos1 = aPos + (few*aSize);
+    vec2 pos1 = Pos + (few*aSize);
     gl_Position = projection * vec4(pos1,1.0,1.0);
     pos = pos1;
     size = aSize;

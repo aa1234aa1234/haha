@@ -193,7 +193,7 @@ void UIContext::DrawComponents(Engine& engine) {
 
 	updatesystem->Update(this->engine->getDeltaTime());
 	rendersystem->Update();
-	containerrendersystem->Update();
+
 	scrollrendersystem->Update();
 	logrendersystem->Update();
 
@@ -203,6 +203,7 @@ void UIContext::DrawComponents(Engine& engine) {
 	iconrenderer->Update();
 	glDisable(GL_SCISSOR_TEST);
 	sceneviewrenderer->Update();
+	containerrendersystem->Update();
 
 
 

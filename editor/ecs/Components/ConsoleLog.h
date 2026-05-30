@@ -31,6 +31,7 @@ public:
         sc->AddComponent(getId(), TransformComponent{position,glm::vec4(20,20,20,1), size});
         sc->AddComponent(getId(), ScrollableComponent{});
         sc->AddComponent(getId(), LogComponent{});
+        sc->AddComponent(getId(), TitleComponent{"Console"});
         log = &sc->GetComponent<LogComponent>(getId()).log;
         offset = &sc->GetComponent<ScrollableComponent>(getId()).offset;
         maxScroll = &sc->GetComponent<ScrollableComponent>(getId()).maxScroll;

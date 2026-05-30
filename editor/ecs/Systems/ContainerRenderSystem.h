@@ -102,7 +102,11 @@ public:
 
         for (auto& p : entities)
         {
-
+            EntityID component = sc->GetComponent<Container>(p).component;
+            std::string header = sc->GetComponent<TitleComponent>(component).title;
+            auto transform = sc->GetComponent<TransformComponent>(component);
+            Text t = Text{transform.position.x+10, transform.position.y + 5, header};
+            TextHandler::getInstance()->drawText(t);
         }
 
         instanceData.clear();
