@@ -21,7 +21,7 @@ class ContainerRenderSystem : public System {
     VertexBuffer *vbo, *instancevbo;
     VertexArray* vao;
     bool updateFlag=true;
-    const glm::vec2 TAB_SIZE = glm::vec2(40,100);
+    const glm::vec2 TAB_SIZE = glm::vec2(100,30);
 
     struct TabData {
         glm::vec2 position;
@@ -63,12 +63,12 @@ public:
         VertexBufferLayout layout, layout2;
         layout.push<float>(2);
         layout.push<float>(2);
-        layout.push<float>(1);
+        layout.push<int>(1);
         layout2.push<float>(2);
-        vbo = new VertexBuffer(ndc, sizeof(ndc), GL_STATIC_DRAW);
-        instancevbo = new VertexBuffer(NULL, sizeof(TabData) * 1000, GL_STATIC_DRAW);
+        vbo = new VertexBuffer(ndc, sizeof(float) * 2 * 6, GL_STATIC_DRAW);
+        instancevbo = new VertexBuffer(NULL, sizeof(TabData) * 1000, GL_DYNAMIC_DRAW);
         vao->addBuffer(*vbo, layout2);
-        vao->addBuffer(*instancevbo, layout);
+        vao->addBuffer(*instancevbo, layout, true);
         vao->unbind();
 
         Signature signature;
@@ -87,11 +87,11 @@ public:
         {
             if (sc->EntityHasComponent<DirtyComponent>(p)) updateFlag = true;
             auto transform = sc->GetComponent<TransformComponent>(p);
-            instanceData.push_back(TabData{transform.position, TAB_SIZE, true});
+            instanceData.push_back(TabData{transform.position, TAB_SIZE, 1});
         }
         if (updateFlag)
         {
-            instancevbo->fill(instanceData.data(), instanceData.size() * sizeof(TabData), GL_STATIC_DRAW);
+            instancevbo->fill(instanceData.data(), instanceData.size() * sizeof(TabData), GL_DYNAMIC_DRAW);
         }
 
         vao->bind();
@@ -104,9 +104,9 @@ public:
         {
             EntityID component = sc->GetComponent<Container>(p).component;
             std::string header = sc->GetComponent<TitleComponent>(component).title;
-            auto transform = sc->GetComponent<TransformComponent>(component);
-            Text t = Text{transform.position.x+10, transform.position.y + 5, header};
-            TextHandler::getInstance()->drawText(t);
+            auto transform = sc->GetComponent<TransformComponent>(p);
+            Text t = Text{transform.position.x+10, transform.position.y+5, header};
+            TextHandler::getInstance()->manualDrawText(t);
         }
 
         instanceData.clear();

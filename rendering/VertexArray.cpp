@@ -24,15 +24,28 @@ const void VertexArray::unbind() {
     glBindVertexArray(0);
 }
 
-void VertexArray::addBuffer(VertexBuffer& vertexbuffer, const VertexBufferLayout& layout) {
+void VertexArray::addBuffer(VertexBuffer& vertexbuffer, const VertexBufferLayout& layout, bool instanced) {
     bind();
     vertexbuffer.bind();
     const auto& element = layout.getElements();
     int offset = 0;
     for (int i = 0; i < element.size(); i++) {
-        GLCall(glEnableVertexAttribArray(i));
-        GLCall(glVertexAttribPointer(i, element[i].count, element[i].type, element[i].normalized, layout.getStride(), reinterpret_cast<const void*>(offset)));
-        offset += sizeof(VertexBufferElement::getTypeSize(element[i].type)) * element[i].count;
+        GLCall(glEnableVertexAttribArray(nextAttribute));
+        switch (element[i].type)
+        {
+        case GL_INT:
+            GLCall(glVertexAttribIPointer(nextAttribute, element[i].count, element[i].type, layout.getStride(), reinterpret_cast<const void*>(offset)));
+            break;
+        default:
+            GLCall(glVertexAttribPointer(nextAttribute, element[i].count, element[i].type, element[i].normalized, layout.getStride(), reinterpret_cast<const void*>(offset)));
+        }
+        if (instanced)
+        {
+            GLCall(glVertexAttribDivisor(nextAttribute, 1));
+        }
+        //offset += sizeof(VertexBufferElement::getTypeSize(element[i].type)) * element[i].count;
+        offset += VertexBufferElement::getTypeSize(element[i].type) * element[i].count;
+        nextAttribute++;
     }
 }
 

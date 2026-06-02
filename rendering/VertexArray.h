@@ -11,13 +11,14 @@ class VertexBuffer;
 
 class VertexArray {
     unsigned int renderId;
+    int nextAttribute=0;
 public:
     VertexArray();
     ~VertexArray();
 
     const void bind();
     const void unbind();
-    void addBuffer(VertexBuffer& vertexbuffer, const VertexBufferLayout& layout);
+    void addBuffer(VertexBuffer& vertexbuffer, const VertexBufferLayout& layout, bool instanced=false);
 };
 
 

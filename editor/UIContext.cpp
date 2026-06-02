@@ -92,6 +92,7 @@ void UIContext::init(int width, int height, Engine* engine)
 	consolelog = new ConsoleLog(glm::vec2(300,Engine::getScreenHeight()-300), glm::vec2(Engine::getScreenWidth()-300, 300));
 	//consolelog->addLog("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	new ContainerComponent(sceneview->getId());
+	new ContainerComponent(consolelog->getId());
 	setSize(width,height);
 }
 
