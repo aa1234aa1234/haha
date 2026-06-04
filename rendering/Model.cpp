@@ -32,7 +32,7 @@ void Model::processNode(aiNode* node) {
     }
 }
 
-Mesh<VertexPNTBUV> Model::processMesh(aiMesh* mesh) {
+Mesh<VertexPNTBUV>* Model::processMesh(aiMesh* mesh) {
     std::vector<VertexPNTBUV> vertices;
     std::vector<unsigned int> indices;
     std::vector<Texture*> textures;
@@ -68,6 +68,7 @@ Mesh<VertexPNTBUV> Model::processMesh(aiMesh* mesh) {
         else {
             vertex.texCoord = glm::vec2();
         }
+        vertices.push_back(vertex);
     }
 
     for (int i = 0; i<mesh->mNumFaces; i++) {
@@ -104,7 +105,7 @@ Mesh<VertexPNTBUV> Model::processMesh(aiMesh* mesh) {
 
             materials[matName] = pbr_material;
             ResourceManager::getInstance()->addMaterial(&pbr_material,matName);
-            return Mesh<VertexPNTBUV>(vertices,indices, numInstances);
+            return new Mesh<VertexPNTBUV>(vertices,indices, numInstances);
         }
 
         else {
@@ -118,10 +119,17 @@ Mesh<VertexPNTBUV> Model::processMesh(aiMesh* mesh) {
             const char* key[] = {AI_MATKEY_COLOR_DIFFUSE, AI_MATKEY_COLOR_AMBIENT, AI_MATKEY_COLOR_SPECULAR};
             glm::vec4 color[3] = {{},{},{}};
 
-            for (int i = 0; i<3; i++) {
-                if (aiGetMaterialColor(material, key[i], 0, 0, &aiColor[i]) == AI_SUCCESS) {
-                    color[i] = glm::vec4(aiColor[i].r, aiColor[i].g, aiColor[i].b, aiColor[i].a);
-                }
+
+            if (aiGetMaterialColor(material, AI_MATKEY_COLOR_DIFFUSE, &aiColor[0]) == AI_SUCCESS) {
+                color[0] = glm::vec4(aiColor[0].r, aiColor[0].g, aiColor[0].b, aiColor[0].a);
+            }
+
+            if (aiGetMaterialColor(material, AI_MATKEY_COLOR_AMBIENT, &aiColor[0]) == AI_SUCCESS) {
+                color[1] = glm::vec4(aiColor[1].r, aiColor[1].g, aiColor[1].b, aiColor[1].a);
+            }
+
+            if (aiGetMaterialColor(material, AI_MATKEY_COLOR_SPECULAR, &aiColor[0]) == AI_SUCCESS) {
+                color[2] = glm::vec4(aiColor[2].r, aiColor[2].g, aiColor[2].b, aiColor[2].a);
             }
 
             diffuseMap = loadTexture(material, aiTextureType_DIFFUSE, Texture::TextureType::DIFFUSE);
@@ -138,7 +146,7 @@ Mesh<VertexPNTBUV> Model::processMesh(aiMesh* mesh) {
 
             materials[matName] = mat;
             ResourceManager::getInstance()->addMaterial(&mat, matName);
-            return Mesh<VertexPNTBUV>(vertices,indices, numInstances);
+            return new Mesh<VertexPNTBUV>(vertices,indices, numInstances);
         }
     }
 
@@ -151,7 +159,10 @@ Texture* Model::loadTexture(aiMaterial *mat, aiTextureType type, int typeName) {
         aiString str;
 
         if (mat->GetTexture(type, i, &str) == AI_SUCCESS) {
-            texture = ResourceManager::getInstance()->loadTexture(directory + '\\' + str.C_Str());
+            std::string a = str.C_Str();
+            a.erase(find(a.begin(), a.end(), '.'));
+            a.erase(find(a.begin(), a.end(), '\\'));
+            texture = ResourceManager::getInstance()->loadTexture(directory + '/' + a);
             texture->setType(typeName);
         }
     }
@@ -160,6 +171,6 @@ Texture* Model::loadTexture(aiMaterial *mat, aiTextureType type, int typeName) {
 
 void Model::draw(Shader& shader) {
     for (auto& p : meshes) {
-        p.draw(shader,materials[p.getName()]);
+        p->draw(shader,materials[p->getName()]);
     }
 }

@@ -37,4 +37,5 @@ void ResourceManager::addMaterial(Material* material, const std::string& name) {
 
 Texture* ResourceManager::loadTexture(const std::string& filepath) {
     textures[filepath] = new Texture(filepath);
+    return textures[filepath];
 }

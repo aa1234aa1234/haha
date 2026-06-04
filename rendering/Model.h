@@ -20,7 +20,7 @@ class Model {
     //this can wait for now
     std::string directory;
     std::string fileName;
-    std::vector<Mesh<VertexPNTBUV>> meshes;
+    std::vector<Mesh<VertexPNTBUV>*> meshes;
     std::map<std::string, Material> materials;
 
     Assimp::Importer importer;
@@ -31,7 +31,7 @@ public:
     Model(const char* directory, const char* fileName, int numInstances = 1) : directory(directory), fileName(fileName), numInstances(numInstances)
     {
         std::string a = this->directory + this->fileName;
-        //LoadModel(a);
+        LoadModel(a);
 
     }
     ~Model() {
@@ -40,7 +40,7 @@ public:
 
     void LoadModel(const std::string& path);
     void processNode(aiNode* node);
-    Mesh<VertexPNTBUV> processMesh(aiMesh* mesh);
+    Mesh<VertexPNTBUV>* processMesh(aiMesh* mesh);
     Texture* loadTexture(aiMaterial* mat, aiTextureType type, int typeName);
     void draw(Shader& shader);
 };
