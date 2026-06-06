@@ -36,6 +36,11 @@ public:
     }
     ~Model() {
         if (scene) delete scene;
+        for (auto& p : meshes)
+        {
+            if (p) delete p;
+        }
+        meshes.clear();
     }
 
     void LoadModel(const std::string& path);

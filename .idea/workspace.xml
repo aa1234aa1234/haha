@@ -33,11 +33,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="06-02">
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="06-04">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ResourceManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ResourceManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rendering/Model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Model.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rendering/Model.h" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Model.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rendering/Texture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Texture.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/shader/base.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/base.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/shader/editor/container.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/editor/container.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,21 +74,6 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -329,15 +316,8 @@
       <workItem from="1780122126716" duration="8780000" />
       <workItem from="1780131707669" duration="51000" />
       <workItem from="1780382718298" duration="12503000" />
-      <workItem from="1780560329247" duration="8218000" />
-    </task>
-    <task id="LOCAL-00005" summary="07-02">
-      <option name="closed" value="true" />
-      <created>1751453776716</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1751453776716</updated>
+      <workItem from="1780560329247" duration="8415000" />
+      <workItem from="1780724059023" duration="9288000" />
     </task>
     <task id="LOCAL-00006" summary="07-07">
       <option name="closed" value="true" />
@@ -723,7 +703,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780397674779</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="06-04">
+      <option name="closed" value="true" />
+      <created>1780570977919</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1780570977920</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -746,7 +734,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="10-13" />
     <MESSAGE value="10-15" />
     <MESSAGE value="10-20" />
     <MESSAGE value="10-22" />
@@ -771,7 +758,8 @@
     <MESSAGE value="05-23" />
     <MESSAGE value="05-30" />
     <MESSAGE value="06-02" />
-    <option name="LAST_COMMIT_MESSAGE" value="06-02" />
+    <MESSAGE value="06-04" />
+    <option name="LAST_COMMIT_MESSAGE" value="06-04" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

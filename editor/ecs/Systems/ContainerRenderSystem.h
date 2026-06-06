@@ -105,7 +105,7 @@ public:
             EntityID component = sc->GetComponent<Container>(p).component;
             std::string header = sc->GetComponent<TitleComponent>(component).title;
             auto transform = sc->GetComponent<TransformComponent>(p);
-            Text t = Text{transform.position.x+10, transform.position.y+5, header};
+            Text t = Text{transform.position.x+10, transform.position.y+5, header, 0.47};
             TextHandler::getInstance()->manualDrawText(t);
         }
 

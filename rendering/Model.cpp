@@ -105,7 +105,9 @@ Mesh<VertexPNTBUV>* Model::processMesh(aiMesh* mesh) {
 
             materials[matName] = pbr_material;
             ResourceManager::getInstance()->addMaterial(&pbr_material,matName);
-            return new Mesh<VertexPNTBUV>(vertices,indices, numInstances);
+            auto* _mesh = new Mesh<VertexPNTBUV>(vertices,indices, numInstances);
+            _mesh->setMaterialName(matName);
+            return _mesh;
         }
 
         else {
@@ -146,7 +148,9 @@ Mesh<VertexPNTBUV>* Model::processMesh(aiMesh* mesh) {
 
             materials[matName] = mat;
             ResourceManager::getInstance()->addMaterial(&mat, matName);
-            return new Mesh<VertexPNTBUV>(vertices,indices, numInstances);
+            auto* _mesh = new Mesh<VertexPNTBUV>(vertices,indices, numInstances);
+            _mesh->setMaterialName(matName);
+            return _mesh;
         }
     }
 

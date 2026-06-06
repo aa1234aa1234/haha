@@ -11,6 +11,7 @@ Texture::Texture() : renderId(0), target(GL_NONE) {}
 
 Texture::Texture(std::string filePath) : target(GL_TEXTURE_2D) {
     GLCall(glGenTextures(1, &renderId));
+    this->filePath = filePath;
     stbi_set_flip_vertically_on_load(true);
     int channels;
     unsigned char* data = stbi_load(filePath.c_str(), &width, &height, &channels, 0);

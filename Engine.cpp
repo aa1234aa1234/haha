@@ -46,6 +46,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     Mesh<VertexPNTBUV>* mesh = new Mesh<VertexPNTBUV>(vertices, indices);
     testobject->addComponent(new MeshComponent<VertexPNTBUV>(mesh, ResourceManager::getInstance()->getMaterialByName("testmat")));
     SceneNode* obj = new SceneNode("modeltest");
+    obj->getTransform().setScale(glm::vec3(0.1,0.1,0.1));
     obj->addComponent(new ModelRenderer(new Model("resources/models/", "spider.obj")));
     application->getRoot().addSceneNode(obj);
     application->getRoot().addSceneNode(testobject);
