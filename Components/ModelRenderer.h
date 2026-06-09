@@ -6,6 +6,7 @@
 #define MODELRENDERER_H
 #include "Model.h"
 #include "NodeComponent.h"
+#include "UIContext.h"
 
 class Shader;
 class CameraComponent;
@@ -13,7 +14,7 @@ class CameraComponent;
 class ModelRenderer : public NodeComponent{
     Model* model;
 public:
-    ModelRenderer(Model* model) : model(model) {}
+    ModelRenderer(Model* model) : model(model){}
     ~ModelRenderer() {
         if (model) delete model;
     }

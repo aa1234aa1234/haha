@@ -10,6 +10,7 @@
 #include "ResourceManager.h"
 
 void ModelRenderer::render(Shader* shader, CameraComponent* camera) {
+    static bool firstTime = true;
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, parent->getTransform().getTranslation());
     model = glm::scale(model, parent->getTransform().getScale());
@@ -17,4 +18,9 @@ void ModelRenderer::render(Shader* shader, CameraComponent* camera) {
     shader->SetUniformMat4f("view", camera->getViewMatrix());
     shader->SetUniformMat4f("projection", camera->getProjectionMatrix());
     this->model->draw(*shader);
+    if (firstTime)
+    {
+        UIContext::getInstance()->addLog("Rendering Model " + this->model->getFileName(), true);
+        firstTime = false;
+    }
 }

@@ -4,6 +4,7 @@
 
 #ifndef PROJECT_ICONRENDERSYSTEM_H
 #define PROJECT_ICONRENDERSYSTEM_H
+#include "Components.hpp"
 #include "IconTextures.h"
 #include "stb/stb_image.h"
 
@@ -13,9 +14,11 @@ class IconRenderSystem : public System {
     unsigned int vao,vbo,instancevbo;
     Shader* shader;
 
+
 	struct Element {
 		glm::vec4 textureCoords;
 		glm::vec4 renderBox;
+		RenderLayer layer;
 	};
 
 	std::vector<Element> instanceData;
@@ -103,7 +106,7 @@ public:
     		instanceData.emplace_back(Element{GetIcon(icon.uvRect,glm::vec2(textureWidth,textureHeight)), renderRect});
     		elementCount++;
     	}
-    	//std::cout << "iconrender element count: " << elementCount << std::endl;
+    	//std::cout << "iconrender element count: " << elementCount << ' ' << instanceData.size() << std::endl;
 
 
     	glBindTexture(GL_TEXTURE_2D, textureAtlas);

@@ -8,6 +8,12 @@
 
 #include "Entity.h"
 
+enum class RenderLayer
+{
+    Editor,
+    Overlay
+};
+
 struct TransformComponent
 {
     glm::vec2 position;
@@ -61,6 +67,7 @@ struct RenderableIcon
     glm::vec4 boundingBox;
     glm::vec4 renderRect;
     bool visible = false;
+    RenderLayer layer = RenderLayer::Editor;
 };
 
 struct RenderableIcons {

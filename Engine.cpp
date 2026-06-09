@@ -31,7 +31,7 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     SceneNode* testobject = new SceneNode("TestObject", glm::vec3(1,1,1), glm::vec3(0,0,0), glm::vec3(1,1,1));
 
 
-    testobject->getTransform().setScale(glm::vec3(1,10,1));
+    testobject->getTransform().setScale(glm::vec3(100,1,100));
     //testobject->getTransform().setTranslation(glm::vec3(1,10,1));
     Material* testmat = new Material();
     testmat->setAmbientColor(glm::vec4(0.2,0.2,0.2,1.0));
@@ -69,13 +69,13 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
 
     renderingEngine->setAmbientLight(glm::vec3(1,1,1));
 
-    for (int i = 0; i<25; i++) {
-        for (int j = 0; j<25; j++) {
-            UIContext::getInstance()->addLog(i);
-            UIContext::getInstance()->addLog(' ');
-        }
-        UIContext::getInstance()->addLog("", true);
-    }
+    // for (int i = 0; i<25; i++) {
+    //     for (int j = 0; j<25; j++) {
+    //         UIContext::getInstance()->addLog(i);
+    //         UIContext::getInstance()->addLog(' ');
+    //     }
+    //     UIContext::getInstance()->addLog("", true);
+    // }
 
 }
 

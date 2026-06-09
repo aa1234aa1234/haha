@@ -7,6 +7,7 @@
 #include <string>
 
 #include "NodeComponent.h"
+#include "UIContext.h"
 
 class Shader;
 class Material;

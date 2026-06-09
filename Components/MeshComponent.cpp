@@ -9,10 +9,12 @@
 #include "SceneNode.h"
 #include "Shader.h"
 #include "CameraComponent.h"
+#include "Material.h"
 
 template <class VertexType>
 void MeshComponent<VertexType>::render(Shader* shader, CameraComponent* camera)
 {
+    static bool firstTime = true;
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, parent->getTransform().getTranslation());
     model = glm::scale(model, parent->getTransform().getScale());
@@ -20,6 +22,11 @@ void MeshComponent<VertexType>::render(Shader* shader, CameraComponent* camera)
     shader->SetUniformMat4f("view", camera->getViewMatrix());
     shader->SetUniformMat4f("projection", camera->getProjectionMatrix());
     _mesh->draw(*shader, *material);
+    if (firstTime)
+    {
+        UIContext::getInstance()->addLog("Rendering MeshComponent with Material ", true);
+        firstTime = false;
+    }
 }
 
 template void MeshComponent<VertexPNTBUV>::render(Shader* shader, CameraComponent* camera);

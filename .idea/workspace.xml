@@ -33,14 +33,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="06-04">
+    <list default="true" id="bcda0417-368e-4d15-b0e8-4ecd22fe96d6" name="Changes" comment="06-06">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MeshComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MeshComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MeshComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MeshComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ModelRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ModelRenderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ModelRenderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ModelRenderer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rendering/Model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Model.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/Components.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Components.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor/ecs/Systems/IconRenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/editor/ecs/Systems/IconRenderSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rendering/Model.h" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Model.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rendering/Texture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering/Texture.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/shader/base.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/base.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/shader/editor/container.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shader/editor/container.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,45 +76,6 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -185,7 +148,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -207,6 +170,11 @@
   <component name="RunManager" selected="CMake Application.project">
     <configuration name="project" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="project" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
@@ -317,15 +285,9 @@
       <workItem from="1780131707669" duration="51000" />
       <workItem from="1780382718298" duration="12503000" />
       <workItem from="1780560329247" duration="8415000" />
-      <workItem from="1780724059023" duration="9288000" />
-    </task>
-    <task id="LOCAL-00006" summary="07-07">
-      <option name="closed" value="true" />
-      <created>1751885730077</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1751885730077</updated>
+      <workItem from="1780724059023" duration="9586000" />
+      <workItem from="1780987531753" duration="3242000" />
+      <workItem from="1780991353371" duration="10506000" />
     </task>
     <task id="LOCAL-00007" summary="07-09">
       <option name="closed" value="true" />
@@ -711,7 +673,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780570977920</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="06-06">
+      <option name="closed" value="true" />
+      <created>1780736720400</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1780736720400</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,7 +704,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="10-15" />
     <MESSAGE value="10-20" />
     <MESSAGE value="10-22" />
     <MESSAGE value="10-27" />
@@ -759,7 +728,8 @@
     <MESSAGE value="05-30" />
     <MESSAGE value="06-02" />
     <MESSAGE value="06-04" />
-    <option name="LAST_COMMIT_MESSAGE" value="06-04" />
+    <MESSAGE value="06-06" />
+    <option name="LAST_COMMIT_MESSAGE" value="06-06" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

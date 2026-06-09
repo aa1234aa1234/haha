@@ -48,6 +48,8 @@ public:
     Mesh<VertexPNTBUV>* processMesh(aiMesh* mesh);
     Texture* loadTexture(aiMaterial* mat, aiTextureType type, int typeName);
     void draw(Shader& shader);
+
+    std::string getFileName() { return fileName; }
 };
 
 
