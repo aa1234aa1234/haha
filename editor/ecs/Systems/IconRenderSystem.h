@@ -80,7 +80,7 @@ public:
 
     }
 
-    void Update() {
+    void Update(RenderLayer layer=RenderLayer::Editor) {
 
     	shader->use();
     	glm::mat4 mat = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f);
@@ -90,6 +90,7 @@ public:
     	auto* sc = SystemCoordinator::getInstance();
     	for (auto& p : entities) {
     		auto& icon = sc->GetComponent<RenderableIcon>(p);
+    		if (icon.layer != layer) continue;
     		if (!icon.visible) continue;
     		auto renderRect = icon.renderRect;
     		if (renderRect.y < 0 || renderRect.y > height) continue;
