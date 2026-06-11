@@ -29,24 +29,26 @@ EditorLayer::~EditorLayer()
 
 void EditorLayer::RegisterComponents()
 {
-    SystemCoordinator::getInstance()->RegisterComponent<TransformComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<ContentComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<ScrollableComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<TextComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<TreeNodeComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<PositionComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<HoverableComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<DirtyComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<ClickableComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<RenderableIcon>();
-    SystemCoordinator::getInstance()->RegisterComponent<ParentComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<TextureComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<NonRenderableBoundingBox>();
-    SystemCoordinator::getInstance()->RegisterComponent<HandleInput>();
-    SystemCoordinator::getInstance()->RegisterComponent<RenderableIcons>();
-    SystemCoordinator::getInstance()->RegisterComponent<Container>();
-    SystemCoordinator::getInstance()->RegisterComponent<TitleComponent>();
-    SystemCoordinator::getInstance()->RegisterComponent<LogComponent>();
+    auto* sc = SystemCoordinator::getInstance();
+    sc->RegisterComponent<TransformComponent>();
+    sc->RegisterComponent<ContentComponent>();
+    sc->RegisterComponent<ScrollableComponent>();
+    sc->RegisterComponent<TextComponent>();
+    sc->RegisterComponent<TreeNodeComponent>();
+    sc->RegisterComponent<PositionComponent>();
+    sc->RegisterComponent<HoverableComponent>();
+    sc->RegisterComponent<DirtyComponent>();
+    sc->RegisterComponent<ClickableComponent>();
+    sc->RegisterComponent<RenderableIcon>();
+    sc->RegisterComponent<ParentComponent>();
+    sc->RegisterComponent<TextureComponent>();
+    sc->RegisterComponent<NonRenderableBoundingBox>();
+    sc->RegisterComponent<HandleInput>();
+    sc->RegisterComponent<RenderableIcons>();
+    sc->RegisterComponent<Container>();
+    sc->RegisterComponent<TitleComponent>();
+    sc->RegisterComponent<LogComponent>();
+    sc->RegisterComponent<HoverHightlightComponent>();
 }
 
 void EditorLayer::init()

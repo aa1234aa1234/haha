@@ -51,7 +51,12 @@ struct TextComponent {
 };
 
 struct HoverableComponent {
-    unsigned int hoverShader;
+    std::function<void(EntityID)> onHover;
+};
+
+struct HoverHightlightComponent
+{
+    glm::vec3 highlightColor=glm::vec3(46,67,110);
 };
 
 struct ClickableComponent
