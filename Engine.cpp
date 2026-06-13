@@ -17,6 +17,7 @@
 #include "rendering/RenderingEngine.h"
 #include "Model.h"
 #include "ModelRenderer.h"
+#include "ContextMenuManager.h"
 
 int Engine::screenHeight, Engine::screenWidth;
 bool Engine::isRunning = false;
@@ -52,6 +53,8 @@ Engine::Engine(Application* app, const int& width, const int& height, const std:
     obj->getTransform().setScale(glm::vec3(0.1,0.1,0.1));
     obj->getTransform().setTranslation(glm::vec3(1,10,1));
     obj->addComponent(new ModelRenderer(new Model("resources/models/", "spider.obj")));
+    ContextMenuManager::getInstance();
+
     application->getRoot().addSceneNode(obj);
     application->getRoot().addSceneNode(testobject);
     application->getRoot().addSceneNode(new SceneNode("a"));

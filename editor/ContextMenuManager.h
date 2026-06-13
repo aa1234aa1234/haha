@@ -12,7 +12,7 @@ class ContextMenu;
 class ContextMenuManager {
     static ContextMenuManager* instance;
 public:
-    ContextMenuManager() {}
+    ContextMenuManager();
     ~ContextMenuManager()
     {
         if (instance) delete instance;
